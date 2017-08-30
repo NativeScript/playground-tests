@@ -1,4 +1,4 @@
-# {N} Starter Kit Templates Functional Tests
+# {N} Playground Functional Tests
 
 ## Prerequisites and Environment Setup
 
