@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="NsPlay" verbose="1">
+    <test name="NSPlay Tests">
+        <classes>
+            <class name="nsplay.tests.NsPlayTests"/>
+        </classes>
+    </test>
+</suite>
