@@ -19,9 +19,9 @@ public class InfoPage extends BasePage {
     /**
      * Verify home page loaded.
      */
-    public void navigate(String carName) {
-        this.find.byText(carName).click();
-        this.log.info("Navigate to " + carName);
+    public void navigate(String place) {
+        this.find.byText(place).click();
+        this.log.info("Navigate to " + place);
     }
 
     public void scrollDown() {

@@ -36,7 +36,9 @@ public class NsPlayTests extends MobileTest {
         }
         else if(settings.deviceType == settings.deviceType.Emulator)
         {
-            scanPage.navigate("Allow");
+            if(scanPage.checkIfElementisShown("Allow")) {
+                scanPage.navigate("Allow");
+            }
             QRPage detailsPage = new QRPage();
             this.assertScreen("nsplay-qr-android-emulator-view", this.settings.defaultTimeout,50.0);
         }
