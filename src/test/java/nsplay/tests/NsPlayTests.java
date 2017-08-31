@@ -51,8 +51,10 @@ public class NsPlayTests extends MobileTest {
 
     @Test(description = "Verify scan page looks OK.", groups = {"android", "ios"})
     public void test_03_info_page_looks_ok() throws Exception {
+        if(settings.deviceType == settings.deviceType.Emulator)
+        {
         QRPage detailsPage = new QRPage();
-        if(settings.deviceType == settings.deviceType.Emulator) {
+
             detailsPage.navigateBack();
         }
         InfoPage scanPage = new InfoPage();
