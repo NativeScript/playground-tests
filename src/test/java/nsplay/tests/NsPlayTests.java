@@ -73,6 +73,10 @@ public class NsPlayTests extends MobileTest {
     public void test_04_WebNativescript_page_looks_ok() throws Exception {
         ScanPage scanPage = new ScanPage();
         scanPage.navigate("https://www.nativescript.org");
+        if(settings.deviceName=="Emulator-Api25-Google")
+        {
+            scanPage.navigate("Chrome");
+        }
         WebPage webPage = new WebPage();
         this.assertScreen("nsplay-opened-history-element", this.settings.shortTimeout,20.0);
     }
