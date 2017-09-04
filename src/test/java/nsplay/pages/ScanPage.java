@@ -36,4 +36,10 @@ public class ScanPage extends BasePage {
         }
         return isElementFound;
     }
+
+    public void waitForElement() throws InterruptedException {
+        synchronized(this.wait) {
+            this.wait.wait(4000);
+        }
+    }
 }
