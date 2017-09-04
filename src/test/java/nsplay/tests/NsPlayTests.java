@@ -76,6 +76,7 @@ public class NsPlayTests extends MobileTest {
         if(settings.deviceName.contains("Google"))
         {
             scanPage.navigate("Chrome");
+            scanPage.navigate("Just once");
         }
         WebPage webPage = new WebPage();
         this.assertScreen("nsplay-opened-history-element", this.settings.shortTimeout,20.0);
