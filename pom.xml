@@ -62,7 +62,7 @@
                 <app.config>nsplay/nsplay.emu.default.api26.properties</app.config>
                 <testsuite>nsplay</testsuite>
             </properties>
-        </profile
+        </profile>
         <profile>
             <id>nsplay.sim.Ipad5thgeneration.ios10</id>
             <properties>
