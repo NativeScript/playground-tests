@@ -78,7 +78,7 @@
             </properties>
         </profile>
         <profile>
-            <id>nsplay.sim.iphone9.ios91</id>
+            <id>nsplay.sim.iphone6.ios91</id>
             <properties>
                 <app.config>nsplay/nsplay.sim.iphone6.ios91.properties</app.config>
                 <testsuite>nsplay</testsuite>
