@@ -57,6 +57,13 @@
             </properties>
         </profile>
         <profile>
+            <id>nsplay.emu.default.api26</id>
+            <properties>
+                <app.config>nsplay/nsplay.emu.default.api26.properties</app.config>
+                <testsuite>nsplay</testsuite>
+            </properties>
+        </profile
+        <profile>
             <id>nsplay.sim.Ipad5thgeneration.ios10</id>
             <properties>
                 <app.config>nsplay/nsplay.sim.Ipad5thgeneration.ios10.properties</app.config>
@@ -67,6 +74,13 @@
             <id>nsplay.sim.iphone7.ios10</id>
             <properties>
                 <app.config>nsplay/nsplay.sim.iphone7.ios10.properties</app.config>
+                <testsuite>nsplay</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplay.sim.iphone9.ios93</id>
+            <properties>
+                <app.config>nsplay/nsplay.sim.iphone6.ios93.properties</app.config>
                 <testsuite>nsplay</testsuite>
             </properties>
         </profile>
