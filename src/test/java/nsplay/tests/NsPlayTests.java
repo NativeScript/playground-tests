@@ -77,6 +77,7 @@ public class NsPlayTests extends MobileTest {
         {
             scanPage.navigate("Chrome");
             scanPage.navigate("Just once");
+            scanPage.navigate("Accept & continue");
         }
         WebPage webPage = new WebPage();
         this.assertScreen("nsplay-opened-history-element", this.settings.shortTimeout,20.0);
