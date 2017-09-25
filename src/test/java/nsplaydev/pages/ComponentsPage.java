@@ -7,20 +7,47 @@ import org.testng.Assert;
 
 public class ComponentsPage extends BasePage {
 
-    public ComponentsPage() throws InterruptedException {
+    public ComponentsPage(boolean isScrolled) throws InterruptedException {
         super();
         UIElement browse = this.wait.waitForVisible(this.locators.findByTextLocator("Components", true));
         if(browse==null)
         {
             this.navigateBack();
             this.waitForElement(500);
-            browse = browse = this.find.byText("Components");
+            browse = this.find.byText("Components");
         }
         if(browse==null)
         {
             this.navigateBack();
             this.waitForElement(500);
             browse = this.find.byText("Components");
+        }
+        if(isScrolled) {
+            UIElement location = this.find.byText("Location");
+            if (location == null) {
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+            }
+            location = this.find.byText("Location");
+            Assert.assertNotNull(location, "Page Not Scrolled correctly!");
         }
         Assert.assertNotNull(browse, "Components page not loaded!");
         this.log.info("Components page loaded.");

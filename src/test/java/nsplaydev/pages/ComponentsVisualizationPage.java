@@ -10,29 +10,6 @@ public class ComponentsVisualizationPage extends BasePage {
     public ComponentsVisualizationPage(String component) {
         super();
         UIElement browse = this.wait.waitForVisible(this.locators.findByTextLocator(component, true));
-        if(browse== null) {
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            this.scrollDown();
-            browse = this.wait.waitForVisible(this.locators.findByTextLocator(component, true));
-        }
         Assert.assertNotNull(browse, "Components Visualization page not loaded!");
         this.log.info("Components Visualization page loaded.");
     }
