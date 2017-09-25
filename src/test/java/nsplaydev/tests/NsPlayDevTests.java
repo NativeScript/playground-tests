@@ -271,7 +271,6 @@ public class NsPlayDevTests extends MobileTest {
         if(componentsVisualizationPage.checkIfElementisShown("Allow")) {
             componentsVisualizationPage.navigate("Allow");
         }
-        componentsVisualizationPage.navigate("Allow");
         this.assertScreen("nsplaydev-location-working-view", this.settings.shortTimeout, 20);
     }
 
