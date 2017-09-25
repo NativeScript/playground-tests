@@ -98,6 +98,76 @@
                 <testsuite>nsplaydev</testsuite>
             </properties>
         </profile>
+        <profile>
+            <id>nsplaydev.emu.default.api19</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.emu.default.api19.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplaydev.emu.default.api21</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.emu.default.api21.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplaydev.emu.default.api22</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.emu.default.api22.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplaydev.emu.default.api24</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.emu.default.api24.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplaydev.emu.default.api25</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.emu.default.api25.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplaydev.emu.default.api26</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.emu.default.api26.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplaydev.sim.Ipad5thgeneration.ios10</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.sim.Ipad5thgeneration.ios10.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplaydev.sim.iphone7.ios10</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.sim.iphone7.ios10.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplaydev.sim.iphone6.ios91</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.sim.iphone6.ios91.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplaydev.sim.iphone7Plus.ios10</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.sim.iphone7Plus.ios10.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
