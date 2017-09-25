@@ -214,6 +214,7 @@ public class NsPlayDevTests extends MobileTest {
         this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
         componentsPage.navigate("ListView");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("ListView");
+        componentsPage.waitForElement(4000);
         this.assertScreen("nsplaydev-listview-view", this.settings.shortTimeout);
     }
 
@@ -271,6 +272,7 @@ public class NsPlayDevTests extends MobileTest {
         if(componentsVisualizationPage.checkIfElementisShown("Allow")) {
             componentsVisualizationPage.navigate("Allow");
         }
+        componentsVisualizationPage.waitForElement(4000);
         this.assertScreen("nsplaydev-location-working-view", this.settings.shortTimeout, 20);
     }
 

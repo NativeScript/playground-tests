@@ -46,4 +46,10 @@ public class ComponentsVisualizationPage extends BasePage {
         }
         return isElementFound;
     }
+
+    public void waitForElement(int time) throws InterruptedException {
+        synchronized(this.wait) {
+            this.wait.wait(time);
+        }
+    }
 }
