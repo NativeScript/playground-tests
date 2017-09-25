@@ -203,6 +203,8 @@ public class NsPlayDevTests extends MobileTest {
         componentsPage.scrollDown();
         componentsPage.scrollDown();
         componentsPage.scrollDown();
+        componentsPage.scrollDown();
+        componentsPage.scrollDown();
         this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
     }
 

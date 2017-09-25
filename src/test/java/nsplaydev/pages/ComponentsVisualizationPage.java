@@ -29,6 +29,8 @@ public class ComponentsVisualizationPage extends BasePage {
             this.scrollDown();
             this.scrollDown();
             this.scrollDown();
+            this.scrollDown();
+            this.scrollDown();
             browse = this.wait.waitForVisible(this.locators.findByTextLocator(component, true));
         }
         Assert.assertNotNull(browse, "Components Visualization page not loaded!");
