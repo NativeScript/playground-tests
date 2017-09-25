@@ -91,6 +91,13 @@
                 <testsuite>nsplay</testsuite>
             </properties>
         </profile>
+        <profile>
+            <id>nsplaydev.emu.default.api23</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.emu.default.api23.properties</app.config>
+                <testsuite>nsplay</testsuite>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
