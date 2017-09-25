@@ -31,4 +31,19 @@ public class ComponentsVisualizationPage extends BasePage {
         scroll.scrollInElement(SwipeElementDirection.DOWN, 1);
         this.log.info("Scroll Down");
     }
+
+    public boolean checkIfElementisShown(String elementText) {
+        boolean isElementFound = false;
+        UIElement element = this.find.byText(elementText);
+        if(element != null)
+        {
+            isElementFound = true;
+            this.log.info("Item " + elementText + " found!");
+        }
+        else
+        {
+            this.log.info("Item " + elementText + " not found!");
+        }
+        return isElementFound;
+    }
 }

@@ -268,6 +268,9 @@ public class NsPlayDevTests extends MobileTest {
     public void test_27_location_is_working() throws Exception {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Location");
         componentsVisualizationPage.navigate("Show Location");
+        if(componentsVisualizationPage.checkIfElementisShown("Allow")) {
+            componentsVisualizationPage.navigate("Allow");
+        }
         componentsVisualizationPage.navigate("Allow");
         this.assertScreen("nsplaydev-location-working-view", this.settings.shortTimeout, 20);
     }
