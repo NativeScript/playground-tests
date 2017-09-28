@@ -243,7 +243,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Accelerometer");
         if(settings.deviceType == settings.deviceType.Simulator)
         {
-            this.assertScreen("nsplaydev-accelerometer-working-view-for-simulator", this.settings.shortTimeout, 10);
+            this.assertScreen("nsplaydev-accelerometer-view", this.settings.shortTimeout, 10);
         }
         else
         {
