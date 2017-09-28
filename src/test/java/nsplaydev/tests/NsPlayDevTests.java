@@ -124,7 +124,7 @@ public class NsPlayDevTests extends MobileTest {
     public void test_12_textfield_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
         this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
-        componentsPage.navigate("Textfield");
+        componentsPage.navigate("TextField");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("TextField");
         this.assertScreen("nsplaydev-textfield-view", this.settings.shortTimeout);
     }
