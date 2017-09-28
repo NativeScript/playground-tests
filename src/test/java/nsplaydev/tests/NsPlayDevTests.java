@@ -24,7 +24,7 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify Button Visualization page looks OK.", groups = {"android", "ios"})
     public void test_02_button_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
-        componentsPage.navigate("button");
+        componentsPage.navigate("Button");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Button");
         this.assertScreen("nsplaydev-button-view", this.settings.shortTimeout);
     }
@@ -44,7 +44,7 @@ public class NsPlayDevTests extends MobileTest {
     public void test_04_image_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
         this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
-        componentsPage.navigate("image");
+        componentsPage.navigate("Image");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Image");
         this.assertScreen("nsplaydev-image-view", this.settings.shortTimeout);
     }
@@ -64,7 +64,7 @@ public class NsPlayDevTests extends MobileTest {
     public void test_06_image_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
         this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
-        componentsPage.navigate("label");
+        componentsPage.navigate("Label");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Label");
         this.assertScreen("nsplaydev-label-view", this.settings.shortTimeout);
     }
@@ -84,7 +84,7 @@ public class NsPlayDevTests extends MobileTest {
     public void test_08_switch_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
         this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
-        componentsPage.navigate("switch");
+        componentsPage.navigate("Switch");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Switch");
         this.assertScreen("nsplaydev-switch-view", this.settings.shortTimeout);
     }
@@ -104,7 +104,7 @@ public class NsPlayDevTests extends MobileTest {
     public void test_10_slider_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
         this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
-        componentsPage.navigate("slider");
+        componentsPage.navigate("Slider");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Slider");
         this.assertScreen("nsplaydev-slider-view", this.settings.shortTimeout);
     }
@@ -124,7 +124,7 @@ public class NsPlayDevTests extends MobileTest {
     public void test_12_textfield_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
         this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
-        componentsPage.navigate("textfield");
+        componentsPage.navigate("Textfield");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("TextField");
         this.assertScreen("nsplaydev-textfield-view", this.settings.shortTimeout);
     }
