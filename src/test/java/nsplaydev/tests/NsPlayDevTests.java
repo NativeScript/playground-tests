@@ -241,8 +241,15 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify Accelerometer is working.", groups = {"android", "ios"})
     public void test_24_accelerometer_is_working() throws Exception {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Accelerometer");
-        componentsVisualizationPage.navigate("Start Accelerometer");
-        this.assertScreen("nsplaydev-accelerometer-working-view", this.settings.shortTimeout, 10);
+        if(settings.deviceType == settings.deviceType.Simulator)
+        {
+            this.assertScreen("nsplaydev-accelerometer-working-view-for-simulator", this.settings.shortTimeout, 10);
+        }
+        else
+        {
+            componentsVisualizationPage.navigate("Start Accelerometer");
+            this.assertScreen("nsplaydev-accelerometer-working-view", this.settings.shortTimeout, 10);
+        }
     }
 
     @Test(description = "Verify Accelerometer Deitals page looks OK.", groups = {"android", "ios"})
