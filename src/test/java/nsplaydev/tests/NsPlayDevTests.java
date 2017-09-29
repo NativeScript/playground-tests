@@ -1,9 +1,9 @@
 package nsplaydev.tests;
 
 import functional.tests.core.mobile.basetest.MobileTest;
-import sync.pages.ComponentsDetailsPage;
-import sync.pages.ComponentsPage;
-import sync.pages.ComponentsVisualizationPage;
+import nsplaydev.pages.ComponentsDetailsPage;
+import nsplaydev.pages.ComponentsPage;
+import nsplaydev.pages.ComponentsVisualizationPage;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
