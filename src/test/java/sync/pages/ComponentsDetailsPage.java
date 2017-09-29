@@ -1,4 +1,4 @@
-package nsplaydev.nsplaydev.pages;
+package sync.pages;
 
 import functional.tests.core.mobile.basepage.BasePage;
 import functional.tests.core.mobile.element.UIElement;

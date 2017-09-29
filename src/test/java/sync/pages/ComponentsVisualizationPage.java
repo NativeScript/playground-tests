@@ -1,14 +1,29 @@
-package nsplaydev.nsplaydev.pages;
+package sync.pages;
 
 import functional.tests.core.mobile.basepage.BasePage;
 import functional.tests.core.mobile.element.UIElement;
 import io.appium.java_client.SwipeElementDirection;
 import org.testng.Assert;
+import org.sikuli.script.*;
 
 public class ComponentsVisualizationPage extends BasePage {
 
     public ComponentsVisualizationPage(String component) {
         super();
+        Screen s = new Screen();
+        //ImagePath.add("TestSikuli/images");
+        try{
+            s.write(Key.SPACE + KeyModifier.CMD);
+            s.write("Safari");
+            s.write(Key.ENTER);
+            s.click("");
+            //s.wait("spotlight-input.png");
+            //s.click();
+            //s.write("hello world#ENTER.");
+        }
+        catch(FindFailed e){
+            e.printStackTrace();
+        }
         UIElement browse = this.wait.waitForVisible(this.locators.findByTextLocator(component, true));
         Assert.assertNotNull(browse, "Components Visualization page not loaded!");
         this.log.info("Components Visualization page loaded.");

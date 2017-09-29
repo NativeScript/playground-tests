@@ -1,13 +1,13 @@
-package nsplaydev.nsplaydev.tests;
+package sync.tests;
 
 import functional.tests.core.mobile.basetest.MobileTest;
-import nsplaydev.nsplaydev.pages.ComponentsDetailsPage;
-import nsplaydev.nsplaydev.pages.ComponentsPage;
-import nsplaydev.nsplaydev.pages.ComponentsVisualizationPage;
+import sync.pages.ComponentsDetailsPage;
+import sync.pages.ComponentsPage;
+import sync.pages.ComponentsVisualizationPage;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class NsPlayDevTests extends MobileTest {
+public class NSSyncTests extends MobileTest {
     @BeforeTest
     public void beforeTest() {
         //this.settings.
