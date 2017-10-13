@@ -83,7 +83,16 @@ public class ComponentsPage extends BasePage {
     }
 
     public void scrollDown() {
-        UIElement scroll = this.wait.waitForVisible(this.locators.findByTextLocator("DatePicker", true));
+        UIElement scroll;
+        if(settings.deviceName.contains("Api26"))
+        {
+             scroll = this.wait.waitForVisible(this.locators.findByTextLocator("TextView", true));
+        }
+        else
+        {
+             scroll = this.wait.waitForVisible(this.locators.findByTextLocator("DatePicker", true));
+        }
+
         scroll.scrollInElement(SwipeElementDirection.DOWN, 1);
         this.log.info("Scroll Down");
     }
