@@ -64,6 +64,7 @@ public class NsPlayTests extends MobileTest {
             scanPage.scrollDown();
             scanPage.scrollDown();
             scanPage.scrollDown();
+            scanPage.scrollDown();
             this.assertScreen("nsplay-info-view-scrolled-emulator", this.settings.shortTimeout);
         }
 
@@ -73,11 +74,14 @@ public class NsPlayTests extends MobileTest {
     public void test_04_WebNativescript_page_looks_ok() throws Exception {
         ScanPage scanPage = new ScanPage();
         scanPage.navigate("https://www.nativescript.org");
-        if(settings.deviceName.contains("Google"))
+        if(settings.deviceName.contains("Api26"))
         {
-            scanPage.navigate("Chrome");
-            scanPage.navigate("Just once");
             scanPage.waitForElement();
+            if(scanPage.checkIfElementisShown("Chrome")) {
+                scanPage.navigate("Chrome");
+                scanPage.navigate("Just once");
+                scanPage.waitForElement();
+            }
             if(scanPage.checkIfElementisShown("ACCEPT & CONTINUE"))
             {
                 scanPage.navigate("Accept & continue");
