@@ -163,7 +163,14 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify DatePicker Visualization page looks OK.", groups = {"android", "ios"})
     public void test_16_DatePicker_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(true);
-        this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+        if(settings.deviceName.contains("Api26"))
+        {
+            this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
+        }
+        else
+        {
+            this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+        }
         componentsPage.navigate("DatePicker");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("DatePicker");
         this.assertScreen("nsplaydev-datepicker-view", this.settings.shortTimeout);
@@ -183,7 +190,14 @@ public class NsPlayDevTests extends MobileTest {
 
     @Test(description = "Verify Scrolled Home page looks OK.", groups = {"android", "ios"})
     public void test_18_scrolled_home_page_looks_ok() throws Exception {
-        this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+        if(settings.deviceName.contains("Api26"))
+        {
+            this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
+        }
+        else
+        {
+            this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+        }
         ComponentsPage componentsPage = new ComponentsPage(true);
         this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
     }
