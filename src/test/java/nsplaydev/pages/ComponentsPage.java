@@ -45,6 +45,11 @@ public class ComponentsPage extends BasePage {
                 this.scrollDown();
                 this.scrollDown();
                 this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
+                this.scrollDown();
             }
             location = this.find.byText("Location");
             Assert.assertNotNull(location, "Page Not Scrolled correctly!");
