@@ -162,13 +162,14 @@ public class NsPlayDevTests extends MobileTest {
 
     @Test(description = "Verify DatePicker Visualization page looks OK.", groups = {"android", "ios"})
     public void test_16_DatePicker_page_looks_ok() throws Exception {
-        ComponentsPage componentsPage = new ComponentsPage(true);
         if(settings.deviceName.contains("Api26"))
         {
+            ComponentsPage componentsPage = new ComponentsPage(true);
             this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
         }
         else
         {
+            ComponentsPage componentsPage = new ComponentsPage(false);
             this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
         }
         componentsPage.navigate("DatePicker");
