@@ -13,13 +13,13 @@ public class ComponentsPage extends BasePage {
         if(browse==null)
         {
             this.navigateBack();
-            this.waitForElement(500);
+            this.waitForElement(1000);
             browse = this.find.byText("Components");
         }
         if(browse==null)
         {
             this.navigateBack();
-            this.waitForElement(500);
+            this.waitForElement(1000);
             browse = this.find.byText("Components");
         }
         if(isScrolled) {
