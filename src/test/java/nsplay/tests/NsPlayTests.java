@@ -15,6 +15,7 @@ public class NsPlayTests extends MobileTest {
     @Test(description = "Verify scan page looks OK.", groups = {"android", "ios"})
     public void test_01_scan_page_looks_ok() throws Exception {
         ScanPage scanPage = new ScanPage();
+        scanPage.waitForElement(40000);
         this.assertScreen("nsplay-home-view", this.settings.shortTimeout);
     }
 
@@ -29,7 +30,7 @@ public class NsPlayTests extends MobileTest {
         }
         else if(settings.deviceType == settings.deviceType.Emulator)
         {
-            scanPage.waitForElement();
+            scanPage.waitForElement(4000);
             if(scanPage.checkIfElementisShown("Allow")) {
                 scanPage.navigate("Allow");
             }
@@ -70,11 +71,11 @@ public class NsPlayTests extends MobileTest {
         scanPage.navigate("https://www.nativescript.org");
         if(settings.deviceName.contains("Api26"))
         {
-            scanPage.waitForElement();
+            scanPage.waitForElement(4000);
             if(scanPage.checkIfElementisShown("Chrome")) {
                 scanPage.navigate("Chrome");
                 scanPage.navigate("Just once");
-                scanPage.waitForElement();
+                scanPage.waitForElement(4000);
             }
             if(scanPage.checkIfElementisShown("ACCEPT & CONTINUE"))
             {
