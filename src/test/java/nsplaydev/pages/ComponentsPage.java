@@ -9,7 +9,7 @@ public class ComponentsPage extends BasePage {
 
     public ComponentsPage(boolean isScrolled) throws InterruptedException {
         super();
-        UIElement browse = this.wait.waitForVisible(this.locators.findByTextLocator("Details", true));
+        UIElement browse = this.wait.waitForVisible(this.locators.findByTextLocator("Components", true));
         if(browse!=null)
         {
             this.navigateBack();
