@@ -14,8 +14,8 @@ public class NsPlayTests extends MobileTest {
 
     @Test(description = "Verify scan page looks OK.", groups = {"android", "ios"})
     public void test_01_scan_page_looks_ok() throws Exception {
+        this.wait.wait(60000);
         ScanPage scanPage = new ScanPage();
-        scanPage.waitForElement(40000);
         this.assertScreen("nsplay-home-view", this.settings.shortTimeout);
     }
 

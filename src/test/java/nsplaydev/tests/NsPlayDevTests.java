@@ -11,8 +11,8 @@ public class NsPlayDevTests extends MobileTest {
 
     @Test(description = "Verify home page looks OK.", groups = {"android", "ios"})
     public void test_01_components_page_looks_ok() throws Exception {
+        this.wait.wait(60000);
         ComponentsPage componentsPage = new ComponentsPage(false);
-        componentsPage.waitForElement(40000);
         this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
     }
 
