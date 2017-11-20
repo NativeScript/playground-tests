@@ -36,6 +36,7 @@ public class NsPlayTests extends MobileTest {
         }
         else if(settings.deviceType == settings.deviceType.Emulator)
         {
+            scanPage.waitForElement();
             if(scanPage.checkIfElementisShown("Allow")) {
                 scanPage.navigate("Allow");
             }
