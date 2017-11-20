@@ -4,16 +4,10 @@ import functional.tests.core.mobile.basetest.MobileTest;
 import nsplaydev.pages.ComponentsDetailsPage;
 import nsplaydev.pages.ComponentsPage;
 import nsplaydev.pages.ComponentsVisualizationPage;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class NsPlayDevTests extends MobileTest {
-    @BeforeTest
-    public void beforeTest() {
-        //this.settings.
-        //if(this.settings.this.settings.platformName)
-        //throw new SkipException("Skip test because platform is not supported for the test");
-    }
+
 
     @Test(description = "Verify home page looks OK.", groups = {"android", "ios"})
     public void test_01_components_page_looks_ok() throws Exception {
