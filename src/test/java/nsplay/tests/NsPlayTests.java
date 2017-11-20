@@ -71,7 +71,7 @@ public class NsPlayTests extends MobileTest {
     public void test_04_WebNativescript_page_looks_ok() throws Exception {
         ScanPage scanPage = new ScanPage();
         scanPage.navigate("https://www.nativescript.org");
-        if(settings.deviceName.contains("Api26"))
+        if(settings.deviceName.contains("Api26")||settings.deviceName.contains("Api25"))
         {
             scanPage.waitForElement(4000);
             if(scanPage.checkIfElementisShown("Chrome")) {
