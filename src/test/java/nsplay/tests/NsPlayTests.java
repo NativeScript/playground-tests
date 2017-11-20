@@ -2,7 +2,6 @@ package nsplay.tests;
 
 import functional.tests.core.enums.PlatformType;
 import functional.tests.core.mobile.basetest.MobileTest;
-import org.testng.annotations.BeforeTest;
 import nsplay.pages.QRPage;
 import nsplay.pages.ScanPage;
 import nsplay.pages.WebPage;
@@ -12,12 +11,6 @@ import org.testng.SkipException;
 
 
 public class NsPlayTests extends MobileTest {
-    @BeforeTest
-    public void beforeTest() {
-        //this.settings.
-        //if(this.settings.this.settings.platformName)
-            //throw new SkipException("Skip test because platform is not supported for the test");
-    }
 
     @Test(description = "Verify scan page looks OK.", groups = {"android", "ios"})
     public void test_01_scan_page_looks_ok() throws Exception {
