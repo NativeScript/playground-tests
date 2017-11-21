@@ -94,6 +94,8 @@ public class NsPlayTests extends MobileTest {
             if(scanPage.checkIfElementisShown("Chrome")) {
                 scanPage.navigate("Chrome");
                 scanPage.waitForElement(2000);
+            }
+            if(scanPage.checkIfElementisShown("Just once")) {
                 scanPage.navigate("Just once");
                 scanPage.waitForElement(4000);
             }
@@ -103,6 +105,11 @@ public class NsPlayTests extends MobileTest {
                 scanPage.navigate("No thanks");
             }
 
+        }
+        if(settings.deviceName.contains("ios11")) {
+            synchronized(this.wait) {
+                this.wait.wait(20000);
+            }
         }
         WebPage webPage = new WebPage();
         this.assertScreen("nsplay-opened-history-element", this.settings.shortTimeout,20.0);
