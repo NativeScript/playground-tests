@@ -38,9 +38,9 @@ public class NsPlayTests extends MobileTest {
             {
                 scanPage.waitForElement(4000);
                 scanPage.navigate("OK");
-                scanPage.waitForElement(20000);
+                scanPage.waitForElement(30000);
                 scanPage.navigate("Scan QR code");
-                scanPage.waitForElement(4000);
+                scanPage.waitForElement(8000);
             }
             if(scanPage.checkIfElementisShown("Allow")) {
                 scanPage.navigate("Allow");
