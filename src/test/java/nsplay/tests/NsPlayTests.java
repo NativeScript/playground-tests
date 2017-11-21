@@ -76,6 +76,7 @@ public class NsPlayTests extends MobileTest {
             scanPage.waitForElement(4000);
             if(scanPage.checkIfElementisShown("Chrome")) {
                 scanPage.navigate("Chrome");
+                scanPage.waitForElement(2000);
                 scanPage.navigate("Just once");
                 scanPage.waitForElement(4000);
             }
