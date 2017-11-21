@@ -25,27 +25,36 @@ public class NsPlayTests extends MobileTest {
     public void test_02_QR_page_looks_ok() throws Exception {
         ScanPage scanPage = new ScanPage();
         scanPage.navigate("Scan QR code");
+        scanPage.waitForElement(7000);
         if(settings.deviceType == settings.deviceType.Simulator)
         {
+            this.assertScreen("nsplay-home-view", this.settings.shortTimeout);
+            scanPage.navigate("Scan QR code");
+            scanPage.waitForElement(7000);
             this.assertScreen("nsplay-home-view", this.settings.shortTimeout);
 
         }
         else if(settings.deviceType == settings.deviceType.Emulator)
         {
-            scanPage.waitForElement(4000);
-            if(settings.deviceName.contains("Api24"))
+
+            if(settings.deviceName.contains("Api24")||settings.deviceName.contains("Api25"))
             {
-                scanPage.waitForElement(2000);
-                scanPage.navigate("OK");
-                scanPage.waitForElement(20000);
-                scanPage.navigate("Scan QR code");
                 scanPage.waitForElement(4000);
+                scanPage.navigate("OK");
+                scanPage.waitForElement(30000);
+                scanPage.navigate("Scan QR code");
+                scanPage.waitForElement(8000);
             }
             if(scanPage.checkIfElementisShown("Allow")) {
                 scanPage.navigate("Allow");
             }
             QRPage detailsPage = new QRPage();
             this.assertScreen("nsplay-qr-android-emulator-view", this.settings.defaultTimeout,50.0);
+            detailsPage.navigateBack();
+            scanPage.navigate("Scan QR code");
+            scanPage.waitForElement(7000);
+            this.assertScreen("nsplay-qr-android-emulator-view", this.settings.defaultTimeout,50.0);
+
         }
         else
         {
@@ -85,6 +94,8 @@ public class NsPlayTests extends MobileTest {
             if(scanPage.checkIfElementisShown("Chrome")) {
                 scanPage.navigate("Chrome");
                 scanPage.waitForElement(2000);
+            }
+            if(scanPage.checkIfElementisShown("Just once")) {
                 scanPage.navigate("Just once");
                 scanPage.waitForElement(4000);
             }
@@ -94,6 +105,11 @@ public class NsPlayTests extends MobileTest {
                 scanPage.navigate("No thanks");
             }
 
+        }
+        if(settings.deviceName.contains("ios11")) {
+            synchronized(this.wait) {
+                this.wait.wait(20000);
+            }
         }
         WebPage webPage = new WebPage();
         this.assertScreen("nsplay-opened-history-element", this.settings.shortTimeout,20.0);
