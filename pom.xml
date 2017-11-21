@@ -78,6 +78,13 @@
             </properties>
         </profile>
         <profile>
+            <id>nsplay.sim.iphone7.ios11</id>
+            <properties>
+                <app.config>nsplay/nsplay.sim.iphone7.ios11.properties</app.config>
+                <testsuite>nsplay</testsuite>
+            </properties>
+        </profile>
+        <profile>
             <id>nsplay.sim.iphone6.ios93</id>
             <properties>
                 <app.config>nsplay/nsplay.sim.iphone6.ios93.properties</app.config>
@@ -151,6 +158,13 @@
             <id>nsplaydev.sim.iphone7.ios10</id>
             <properties>
                 <app.config>nsplaydev/nsplaydev.sim.iphone7.ios10.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplaydev.sim.iphone7.ios11</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.sim.iphone7.ios11.properties</app.config>
                 <testsuite>nsplaydev</testsuite>
             </properties>
         </profile>
