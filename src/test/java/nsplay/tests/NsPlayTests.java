@@ -35,8 +35,9 @@ public class NsPlayTests extends MobileTest {
             scanPage.waitForElement(4000);
             if(settings.deviceName.contains("Api24"))
             {
-                scanPage.navigate("OK");
                 scanPage.waitForElement(2000);
+                scanPage.navigate("OK");
+                scanPage.waitForElement(20000);
                 scanPage.navigate("Scan QR code");
                 scanPage.waitForElement(4000);
             }
