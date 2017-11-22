@@ -10,17 +10,20 @@ public class ComponentsPage extends BasePage {
     public ComponentsPage(boolean isScrolled) throws InterruptedException {
         super();
         UIElement browse = this.wait.waitForVisible(this.locators.findByTextLocator("Components", true));
-        if(browse==null)
+        UIElement detailsElement = this.wait.waitForVisible(this.locators.findByTextLocator("Details", true));
+        if(detailsElement!=null)
         {
+            detailsElement=null;
             this.navigateBack();
             this.waitForElement(1000);
             browse = this.find.byText("Details");
         }
-        if(browse==null)
+        if(detailsElement!=null)
         {
+            detailsElement=null;
             this.navigateBack();
             this.waitForElement(1000);
-            browse = this.find.byText("Details");
+            browse = this.find.byText("Components");
         }
         if(isScrolled) {
             UIElement location = this.find.byText("Location");
