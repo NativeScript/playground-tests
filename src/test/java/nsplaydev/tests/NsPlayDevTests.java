@@ -164,7 +164,7 @@ public class NsPlayDevTests extends MobileTest {
         if(settings.deviceName.contains("Api26"))
         {
             componentsPage = new ComponentsPage(true);
-            this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
+            this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout, 20);
         }
         else
         {
@@ -192,20 +192,20 @@ public class NsPlayDevTests extends MobileTest {
     public void test_18_scrolled_home_page_looks_ok() throws Exception {
         if(settings.deviceName.contains("Api26"))
         {
-            this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
+            this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout, 20);
         }
         else
         {
             this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
         }
         ComponentsPage componentsPage = new ComponentsPage(true);
-        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout, 20);
     }
 
     @Test(description = "Verify Chart Visualization page looks OK.", groups = {"android", "ios"})
     public void test_19_chart_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(true);
-        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout,20);
         componentsPage.navigate("Chart");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Chart");
         this.assertScreen("nsplaydev-chart-view", this.settings.shortTimeout);
@@ -225,7 +225,7 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify ListView Visualization page looks OK.", groups = {"android", "ios"})
     public void test_21_listview_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(true);
-        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout,20);
         componentsPage.navigate("ListView");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("ListView");
         componentsPage.waitForElement(8000);
@@ -246,7 +246,7 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify Accelerometer Visualization page looks OK.", groups = {"android", "ios"})
     public void test_23_accelerometer_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(true);
-        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout,20);
         componentsPage.navigate("Accelerometer");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Accelerometer");
         this.assertScreen("nsplaydev-accelerometer-view", this.settings.shortTimeout);
@@ -280,7 +280,7 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify Location Visualization page looks OK.", groups = {"android", "ios"})
     public void test_26_location_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(true);
-        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout,20);
         componentsPage.navigate("Location");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Location");
         this.assertScreen("nsplaydev-location-view", this.settings.shortTimeout);
