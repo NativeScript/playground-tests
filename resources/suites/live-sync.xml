@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="lyve-sync" verbose="1">
+    <test name="lyve sync Tests">
+        <classes>
+            <class name="sync.tests.NSSyncTests"/>
+        </classes>
+    </test>
+</suite>
