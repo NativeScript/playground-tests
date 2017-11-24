@@ -81,7 +81,7 @@ public String liveSyncConnectionString;
         else
         {
             log.info(liveSyncConnectionString);
-            params = java.util.Arrays.asList("adb", "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", "\""+liveSyncConnectionString+"\"", "org.nativescript.preview");
+            params = java.util.Arrays.asList(System.getenv("ANDROID_HOME")+"platform-tools/adb", "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", "\""+liveSyncConnectionString+"\"", "org.nativescript.preview");
         }
 
         try {
