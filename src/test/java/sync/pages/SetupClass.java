@@ -13,14 +13,17 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.List;
+import java.io.File;
 
 public class SetupClass extends BasePage {
 public  Screen s = new Screen();;
 public String liveSyncConnectionString;
     public SetupClass(Client client, MobileSettings mobileSettings) throws InterruptedException, IOException, FindFailed {
         super();
+        String currentPath = System.getProperty("user.dir");
         if(settings.deviceType == settings.deviceType.Simulator)
         {
+            functional.tests.core.utils.Archive.extractArchive(new File(currentPath+"/testapp/nsplaydev.tgz"),new File(currentPath+"/testapp/"));
             functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
             ios.installApp("nsplaydev.app",null);
         }
@@ -28,7 +31,7 @@ public String liveSyncConnectionString;
             functional.tests.core.mobile.device.android.AndroidDevice android = new functional.tests.core.mobile.device.android.AndroidDevice(client, mobileSettings);
             android.installApp("preview-release.apk", "org.nativescript.preview");
         }
-        String currentPath = System.getProperty("user.dir");
+
         ImagePath.add(currentPath+"/src/test/java/sync/pages/images.sikuli");
         this.CloseSafari();
         this.OpenSafari();
