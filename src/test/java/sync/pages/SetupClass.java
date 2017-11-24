@@ -24,8 +24,9 @@ public String liveSyncConnectionString;
         if(settings.deviceType == settings.deviceType.Simulator)
         {
             functional.tests.core.utils.Archive.extractArchive(new File(currentPath+"/testapp/nsplaydev.tgz"),new File(currentPath+"/testapp/"));
+            this.wait(2000);
             functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
-            ios.installApp("nsplaydev.app",null);
+            ios.installApp("nsplaydev.app","org.nativescript.preview");
         }
         else {
             functional.tests.core.mobile.device.android.AndroidDevice android = new functional.tests.core.mobile.device.android.AndroidDevice(client, mobileSettings);
