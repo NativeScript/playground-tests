@@ -97,19 +97,22 @@ public String liveSyncConnectionString;
         }
 
         if(settings.deviceType == settings.deviceType.Simulator) {
-            this.wait(2000);
+            this.waitPreviewAppToLoad(10, "Open");
             this.find.byText("Open").click();
-            this.wait(3000);
+            this.waitPreviewAppToLoad(10, "Open");
             this.find.byText("Open").click();
         }
 
         this.waitPreviewAppToLoad(10);
     }
-
     public void waitPreviewAppToLoad(int numberOfTries) throws InterruptedException {
+        this.waitPreviewAppToLoad(numberOfTries, "Home");
+    }
+
+    public void waitPreviewAppToLoad(int numberOfTries, String object) throws InterruptedException {
         while (true)
         {
-            UIElement home = this.find.byText(("Home"));
+            UIElement home = this.find.byText((object));
             if(home!=null || numberOfTries<=0)
             {
                 break;
@@ -119,9 +122,9 @@ public String liveSyncConnectionString;
                 this.wait(1000);
             }
         }
-        UIElement home = this.find.byText("Home");
-        Assert.assertNotNull(home, "Preview app not synced!");
-        this.log.info("Preview app synced!");
+        UIElement home = this.find.byText(object);
+        Assert.assertNotNull(home, "Preview app not synced! Item missing "+ object);
+        this.log.info("Preview app synced! The item "+object+" is found!");
     }
 
     public void wait(int time) throws InterruptedException {
