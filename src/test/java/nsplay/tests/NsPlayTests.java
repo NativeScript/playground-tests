@@ -30,7 +30,7 @@ public class NsPlayTests extends MobileTest {
         {
             this.assertScreen("nsplay-home-view", this.settings.shortTimeout);
             scanPage.navigate("Scan QR code");
-            scanPage.waitForElement(7000);
+            scanPage.waitForElement(9000);
             this.assertScreen("nsplay-home-view", this.settings.shortTimeout);
 
         }
@@ -39,11 +39,11 @@ public class NsPlayTests extends MobileTest {
 
             if(settings.deviceName.contains("Api24")||settings.deviceName.contains("Api25"))
             {
-                scanPage.waitForElement(4000);
+                scanPage.waitForElement(6000);
                 scanPage.navigate("OK");
-                scanPage.waitForElement(30000);
+                scanPage.waitForElement(35000);
                 scanPage.navigate("Scan QR code");
-                scanPage.waitForElement(8000);
+                scanPage.waitForElement(10000);
             }
             if(scanPage.checkIfElementisShown("Allow")) {
                 scanPage.navigate("Allow");
@@ -52,7 +52,7 @@ public class NsPlayTests extends MobileTest {
             this.assertScreen("nsplay-qr-android-emulator-view", this.settings.defaultTimeout,50.0);
             detailsPage.navigateBack();
             scanPage.navigate("Scan QR code");
-            scanPage.waitForElement(7000);
+            scanPage.waitForElement(9000);
             this.assertScreen("nsplay-qr-android-emulator-view", this.settings.defaultTimeout,50.0);
 
         }
