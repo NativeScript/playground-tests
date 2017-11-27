@@ -18,6 +18,7 @@ import java.io.File;
 public class SetupClass extends BasePage {
 public  Screen s = new Screen();;
 public String liveSyncConnectionString;
+public String deviceId = "";
     public SetupClass(Client client, MobileSettings mobileSettings) throws InterruptedException, IOException, FindFailed {
         super();
         String currentPath = System.getProperty("user.dir");
@@ -27,10 +28,12 @@ public String liveSyncConnectionString;
             this.wait(2000);
             functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
             ios.installApp("nsplaydev.app","org.nativescript.preview");
+            this.deviceId=ios.getId();
         }
         else {
             functional.tests.core.mobile.device.android.AndroidDevice android = new functional.tests.core.mobile.device.android.AndroidDevice(client, mobileSettings);
             android.installApp("preview-release.apk", "org.nativescript.preview");
+            this.deviceId=android.getId();
         }
 
         ImagePath.add(currentPath+"/src/test/java/sync/pages/images.sikuli");
@@ -76,12 +79,12 @@ public String liveSyncConnectionString;
         if(settings.deviceType == settings.deviceType.Simulator)
         {
             this.liveSyncConnectionString = this.liveSyncConnectionString.replaceAll("\\\\", "/");
-            params = java.util.Arrays.asList("xcrun", "simctl", "openurl", "booted", liveSyncConnectionString);
+            params = java.util.Arrays.asList("xcrun", "simctl", "openurl", this.deviceId, liveSyncConnectionString);
         }
         else
         {
             log.info(liveSyncConnectionString);
-            params = java.util.Arrays.asList(System.getenv("ANDROID_HOME")+"/platform-tools/adb", "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", "\""+liveSyncConnectionString+"\"", "org.nativescript.preview");
+            params = java.util.Arrays.asList(System.getenv("ANDROID_HOME")+"/platform-tools/adb", "-s" ,this.deviceId, "shell" ,"am" , "start" , "-a", "android.intent.action.VIEW", "-d", "\""+liveSyncConnectionString+"\"", "org.nativescript.preview");
         }
 
         try {
