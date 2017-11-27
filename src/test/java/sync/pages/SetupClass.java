@@ -104,10 +104,14 @@ public String deviceId = "";
         }
 
         if(settings.deviceType == settings.deviceType.Simulator) {
-            this.waitPreviewAppToLoad(10, "Open");
-            this.find.byText("Open").click();
-            this.waitPreviewAppToLoad(10, "Open");
-            this.find.byText("Open").click();
+            this.waitTextToBeShown(5, "Home");
+            UIElement home = this.find.byText(("Home"));
+            if(home == null) {
+                this.waitPreviewAppToLoad(10, "Open");
+                this.find.byText("Open").click();
+                this.waitPreviewAppToLoad(10, "Open");
+                this.find.byText("Open").click();
+            }
         }
 
         this.waitPreviewAppToLoad(10);
@@ -116,7 +120,7 @@ public String deviceId = "";
         this.waitPreviewAppToLoad(numberOfTries, "Home");
     }
 
-    public void waitPreviewAppToLoad(int numberOfTries, String object) throws InterruptedException {
+    public void waitTextToBeShown(int numberOfTries, String object) throws InterruptedException {
         while (true)
         {
             UIElement home = this.find.byText((object));
@@ -129,6 +133,10 @@ public String deviceId = "";
                 this.wait(1000);
             }
         }
+    }
+
+    public void waitPreviewAppToLoad(int numberOfTries, String object) throws InterruptedException {
+        this.waitTextToBeShown(numberOfTries,object);
         UIElement home = this.find.byText(object);
         Assert.assertNotNull(home, "Preview app not synced! Item missing "+ object);
         this.log.info("Preview app synced! The item "+object+" is found!");
