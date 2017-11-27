@@ -104,20 +104,47 @@ public String deviceId = "";
         }
 
         if(settings.deviceType == settings.deviceType.Simulator) {
-            this.waitTextToBeShown(5, "Home");
-            UIElement home = this.find.byText(("Home"));
-            if(home == null) {
-                this.waitPreviewAppToLoad(10, "Open");
+            String foundItem = this.waitText1OrText2ToBeShown(12,"Home", "Open");
+            if(foundItem == "Open") {
                 this.find.byText("Open").click();
                 this.waitPreviewAppToLoad(10, "Open");
                 this.find.byText("Open").click();
             }
+
         }
 
         this.waitPreviewAppToLoad(10);
     }
     public void waitPreviewAppToLoad(int numberOfTries) throws InterruptedException {
         this.waitPreviewAppToLoad(numberOfTries, "Home");
+    }
+
+    public String waitText1OrText2ToBeShown(int numberOfTries, String text1, String text2) throws InterruptedException {
+        String textFound="";
+        while (true)
+        {
+            UIElement text1element = this.find.byText((text1));
+            UIElement text2element = this.find.byText((text2));
+            if(text1element!=null )
+            {
+                textFound = text1;
+                break;
+            }
+            if(text2element!=null )
+            {
+                textFound = text2;
+                break;
+            }
+            if(numberOfTries<=0)
+            {
+                break;
+            }
+            else {
+                numberOfTries=numberOfTries-1;
+                this.wait(1000);
+            }
+        }
+        return textFound;
     }
 
     public void waitTextToBeShown(int numberOfTries, String object) throws InterruptedException {
