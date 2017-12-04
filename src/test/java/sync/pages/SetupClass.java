@@ -38,6 +38,7 @@ public Device device;
 public int deviceScreenWidth;
 public String appName;
 public Client client;
+public App browserAPP;
 public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","js");
 
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
@@ -74,7 +75,7 @@ public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","js
 
     public void OpenSafari() throws InterruptedException {
         this.wait(1000);
-        App.open("Safari");
+        this.browserAPP = App.open("Safari");
         this.wait(10000);
         s.type("f", KeyModifier.CMD+KeyModifier.CTRL);
         this.wait(1000);
@@ -302,5 +303,11 @@ public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","js
         synchronized(this.s) {
             this.s.wait(time);
         }
+    }
+
+    public void giveFocus() throws InterruptedException {
+        log.info(this.app.getName());
+        this.browserAPP.focus();
+        this.wait(2000);
     }
 }
