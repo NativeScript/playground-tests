@@ -15,7 +15,8 @@ public class NSSyncTests extends MobileTest {
     @BeforeClass
     public void beforeTest() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
         setupClass = new SetupClass(this.client,this.settings, this.device);
-        setupClass.NavigateToPage("https://play.telerik.rocks/?template=play-js&debug=true");
+        String projectURL = "https://play.telerik.rocks/?template=play-"+ setupClass.typeOfProject+"&debug=true";
+        setupClass.NavigateToPage(projectURL);
         setupClass.GetDeviceLink();
         setupClass.startPreviewAppWithLiveSync();
     }

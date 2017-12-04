@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.List;
 import java.io.File;
 import functional.tests.core.mobile.element.UIRectangle;
+import functional.tests.core.utils.OSUtils;
 
 public class SetupClass extends BasePage {
 public  Screen s = new Screen();;
@@ -37,6 +38,8 @@ public Device device;
 public int deviceScreenWidth;
 public String appName;
 public Client client;
+public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","js");
+
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
         this.client = client;
