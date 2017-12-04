@@ -57,7 +57,7 @@ public class CodeEditorClass extends BasePage {
     }
 
     public void typeValidCode() {
-        if(setupClass.typeOfProject == "js" ||setupClass.typeOfProject == "tsc") {
+        if(this.setupClass.typeOfProject.equals("js") || this.setupClass.typeOfProject.equals("tsc") ) {
             this.deleteAllCode();
             this.typeCode("<Page loaded=\"pageLoaded\" class=\"page\" xmlns=\"http://www.nativescript.org/tns.xsd\">");
             s.type(Key.ENTER);
@@ -77,7 +77,7 @@ public class CodeEditorClass extends BasePage {
             s.type(Key.ENTER);
             this.typeCode("</Page>");
         }
-        if(setupClass.typeOfProject == "ng") {
+        if(this.setupClass.typeOfProject.equals("ng")) {
             this.deleteAllCode();
             this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\">");
             s.type(Key.ENTER);
