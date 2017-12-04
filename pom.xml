@@ -183,6 +183,20 @@
             </properties>
         </profile>
         <profile>
+            <id>live-sync.emu.default.api21</id>
+            <properties>
+                <app.config>nsplay/nsplay.emu.default.api21.properties</app.config>
+                <testsuite>live-sync</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>live-sync.emu.default.api22</id>
+            <properties>
+                <app.config>nsplay/nsplay.emu.default.api22.properties</app.config>
+                <testsuite>live-sync</testsuite>
+            </properties>
+        </profile>
+        <profile>
             <id>live-sync.emu.default.api24</id>
             <properties>
                 <app.config>nsplay/nsplay.emu.default.api24.properties</app.config>
@@ -190,9 +204,16 @@
             </properties>
         </profile>
         <profile>
-            <id>live-sync.emu.default.api23</id>
+            <id>live-sync.emu.default.api25</id>
             <properties>
-                <app.config>nsplay/nsplay.emu.default.api23.properties</app.config>
+                <app.config>nsplay/nsplay.emu.default.api25.properties</app.config>
+                <testsuite>live-sync</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>live-sync.emu.default.api26</id>
+            <properties>
+                <app.config>nsplay/nsplay.emu.default.api26.properties</app.config>
                 <testsuite>live-sync</testsuite>
             </properties>
         </profile>
@@ -207,6 +228,20 @@
             <id>live-sync.sim.iphone7.ios11</id>
             <properties>
                 <app.config>nsplay/nsplay.sim.iphone7.ios11.properties</app.config>
+                <testsuite>live-sync</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>live-sync.sim.iphone7.ios10</id>
+            <properties>
+                <app.config>nsplay/nsplay.sim.iphone7.ios10.properties</app.config>
+                <testsuite>live-sync</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>live-sync.sim.iphone6.ios93</id>
+            <properties>
+                <app.config>nsplay/nsplay.sim.iphone6.ios93.properties</app.config>
                 <testsuite>live-sync</testsuite>
             </properties>
         </profile>
