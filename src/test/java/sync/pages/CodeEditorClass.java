@@ -57,24 +57,43 @@ public class CodeEditorClass extends BasePage {
     }
 
     public void typeValidCode() {
-        this.deleteAllCode();
-        this.typeCode("<Page loaded=\"pageLoaded\" class=\"page\" xmlns=\"http://www.nativescript.org/tns.xsd\">");
-        s.type(Key.ENTER);
-        this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\">");
-        s.type(Key.ENTER);
-        this.typeCode("</ActionBar>");
-        s.type(Key.ENTER);
-        this.typeCode("<ScrollView>");
-        s.type(Key.ENTER);
-        this.typeCode("<StackLayout class=\"home-panel\">");
-        s.type(Key.ENTER);
-        this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
-        s.type(Key.ENTER);
-        this.typeCode("</StackLayout>");
-        s.type(Key.ENTER);
-        this.typeCode("</ScrollView>");
-        s.type(Key.ENTER);
-        this.typeCode("</Page>");
+        if(setupClass.typeOfProject == "js" ||setupClass.typeOfProject == "tsc") {
+            this.deleteAllCode();
+            this.typeCode("<Page loaded=\"pageLoaded\" class=\"page\" xmlns=\"http://www.nativescript.org/tns.xsd\">");
+            s.type(Key.ENTER);
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\">");
+            s.type(Key.ENTER);
+            this.typeCode("</ActionBar>");
+            s.type(Key.ENTER);
+            this.typeCode("<ScrollView>");
+            s.type(Key.ENTER);
+            this.typeCode("<StackLayout class=\"home-panel\">");
+            s.type(Key.ENTER);
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
+            s.type(Key.ENTER);
+            this.typeCode("</StackLayout>");
+            s.type(Key.ENTER);
+            this.typeCode("</ScrollView>");
+            s.type(Key.ENTER);
+            this.typeCode("</Page>");
+        }
+        if(setupClass.typeOfProject == "ng") {
+            this.deleteAllCode();
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\">");
+            s.type(Key.ENTER);
+            this.typeCode("</ActionBar>");
+            s.type(Key.ENTER);
+            this.typeCode("<ScrollView class=\"page\">");
+            s.type(Key.ENTER);
+            this.typeCode("<StackLayout class=\"home-panel\">");
+            s.type(Key.ENTER);
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
+            s.type(Key.ENTER);
+            this.typeCode("</StackLayout>");
+            s.type(Key.ENTER);
+            this.typeCode("</ScrollView>");
+            s.type(Key.ENTER);
+        }
     }
 
     public void save() {
