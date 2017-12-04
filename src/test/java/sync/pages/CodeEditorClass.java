@@ -8,9 +8,10 @@ import org.testng.Assert;
 
 public class CodeEditorClass extends BasePage {
     public Screen s = new Screen();
-
-    public CodeEditorClass() throws InterruptedException {
+    public SetupClass setupClass;
+    public CodeEditorClass(SetupClass setupClass) throws InterruptedException {
         super();
+        this.setupClass = setupClass;
         String currentPath = System.getProperty("user.dir");
         ImagePath.add(currentPath+"/src/test/java/sync/pages/images.sikuli");
     }
@@ -84,29 +85,11 @@ public class CodeEditorClass extends BasePage {
         s.type("s", KeyModifier.CMD);
         if(waitForChanges!=null) {
             try {
-                this.waitPreviewAppToLoad(30, waitForChanges);
+                this.setupClass.waitPreviewAppToLoad(30, waitForChanges);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void waitPreviewAppToLoad(int numberOfTries, String waitForChanges) throws InterruptedException {
-        while (true)
-        {
-            UIElement home = this.find.byText(waitForChanges);
-            if(home!=null || numberOfTries<=0)
-            {
-                break;
-            }
-            else {
-                numberOfTries = numberOfTries-1;
-                this.wait(1000);
-            }
-        }
-        UIElement home = this.find.byText(waitForChanges);
-        Assert.assertNotNull(home, "Preview app not synced with "+waitForChanges);
-        this.log.info("Preview app synced with "+waitForChanges);
     }
 
     public void waitForElement(int time) throws InterruptedException {

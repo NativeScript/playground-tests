@@ -1,27 +1,51 @@
 package sync.pages;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
+import functional.tests.core.enums.PlatformType;
 import functional.tests.core.mobile.basepage.BasePage;
 import functional.tests.core.mobile.element.UIElement;
+import functional.tests.core.mobile.device.Device;
 import functional.tests.core.mobile.settings.MobileSettings;
+import functional.tests.core.image.Sikuli;
+import functional.tests.core.image.ImageUtils;
+import functional.tests.core.utils.FileSystem;
+import io.appium.java_client.TouchAction;
+import org.sikuli.script.Image;
 import org.testng.Assert;
 import org.sikuli.script.*;
 import functional.tests.core.mobile.appium.Client;
-import java.awt.Toolkit;
+
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.List;
 import java.io.File;
+import functional.tests.core.mobile.element.UIRectangle;
 
 public class SetupClass extends BasePage {
 public  Screen s = new Screen();;
 public String liveSyncConnectionString;
 public String deviceId = "";
-    public SetupClass(Client client, MobileSettings mobileSettings) throws InterruptedException, IOException, FindFailed {
+public Sikuli sikuli;
+public String ImagePathDirectory = "";
+public ImageUtils imageUtils;
+public Device device;
+public int deviceScreenWidth;
+public String appName;
+public Client client;
+    public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
+        this.client = client;
+        this.device = device;
+        this.imageUtils = new ImageUtils(settings, client, device);
+        this.appName = this.app.getName().replaceAll(".app", "");
+        this.sikuli = new Sikuli(this.appName, client, this.imageUtils);
         String currentPath = System.getProperty("user.dir");
+        ImagePathDirectory = currentPath+"/src/test/java/sync/pages/images.sikuli";
         if(settings.deviceType == settings.deviceType.Simulator)
         {
             functional.tests.core.utils.Archive.extractArchive(new File(currentPath+"/testapp/nsplaydev.tgz"),new File(currentPath+"/testapp/"));
@@ -36,7 +60,7 @@ public String deviceId = "";
             this.deviceId=android.getId();
         }
 
-        ImagePath.add(currentPath+"/src/test/java/sync/pages/images.sikuli");
+        ImagePath.add(ImagePathDirectory);
         this.CloseSafari();
         this.OpenSafari();
     }
@@ -75,7 +99,7 @@ public String deviceId = "";
 
     public void startPreviewAppWithLiveSync() throws InterruptedException, FindFailed, IOException {
         List<String> params;
-
+        this.deviceScreenWidth = client.driver.manage().window().getSize().width;
         if(settings.deviceType == settings.deviceType.Simulator)
         {
             this.liveSyncConnectionString = this.liveSyncConnectionString.replaceAll("\\\\", "/");
@@ -106,42 +130,81 @@ public String deviceId = "";
         if(settings.deviceType == settings.deviceType.Simulator) {
             String foundItem = this.waitText1OrText2ToBeShown(12,"Home", "Open");
             if(foundItem == "Open") {
-                this.find.byText("Open").click();
-                this.waitPreviewAppToLoad(10, "Open");
-                this.find.byText("Open").click();
+                this.wait(5000);
+                if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
+                    if(this.settings.platformVersion.toString().contains("10.")) {
+                        this.client.driver.switchTo().alert().accept();
+
+                        this.wait(2000);
+                        this.waitPreviewAppToLoad(10, "Open");
+
+                        this.client.driver.switchTo().alert().accept();
+
+                        this.wait(2000);
+                    }
+                    else {
+                        this.client.driver.switchTo().alert().dismiss();
+                        this.wait(8000);
+                        this.client.driver.switchTo().alert().dismiss();
+                        this.wait(8000);
+                        this.client.driver.switchTo().alert().dismiss();
+                        this.wait(8000);
+                    }
+                }
+                else {
+                    this.find.byText("Open").click();
+                    this.waitPreviewAppToLoad(10, "Open");
+                    this.find.byText("Open").click();
+                    if (settings.platformVersion == 9.3) {
+                        this.waitPreviewAppToLoad(10, "Open");
+                        this.find.byText("Open").click();
+                    }
+                }
             }
 
         }
 
         this.waitPreviewAppToLoad(10);
     }
+
     public void waitPreviewAppToLoad(int numberOfTries) throws InterruptedException {
         this.waitPreviewAppToLoad(numberOfTries, "Home");
     }
 
     public String waitText1OrText2ToBeShown(int numberOfTries, String text1, String text2) throws InterruptedException {
         String textFound="";
-        while (true)
-        {
-            UIElement text1element = this.find.byText((text1));
-            UIElement text2element = this.find.byText((text2));
-            if(text1element!=null )
-            {
-                textFound = text1;
-                break;
-            }
-            if(text2element!=null )
-            {
-                textFound = text2;
-                break;
-            }
-            if(numberOfTries<=0)
-            {
-                break;
-            }
-            else {
-                numberOfTries=numberOfTries-1;
-                this.wait(1000);
+        while (true) {
+            if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
+                if (this.sikuli.waitForImage(text1, 0.7d, 2)) {
+                    textFound = text1;
+                    break;
+                }
+                if (this.sikuli.waitForImage(text2, 0.7d, 2)) {
+                    textFound = text2;
+                    break;
+                }
+                numberOfTries = numberOfTries - 4;
+                if (numberOfTries <= 0) {
+                    log.info("Image "+ text1 + " and Image "+text2 + " are not found!");
+                    break;
+                }
+
+            } else {
+                UIElement text1element = this.find.byText(text1, false, this.settings.shortTimeout);
+                UIElement text2element = this.find.byText(text2, false, this.settings.shortTimeout);
+                if (text1element != null) {
+                    textFound = text1;
+                    break;
+                }
+                if (text2element != null) {
+                    textFound = text2;
+                    break;
+                }
+                numberOfTries = numberOfTries - 2;
+                if (numberOfTries <= 0) {
+                    log.info("Text  "+ text1 + " and Text "+text2 + " are not found!");
+                    break;
+                }
             }
         }
         return textFound;
@@ -150,23 +213,86 @@ public String deviceId = "";
     public void waitTextToBeShown(int numberOfTries, String object) throws InterruptedException {
         while (true)
         {
-            UIElement home = this.find.byText((object));
-            if(home!=null || numberOfTries<=0)
-            {
-                break;
+            if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
+                if (this.sikuli.waitForImage(object, 0.7d, 2)) {
+                    break;
+                }
+                numberOfTries = numberOfTries - 2;
+                if (numberOfTries <= 0) {
+                    log.info("Image "+ object + " is not found!");
+                    break;
+                }
+
             }
             else {
-                numberOfTries=numberOfTries-1;
-                this.wait(1000);
+                UIElement home = this.find.byText(object);
+                if (home != null || numberOfTries <= 0) {
+                    if(numberOfTries <= 0){
+                        log.info("Text "+ object + " is not found!");
+                    }
+                    break;
+                } else {
+                    numberOfTries = numberOfTries - 1;
+                }
             }
         }
     }
 
     public void waitPreviewAppToLoad(int numberOfTries, String object) throws InterruptedException {
         this.waitTextToBeShown(numberOfTries,object);
-        UIElement home = this.find.byText(object);
-        Assert.assertNotNull(home, "Preview app not synced! Item missing "+ object);
-        this.log.info("Preview app synced! The item "+object+" is found!");
+        if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
+            UIRectangle home = this.findImageOnScreen(object, 0.9d);
+            Assert.assertNotNull(home, "Preview app not synced! Item missing "+ object);
+            this.log.info("Preview app synced! The item "+object+" is found!");
+        }
+        else{
+            UIElement home = this.find.byText(object);
+            Assert.assertNotNull(home, "Preview app not synced! Item missing "+ object);
+            this.log.info("Preview app synced! The item "+object+" is found!");
+        }
+
+
+    }
+
+    public UIRectangle findImageOnScreen(String imageName, double similarity) {
+        BufferedImage screenBufferImage = this.device.getScreenshot();
+        Finder finder = this.getFinder(screenBufferImage, imageName, (float)similarity);
+        Match searchedImageMatch = finder.next();
+        Point point;
+        if(searchedImageMatch != null) {
+            point = searchedImageMatch.getCenter().getPoint();
+        }
+        else
+        {
+            return null;
+        }
+        Rectangle rectangle = this.getRectangle(point, screenBufferImage.getWidth());
+        return new UIRectangle(rectangle);
+    }
+    private Finder getFinder(BufferedImage screenBufferImage, String imageName, float similarity) {
+        ImageUtils var10001 = this.imageUtils;
+        BufferedImage searchedBufferImage = this.imageUtils.getImageFromFile(ImageUtils.getImageFullName(this.getImageFolderPath(this.appName), imageName));
+        Image searchedImage = new Image(searchedBufferImage);
+        Pattern searchedImagePattern = new Pattern(searchedImage);
+        Image mainImage = new Image(screenBufferImage);
+        searchedImagePattern.similar(similarity);
+        Finder finder = new Finder(mainImage);
+        finder.findAll(searchedImagePattern);
+        return finder;
+    }
+    protected String getImageFolderPath(String appName) {
+        String imageFolderPath = this.settings.screenshotResDir + File.separator + appName + File.separator + this.settings.deviceName;
+        FileSystem.ensureFolderExists(imageFolderPath);
+        return imageFolderPath;
+    }
+    public Rectangle getRectangle(Point point, int screenShotWidth) {
+        int densityRatio = this.getDensityRatio(screenShotWidth);
+        Rectangle rectangle = new Rectangle(point.x / densityRatio, point.y / densityRatio, 50, 50);
+        return rectangle;
+    }
+
+    private int getDensityRatio(int screenshotWidth) {
+        return this.client.settings.platform == PlatformType.iOS ? screenshotWidth / this.deviceScreenWidth : 1;
     }
 
     public void wait(int time) throws InterruptedException {
