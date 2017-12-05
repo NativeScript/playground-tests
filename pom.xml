@@ -245,6 +245,13 @@
                 <testsuite>live-sync</testsuite>
             </properties>
         </profile>
+        <profile>
+            <id>live-sync.emu.default.api23</id>
+            <properties>
+                <app.config>nsplay/nsplay.emu.default.api23.properties</app.config>
+                <testsuite>live-sync</testsuite>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
