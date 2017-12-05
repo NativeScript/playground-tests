@@ -87,7 +87,7 @@ public class CodeEditorClass extends BasePage {
             s.type(Key.ENTER);
             this.typeCode("<StackLayout class=\"home-panel\">");
             s.type(Key.ENTER);
-            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" ></Label>");
             s.type(Key.ENTER);
             this.typeCode("</StackLayout>");
             s.type(Key.ENTER);
