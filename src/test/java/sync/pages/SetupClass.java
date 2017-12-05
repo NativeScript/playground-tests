@@ -40,6 +40,7 @@ public String appName;
 public Client client;
 public App browserAPP;
 public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","js");
+public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome");
 
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
@@ -65,20 +66,21 @@ public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","js
         }
 
         ImagePath.add(ImagePathDirectory);
-        this.CloseSafari();
-        this.OpenSafari();
+        this.CloseBrowser();
+        this.OpenBrowser();
     }
 
-    public void CloseSafari() throws InterruptedException, IOException {
-        Runtime.getRuntime().exec("killAll Safari");
+    public void CloseBrowser() throws InterruptedException, IOException {
+        App.close(this.browser);
+        this.wait(5000);
     }
 
-    public void OpenSafari() throws InterruptedException {
+    public void OpenBrowser() throws InterruptedException {
         this.wait(1000);
-        this.browserAPP = App.open("Safari");
-        this.wait(10000);
+        this.browserAPP = App.open(this.browser);
+        this.wait(12000);
         s.type("f", KeyModifier.CMD+KeyModifier.CTRL);
-        this.wait(1000);
+        this.wait(2000);
     }
 
     public void NavigateToPage(String URL) throws InterruptedException {

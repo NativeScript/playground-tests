@@ -42,6 +42,11 @@ public class CodeEditorClass extends BasePage {
             }
         }
         s.type(code);
+        try {
+            this.setupClass.wait(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteAllCode()
@@ -93,6 +98,11 @@ public class CodeEditorClass extends BasePage {
             s.type(Key.ENTER);
             this.typeCode("</ScrollView>");
             s.type(Key.ENTER);
+        }
+        try {
+            this.setupClass.wait(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

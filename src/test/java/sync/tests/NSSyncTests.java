@@ -2,6 +2,7 @@ package sync.tests;
 
 import functional.tests.core.mobile.basetest.MobileTest;
 import org.sikuli.script.FindFailed;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import sync.pages.SetupClass;
 import sync.pages.CodeEditorClass;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
-public class NSSyncTests extends MobileTest {
+public class  NSSyncTests extends MobileTest {
     SetupClass setupClass;
     @BeforeClass
     public void beforeClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
@@ -20,6 +21,12 @@ public class NSSyncTests extends MobileTest {
         this.setupClass.NavigateToPage(projectURL);
         this.setupClass.GetDeviceLink();
         this.setupClass.startPreviewAppWithLiveSync();
+    }
+    @AfterClass
+    public void afterClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
+        this.setupClass.wait(2000);
+        this.setupClass.CloseBrowser();
+        this.setupClass.wait(2000);
     }
 
     @BeforeMethod
