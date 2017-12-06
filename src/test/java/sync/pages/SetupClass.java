@@ -41,7 +41,7 @@ public Client client;
 public App browserAPP;
 public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","js");
 public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome");
-
+public String folderForScreenshots;
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
         this.client = client;
@@ -51,6 +51,7 @@ public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome"
         this.sikuli = new Sikuli(this.appName, client, this.imageUtils);
         String currentPath = System.getProperty("user.dir");
         ImagePathDirectory = currentPath+"/src/test/java/sync/pages/images.sikuli";
+        this.folderForScreenshots = currentPath+"/target/surefire-reports/screenshots/";
         if(settings.deviceType == settings.deviceType.Simulator)
         {
             functional.tests.core.utils.Archive.extractArchive(new File(currentPath+"/testapp/nsplaydev.tgz"),new File(currentPath+"/testapp/"));
@@ -311,5 +312,13 @@ public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome"
         log.info(this.app.getName());
         this.browserAPP.focus();
         this.wait(2000);
+    }
+
+    public void getScreenShot(String screenshotName){
+        try {
+            Process p = Runtime.getRuntime().exec("screencapture -C -x "+this.folderForScreenshots+screenshotName+".png");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
