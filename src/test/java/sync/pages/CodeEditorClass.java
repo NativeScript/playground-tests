@@ -267,8 +267,8 @@ public class CodeEditorClass extends BasePage {
         }
         setupClass.wait(2000);
         try {
-            setupClass.s.dragDrop(new Pattern("devicelogs").similar(0.86f).targetOffset(-3,16),
-                    new Pattern("devicelogs").similar(0.86f).targetOffset(16,170));
+            setupClass.s.dragDrop(new Pattern("devicelogs").targetOffset(-3,16),
+                    new Pattern("devicelogs").targetOffset(16,170));
         } catch (FindFailed findFailed) {
             findFailed.printStackTrace();
         }
