@@ -6,8 +6,11 @@ Pattern("Errors.png").similar(0.86).targetOffset(-3,16)
 "ErrorDialogWhenErrorInCode.png"
 Pattern("Errors.png").similar(0.86).targetOffset(16,170)
 "angularts.png"
+"angulartsSafari.png"
 "javascriptjs.png"
+"javascriptjsSafari.png"
 "typescriptts.png"
+"typescripttsSafari.png"
 "devicelogs.png"
 "cleardevicelogs.png"
 Pattern("devicename.png").targetOffset(-29,39)

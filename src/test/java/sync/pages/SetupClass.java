@@ -40,7 +40,7 @@ public String appName;
 public Client client;
 public App browserAPP;
 public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","ng");
-public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome");
+public String browser = OSUtils.getEnvironmentVariable("browser","Safari");
 public String folderForScreenshots;
 
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
@@ -163,10 +163,6 @@ public String folderForScreenshots;
                     this.find.byText("Open").click();
                     this.waitPreviewAppToLoad(10, "Open");
                     this.find.byText("Open").click();
-                    if (settings.platformVersion == 9.3) {
-                        this.waitPreviewAppToLoad(10, "Open");
-                        this.find.byText("Open").click();
-                    }
                 }
             }
 
@@ -191,7 +187,7 @@ public String folderForScreenshots;
                     textFound = text2;
                     break;
                 }
-                numberOfTries = numberOfTries - 4;
+                numberOfTries = numberOfTries - 1;
                 if (numberOfTries <= 0) {
                     log.info("Image "+ text1 + " and Image "+text2 + " are not found!");
                     break;
@@ -208,7 +204,7 @@ public String folderForScreenshots;
                     textFound = text2;
                     break;
                 }
-                numberOfTries = numberOfTries - 2;
+                numberOfTries = numberOfTries - 1;
                 if (numberOfTries <= 0) {
                     log.info("Text  "+ text1 + " and Text "+text2 + " are not found!");
                     break;
@@ -225,7 +221,7 @@ public String folderForScreenshots;
                 if (this.sikuli.waitForImage(object, 0.7d, 2)) {
                     break;
                 }
-                numberOfTries = numberOfTries - 2;
+                numberOfTries = numberOfTries - 1;
                 if (numberOfTries <= 0) {
                     log.info("Image "+ object + " is not found!");
                     break;

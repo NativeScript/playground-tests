@@ -204,15 +204,33 @@ public class  NSSyncTests extends MobileTest {
         codeEditor.clearDeviceLogs();
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            codeEditor.openFile("angularts");
+            if(this.setupClass.browser=="Safari")
+            {
+                codeEditor.openFile("angulartsSafari");
+            }
+            else {
+                codeEditor.openFile("angularts");
+            }
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
-            codeEditor.openFile("javascriptjs");
+            if(this.setupClass.browser=="Safari")
+            {
+                codeEditor.openFile("javascriptjsSafari");
+            }
+            else {
+                codeEditor.openFile("javascriptjs");
+            }
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            codeEditor.openFile("typescriptts");
+            if(this.setupClass.browser=="Safari")
+            {
+                codeEditor.openFile("typescripttsSafari");
+            }
+            else {
+                codeEditor.openFile("typescriptts");
+            }
         }
 
         codeEditor.typeJSTSCode(true);
