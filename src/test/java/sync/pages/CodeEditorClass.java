@@ -63,7 +63,9 @@ public class CodeEditorClass extends BasePage {
         }
         this.setupClass.wait(1500);
         s.type("a", KeyModifier.CMD);
+        this.setupClass.wait(500);
         s.type(Key.DELETE);
+        this.setupClass.wait(1000);
 
     }
 
@@ -215,6 +217,7 @@ public class CodeEditorClass extends BasePage {
         {
             this.typeCode("}");
         }
+        this.setupClass.wait(2000);
     }
     public void waitForElement(int time) throws InterruptedException {
         synchronized(this.wait) {
@@ -240,13 +243,14 @@ public class CodeEditorClass extends BasePage {
     public String getErrorsTextFromErrorTab(){
         String ErrorText = "";
         try {
-            setupClass.s.dragDrop(new Pattern("Errors.png").similar(0.86f).targetOffset(-3,16),
-                    new Pattern("Errors.png").similar(0.86f).targetOffset(16,170));
+            setupClass.s.dragDrop(new Pattern("Errors").similar(0.75f).targetOffset(-3,16),
+                    new Pattern("Errors").similar(0.75f).targetOffset(16,170));
         } catch (FindFailed findFailed) {
             findFailed.printStackTrace();
         }
         this.setupClass.wait(3000);
         s.type("c", KeyModifier.CMD);
+        this.setupClass.wait(500);
         try {
             ErrorText =  (String) Toolkit.getDefaultToolkit()
                     .getSystemClipboard().getData(DataFlavor.stringFlavor);
@@ -274,6 +278,7 @@ public class CodeEditorClass extends BasePage {
         }
         this.setupClass.wait(3000);
         s.type("c", KeyModifier.CMD);
+        this.setupClass.wait(500);
         try {
             ErrorText =  (String) Toolkit.getDefaultToolkit()
                     .getSystemClipboard().getData(DataFlavor.stringFlavor);
