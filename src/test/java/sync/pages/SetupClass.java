@@ -39,9 +39,10 @@ public int deviceScreenWidth;
 public String appName;
 public Client client;
 public App browserAPP;
-public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","js");
+public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","ng");
 public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome");
 public String folderForScreenshots;
+
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
         this.client = client;
@@ -67,7 +68,7 @@ public String folderForScreenshots;
         }
 
         ImagePath.add(ImagePathDirectory);
-        this.CloseBrowser();
+        //this.CloseBrowser();
         this.OpenBrowser();
     }
 
@@ -302,16 +303,71 @@ public String folderForScreenshots;
         return this.client.settings.platform == PlatformType.iOS ? screenshotWidth / this.deviceScreenWidth : 1;
     }
 
-    public void wait(int time) throws InterruptedException {
+    public void wait(int time) {
         synchronized(this.s) {
-            this.s.wait(time);
+            try {
+                this.s.wait(time);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void giveFocus() throws InterruptedException {
-        log.info(this.app.getName());
         this.browserAPP.focus();
         this.wait(2000);
+    }
+
+    public String getComputerName()
+    {
+        String computerName = "";
+        try {
+            ProcessBuilder pb = new
+                    ProcessBuilder("hostname");
+            log.info(pb.command().toString());
+            final Process p = pb.start();
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(
+                            p.getInputStream()));
+            String line;
+            while ((line = br.readLine()) != null) {
+                log.info(line);
+                if(line.trim()!="")
+                {
+                    computerName = line.trim();
+                }
+            }
+        } catch (Exception ex) {
+            log.info(ex.toString());
+        }
+        return  computerName;
+    }
+
+    public String getIOSVersion()
+    {
+        String version = "";
+        List<String> params = java.util.Arrays.asList("xcrun", "simctl", "getenv", this.deviceId, "SIMULATOR_RUNTIME_VERSION");
+
+        try {
+            ProcessBuilder pb = new
+                    ProcessBuilder(params);
+            log.info(pb.command().toString());
+            final Process p = pb.start();
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(
+                            p.getInputStream()));
+            String line;
+            while ((line = br.readLine()) != null) {
+                log.info(line);
+                if(line.trim()!="")
+                {
+                    version = line.trim();
+                }
+            }
+        } catch (Exception ex) {
+            log.info(ex.toString());
+        }
+        return  version;
     }
 
     public void getScreenShot(String screenshotName){

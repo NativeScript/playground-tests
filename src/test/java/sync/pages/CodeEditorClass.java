@@ -3,12 +3,19 @@ package sync.pages;
 import functional.tests.core.mobile.basepage.BasePage;
 import functional.tests.core.mobile.element.UIElement;
 import io.appium.java_client.SwipeElementDirection;
+import net.sf.saxon.Err;
 import org.sikuli.script.*;
 import org.testng.Assert;
+
+import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 
 public class CodeEditorClass extends BasePage {
     public Screen s = new Screen();
     public SetupClass setupClass;
+
     public CodeEditorClass(SetupClass setupClass) throws InterruptedException {
         super();
         this.setupClass = setupClass;
@@ -42,27 +49,26 @@ public class CodeEditorClass extends BasePage {
             }
         }
         s.type(code);
-        try {
-            this.setupClass.wait(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        this.setupClass.wait(400);
     }
 
     public void deleteAllCode()
     {
         try {
             s.click(new Pattern("NativescriptLogo.png").targetOffset(330,119));
+            this.setupClass.wait(500);
+            s.click(new Pattern("NativescriptLogo.png").targetOffset(330,119));
         } catch (FindFailed findFailed) {
             findFailed.printStackTrace();
         }
+        this.setupClass.wait(1500);
         s.type("a", KeyModifier.CMD);
         s.type(Key.DELETE);
 
     }
 
-    public void typeValidCode() {
-        if(this.setupClass.typeOfProject.equals("js") || this.setupClass.typeOfProject.equals("tsc") ) {
+    public void typeXMLOrHTMLCode(boolean isValid) {
+        if (this.setupClass.typeOfProject.equals("js") || this.setupClass.typeOfProject.equals("tsc")) {
             this.deleteAllCode();
             this.typeCode("<Page loaded=\"pageLoaded\" class=\"page\" xmlns=\"http://www.nativescript.org/tns.xsd\">");
             s.type(Key.ENTER);
@@ -76,13 +82,15 @@ public class CodeEditorClass extends BasePage {
             s.type(Key.ENTER);
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
             s.type(Key.ENTER);
-            this.typeCode("</StackLayout>");
+            if (isValid) {
+                this.typeCode("</StackLayout>");
+            }
             s.type(Key.ENTER);
             this.typeCode("</ScrollView>");
             s.type(Key.ENTER);
             this.typeCode("</Page>");
         }
-        if(this.setupClass.typeOfProject.equals("ng")) {
+        if (this.setupClass.typeOfProject.equals("ng")) {
             this.deleteAllCode();
             this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\">");
             s.type(Key.ENTER);
@@ -94,16 +102,47 @@ public class CodeEditorClass extends BasePage {
             s.type(Key.ENTER);
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" ></Label>");
             s.type(Key.ENTER);
-            this.typeCode("</StackLayout>");
+            if (isValid) {
+                this.typeCode("</StackLayout>");
+            }
             s.type(Key.ENTER);
             this.typeCode("</ScrollView>");
             s.type(Key.ENTER);
         }
-        try {
-            this.setupClass.wait(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        this.setupClass.wait(2000);
+    }
+
+    public void typeCSSCode(boolean isValid) {
+        this.deleteAllCode();
+        if (isValid == false) {
+            this.typeCode(".description-label{");
+            s.type(Key.ENTER);
+            this.typeCode("margin-bottom: 15;");
+            s.type(Key.ENTER);
+            this.typeCode("}");
+            s.type(Key.ENTER);
         }
+        s.type(Key.ENTER);
+        this.typeCode("@import 'nativescript-theme-core/css/core.dark.css';");
+        s.type(Key.ENTER);
+        this.typeCode(".home-panel{");
+        s.type(Key.ENTER);
+        this.typeCode("vertical-align: center;");
+        s.type(Key.ENTER);
+        this.typeCode("font-size: 20;");
+        s.type(Key.ENTER);
+        this.typeCode("margin: 15;");
+        s.type(Key.ENTER);
+        s.type(Key.DOWN);
+        s.type(Key.DOWN);
+        s.type(Key.DOWN);
+        s.type(Key.ENTER);
+        this.typeCode(".description-label{");
+        s.type(Key.ENTER);
+        this.typeCode("margin-bottom: 15;");
+        s.type(Key.ENTER);
+
+        this.setupClass.wait(2000);
     }
 
     public void save() {
@@ -119,8 +158,64 @@ public class CodeEditorClass extends BasePage {
                 e.printStackTrace();
             }
         }
+        else {
+        this.setupClass.wait(4000);
+        }
     }
 
+    public void typeJSTSCode(boolean isValid) {
+        this.deleteAllCode();
+        if(this.setupClass.typeOfProject.equals("ng")) {
+            this.typeCode("import { Component, OnInit } from \"@angular/core\";\n");
+            this.typeCode("@Component({\n");
+            this.typeCode("selector: \"Home\",\n");
+            this.typeCode("moduleId: module.id,\n");
+            this.typeCode("templateUrl: \"./home.component.html\",\n");
+            this.typeCode("styleUrls: ['./home.component.css']\n");
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("export class HomeComponent implements OnInit {\n");
+            this.typeCode("constructor() {\n");
+            this.typeCode("console.log(\"log\");\n");
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("ngOnInit(): void {\n");
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.DOWN);
+        }
+        else if(this.setupClass.typeOfProject.equals("js"))
+        {
+            this.typeCode("var frameModule = require(\"ui/frame\");\n");
+            this.typeCode("var HomeViewModel = require(\"./home-view-model\");\n");
+            this.typeCode("var homeViewModel = new HomeViewModel();\n");
+            this.typeCode("function pageLoaded(args) {\n");
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("var page = args.object;\n");
+            this.typeCode("page.bindingContext = homeViewModel;\n");
+            this.typeCode("console.log(\"log\");\n");
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("exports.pageLoaded = pageLoaded;\n");
+        }
+        else if(this.setupClass.typeOfProject.equals("tsc"))
+        {
+            this.typeCode("import { Observable } from 'data/observable';\n");
+            this.typeCode("export class HomeViewModel extends Observable {\n");
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("constructor() {\n");
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("super();\n");
+            this.typeCode("console.log(\"log\");\n");
+        }
+        if(isValid==false)
+        {
+            this.typeCode("}");
+        }
+    }
     public void waitForElement(int time) throws InterruptedException {
         synchronized(this.wait) {
             this.wait.wait(time);
@@ -132,4 +227,151 @@ public class CodeEditorClass extends BasePage {
         scroll.scrollInElement(SwipeElementDirection.DOWN, 1);
         this.log.info("Scroll Down");
     }
+
+    public void openFile(String fileToOpen){
+        try {
+            this.setupClass.s.click(fileToOpen);
+        } catch (FindFailed findFailed) {
+            findFailed.printStackTrace();
+        }
+        this.setupClass.wait(3000);
+    }
+
+    public String getErrorsTextFromErrorTab(){
+        String ErrorText = "";
+        try {
+            setupClass.s.dragDrop(new Pattern("Errors.png").similar(0.86f).targetOffset(-3,16),
+                    new Pattern("Errors.png").similar(0.86f).targetOffset(16,170));
+        } catch (FindFailed findFailed) {
+            findFailed.printStackTrace();
+        }
+        this.setupClass.wait(3000);
+        s.type("c", KeyModifier.CMD);
+        try {
+            ErrorText =  (String) Toolkit.getDefaultToolkit()
+                    .getSystemClipboard().getData(DataFlavor.stringFlavor);
+        } catch (UnsupportedFlavorException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ErrorText;
+    }
+
+    public String getLogsTextFromDeviceLogsTab(){
+        String ErrorText = "";
+        try {
+            setupClass.s.click("devicelogs");
+        } catch (FindFailed findFailed) {
+            findFailed.printStackTrace();
+        }
+        setupClass.wait(2000);
+        try {
+            setupClass.s.dragDrop(new Pattern("devicelogs.png").similar(0.86f).targetOffset(-3,16),
+                    new Pattern("devicelogs.png").similar(0.86f).targetOffset(16,170));
+        } catch (FindFailed findFailed) {
+            findFailed.printStackTrace();
+        }
+        this.setupClass.wait(3000);
+        s.type("c", KeyModifier.CMD);
+        try {
+            ErrorText =  (String) Toolkit.getDefaultToolkit()
+                    .getSystemClipboard().getData(DataFlavor.stringFlavor);
+        } catch (UnsupportedFlavorException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ErrorText;
+    }
+
+    public void clearDeviceLogs()
+    {
+        try {
+            setupClass.s.click("devicelogs");
+        } catch (FindFailed findFailed) {
+            findFailed.printStackTrace();
+        }
+        setupClass.wait(3000);
+        try {
+            setupClass.s.click("cleardevicelogs");
+        } catch (FindFailed findFailed) {
+            findFailed.printStackTrace();
+        }
+        setupClass.wait(3000);
+    }
+
+    public void assertImageIsOnScreen(String imageToFind, float similarity){
+        try {
+            this.setupClass.s.find(new Pattern(imageToFind).similar(similarity));
+        } catch (FindFailed findFailed) {
+            this.setupClass.getScreenShot(imageToFind+"_Not_Found");
+            Assert.assertTrue(false, "Image "+imageToFind+" not found on screen!");
+        }
+        Assert.assertTrue(true, "Image "+imageToFind+" found on screen!");
+    }
+
+    public void assertImageIsOnScreen(String imageToFind){
+        this.assertImageIsOnScreen(imageToFind, 0.7f);
+    }
+
+    public void assertDeviceTab(String deviceNameExpected, String modelExpected, String osVersionExpected, String previewAppVersionExpected, String runtimeVersionExpected, String componentVersionsExpected)
+    {
+        try {
+            this.setupClass.s.click("devicestab");
+            this.setupClass.wait(2000);
+            this.setupClass.s.click(new Pattern("devicename.png").targetOffset(-29,39));
+            this.setupClass.wait(1000);
+            this.setupClass.s.doubleClick(new Pattern("devicename.png").targetOffset(-43,76));
+            for (int i=20; i>0; i--)
+            {
+                this.setupClass.s.type(Key.DOWN, KeyModifier.SHIFT);
+            }
+            String componentsVersion = this.getTextWithCopy();
+            this.setupClass.s.dragDrop(new Pattern("devicename.png").targetOffset(8,39),new Pattern("devicename.png").targetOffset(194,39));
+            String deviceName = this.getTextWithCopy();
+            if(settings.deviceType == settings.deviceType.Emulator) {
+                this.setupClass.s.dragDrop(new Pattern("model.png").targetOffset(-25,40), new Pattern("model.png").targetOffset(153,39));
+
+            }
+            else
+            {
+                this.setupClass.s.dragDrop(new Pattern("model.png").targetOffset(-25,40), new Pattern("model.png").targetOffset(82,40));
+            }
+            String modelName = this.getTextWithCopy();
+            this.setupClass.s.dragDrop(new Pattern("osversion.png").targetOffset(-35,41), new Pattern("osversion.png").targetOffset(75,41));
+            String osVersionText = this.getTextWithCopy();
+            this.setupClass.s.dragDrop(new Pattern("previewappversion.png").targetOffset(-61,38), new Pattern("previewappversion.png").targetOffset(71,38));
+            String previewAppVersionText = this.getTextWithCopy();
+            this.setupClass.s.dragDrop(new Pattern("runtimeversion.png").targetOffset(-52,37), new Pattern("runtimeversion.png").targetOffset(85,37));
+            String runtimeVersionText = this.getTextWithCopy();
+            Assert.assertEquals(componentsVersion, componentVersionsExpected,"components version is not correct!");
+            Assert.assertEquals(deviceName, deviceNameExpected, "device name is not correct!");
+            Assert.assertEquals(modelName, modelExpected, "model name is not correct!");
+            Assert.assertTrue(osVersionText.contains(osVersionExpected), "Actual os version is "+osVersionText+" , expected os version is "+osVersionExpected);
+            Assert.assertEquals(previewAppVersionText, previewAppVersionExpected, "preview app version is not correct!");
+            Assert.assertEquals(runtimeVersionText, runtimeVersionExpected, "runtime version is not correct!");
+
+        } catch (FindFailed findFailed) {
+            findFailed.printStackTrace();
+        }
+    }
+
+    public String getTextWithCopy() {
+        String text = "";
+        this.setupClass.wait(1000);
+        s.type("c", KeyModifier.CMD);
+        this.setupClass.wait(1000);
+        try {
+            text = (String) Toolkit.getDefaultToolkit()
+                    .getSystemClipboard().getData(DataFlavor.stringFlavor);
+        } catch (UnsupportedFlavorException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.setupClass.wait(1000);
+        return text.trim();
+    }
+
 }
