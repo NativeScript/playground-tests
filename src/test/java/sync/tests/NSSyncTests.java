@@ -217,6 +217,7 @@ public class  NSSyncTests extends MobileTest {
 
         codeEditor.typeJSTSCode(true);
         codeEditor.save();
+        this.setupClass.wait(3000);
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText;
