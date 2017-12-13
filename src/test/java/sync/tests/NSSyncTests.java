@@ -64,7 +64,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.getScreenShot(this.context.getTestName()+"_AfterStart");
         if(this.context.lastTestResult == 1)
         {
-            this.setupClass.s.type(Key.ENTER);
+            this.setupClass.s.type(Key.ESC);
             this.setupClass.getScreenShot(this.context.getTestName()+"_AfterStart_AfterEnter");
         }
     }
