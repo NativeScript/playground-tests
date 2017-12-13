@@ -205,7 +205,7 @@ public class  NSSyncTests extends MobileTest {
         codeEditor.clearDeviceLogs();
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            if(this.setupClass.browser=="Safari")
+            if(this.setupClass.browser.equals("Safari"))
             {
                 codeEditor.openFile("angulartsSafari");
             }
@@ -215,7 +215,7 @@ public class  NSSyncTests extends MobileTest {
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
-            if(this.setupClass.browser=="Safari")
+            if(this.setupClass.browser.equals("Safari"))
             {
                 codeEditor.openFile("javascriptjsSafari");
             }
@@ -225,7 +225,7 @@ public class  NSSyncTests extends MobileTest {
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            if(this.setupClass.browser=="Safari")
+            if(this.setupClass.browser.equals("Safari"))
             {
                 codeEditor.openFile("typescripttsSafari");
             }
