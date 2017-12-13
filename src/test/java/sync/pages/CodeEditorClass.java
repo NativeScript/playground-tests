@@ -269,7 +269,7 @@ public class CodeEditorClass extends BasePage {
         } catch (FindFailed findFailed) {
             findFailed.printStackTrace();
         }
-        setupClass.wait(2000);
+        setupClass.wait(3000);
         try {
             setupClass.s.dragDrop(new Pattern("devicelogs").targetOffset(-3,16),
                     new Pattern("devicelogs").targetOffset(16,170));
@@ -278,7 +278,7 @@ public class CodeEditorClass extends BasePage {
         }
         this.setupClass.wait(3000);
         s.type("c", KeyModifier.CMD);
-        this.setupClass.wait(500);
+        this.setupClass.wait(1500);
         try {
             ErrorText =  (String) Toolkit.getDefaultToolkit()
                     .getSystemClipboard().getData(DataFlavor.stringFlavor);
