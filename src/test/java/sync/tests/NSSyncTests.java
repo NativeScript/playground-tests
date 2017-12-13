@@ -280,6 +280,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(3000);
         codeEditor.typeJSTSCode(true);
         codeEditor.save();
+        this.setupClass.wait(3000);
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
     }
 
