@@ -29,3 +29,4 @@ Pattern("runtimeversion.png").targetOffset(85,37)
 "devicestab.png"
 "gettingstartedlogo.png"
 "closebutton.png"
+"okbuttonTutorial.png"

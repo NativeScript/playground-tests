@@ -393,6 +393,12 @@ public String folderForScreenshots;
             }
             closeButton.click();
             this.wait(3000);
+            try {
+                s.click("okbuttonTutorial");
+            } catch (FindFailed findFailed) {
+                findFailed.printStackTrace();
+            }
+            this.wait(3000);
             log.info("Tutorial is closed!");
         }
     }
