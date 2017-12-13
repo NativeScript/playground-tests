@@ -39,8 +39,8 @@ public int deviceScreenWidth;
 public String appName;
 public Client client;
 public App browserAPP;
-public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","ng");
-public String browser = OSUtils.getEnvironmentVariable("browser","Safari");
+public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","js");
+public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome");
 public String folderForScreenshots;
 
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
@@ -371,6 +371,29 @@ public String folderForScreenshots;
             Process p = Runtime.getRuntime().exec("screencapture -C -x "+this.folderForScreenshots+screenshotName+".png");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void closeTutorial()
+    {
+        Region gettingStartedRegion = null;
+        Region closeButton = null;
+        try {
+             gettingStartedRegion = this.s.find("gettingstartedlogo");
+        } catch (FindFailed findFailed) {
+            findFailed.printStackTrace();
+            log.info("Tutorial is not opened!");
+        }
+        if(gettingStartedRegion!=null) {
+            try {
+                closeButton = gettingStartedRegion.right().find("closebutton");
+            } catch (FindFailed findFailed) {
+                findFailed.printStackTrace();
+                log.info("Couldn't find close button for tutorial!");
+            }
+            closeButton.click();
+            this.wait(3000);
+            log.info("Tutorial is closed!");
         }
     }
 }

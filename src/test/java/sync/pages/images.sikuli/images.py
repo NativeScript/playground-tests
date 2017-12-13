@@ -27,3 +27,5 @@ Pattern("previewappversion.png").targetOffset(71,38)
 Pattern("runtimeversion.png").targetOffset(-52,37)
 Pattern("runtimeversion.png").targetOffset(85,37)
 "devicestab.png"
+"gettingstartedlogo.png"
+"closebutton.png"
