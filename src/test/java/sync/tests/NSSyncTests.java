@@ -126,6 +126,7 @@ public class  NSSyncTests extends MobileTest {
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
                 "  \"nativescript-geolocation\": \"4.2.0\",\n" +
                 "  \"nativescript-pro-ui\": \"3.2.0\",\n" +
+                "  \"kinvey-nativescript-sdk\": \"3.9.2\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.4\",\n" +
                 "  \"reflect-metadata\": \"0.1.10\",\n" +
                 "  \"rxjs\": \"5.4.3\",\n" +
