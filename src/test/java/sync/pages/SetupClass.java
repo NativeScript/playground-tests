@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import functional.tests.core.enums.PlatformType;
+import functional.tests.core.mobile.appium.Capabilities;
 import functional.tests.core.mobile.basepage.BasePage;
 import functional.tests.core.mobile.element.UIElement;
 import functional.tests.core.mobile.device.Device;
@@ -27,6 +28,9 @@ import java.io.File;
 import functional.tests.core.mobile.element.UIRectangle;
 import functional.tests.core.utils.OSUtils;
 
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 public class SetupClass extends BasePage {
 public  Screen s = new Screen();;
 public String liveSyncConnectionString;
@@ -53,6 +57,8 @@ public String folderForScreenshots;
         String currentPath = System.getProperty("user.dir");
         ImagePathDirectory = currentPath+"/src/test/java/sync/pages/images.sikuli";
         this.folderForScreenshots = currentPath+"/target/surefire-reports/screenshots/";
+        this.client.driver.removeApp("org.nativescript.preview");
+        this.wait(2000);
         if(settings.deviceType == settings.deviceType.Simulator)
         {
             functional.tests.core.utils.Archive.extractArchive(new File(currentPath+"/testapp/nsplaydev.tgz"),new File(currentPath+"/testapp/"));
@@ -60,11 +66,19 @@ public String folderForScreenshots;
             functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
             ios.installApp("nsplaydev.app","org.nativescript.preview");
             this.deviceId=ios.getId();
+            context.settings.packageId = "org.nativescript.preview";
+            context.settings.testAppFileName = "nsplaydev.app";
+            Capabilities newiOSCapabilities = new Capabilities();
+            context.client.driver = new IOSDriver(context.server.service.getUrl(), newiOSCapabilities.loadDesiredCapabilities(context.settings));
         }
         else {
             functional.tests.core.mobile.device.android.AndroidDevice android = new functional.tests.core.mobile.device.android.AndroidDevice(client, mobileSettings);
             android.installApp("preview-release.apk", "org.nativescript.preview");
             this.deviceId=android.getId();
+            context.settings.packageId = "org.nativescript.preview";
+            context.settings.testAppFileName = "preview-release.apk";
+            Capabilities newAndroidCapabilities = new Capabilities();
+            context.client.driver = new AndroidDriver(context.server.service.getUrl(), newAndroidCapabilities.loadDesiredCapabilities(context.settings));
         }
 
         ImagePath.add(ImagePathDirectory);
@@ -124,6 +138,7 @@ public String folderForScreenshots;
                     ProcessBuilder(params);
             log.info(pb.command().toString());
             final Process p = pb.start();
+            log.info("Start logging command...");
             BufferedReader br = new BufferedReader(
                     new InputStreamReader(
                             p.getInputStream()));
@@ -131,14 +146,17 @@ public String folderForScreenshots;
             while ((line = br.readLine()) != null) {
                 log.info(line);
             }
+            log.info("End logging command...");
         } catch (Exception ex) {
             log.info(ex.toString());
         }
 
         if(settings.deviceType == settings.deviceType.Simulator) {
+            log.info("Searching for Home or Open");
+            this.wait(5000);
             String foundItem = this.waitText1OrText2ToBeShown(12,"Home", "Open");
+            log.info("Found Item "+foundItem);
             if(foundItem == "Open") {
-                this.wait(5000);
                 if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
                     if(this.settings.platformVersion.toString().contains("10.")) {
                         this.client.driver.switchTo().alert().accept();
@@ -179,6 +197,7 @@ public String folderForScreenshots;
         String textFound="";
         while (true) {
             if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
+                log.info("Search for image!");
                 if (this.sikuli.waitForImage(text1, 0.7d, 2)) {
                     textFound = text1;
                     break;
@@ -194,23 +213,29 @@ public String folderForScreenshots;
                 }
 
             } else {
+                log.info("Search for text!");
                 UIElement text1element = this.find.byText(text1, false, this.settings.shortTimeout);
                 UIElement text2element = this.find.byText(text2, false, this.settings.shortTimeout);
+                log.info("start checking!");
                 if (text1element != null) {
                     textFound = text1;
+                    log.info("Found "+textFound);
                     break;
                 }
                 if (text2element != null) {
                     textFound = text2;
+                    log.info("Found "+textFound);
                     break;
                 }
                 numberOfTries = numberOfTries - 1;
                 if (numberOfTries <= 0) {
-                    log.info("Text  "+ text1 + " and Text "+text2 + " are not found!");
+                    log.info("Text  " + text1 + " and Text " + text2 + " are not found!");
                     break;
                 }
             }
+            log.info("Nothing found in turn "+numberOfTries);
         }
+        log.info("Exit loop! Text found "+textFound);
         return textFound;
     }
 
@@ -231,14 +256,14 @@ public String folderForScreenshots;
             else {
                 UIElement home = this.find.byText(object);
                 if (home != null || numberOfTries <= 0) {
-                    if(numberOfTries <= 0){
-                        log.info("Text "+ object + " is not found!");
+                    if (numberOfTries <= 0) {
+                        log.info("Text " + object + " is not found!");
                     }
                     break;
-                } else {
-                    numberOfTries = numberOfTries - 1;
                 }
+                numberOfTries = numberOfTries - 1;
             }
+            log.info("Nothing found in turn "+numberOfTries);
         }
     }
 
