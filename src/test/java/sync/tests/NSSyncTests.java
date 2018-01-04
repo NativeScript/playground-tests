@@ -157,9 +157,11 @@ public class  NSSyncTests extends MobileTest {
         else {
             //remove after bug in {N}
             //this.assertScreen("nsplaydev-synced-invalid-code", this.settings.shortTimeout);
-            this.setupClass.wait(5000);
-            this.context.client.driver.launchApp();
-            this.setupClass.wait(4000);
+            if(settings.deviceType == settings.deviceType.Simulator) {
+                this.setupClass.wait(5000);
+                this.context.client.driver.launchApp();
+                this.setupClass.wait(4000);
+            }
         }
         codeEditor.typeXMLOrHTMLCode(true);
         codeEditor.save("Test");
