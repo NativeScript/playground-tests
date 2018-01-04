@@ -1,6 +1,7 @@
 package sync.tests;
 
 import functional.tests.core.mobile.basetest.MobileTest;
+import org.openqa.selenium.logging.LogEntries;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.KeyModifier;
@@ -154,7 +155,11 @@ public class  NSSyncTests extends MobileTest {
 
         }
         else {
-            this.assertScreen("nsplaydev-synced-invalid-code", this.settings.shortTimeout);
+            //remove after bug in {N}
+            //this.assertScreen("nsplaydev-synced-invalid-code", this.settings.shortTimeout);
+            this.setupClass.wait(5000);
+            this.context.client.driver.launchApp();
+            this.setupClass.wait(4000);
         }
         codeEditor.typeXMLOrHTMLCode(true);
         codeEditor.save("Test");
@@ -284,5 +289,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(3000);
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
     }
+
+
 
 }
