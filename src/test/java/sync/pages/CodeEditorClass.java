@@ -49,7 +49,7 @@ public class CodeEditorClass extends BasePage {
             }
         }
         s.type(code);
-        this.setupClass.wait(600);
+        this.setupClass.wait(800);
     }
 
     public void deleteAllCode()
@@ -219,6 +219,55 @@ public class CodeEditorClass extends BasePage {
         }
         this.setupClass.wait(2000);
     }
+
+    public void typeJSTSCodeWithThrowError() {
+        this.deleteAllCode();
+        if (this.setupClass.typeOfProject.equals("ng")) {
+            this.typeCode("import { Component, OnInit } from \"@angular/core\";\n");
+            this.typeCode("@Component({\n");
+            this.typeCode("selector: \"Home\",\n");
+            this.typeCode("moduleId: module.id,\n");
+            this.typeCode("templateUrl: \"./home.component.html\",\n");
+            this.typeCode("styleUrls: ['./home.component.css']\n");
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("export class HomeComponent implements OnInit {\n");
+            this.typeCode("constructor() {\n");
+            this.typeCode("throw new Error(\"Error\");\n");
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("ngOnInit(): void {\n");
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.DOWN);
+        } else if (this.setupClass.typeOfProject.equals("js")) {
+            this.typeCode("var frameModule = require(\"ui/frame\");\n");
+            this.typeCode("var HomeViewModel = require(\"./home-view-model\");\n");
+            this.typeCode("var homeViewModel = new HomeViewModel();\n");
+            this.typeCode("function pageLoaded(args) {\n");
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("var page = args.object;\n");
+            this.typeCode("page.bindingContext = homeViewModel;\n");
+            this.typeCode("throw new Error(\"Error\");\n");
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("exports.pageLoaded = pageLoaded;\n");
+        } else if (this.setupClass.typeOfProject.equals("tsc")) {
+            this.typeCode("import { Observable } from 'data/observable';\n");
+            this.typeCode("export class HomeViewModel extends Observable {\n");
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("constructor() {\n");
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("super();\n");
+            this.typeCode("throw new Error(\"Error\");\n");
+        }
+
+        this.setupClass.wait(2000);
+    }
+
     public void waitForElement(int time) throws InterruptedException {
         synchronized(this.wait) {
             this.wait.wait(time);
