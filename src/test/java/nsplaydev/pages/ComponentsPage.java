@@ -68,9 +68,10 @@ public class ComponentsPage extends BasePage {
     /**
      * Verify home page loaded.
      */
-    public void navigate(String button) {
+    public void navigate(String button) throws InterruptedException {
         this.find.byText(button).click();
         this.log.info("Navigate to " + button);
+        this.waitForElement(2000);
     }
 
     public boolean checkIfElementisShown(String elementText) {
