@@ -290,9 +290,12 @@ public class NsPlayDevTests extends MobileTest {
     public void test_27_location_is_working() throws Exception {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Location");
         componentsVisualizationPage.navigate("Show location");
+        componentsVisualizationPage.waitForElement(2000);
         if(componentsVisualizationPage.checkIfElementisShown("Allow")) {
             componentsVisualizationPage.navigate("Allow");
+
         }
+        componentsVisualizationPage.waitForElement(2000);
         if(componentsVisualizationPage.checkIfElementisShown("OK")) {
             componentsVisualizationPage.navigate("OK");
         }
