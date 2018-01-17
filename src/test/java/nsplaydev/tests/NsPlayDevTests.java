@@ -295,29 +295,32 @@ public class NsPlayDevTests extends MobileTest {
             componentsVisualizationPage.navigate("Allow");
 
         }
-//        else
-//        {
-//            try {
-//                this.client.driver.switchTo().alert().accept();
-//            }
-//            catch (Exception e) {
-//
-//            }
-//        }
+        else
+        {
+            if(this.client.driver.switchTo().alert()!=null) {
+                try {
+                    this.client.driver.switchTo().alert().accept();
+
+                } catch (Exception e) {
+
+                }
+            }
+        }
         componentsVisualizationPage.waitForElement(2000);
         if(componentsVisualizationPage.checkIfElementisShown("OK")) {
             componentsVisualizationPage.navigate("OK");
 
         }
-//        else
-//        {
-//            try {
-//                this.client.driver.switchTo().alert().accept();
-//            }
-//            catch (Exception e) {
-//
-//            }
-//      }
+        else
+        {
+            if(this.client.driver.switchTo().alert()!=null) {
+                try {
+                    this.client.driver.switchTo().alert().accept();
+                } catch (Exception e) {
+
+                }
+            }
+      }
         componentsVisualizationPage.waitForElement(4000);
         this.assertScreen("nsplaydev-location-working-view", this.settings.shortTimeout, 20);
     }
