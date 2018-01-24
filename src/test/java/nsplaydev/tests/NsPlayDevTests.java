@@ -297,14 +297,11 @@ public class NsPlayDevTests extends MobileTest {
 
         } else {
             try {
-                if (ExpectedConditions.alertIsPresent() != null)
-                    try {
-                        this.client.driver.switchTo().alert().accept();
-                    } catch (UnhandledAlertException Ex) {
-                        componentsVisualizationPage.waitForElement(100);
-                    }
-            } catch (UnhandledAlertException Ex) {
-                componentsVisualizationPage.waitForElement(100);
+                if (ExpectedConditions.alertIsPresent() != null) {
+                    this.client.driver.switchTo().alert().accept();
+                }
+            } catch (Exception e) {
+                this.log.error(e.getMessage());
             }
         }
 
