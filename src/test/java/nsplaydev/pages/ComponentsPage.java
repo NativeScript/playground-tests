@@ -78,9 +78,18 @@ public class ComponentsPage extends BasePage {
      * Verify home page loaded.
      */
     public void navigate(String button) throws InterruptedException {
-        this.find.byText(button).click();
-        this.log.info("Navigate to " + button);
-        this.waitForElement(2000);
+
+        UIElement buttonToClick = this.find.byText(button);
+        if(buttonToClick!=null) {
+            buttonToClick.click();
+            this.log.info("Navigate to " + button);
+            this.waitForElement(2000);
+        }
+        else {
+            this.log.info("Element " + button + " not found! Not able to click it!");
+            this.waitForElement(1000);
+        }
+
     }
 
     public boolean checkIfElementisShown(String elementText) {
