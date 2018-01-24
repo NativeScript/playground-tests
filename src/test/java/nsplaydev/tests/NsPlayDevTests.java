@@ -298,12 +298,12 @@ public class NsPlayDevTests extends MobileTest {
         else
         {
             if(this.client.driver.switchTo().alert()!=null) {
-                try {
-                    this.client.driver.switchTo().alert().accept();
-
-                } catch (Exception e) {
-
-                }
+//                try {
+//                    this.client.driver.switchTo().alert().accept();
+//
+//                } catch (Exception e) {
+//
+//                }
             }
         }
         componentsVisualizationPage.waitForElement(2000);
@@ -311,16 +311,6 @@ public class NsPlayDevTests extends MobileTest {
             componentsVisualizationPage.navigate("OK");
 
         }
-        else
-        {
-            if(this.client.driver.switchTo().alert()!=null) {
-                try {
-                    this.client.driver.switchTo().alert().accept();
-                } catch (Exception e) {
-
-                }
-            }
-      }
         componentsVisualizationPage.waitForElement(4000);
         this.assertScreen("nsplaydev-location-working-view", this.settings.shortTimeout, 20);
     }
