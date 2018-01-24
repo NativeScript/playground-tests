@@ -292,19 +292,22 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Location");
         componentsVisualizationPage.navigate("Show location");
         componentsVisualizationPage.waitForElement(6000);
-        if(componentsVisualizationPage.checkIfElementisShown("Allow")) {
+        if (componentsVisualizationPage.checkIfElementisShown("Allow")) {
             componentsVisualizationPage.navigate("Allow");
 
+        } else {
+            try {
+                if (ExpectedConditions.alertIsPresent() != null)
+                    try {
+                        this.client.driver.switchTo().alert().accept();
+                    } catch (UnhandledAlertException Ex) {
+                        componentsVisualizationPage.waitForElement(100);
+                    }
+            } catch (UnhandledAlertException Ex) {
+                componentsVisualizationPage.waitForElement(100);
+            }
         }
-        else
-        {
-            if(ExpectedConditions.alertIsPresent()!=null)
-                try {
-                    this.client.driver.switchTo().alert().accept();
-                } catch (UnhandledAlertException Ex) {
-                    componentsVisualizationPage.waitForElement(6000);
-                }
-        }
+
         componentsVisualizationPage.waitForElement(2000);
         if(componentsVisualizationPage.checkIfElementisShown("OK")) {
             componentsVisualizationPage.navigate("OK");
