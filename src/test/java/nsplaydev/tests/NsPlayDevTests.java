@@ -4,8 +4,9 @@ import functional.tests.core.mobile.basetest.MobileTest;
 import nsplaydev.pages.ComponentsDetailsPage;
 import nsplaydev.pages.ComponentsPage;
 import nsplaydev.pages.ComponentsVisualizationPage;
+import org.openqa.selenium.UnhandledAlertException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
-
 public class NsPlayDevTests extends MobileTest {
 
 
@@ -297,14 +298,12 @@ public class NsPlayDevTests extends MobileTest {
         }
         else
         {
-            if(this.client.driver.switchTo().alert()!=null) {
-//                try {
-//                    this.client.driver.switchTo().alert().accept();
-//
-//                } catch (Exception e) {
-//
-//                }
-            }
+            if(ExpectedConditions.alertIsPresent()!=null)
+                try {
+                    this.client.driver.switchTo().alert().accept();
+                } catch (UnhandledAlertException Ex) {
+                    componentsVisualizationPage.waitForElement(6000);
+                }
         }
         componentsVisualizationPage.waitForElement(2000);
         if(componentsVisualizationPage.checkIfElementisShown("OK")) {
