@@ -292,6 +292,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Location");
         componentsVisualizationPage.navigate("Show location");
         componentsVisualizationPage.waitForElement(6000);
+        log.info("before");
         if (componentsVisualizationPage.checkIfElementisShown("Allow")) {
             componentsVisualizationPage.navigate("Allow");
 
@@ -304,7 +305,7 @@ public class NsPlayDevTests extends MobileTest {
                 this.log.error(e.getMessage());
             }
         }
-
+        log.info("after");
         componentsVisualizationPage.waitForElement(2000);
         if(componentsVisualizationPage.checkIfElementisShown("OK")) {
             componentsVisualizationPage.navigate("OK");
