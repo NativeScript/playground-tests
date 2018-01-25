@@ -38,34 +38,31 @@ public class ComponentsPage extends BasePage {
             UIElement location = this.find.byText("Location");
             if (location == null) {
                 this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
-                this.scrollDown();
+                location = this.find.byText("Location");
+                if (location == null) {
+                    this.scrollDown();
+                    location = this.find.byText("Location");
+                    if (location == null) {
+                        this.scrollDown();
+                        location = this.find.byText("Location");
+                        if (location == null) {
+                            this.scrollDown();
+                            location = this.find.byText("Location");
+                            if (location == null) {
+                                this.scrollDown();
+                                location = this.find.byText("Location");
+                                if (location == null) {
+                                    this.scrollDown();
+                                    location = this.find.byText("Location");
+                                    if (location == null) {
+                                        this.scrollDown();
+                                        location = this.find.byText("Location");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
             location = this.find.byText("Location");
             Assert.assertNotNull(location, "Page Not Scrolled correctly!");
@@ -81,13 +78,11 @@ public class ComponentsPage extends BasePage {
 
         UIElement buttonToClick = this.find.byText(button);
         if(buttonToClick!=null) {
-            buttonToClick.click();
+            this.client.driver.tap(1, buttonToClick.getCenter().x, buttonToClick.getCenter().y, 500);
             this.log.info("Navigate to " + button);
-            this.waitForElement(2000);
         }
         else {
             this.log.info("Element " + button + " not found! Not able to click it!");
-            this.waitForElement(1000);
         }
 
     }
@@ -114,17 +109,7 @@ public class ComponentsPage extends BasePage {
     }
 
     public void scrollDown() {
-        UIElement scroll;
-        if(settings.deviceName.contains("Api26"))
-        {
-             scroll = this.wait.waitForVisible(this.locators.findByTextLocator("TextView", true));
-        }
-        else
-        {
-             scroll = this.wait.waitForVisible(this.locators.findByTextLocator("DatePicker", true));
-        }
-
-        scroll.scrollInElement(SwipeElementDirection.DOWN, 1);
-        this.log.info("Scroll Down");
+       this.gestures.scrollToElement(SwipeElementDirection.DOWN, "Location",1);
+       this.log.info("Scroll Down");
     }
 }
