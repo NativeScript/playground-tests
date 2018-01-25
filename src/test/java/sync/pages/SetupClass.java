@@ -46,9 +46,10 @@ public App browserAPP;
 public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","js");
 public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome");
 public String folderForScreenshots;
-
+public MobileSettings mobileSettings;
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
+        this.mobileSettings = mobileSettings;
         this.client = client;
         this.device = device;
         this.imageUtils = new ImageUtils(settings, client, device);
@@ -170,11 +171,18 @@ public String folderForScreenshots;
                     }
                     else {
                         this.client.driver.switchTo().alert().dismiss();
-                        this.wait(8000);
+                        this.wait(5000);
+                        functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
+                        this.deviceId=ios.getId();
+                        context.settings.packageId = "org.nativescript.preview";
+                        context.settings.testAppFileName = "nsplaydev.app";
+                        Capabilities newiOSCapabilities = new Capabilities();
+                        context.client.driver = new IOSDriver(context.server.service.getUrl(), newiOSCapabilities.loadDesiredCapabilities(context.settings));
+                        this.wait(5000);
                         this.client.driver.switchTo().alert().dismiss();
-                        this.wait(8000);
+                        this.wait(5000);
                         this.client.driver.switchTo().alert().dismiss();
-                        this.wait(8000);
+                        this.wait(5000);
                     }
                 }
                 else {
