@@ -177,16 +177,16 @@ public class CodeEditorClass extends BasePage {
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
-            this.setupClass.s.type(Key.ENTER);
+            this.typeCode(Key.ENTER);
             this.typeCode("export class HomeComponent implements OnInit {\n");
             this.typeCode("constructor() {\n");
             this.typeCode("console.log(\"log\");\n");
             this.setupClass.s.type(Key.DOWN);
-            this.setupClass.s.type(Key.ENTER);
+            this.typeCode(Key.ENTER);
             this.typeCode("ngOnInit(): void {\n");
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
-            this.setupClass.s.type(Key.ENTER);
+            this.typeCode(Key.ENTER);
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
