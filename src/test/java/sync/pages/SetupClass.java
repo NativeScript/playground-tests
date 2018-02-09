@@ -119,7 +119,7 @@ public MobileSettings mobileSettings;
     }
 
     public void GetDeviceLink() throws InterruptedException, FindFailed, IOException, UnsupportedFlavorException {
-        if(s.exists("playnowbutton.png") == null) {
+        if(s.exists("playnowbutton.png") != null) {
             s.click("playnowbutton.png");
             s.wait(2000);
         }
