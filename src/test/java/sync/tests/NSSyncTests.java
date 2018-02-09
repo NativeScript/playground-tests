@@ -266,7 +266,7 @@ public class  NSSyncTests extends MobileTest {
             expectedText = "[" + this.deviceName + "]" + ": log";
         }
 
-        Assert.assertEquals(expectedText, deviceLog,"Expected text \""+expectedText+ "\" is not equal to \""+deviceLog+"\" .");
+        Assert.assertEquals(expectedText.trim(), deviceLog.trim(),"Expected text \""+expectedText.trim()+ "\" is not equal to \""+deviceLog.trim()+"\" .");
 
     }
 

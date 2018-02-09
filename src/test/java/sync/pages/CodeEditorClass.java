@@ -482,6 +482,13 @@ public class CodeEditorClass extends BasePage {
             findFailed.printStackTrace();
         }
         this.setupClass.wait(3000);
+
+        for (int i=0;i<21;i++)
+        {
+            s.type(Key.DOWN,KeyModifier.SHIFT);
+        }
+
+        this.setupClass.wait(3000);
         s.type("c", KeyModifier.CMD);
         this.setupClass.wait(1500);
         try {
