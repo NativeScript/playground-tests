@@ -14,7 +14,12 @@ import functional.tests.core.mobile.settings.MobileSettings;
 import functional.tests.core.image.Sikuli;
 import functional.tests.core.image.ImageUtils;
 import functional.tests.core.utils.FileSystem;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.html5.Location;
+import org.openqa.selenium.interactions.Actions;
 import org.sikuli.script.Image;
 import org.testng.Assert;
 import org.sikuli.script.*;
@@ -31,6 +36,7 @@ import functional.tests.core.utils.OSUtils;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
 public class SetupClass extends BasePage {
 public  Screen s = new Screen();;
 public String liveSyncConnectionString;
@@ -43,7 +49,7 @@ public int deviceScreenWidth;
 public String appName;
 public Client client;
 public App browserAPP;
-public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","js");
+public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","ng");
 public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome");
 public String folderForScreenshots;
 public MobileSettings mobileSettings;
@@ -70,7 +76,9 @@ public MobileSettings mobileSettings;
             context.settings.packageId = "org.nativescript.preview";
             context.settings.testAppFileName = "nsplaydev.app";
             Capabilities newiOSCapabilities = new Capabilities();
-            context.client.driver = new IOSDriver(context.server.service.getUrl(), newiOSCapabilities.loadDesiredCapabilities(context.settings));
+            DesiredCapabilities newDesireCapabilites = new DesiredCapabilities();
+            newDesireCapabilites = newiOSCapabilities.loadDesiredCapabilities(context.settings);
+            context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesireCapabilites);
         }
         else {
             functional.tests.core.mobile.device.android.AndroidDevice android = new functional.tests.core.mobile.device.android.AndroidDevice(client, mobileSettings);
@@ -111,6 +119,10 @@ public MobileSettings mobileSettings;
     }
 
     public void GetDeviceLink() throws InterruptedException, FindFailed, IOException, UnsupportedFlavorException {
+        if(s.exists("devicesLinkMessage.png") == null) {
+            s.click("qrcode.png");
+        }
+        this.wait(3000);
         s.dragDrop(new Pattern("devicesLinkMessage.png").similar(0.63f).targetOffset(-101,0),
                 new Pattern("devicesLinkMessage.png").similar(0.63f).targetOffset(500,25));
         this.wait(3000);
@@ -434,5 +446,113 @@ public MobileSettings mobileSettings;
             this.wait(3000);
             log.info("Tutorial is closed!");
         }
+    }
+
+    public void openURL(String url)
+    {
+        List<String> params = null;
+        if(settings.deviceType == settings.deviceType.Simulator)
+        {
+            url = url.replaceAll("\\\\", "/");
+            params = java.util.Arrays.asList("xcrun", "simctl", "openurl", this.deviceId, url);
+        }
+        else {
+            params = java.util.Arrays.asList(System.getenv("ANDROID_HOME") + "/platform-tools/adb", "-s", this.deviceId, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", "\"" + url + "\"");
+        }
+            try {
+                ProcessBuilder pb = new
+                        ProcessBuilder(params);
+                log.info(pb.command().toString());
+                final Process p = pb.start();
+                log.info("Start logging command...");
+                BufferedReader br = new BufferedReader(
+                        new InputStreamReader(
+                                p.getInputStream()));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    log.info(line);
+                }
+                log.info("End logging command...");
+            } catch (Exception ex) {
+                log.info(ex.toString());
+            }
+
+        if(settings.deviceType == settings.deviceType.Emulator) {
+            this.wait(4000);
+            UIElement webView = this.find.byTextContains("WebView");
+           if(webView!=null) {
+                webView.click();
+                this.log.info("Navigate to " + webView);
+            }
+            else {
+                this.log.info("Element " + webView + " not found! Not able to click it!");
+            }
+
+            this.wait(3000);
+            UIElement webViewForJust  = this.find.byTextContains("Just Once");
+            if(webViewForJust!=null) {
+                webViewForJust.click();
+                this.log.info("Navigate to " + webViewForJust);
+            }
+            else {
+                this.log.info("Element " + webViewForJust + " not found! Not able to click it!");
+            }
+        }
+    }
+
+    public void navigateToSavedSession(String button) throws InterruptedException {
+        if(settings.deviceType == settings.deviceType.Emulator) {
+            List<WebElement> link = (List<WebElement>) this.client.driver.findElements(By.xpath("//*[@content-desc='Load project in Preview app Tap to open the saved project in the Preview app']"));
+            if(link.size()!=0) {
+                link.get(0).click();
+                this.log.info("Navigate to " + button);
+            }
+            else {
+                this.log.info("Element " + button + " not found! Not able to click it!");
+            }
+        }
+        else if (settings.deviceType == settings.deviceType.Simulator)
+        {
+            UIRectangle link = this.findImageOnScreen("SavedSession", 0.8d);
+            if(link!=null) {
+                this.client.driver.tap(1,link.getRectangle().x,link.getRectangle().y,500);
+                this.wait(7000);
+                if(this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
+                    this.client.driver.switchTo().alert().accept();
+                }
+                else {
+                    UIRectangle openButton = this.findImageOnScreen("Open", 0.8d);
+                    this.client.driver.tap(1,openButton.getRectangle().x,openButton.getRectangle().y,500);
+                }
+                this.wait(7000);
+            }
+            else {
+                this.log.info("Element " + button + " not found! Not able to click it!");
+            }
+        }
+
+
+    }
+
+   public void changeIosDriverToWebView(){
+       Capabilities newiOSCapabilities = new Capabilities();
+       DesiredCapabilities newDesiredCapabilites = new DesiredCapabilities();
+       newDesiredCapabilites = newiOSCapabilities.loadDesiredCapabilities(context.settings);
+       newDesiredCapabilites.setBrowserName("Safari");
+       newDesiredCapabilites.setCapability("autoWebview",true);
+       context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesiredCapabilites);
+   }
+
+    public void restoreIosDriver(){
+        Capabilities newiOSCapabilities = new Capabilities();
+        DesiredCapabilities newDesiredCapabilites = new DesiredCapabilities();
+        newDesiredCapabilites = newiOSCapabilities.loadDesiredCapabilities(this.mobileSettings);
+        context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesiredCapabilites);
+    }
+
+    public void refreshAndroidDriver(){
+        Capabilities newAndroidCapabilities = new Capabilities();
+        context.client.driver = new AndroidDriver(context.server.service.getUrl(), newAndroidCapabilities.loadDesiredCapabilities(context.settings));
+
     }
 }

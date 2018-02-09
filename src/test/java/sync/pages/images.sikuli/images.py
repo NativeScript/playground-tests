@@ -1,14 +1,14 @@
-Pattern("devicesLinkMessage.png").similar(0.63).targetOffset(-101,0)
-Pattern("devicesLinkMessage.png").similar(0.63).targetOffset(500,25)
+Pattern("devicesLinkMessage.png").targetOffset(-85,4)
+Pattern("devicesLinkMessage.png").targetOffset(630,29)
 Pattern("NativescriptLogo.png").targetOffset(330,119)
 "appcss.png"
-Pattern("Errors.png").similar(0.86).targetOffset(-3,16)
+Pattern("Errors.png").similar(0.86)
 "ErrorDialogWhenErrorInCode.png"
 Pattern("Errors.png").similar(0.86).targetOffset(16,170)
 "angularts.png"
 "angulartsSafari.png"
-"javascriptjs.png"
 "javascriptjsSafari.png"
+"javascriptjs.png"
 "typescriptts.png"
 "typescripttsSafari.png"
 "devicelogs.png"
@@ -30,3 +30,5 @@ Pattern("runtimeversion.png").targetOffset(85,37)
 "gettingstartedlogo.png"
 "closebutton.png"
 "okbuttonTutorial.png"
+"qrcode.png"
+"ErrorsNotSelected.png"
