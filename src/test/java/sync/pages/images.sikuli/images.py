@@ -32,3 +32,4 @@ Pattern("runtimeversion.png").targetOffset(85,37)
 "okbuttonTutorial.png"
 "qrcode.png"
 "ErrorsNotSelected.png"
+"playnowbutton.png"
