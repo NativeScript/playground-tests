@@ -186,6 +186,7 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("ngOnInit(): void {\n");
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
+            this.setupClass.s.type(Key.ENTER);
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
