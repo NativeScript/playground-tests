@@ -437,7 +437,16 @@ public class CodeEditorClass extends BasePage {
         this.log.info("Scroll Down");
     }
 
-    public void openFile(String fileToOpen){
+//    public void openFile(String fileToOpen){
+//        try {
+//            this.setupClass.s.click(fileToOpen);
+//        } catch (FindFailed findFailed) {
+//            findFailed.printStackTrace();
+//        }
+//        this.setupClass.wait(3000);
+//    }
+
+    public void openFile(Pattern fileToOpen){
         try {
             this.setupClass.s.click(fileToOpen);
         } catch (FindFailed findFailed) {
@@ -445,7 +454,6 @@ public class CodeEditorClass extends BasePage {
         }
         this.setupClass.wait(3000);
     }
-
     public String getErrorsTextFromErrorTab(){
         String ErrorText = "";
         try {

@@ -5,6 +5,7 @@ import org.openqa.selenium.logging.LogEntries;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
 import org.sikuli.script.KeyModifier;
+import org.sikuli.script.Pattern;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import sync.pages.SetupClass;
@@ -178,7 +179,7 @@ public class  NSSyncTests extends MobileTest {
         {
             codeEditor.typeXMLOrHTMLCode(true);
         }
-        codeEditor.openFile("appcss");
+        codeEditor.openFile(new Pattern("appcss").similar(0.70f));
         codeEditor.typeCSSCode(true);
         codeEditor.save();
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
@@ -221,33 +222,33 @@ public class  NSSyncTests extends MobileTest {
                 this.setupClass.s.hover("angulartsSafari");
                 this.setupClass.wait(1000);
                 this.setupClass.s.wheel(WHEEL_UP,3);
-                codeEditor.openFile("angulartsSafari");
+                codeEditor.openFile(new Pattern("angulartsSafari").similar(0.93f));
             }
             else {
                 this.setupClass.s.hover("angularts");
                 this.setupClass.wait(1000);
                 this.setupClass.s.wheel(WHEEL_UP,3);
-                codeEditor.openFile("angularts");
+                codeEditor.openFile(new Pattern("angularts").similar(0.93f));
             }
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
             if(this.setupClass.browser.equals("Safari"))
             {
-                codeEditor.openFile("javascriptjsSafari");
+                codeEditor.openFile(new Pattern("javascriptjsSafari").similar(0.93f));
             }
             else {
-                codeEditor.openFile("javascriptjs");
+                codeEditor.openFile(new Pattern("javascriptjs").similar(0.93f));
             }
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
             if(this.setupClass.browser.equals("Safari"))
             {
-                codeEditor.openFile("typescripttsSafari");
+                codeEditor.openFile(new Pattern("typescripttsSafari").similar(0.93f));
             }
             else {
-                codeEditor.openFile("typescriptts");
+                codeEditor.openFile(new Pattern("typescriptts").similar(0.93f));
             }
         }
 
@@ -315,30 +316,30 @@ public class  NSSyncTests extends MobileTest {
         {
             if(this.setupClass.browser.equals("Safari"))
             {
-                codeEditor.openFile("angulartsSafari");
+                codeEditor.openFile(new Pattern("angulartsSafari").similar(0.93f));
             }
             else {
-                codeEditor.openFile("angularts");
+                codeEditor.openFile(new Pattern("angularts").similar(0.93f));
             }
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
             if(this.setupClass.browser.equals("Safari"))
             {
-                codeEditor.openFile("javascriptjsSafari");
+                codeEditor.openFile(new Pattern("javascriptjsSafari").similar(0.93f));
             }
             else {
-                codeEditor.openFile("javascriptjs");
+                codeEditor.openFile(new Pattern("javascriptjs").similar(0.93f));
             }
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
             if(this.setupClass.browser.equals("Safari"))
             {
-                codeEditor.openFile("typescripttsSafari");
+                codeEditor.openFile(new Pattern("typescripttsSafari").similar(0.93f));
             }
             else {
-                codeEditor.openFile("typescriptts");
+                codeEditor.openFile(new Pattern("typescriptts").similar(0.93f));
             }
         }
         this.setupClass.wait(2000);
