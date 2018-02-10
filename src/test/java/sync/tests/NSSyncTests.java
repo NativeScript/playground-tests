@@ -222,33 +222,33 @@ public class  NSSyncTests extends MobileTest {
                 this.setupClass.s.hover("angulartsSafari");
                 this.setupClass.wait(1000);
                 this.setupClass.s.wheel(WHEEL_UP,3);
-                codeEditor.openFile(new Pattern("angulartsSafari").similar(0.93f));
+                codeEditor.openFile(new Pattern("angulartsSafari").similar(0.85f));
             }
             else {
                 this.setupClass.s.hover("angularts");
                 this.setupClass.wait(1000);
                 this.setupClass.s.wheel(WHEEL_UP,3);
-                codeEditor.openFile(new Pattern("angularts").similar(0.93f));
+                codeEditor.openFile(new Pattern("angularts").similar(0.85f));
             }
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
             if(this.setupClass.browser.equals("Safari"))
             {
-                codeEditor.openFile(new Pattern("javascriptjsSafari").similar(0.93f));
+                codeEditor.openFile(new Pattern("javascriptjsSafari").similar(0.85f));
             }
             else {
-                codeEditor.openFile(new Pattern("javascriptjs").similar(0.93f));
+                codeEditor.openFile(new Pattern("javascriptjs").similar(0.85f));
             }
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
             if(this.setupClass.browser.equals("Safari"))
             {
-                codeEditor.openFile(new Pattern("typescripttsSafari").similar(0.93f));
+                codeEditor.openFile(new Pattern("typescripttsSafari").similar(0.85f));
             }
             else {
-                codeEditor.openFile(new Pattern("typescriptts").similar(0.93f));
+                codeEditor.openFile(new Pattern("typescriptts").similar(0.85f));
             }
         }
 
@@ -316,30 +316,30 @@ public class  NSSyncTests extends MobileTest {
         {
             if(this.setupClass.browser.equals("Safari"))
             {
-                codeEditor.openFile(new Pattern("angulartsSafari").similar(0.93f));
+                codeEditor.openFile(new Pattern("angulartsSafari").similar(0.85f));
             }
             else {
-                codeEditor.openFile(new Pattern("angularts").similar(0.93f));
+                codeEditor.openFile(new Pattern("angularts").similar(0.85f));
             }
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
             if(this.setupClass.browser.equals("Safari"))
             {
-                codeEditor.openFile(new Pattern("javascriptjsSafari").similar(0.93f));
+                codeEditor.openFile(new Pattern("javascriptjsSafari").similar(0.85f));
             }
             else {
-                codeEditor.openFile(new Pattern("javascriptjs").similar(0.93f));
+                codeEditor.openFile(new Pattern("javascriptjs").similar(0.85f));
             }
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
             if(this.setupClass.browser.equals("Safari"))
             {
-                codeEditor.openFile(new Pattern("typescripttsSafari").similar(0.93f));
+                codeEditor.openFile(new Pattern("typescripttsSafari").similar(0.85f));
             }
             else {
-                codeEditor.openFile(new Pattern("typescriptts").similar(0.93f));
+                codeEditor.openFile(new Pattern("typescriptts").similar(0.85f));
             }
         }
         this.setupClass.wait(2000);
