@@ -228,7 +228,7 @@ public class  NSSyncTests extends MobileTest {
                 this.setupClass.s.hover("angularts");
                 this.setupClass.wait(1000);
                 this.setupClass.s.wheel(WHEEL_UP,3);
-                codeEditor.openFile(new Pattern("angularts").similar(0.88f));
+                codeEditor.openFile(new Pattern("home.png").targetOffset(75,88));
             }
         }
         else if(this.setupClass.typeOfProject.equals("js"))
@@ -319,7 +319,7 @@ public class  NSSyncTests extends MobileTest {
                 codeEditor.openFile(new Pattern("angulartsSafari").similar(0.88f));
             }
             else {
-                codeEditor.openFile(new Pattern("angularts").similar(0.88f));
+                codeEditor.openFile(new Pattern("home.png").targetOffset(75,88));
             }
         }
         else if(this.setupClass.typeOfProject.equals("js"))
