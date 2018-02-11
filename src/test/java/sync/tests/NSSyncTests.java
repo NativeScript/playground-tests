@@ -279,7 +279,7 @@ public class  NSSyncTests extends MobileTest {
         String expectedText = "";
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            expectedText = "home/home.component.ts (17, 2): Declaration or statement expected.";
+            expectedText = "home/home.component.ts (18, 1): Declaration or statement expected.";
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
