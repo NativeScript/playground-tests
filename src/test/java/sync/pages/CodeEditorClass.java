@@ -492,7 +492,7 @@ public class CodeEditorClass extends BasePage {
         }
         this.setupClass.wait(3000);
 
-        for (int i=0;i<21;i++)
+        for (int i=0;i<35;i++)
         {
             s.type(Key.DOWN,KeyModifier.SHIFT);
         }
