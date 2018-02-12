@@ -31,6 +31,7 @@ Pattern("runtimeversion.png").targetOffset(85,37)
 "closebutton.png"
 "okbuttonTutorial.png"
 "qrcode.png"
+"qrcodeSafari.png"
 "ErrorsNotSelected.png"
 "playnowbutton.png"
 Pattern("home.png").targetOffset(75,88)

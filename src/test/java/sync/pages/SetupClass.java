@@ -124,7 +124,13 @@ public MobileSettings mobileSettings;
             this.wait(2000);
         }
         if(s.exists("devicesLinkMessage.png") == null) {
-            s.click("qrcode.png");
+            if(this.browser.equals("Safari"))
+            {
+                s.click("qrcodeSafari.png");
+            }
+            else {
+                s.click("qrcode.png");
+            }
         }
         this.wait(3000);
         s.dragDrop(new Pattern("devicesLinkMessage.png").similar(0.63f).targetOffset(-101,0),
