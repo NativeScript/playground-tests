@@ -114,7 +114,7 @@ public MobileSettings mobileSettings;
         s.type(URL);
         this.wait(1000);
         s.type(Key.ENTER);
-        this.wait(10000);
+        this.wait(20000);
 
     }
 
