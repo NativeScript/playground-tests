@@ -5,6 +5,7 @@ Pattern("NativescriptLogo.png").targetOffset(330,119)
 Pattern("Errors.png").similar(0.86)
 "ErrorDialogWhenErrorInCode.png"
 Pattern("Errors.png").similar(0.86).targetOffset(16,170)
+"ErrorsSafari.png"
 "angularts.png"
 "angulartsSafari.png"
 "javascriptjsSafari.png"
@@ -12,6 +13,7 @@ Pattern("Errors.png").similar(0.86).targetOffset(16,170)
 "typescriptts.png"
 "typescripttsSafari.png"
 "devicelogs.png"
+"devicelogsSafari.png"
 "cleardevicelogs.png"
 Pattern("devicename.png").targetOffset(-29,39)
 Pattern("devicename.png").targetOffset(8,39)

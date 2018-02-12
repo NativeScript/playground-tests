@@ -457,8 +457,15 @@ public class CodeEditorClass extends BasePage {
     public String getErrorsTextFromErrorTab(){
         String ErrorText = "";
         try {
-            setupClass.s.dragDrop(new Pattern("Errors").similar(0.75f).targetOffset(-3,16),
-                    new Pattern("Errors").similar(0.75f).targetOffset(16,170));
+            if(this.setupClass.browser.equals("Safari"))
+            {
+                setupClass.s.dragDrop(new Pattern("ErrorsSafari").similar(0.75f).targetOffset(-3, 16),
+                        new Pattern("ErrorsSafari").similar(0.75f).targetOffset(16, 170));
+            }
+            else {
+                setupClass.s.dragDrop(new Pattern("Errors").similar(0.75f).targetOffset(-3, 16),
+                        new Pattern("Errors").similar(0.75f).targetOffset(16, 170));
+            }
         } catch (FindFailed findFailed) {
             findFailed.printStackTrace();
         }
@@ -485,8 +492,15 @@ public class CodeEditorClass extends BasePage {
         }
         setupClass.wait(3000);
         try {
-            setupClass.s.dragDrop(new Pattern("devicelogs").targetOffset(-3,16),
-                    new Pattern("devicelogs").targetOffset(16,170));
+            if(this.setupClass.browser.equals("Safari"))
+            {
+                setupClass.s.dragDrop(new Pattern("devicelogsSafari").targetOffset(-3, 16),
+                        new Pattern("devicelogsSafari").targetOffset(16, 170));
+            }
+            else {
+                setupClass.s.dragDrop(new Pattern("devicelogs").targetOffset(-3, 16),
+                        new Pattern("devicelogs").targetOffset(16, 170));
+            }
         } catch (FindFailed findFailed) {
             findFailed.printStackTrace();
         }
