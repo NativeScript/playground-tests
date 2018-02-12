@@ -424,7 +424,13 @@ public class  NSSyncTests extends MobileTest {
         codeEditor.clearDeviceLogs();
         this.setupClass.wait(1000);
 
-        setupClass.s.click("ErrorsNotSelected");
+        if(this.setupClass.browser.equals("Safari"))
+        {
+            setupClass.s.click("ErrorsNotSelectedSafari");
+        }
+        else {
+            setupClass.s.click("ErrorsNotSelected");
+        }
         this.setupClass.wait(1000);
         codeEditor.typeJSTSCodeWithThrowJavaError();
         codeEditor.save();
@@ -512,7 +518,13 @@ public class  NSSyncTests extends MobileTest {
             this.setupClass.wait(3000);
         }
         codeEditor.clearDeviceLogs();
-        setupClass.s.click("ErrorsNotSelected");
+        if(this.setupClass.browser.equals("Safari"))
+        {
+            setupClass.s.click("ErrorsNotSelectedSafari");
+        }
+        else {
+            setupClass.s.click("ErrorsNotSelected");
+        }
         codeEditor.typeJSTSCodeWithThrowiOSError();
         codeEditor.save();
         if(settings.deviceType == settings.deviceType.Simulator) {
@@ -588,7 +600,13 @@ public class  NSSyncTests extends MobileTest {
         if(settings.deviceType == settings.deviceType.Simulator) {
             codeEditor.clearDeviceLogs();
             this.device.cleanConsoleLog();
-            setupClass.s.click("ErrorsNotSelected");
+            if(this.setupClass.browser.equals("Safari"))
+            {
+                setupClass.s.click("ErrorsNotSelectedSafari");
+            }
+            else {
+                setupClass.s.click("ErrorsNotSelected");
+            }
             codeEditor.typeJSTSCodeWithThrowiOSCocoaError();
             codeEditor.save();
             if (settings.deviceType == settings.deviceType.Simulator) {
