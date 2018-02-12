@@ -311,7 +311,13 @@ public class  NSSyncTests extends MobileTest {
             codeEditor.typeJSTSCode(true);
         }
         codeEditor.clearDeviceLogs();
-        setupClass.s.click("ErrorsNotSelected");
+        if(this.setupClass.browser.equals("Safari"))
+        {
+            setupClass.s.click("ErrorsNotSelectedSafari");
+        }
+        else {
+            setupClass.s.click("ErrorsNotSelected");
+        }
         if(this.setupClass.typeOfProject.equals("ng"))
         {
             if(this.setupClass.browser.equals("Safari"))
