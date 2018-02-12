@@ -486,7 +486,13 @@ public class CodeEditorClass extends BasePage {
     public String getLogsTextFromDeviceLogsTab(){
         String ErrorText = "";
         try {
-            setupClass.s.click("devicelogs");
+            if(this.setupClass.browser.equals("Safari")) {
+                setupClass.s.click("devicelogsSafari");
+            }
+            else
+            {
+                setupClass.s.click("devicelogs");
+            }
         } catch (FindFailed findFailed) {
             findFailed.printStackTrace();
         }
