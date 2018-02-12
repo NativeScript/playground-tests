@@ -528,7 +528,11 @@ public class CodeEditorClass extends BasePage {
     public void clearDeviceLogs()
     {
         try {
-            setupClass.s.click("devicelogs");
+            if (this.setupClass.browser.equals("Safari")) {
+                setupClass.s.click("devicelogsSafari");
+            } else {
+                setupClass.s.click("devicelogs");
+            }
         } catch (FindFailed findFailed) {
             findFailed.printStackTrace();
         }
