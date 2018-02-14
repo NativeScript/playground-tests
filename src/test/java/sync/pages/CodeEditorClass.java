@@ -282,12 +282,12 @@ public class CodeEditorClass extends BasePage {
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
-            this.setupClass.s.type(Key.ENTER);
+            this.typeCode(Key.ENTER);
             this.typeCode("export class HomeComponent implements OnInit {\n");
             this.typeCode("constructor() {\n");
             this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");\n");
             this.setupClass.s.type(Key.DOWN);
-            this.setupClass.s.type(Key.ENTER);
+            this.typeCode(Key.ENTER);
             this.typeCode("ngOnInit(): void {\n");
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
@@ -296,14 +296,14 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("var HomeViewModel = require(\"./home-view-model\");\n");
             this.typeCode("var homeViewModel = new HomeViewModel();\n");
             this.typeCode("function pageLoaded(args) {\n");
-            this.setupClass.s.type(Key.ENTER);
+            this.typeCode(Key.ENTER);
             this.typeCode("var page = args.object;\n");
             this.typeCode("page.bindingContext = homeViewModel;\n");
             this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");\n");
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
-            this.setupClass.s.type(Key.ENTER);
+            this.typeCode(Key.ENTER);
             this.typeCode("exports.pageLoaded = pageLoaded;\n");
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
             this.typeCode("declare var java : any;\n");
@@ -311,7 +311,7 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("export class HomeViewModel extends Observable {\n");
             this.setupClass.s.type(Key.ENTER);
             this.typeCode("constructor() {\n");
-            this.setupClass.s.type(Key.ENTER);
+            this.typeCode(Key.ENTER);
             this.typeCode("super();\n");
             this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");\n");
         }
