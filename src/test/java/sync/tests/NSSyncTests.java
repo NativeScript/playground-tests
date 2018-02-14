@@ -253,7 +253,8 @@ public class  NSSyncTests extends MobileTest {
         }
 
         codeEditor.typeJSTSCode(true);
-        this.setupClass.wait(1500);
+        this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterCode");
+        this.setupClass.wait(1000);
         codeEditor.save();
         this.setupClass.wait(3000);
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
@@ -275,6 +276,7 @@ public class  NSSyncTests extends MobileTest {
     public void test_07_invalid_code_change_to_js_ts() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         codeEditor.typeJSTSCode(false);
+        this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterErrorCode");
         String errorText = codeEditor.getErrorsTextFromErrorTab();
         String expectedText = "";
         if(this.setupClass.typeOfProject.equals("ng"))
@@ -350,6 +352,7 @@ public class  NSSyncTests extends MobileTest {
         }
         this.setupClass.wait(2000);
         codeEditor.typeJSTSCodeWithThrowError();
+        this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterErrorCode");
         codeEditor.save();
         if(settings.deviceType == settings.deviceType.Simulator) {
             this.setupClass.wait(7000);
@@ -433,6 +436,7 @@ public class  NSSyncTests extends MobileTest {
         }
         this.setupClass.wait(1000);
         codeEditor.typeJSTSCodeWithThrowJavaError();
+        this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterErrorCode");
         codeEditor.save();
         if(settings.deviceType == settings.deviceType.Simulator) {
             this.setupClass.wait(7000);
@@ -526,6 +530,7 @@ public class  NSSyncTests extends MobileTest {
             setupClass.s.click("ErrorsNotSelected");
         }
         codeEditor.typeJSTSCodeWithThrowiOSError();
+        this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterErrorCode");
         codeEditor.save();
         if(settings.deviceType == settings.deviceType.Simulator) {
             this.setupClass.wait(7000);
@@ -624,6 +629,7 @@ public class  NSSyncTests extends MobileTest {
                 this.assertScreen("nsplaydev-synced-ios-cocoa-error-tsc", this.settings.shortTimeout, 20);
             }
             String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
+            this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterErrorCode");
             String expectedText = null;
             if (this.setupClass.typeOfProject.equals("ng")) {
                 if (settings.deviceType == settings.deviceType.Simulator) {

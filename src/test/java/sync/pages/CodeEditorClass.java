@@ -277,6 +277,7 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("@Component({\n");
             this.typeCode("selector: \"Home\",\n");
             this.typeCode("moduleId: module.id,\n");
+            this.setupClass.wait(1000);
             this.typeCode("templateUrl: \"./home.component.html\",\n");
             this.typeCode("styleUrls: ['./home.component.css']\n");
             this.setupClass.s.type(Key.DOWN);
