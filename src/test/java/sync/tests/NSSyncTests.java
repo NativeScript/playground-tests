@@ -279,18 +279,18 @@ public class  NSSyncTests extends MobileTest {
         String expectedText = "";
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            expectedText = "home/home.component.ts (18, 1): Declaration or statement expected.";
+            expectedText = "home/home.component.ts";
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
-            expectedText = "home/home-page.js (12, 1): Declaration or statement expected.";
+            expectedText = "home/home-page.js";
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            expectedText = "home/home-view-model.ts (10, 1): Declaration or statement expected.";
+            expectedText = "home/home-view-model.ts";
         }
 
-        Assert.assertEquals(errorText, expectedText,"Expected text \""+expectedText+ "\" is not equal to \""+errorText+"\" .");
+        Assert.assertTrue(errorText.contains(expectedText),"Expected text \""+expectedText+ "\" does not contains \""+errorText+"\" .");
         this.setupClass.wait(2000);
         codeEditor.save();
         codeEditor.assertImageIsOnScreen("ErrorDialogWhenErrorInCode");
