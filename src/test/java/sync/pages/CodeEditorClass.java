@@ -49,7 +49,7 @@ public class CodeEditorClass extends BasePage {
             }
         }
         s.type(code);
-        this.setupClass.wait(800);
+        this.setupClass.wait(1000);
     }
 
     public void deleteAllCode()
