@@ -409,8 +409,9 @@ public class  NSSyncTests extends MobileTest {
         Assert.assertTrue(deviceLog.contains(expectedText),"Actual log \""+deviceLog+ "\" does not cointains the expected text \""+expectedText+"\" .");
 
         codeEditor.typeJSTSCode(true);
+        this.setupClass.wait(1000);
         codeEditor.save();
-        this.setupClass.wait(3000);
+        this.setupClass.wait(4000);
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
 
     }
