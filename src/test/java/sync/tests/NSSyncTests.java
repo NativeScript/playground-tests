@@ -531,6 +531,7 @@ public class  NSSyncTests extends MobileTest {
             setupClass.s.click("ErrorsNotSelected");
         }
         codeEditor.typeJSTSCodeWithThrowiOSError();
+        this.setupClass.wait(2000);
         this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterErrorCode");
         codeEditor.save();
         if(settings.deviceType == settings.deviceType.Simulator) {
