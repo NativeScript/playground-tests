@@ -460,8 +460,8 @@ public class CodeEditorClass extends BasePage {
         try {
             if(this.setupClass.browser.equals("Safari"))
             {
-                setupClass.s.dragDrop(new Pattern("ErrorsSafari").similar(0.75f).targetOffset(-3, 16),
-                        new Pattern("ErrorsSafari").similar(0.75f).targetOffset(16, 170));
+                setupClass.s.dragDrop(new Pattern("ErrorsSafari").similar(0.7f).targetOffset(-3, 16),
+                        new Pattern("ErrorsSafari").similar(0.7f).targetOffset(16, 170));
             }
             else {
                 setupClass.s.dragDrop(new Pattern("Errors").similar(0.75f).targetOffset(-3, 16),
@@ -472,7 +472,7 @@ public class CodeEditorClass extends BasePage {
         }
         this.setupClass.wait(3000);
         s.type("c", KeyModifier.CMD);
-        this.setupClass.wait(500);
+        this.setupClass.wait(1000);
         try {
             ErrorText =  (String) Toolkit.getDefaultToolkit()
                     .getSystemClipboard().getData(DataFlavor.stringFlavor);
