@@ -580,7 +580,7 @@ public class CodeEditorClass extends BasePage {
                 this.setupClass.s.type(Key.DOWN, KeyModifier.SHIFT);
             }
             String componentsVersion = this.getTextWithCopy();
-            this.setupClass.s.dragDrop(new Pattern("devicename.png").targetOffset(8,39),new Pattern("devicename.png").targetOffset(255,39));
+            this.setupClass.s.dragDrop(new Pattern("devicename.png").targetOffset(8,39),new Pattern("model.png").targetOffset(-25,40));
             String deviceName = this.getTextWithCopy();
             this.setupClass.s.click("devicestab");
             if(settings.deviceType == settings.deviceType.Emulator) {
