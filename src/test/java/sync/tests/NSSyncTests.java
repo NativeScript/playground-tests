@@ -107,7 +107,7 @@ public class  NSSyncTests extends MobileTest {
             osVersionExpected ="iOS ";
             osVersionExpected = osVersionExpected+String.valueOf(this.context.client.driver.getCapabilities().getCapability("platformVersion"));
         }
-        String previewAppVersionExpected = "1.8.0";
+        String previewAppVersionExpected = "1.9.0";
 
         String runtimeVersionExpected="";
         if(settings.deviceType == settings.deviceType.Emulator) {
@@ -128,15 +128,15 @@ public class  NSSyncTests extends MobileTest {
                 "  \"@angular/platform-browser\": \"5.2.0\",\n" +
                 "  \"@angular/platform-browser-dynamic\": \"5.2.0\",\n" +
                 "  \"@angular/router\": \"5.2.0\",\n" +
-                "  \"kinvey-nativescript-sdk\": \"3.9.7\",\n" +
+                "  \"kinvey-nativescript-sdk\": \"3.9.10\",\n" +
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
                 "  \"nativescript-angular\": \"5.2.0\",\n" +
-                "  \"nativescript-geolocation\": \"4.2.2\",\n" +
-                "  \"nativescript-pro-ui\": \"3.3.0\",\n" +
+                "  \"nativescript-geolocation\": \"4.2.3\",\n" +
+                "  \"nativescript-pro-ui\": \"3.4.0\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.4\",\n" +
                 "  \"reflect-metadata\": \"0.1.12\",\n" +
                 "  \"rxjs\": \"5.5.6\",\n" +
-                "  \"tns-core-modules\": \"3.4.0\",\n" +
+                "  \"tns-core-modules\": \"3.4.1\",\n" +
                 "  \"zone.js\": \"0.8.20\"\n" +
                 "}";
         codeEditor.assertDeviceTab(this.deviceName, modelExpected, osVersionExpected, previewAppVersionExpected, runtimeVersionExpected, componentVersionsExpected);

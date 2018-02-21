@@ -486,6 +486,7 @@ public class CodeEditorClass extends BasePage {
 
     public String getLogsTextFromDeviceLogsTab(){
         String ErrorText = "";
+        setupClass.wait(3000);
         try {
             if(this.setupClass.browser.equals("Safari")) {
                 setupClass.s.click("devicelogsSafari");
@@ -502,18 +503,18 @@ public class CodeEditorClass extends BasePage {
             if(this.setupClass.browser.equals("Safari"))
             {
                 setupClass.s.dragDrop(new Pattern("devicelogsSafari").targetOffset(-3, 16),
-                        new Pattern("devicelogsSafari").targetOffset(16, 170));
+                        new Pattern("devicelogsSafari").targetOffset(16, 45));
             }
             else {
                 setupClass.s.dragDrop(new Pattern("devicelogs").targetOffset(-3, 16),
-                        new Pattern("devicelogs").targetOffset(16, 170));
+                        new Pattern("devicelogs").targetOffset(16, 45));
             }
         } catch (FindFailed findFailed) {
             findFailed.printStackTrace();
         }
         this.setupClass.wait(3000);
 
-        for (int i=0;i<55;i++)
+        for (int i=0;i<70;i++)
         {
             s.type(Key.DOWN,KeyModifier.SHIFT);
         }
@@ -579,8 +580,9 @@ public class CodeEditorClass extends BasePage {
                 this.setupClass.s.type(Key.DOWN, KeyModifier.SHIFT);
             }
             String componentsVersion = this.getTextWithCopy();
-            this.setupClass.s.dragDrop(new Pattern("devicename.png").targetOffset(8,39),new Pattern("devicename.png").targetOffset(194,39));
+            this.setupClass.s.dragDrop(new Pattern("devicename.png").targetOffset(8,39),new Pattern("devicename.png").targetOffset(255,39));
             String deviceName = this.getTextWithCopy();
+            this.setupClass.s.click("devicestab");
             if(settings.deviceType == settings.deviceType.Emulator) {
                 this.setupClass.s.dragDrop(new Pattern("model.png").targetOffset(-25,40), new Pattern("model.png").targetOffset(153,39));
 
