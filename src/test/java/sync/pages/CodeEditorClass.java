@@ -111,6 +111,33 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("</ScrollView>");
             s.type(Key.ENTER);
         }
+
+        if (this.setupClass.typeOfProject.equals("vue")) {
+            this.deleteAllCode();
+            this.typeCode("const Vue = require(\"./nativescript-vue\");\n");
+            this.typeCode("new Vue({\n");
+            this.typeCode("template: `\n");
+            this.typeCode("<Page class=\"page\">\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
+            this.typeCode("<ScrollView>\n");
+            this.typeCode("<StackLayout class=\"home-panel\">\n");
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
+
+            if (isValid) {
+                this.typeCode("</StackLayout>\n");
+            }
+            else
+            {
+                this.typeCode("</StackLayoutggggggggggg\n");
+            }
+
+            this.typeCode("</ScrollView>\n");
+            this.typeCode("</Page>\n");
+            this.typeCode("`,\n");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(".$start();\n");
+        }
         this.setupClass.wait(2000);
     }
 
@@ -213,6 +240,31 @@ public class CodeEditorClass extends BasePage {
             this.setupClass.s.type(Key.ENTER);
             this.typeCode("super();\n");
             this.typeCode("console.log(\"log\");\n");
+        }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            this.deleteAllCode();
+            this.typeCode("const Vue = require(\"./nativescript-vue\");\n");
+
+            this.typeCode("new Vue({\n");
+            this.typeCode("template: `\n");
+            this.typeCode("<Page class=\"page\">\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
+            this.typeCode("<ScrollView>\n");
+            this.typeCode("<StackLayout class=\"home-panel\">\n");
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
+            this.typeCode("</StackLayout>\n");
+            this.typeCode("</ScrollView>\n");
+            this.typeCode("</Page>\n");
+            this.typeCode("`,\n");
+            this.typeCode("mounted: function () {\n");
+            this.typeCode("console.log(\"log\");\n");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(".$start();\n");
         }
         if(isValid==false)
         {

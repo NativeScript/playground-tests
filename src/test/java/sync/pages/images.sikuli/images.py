@@ -12,6 +12,8 @@ Pattern("Errors.png").similar(0.86).targetOffset(16,170)
 "javascriptjs.png"
 "typescriptts.png"
 "typescripttsSafari.png"
+"vuejs.png"
+"vuejsSafari.png"
 "devicelogs.png"
 "devicelogsSafari.png"
 "cleardevicelogs.png"

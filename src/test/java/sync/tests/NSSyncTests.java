@@ -131,7 +131,7 @@ public class  NSSyncTests extends MobileTest {
                 "  \"kinvey-nativescript-sdk\": \"3.9.10\",\n" +
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
                 "  \"nativescript-angular\": \"5.2.0\",\n" +
-                "  \"nativescript-vue\": \"1.0.0\",\n" +
+                "  \"nativescript-vue\": \"1.1.3\",\n" +
                 "  \"nativescript-geolocation\": \"4.2.3\",\n" +
                 "  \"nativescript-pro-ui\": \"3.4.0\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.4\",\n" +
@@ -155,9 +155,14 @@ public class  NSSyncTests extends MobileTest {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         codeEditor.typeXMLOrHTMLCode(false);
         codeEditor.save();
+        this.setupClass.wait(2000);
         if(this.setupClass.typeOfProject.equals("ng"))
         {
             this.assertScreen("nsplaydev-synced-invalid-code-ng", this.settings.shortTimeout);
+        }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            this.assertScreen("nsplaydev-synced-valid-code", this.settings.shortTimeout);
         }
         else {
             //remove after bug in {N}
@@ -252,7 +257,16 @@ public class  NSSyncTests extends MobileTest {
                 codeEditor.openFile(new Pattern("typescriptts").similar(0.88f));
             }
         }
-
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            if(this.setupClass.browser.equals("Safari"))
+            {
+                codeEditor.openFile(new Pattern("vuejsSafari").similar(0.88f));
+            }
+            else {
+                codeEditor.openFile(new Pattern("vuejs").similar(0.88f));
+            }
+        }
         codeEditor.typeJSTSCode(true);
         this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterCode");
         this.setupClass.wait(1000);
@@ -261,12 +275,12 @@ public class  NSSyncTests extends MobileTest {
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText;
-        if(settings.deviceType == settings.deviceType.Emulator) {
+        if(!this.setupClass.typeOfProject.equals("vue")) {
             expectedText = "["+this.deviceName+"]"+": log";
 
         }
         else {
-            expectedText = "[" + this.deviceName + "]" + ": log";
+            expectedText = "["+this.deviceName+"]" + ": 'log'";
         }
 
         Assert.assertEquals(expectedText.trim(), deviceLog.trim(),"Expected text \""+expectedText.trim()+ "\" is not equal to \""+deviceLog.trim()+"\" .");
@@ -292,7 +306,10 @@ public class  NSSyncTests extends MobileTest {
         {
             expectedText = "home/home-view-model.ts";
         }
-
+        else if(this.setupClass.typeOfProject.equals("tsc"))
+        {
+            expectedText = "app.js";
+        }
         Assert.assertTrue(errorText.contains(expectedText),"Expected text \""+expectedText+ "\" does not contains \""+errorText+"\" .");
         this.setupClass.wait(2000);
         codeEditor.save();
