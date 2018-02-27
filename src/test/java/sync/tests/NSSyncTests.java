@@ -174,7 +174,13 @@ public class  NSSyncTests extends MobileTest {
             }
         }
         codeEditor.typeXMLOrHTMLCode(true);
-        codeEditor.save("Test");
+        if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            codeEditor.save();
+        }
+        else {
+            codeEditor.save("Test");
+        }
         this.assertScreen("nsplaydev-synced-valid-code", this.settings.shortTimeout);
     }
 
@@ -282,9 +288,14 @@ public class  NSSyncTests extends MobileTest {
         else {
             expectedText = "["+this.deviceName+"]" + ": 'log'";
         }
+        if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            Assert.assertTrue(deviceLog.trim().contains(expectedText.trim()), "Expected text \"" + expectedText.trim() + "\" is not equal to \"" + deviceLog.trim() + "\" .");
 
-        Assert.assertEquals(expectedText.trim(), deviceLog.trim(),"Expected text \""+expectedText.trim()+ "\" is not equal to \""+deviceLog.trim()+"\" .");
-
+        }
+        else {
+            Assert.assertEquals(expectedText.trim(), deviceLog.trim(), "Expected text \"" + expectedText.trim() + "\" is not equal to \"" + deviceLog.trim() + "\" .");
+        }
     }
 
     @Test(description = "Verify js/ts invalid code change is applied corrected!", groups = {"android", "ios"})
@@ -331,6 +342,7 @@ public class  NSSyncTests extends MobileTest {
             codeEditor.typeJSTSCode(true);
         }
         codeEditor.clearDeviceLogs();
+        this.setupClass.wait(2000);
         if(this.setupClass.browser.equals("Safari"))
         {
             setupClass.s.click("ErrorsNotSelectedSafari");
@@ -338,6 +350,7 @@ public class  NSSyncTests extends MobileTest {
         else {
             setupClass.s.click("ErrorsNotSelected");
         }
+        this.setupClass.wait(2000);
         if(this.setupClass.typeOfProject.equals("ng"))
         {
             if(this.setupClass.browser.equals("Safari"))
@@ -368,6 +381,17 @@ public class  NSSyncTests extends MobileTest {
                 codeEditor.openFile(new Pattern("typescriptts").similar(0.88f));
             }
         }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            if(this.setupClass.browser.equals("Safari"))
+            {
+                codeEditor.openFile(new Pattern("vuejsSafari").similar(0.88f));
+            }
+            else {
+                codeEditor.openFile(new Pattern("vuejs").similar(0.88f));
+            }
+        }
+
         this.setupClass.wait(2000);
         codeEditor.typeJSTSCodeWithThrowError();
         this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterErrorCode");
@@ -392,6 +416,10 @@ public class  NSSyncTests extends MobileTest {
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
             this.assertScreen("nsplaydev-synced-javascript-error-tsc", this.settings.shortTimeout,20);
+        }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            this.assertScreen("nsplaydev-synced-javascript-error-vue", this.settings.shortTimeout,20);
         }
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText=null;
@@ -422,7 +450,15 @@ public class  NSSyncTests extends MobileTest {
                 expectedText = "Error: Error";
             }
         }
-
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            if(settings.deviceType == settings.deviceType.Simulator) {
+                expectedText = "JS ERROR Error: Error";
+            }
+            else {
+                expectedText = "Error: Error";
+            }
+        }
 
         Assert.assertTrue(deviceLog.contains(expectedText),"Actual log \""+deviceLog+ "\" does not cointains the expected text \""+expectedText+"\" .");
 
@@ -478,6 +514,10 @@ public class  NSSyncTests extends MobileTest {
         {
             this.assertScreen("nsplaydev-synced-java-error-tsc", this.settings.shortTimeout,20);
         }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            this.assertScreen("nsplaydev-synced-java-error-vue", this.settings.shortTimeout,20);
+        }
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText=null;
         if(this.setupClass.typeOfProject.equals("ng"))
@@ -521,7 +561,20 @@ public class  NSSyncTests extends MobileTest {
 
             }
         }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            if(settings.deviceType == settings.deviceType.Simulator) {
+                expectedText = "Can't find variable: java";
+            }
+            else {
+                expectedText = "Error: java.lang.NumberFormatException: For input string: \"sdklfjsd\"";
+                if(settings.deviceName.contains("Api23")||settings.deviceName.contains("Api22")||settings.deviceName.contains("Api21")||settings.deviceName.contains("Api19"))
+                {
+                    expectedText = "Error: java.lang.NumberFormatException: Invalid int: \"sdklfjsd\"";
+                }
 
+            }
+        }
 
         Assert.assertTrue(deviceLog.contains(expectedText),"Actual log \""+deviceLog+ "\" does not cointains the expected text \""+expectedText+"\" .");
 
@@ -573,6 +626,10 @@ public class  NSSyncTests extends MobileTest {
         {
             this.assertScreen("nsplaydev-synced-ios-error-tsc", this.settings.shortTimeout,20);
         }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            this.assertScreen("nsplaydev-synced-ios-error-vue", this.settings.shortTimeout,20);
+        }
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText=null;
         if(this.setupClass.typeOfProject.equals("ng"))
@@ -602,8 +659,24 @@ public class  NSSyncTests extends MobileTest {
                 expectedText = "ReferenceError: NSFileManager is not defined";
             }
         }
-
-
+        else if(this.setupClass.typeOfProject.equals("tsc"))
+        {
+            if(settings.deviceType == settings.deviceType.Simulator) {
+                expectedText = "not-existing-path";
+            }
+            else {
+                expectedText = "ReferenceError: NSFileManager is not defined";
+            }
+        }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            if(settings.deviceType == settings.deviceType.Simulator) {
+                expectedText = "not-existing-path";
+            }
+            else {
+                expectedText = "ReferenceError: NSFileManager is not defined";
+            }
+        }
         Assert.assertTrue(deviceLog.contains(expectedText),"Actual log \""+deviceLog+ "\" does not cointains the expected text \""+expectedText+"\" .");
 
         codeEditor.typeJSTSCode(true);
@@ -648,6 +721,8 @@ public class  NSSyncTests extends MobileTest {
                 this.assertScreen("nsplaydev-synced-ios-cocoa-error-js", this.settings.shortTimeout, 20);
             } else if (this.setupClass.typeOfProject.equals("tsc")) {
                 this.assertScreen("nsplaydev-synced-ios-cocoa-error-tsc", this.settings.shortTimeout, 20);
+            }else if (this.setupClass.typeOfProject.equals("vue")) {
+                this.assertScreen("nsplaydev-synced-ios-cocoa-error-vue", this.settings.shortTimeout, 20);
             }
             String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
             this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterErrorCode");
@@ -656,19 +731,25 @@ public class  NSSyncTests extends MobileTest {
                 if (settings.deviceType == settings.deviceType.Simulator) {
                     expectedText = "The Preview app has terminated unexpectedly";
                 } else {
-                    expectedText = "Error: Error";
+                    expectedText = "ReferenceError";
                 }
             } else if (this.setupClass.typeOfProject.equals("js")) {
                 if (settings.deviceType == settings.deviceType.Simulator) {
                     expectedText = "Uncaught Exception";
                 } else {
-                    expectedText = "Error: Error";
+                    expectedText = "ReferenceError";
                 }
             } else if (this.setupClass.typeOfProject.equals("tsc")) {
                 if (settings.deviceType == settings.deviceType.Simulator) {
                     expectedText = "nsplaydev";
                 } else {
-                    expectedText = "Error: Error";
+                    expectedText = "ReferenceError";
+                }
+            } else if (this.setupClass.typeOfProject.equals("vue")) {
+                if (settings.deviceType == settings.deviceType.Simulator) {
+                    expectedText = "Uncaught Exception";
+                } else {
+                    expectedText = "ReferenceError";
                 }
             }
 
@@ -715,6 +796,10 @@ public class  NSSyncTests extends MobileTest {
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
             this.setupClass.openURL("https://play.telerik.rocks/?template=play-tsc&id=Si8yCG");
+        }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            this.setupClass.openURL("https://play.telerik.rocks/?template=play-vue&id=Y7CDht");
         }
         this.setupClass.wait(10000);
         this.setupClass.navigateToSavedSession("Tap to open the saved");

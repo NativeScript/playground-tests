@@ -317,7 +317,31 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("super();\n");
             this.typeCode("throw new Error(\"Error\");\n");
         }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            this.deleteAllCode();
+            this.typeCode("const Vue = require(\"./nativescript-vue\");\n");
 
+            this.typeCode("new Vue({\n");
+            this.typeCode("template: `\n");
+            this.typeCode("<Page class=\"page\">\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
+            this.typeCode("<ScrollView>\n");
+            this.typeCode("<StackLayout class=\"home-panel\">\n");
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
+            this.typeCode("</StackLayout>\n");
+            this.typeCode("</ScrollView>\n");
+            this.typeCode("</Page>\n");
+            this.typeCode("`,\n");
+            this.typeCode("mounted: function () {\n");
+            this.typeCode("throw new Error(\"Error\");\n");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(".$start();\n");
+        }
         this.setupClass.wait(2000);
     }
 
@@ -367,6 +391,31 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(Key.ENTER);
             this.typeCode("super();\n");
             this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");\n");
+        }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            this.deleteAllCode();
+            this.typeCode("const Vue = require(\"./nativescript-vue\");\n");
+
+            this.typeCode("new Vue({\n");
+            this.typeCode("template: `\n");
+            this.typeCode("<Page class=\"page\">\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
+            this.typeCode("<ScrollView>\n");
+            this.typeCode("<StackLayout class=\"home-panel\">\n");
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
+            this.typeCode("</StackLayout>\n");
+            this.typeCode("</ScrollView>\n");
+            this.typeCode("</Page>\n");
+            this.typeCode("`,\n");
+            this.typeCode("mounted: function () {\n");
+            this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");\n");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(".$start();\n");
         }
 
         this.setupClass.wait(2000);
@@ -421,6 +470,32 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("var fileManager = NSFileManager.defaultManager;\n");
             this.typeCode("fileManager.contentsOfDirectoryAtPathError(\"/not-existing-path\");\n");
         }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            this.deleteAllCode();
+            this.typeCode("const Vue = require(\"./nativescript-vue\");\n");
+
+            this.typeCode("new Vue({\n");
+            this.typeCode("template: `\n");
+            this.typeCode("<Page class=\"page\">\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
+            this.typeCode("<ScrollView>\n");
+            this.typeCode("<StackLayout class=\"home-panel\">\n");
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
+            this.typeCode("</StackLayout>\n");
+            this.typeCode("</ScrollView>\n");
+            this.typeCode("</Page>\n");
+            this.typeCode("`,\n");
+            this.typeCode("mounted: function () {\n");
+            this.typeCode("var fileManager = NSFileManager.defaultManager;\n");
+            this.typeCode("fileManager.contentsOfDirectoryAtPathError(\"/not-existing-path\");\n");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(".$start();\n");
+        }
 
         this.setupClass.wait(2000);
     }
@@ -474,6 +549,32 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("var arr = new NSArray();\n");
             this.typeCode("var o = arr.objectAtIndex(\"5\");\n");
         }
+        else if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            this.deleteAllCode();
+            this.typeCode("const Vue = require(\"./nativescript-vue\");\n");
+
+            this.typeCode("new Vue({\n");
+            this.typeCode("template: `\n");
+            this.typeCode("<Page class=\"page\">\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
+            this.typeCode("<ScrollView>\n");
+            this.typeCode("<StackLayout class=\"home-panel\">\n");
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
+            this.typeCode("</StackLayout>\n");
+            this.typeCode("</ScrollView>\n");
+            this.typeCode("</Page>\n");
+            this.typeCode("`,\n");
+            this.typeCode("mounted: function () {\n");
+            this.typeCode("var arr = new NSArray();\n");
+            this.typeCode("var o = arr.objectAtIndex(\"5\");\n");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(".$start();\n");
+        }
 
         this.setupClass.wait(2000);
     }
@@ -489,15 +590,6 @@ public class CodeEditorClass extends BasePage {
         scroll.scrollInElement(SwipeElementDirection.DOWN, 1);
         this.log.info("Scroll Down");
     }
-
-//    public void openFile(String fileToOpen){
-//        try {
-//            this.setupClass.s.click(fileToOpen);
-//        } catch (FindFailed findFailed) {
-//            findFailed.printStackTrace();
-//        }
-//        this.setupClass.wait(3000);
-//    }
 
     public void openFile(Pattern fileToOpen){
         try {
