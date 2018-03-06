@@ -192,6 +192,7 @@ public MobileSettings mobileSettings;
                         this.wait(2000);
                     }
                     else {
+                        this.wait(5000);
                         this.client.driver.switchTo().alert().dismiss();
                         this.wait(5000);
                         functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
@@ -200,11 +201,11 @@ public MobileSettings mobileSettings;
                         context.settings.testAppFileName = "nsplaydev.app";
                         Capabilities newiOSCapabilities = new Capabilities();
                         context.client.driver = new IOSDriver(context.server.service.getUrl(), newiOSCapabilities.loadDesiredCapabilities(context.settings));
-                        this.wait(5000);
+                        this.wait(6000);
                         this.client.driver.switchTo().alert().dismiss();
-                        this.wait(5000);
+                        this.wait(6000);
                         this.client.driver.switchTo().alert().dismiss();
-                        this.wait(5000);
+                        this.wait(6000);
                     }
                 }
                 else {
