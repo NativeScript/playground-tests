@@ -1,11 +1,15 @@
 package nsplaydev.tests;
 
 import functional.tests.core.mobile.basetest.MobileTest;
+import functional.tests.core.mobile.element.UIElement;
+import io.appium.java_client.SwipeElementDirection;
 import nsplaydev.pages.ComponentsDetailsPage;
 import nsplaydev.pages.ComponentsPage;
 import nsplaydev.pages.ComponentsVisualizationPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 public class NsPlayDevTests extends MobileTest {
 
@@ -292,7 +296,6 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Location");
         componentsVisualizationPage.navigate("Show location");
         componentsVisualizationPage.waitForElement(6000);
-        log.info("before");
         if (componentsVisualizationPage.checkIfElementisShown("Allow")) {
             componentsVisualizationPage.navigate("Allow");
 
@@ -305,7 +308,6 @@ public class NsPlayDevTests extends MobileTest {
                 this.log.error(e.getMessage());
             }
         }
-        log.info("after");
         componentsVisualizationPage.waitForElement(2000);
         if(componentsVisualizationPage.checkIfElementisShown("OK")) {
             componentsVisualizationPage.navigate("OK");
@@ -323,6 +325,119 @@ public class NsPlayDevTests extends MobileTest {
         this.assertScreen("nsplaydev-location-details-view", this.settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("Location");
+        componentsVisualizationPage2.navigateBackPage();
+    }
+
+    @Test(description = "Verify Camera Visualization page looks OK.", groups = {"android", "ios"})
+    public void test_29_camera_page_looks_ok() throws Exception {
+        this.gestures.scrollToElement(SwipeElementDirection.DOWN, "Camera",1);
+        ComponentsPage componentsPage = new ComponentsPage(true);
+        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout,20);
+        componentsPage.navigate("Camera");
+        ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Camera");
+        this.assertScreen("nsplaydev-camera-view", this.settings.shortTimeout);
+    }
+
+    @Test(description = "Verify Camera is working.", groups = {"android", "ios"})
+    public void test_30_camera_is_working() throws Exception {
+        ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Camera");
+        componentsVisualizationPage.navigate("Request permissions");
+        componentsVisualizationPage.waitForElement(5000);
+        if(settings.deviceType == settings.deviceType.Simulator) {
+            try {
+                if (ExpectedConditions.alertIsPresent() != null) {
+                    this.client.driver.switchTo().alert().accept();
+                }
+            } catch (Exception e) {
+                this.log.error(e.getMessage());
+            }
+            componentsVisualizationPage.waitForElement(10000);
+            try {
+                if (ExpectedConditions.alertIsPresent() != null) {
+                    this.client.driver.switchTo().alert().accept();
+                }
+            } catch (Exception e) {
+                this.log.error(e.getMessage());
+            }
+        }
+        else
+        {
+            if(find.byText("Allow")!=null) {
+                componentsVisualizationPage.navigate("Allow");
+            }
+            componentsVisualizationPage.waitForElement(2000);
+            if(find.byText("Allow")!=null) {
+                componentsVisualizationPage.navigate("Allow");
+            }
+           }
+            componentsVisualizationPage.waitForElement(2000);
+            componentsVisualizationPage.navigate("Check for camera");
+            componentsVisualizationPage.waitForElement(2000);
+        if(settings.deviceType == settings.deviceType.Simulator) {
+            Assert.assertEquals(this.client.driver.switchTo().alert().getText(), "Alert\n" + "Is camera hardware available: false");
+
+            try {
+                if (ExpectedConditions.alertIsPresent() != null) {
+                    this.client.driver.switchTo().alert().accept();
+                }
+            } catch (Exception e) {
+                this.log.error(e.getMessage());
+            }
+        }else
+        {
+            UIElement alert = find.byTextContains("camera hardware available");
+            Assert.assertEquals(alert.getText(), "Is camera hardware available: true");
+            componentsVisualizationPage.navigate("Ok");
+        }
+
+        componentsVisualizationPage.waitForElement(2000);
+        componentsVisualizationPage.navigate("Take Photo");
+        componentsVisualizationPage.waitForElement(2000);
+        if(settings.deviceType == settings.deviceType.Simulator) {
+            componentsVisualizationPage.navigate("Camera Roll");
+            componentsVisualizationPage.waitForElement(2000);
+            UIElement photos = find.byText("Photos");
+            this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 40, 500);
+            componentsVisualizationPage.waitForElement(2000);
+        }
+        else {
+            if (find.byText("Allow") != null) {
+                componentsVisualizationPage.navigate("Allow");
+            }
+            componentsVisualizationPage.waitForElement(2000);
+            if (find.byText("Next") != null) {
+                componentsVisualizationPage.navigate("Next");
+            }
+            componentsVisualizationPage.waitForElement(2000);
+            componentsVisualizationPage.navigateBackPage();
+            componentsVisualizationPage.waitForElement(3000);
+            componentsVisualizationPage.navigate("Ok");
+            componentsVisualizationPage.waitForElement(2000);
+            componentsVisualizationPage.navigate("Take Photo");
+            componentsVisualizationPage.waitForElement(3000);
+            this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).get(0).click();
+            componentsVisualizationPage.waitForElement(2000);
+            this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).get(0).click();
+            componentsVisualizationPage.waitForElement(2000);
+        }
+        if(settings.deviceType == settings.deviceType.Simulator) {
+            this.assertScreen("nsplaydev-camera-working-view-ios", this.settings.shortTimeout);
+        }
+        else
+        {
+            this.assertScreen("nsplaydev-camera-working-view-android", this.settings.shortTimeout, 35);
+
+        }
+    }
+
+    @Test(description = "Verify Camera Deitals page looks OK.", groups = {"android", "ios"})
+    public void test_31_camera_details_page_looks_ok() throws Exception {
+        ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Camera");
+        componentsVisualizationPage.navigate("Details");
+        ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
+        this.assertScreen("nsplaydev-camera-details-view", this.settings.shortTimeout);
+        componentsDetailsPage.navigateBackPage();
+        ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("Camera");
         componentsVisualizationPage2.navigateBackPage();
     }
 }

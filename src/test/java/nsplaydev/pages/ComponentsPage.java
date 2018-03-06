@@ -35,28 +35,28 @@ public class ComponentsPage extends BasePage {
         }
 
         if(isScrolled) {
-            UIElement location = this.find.byText("Location");
+            UIElement location = this.find.byText("Camera");
             if (location == null) {
                 this.scrollDown();
-                location = this.find.byText("Location");
+                location = this.find.byText("Camera");
                 if (location == null) {
                     this.scrollDown();
-                    location = this.find.byText("Location");
+                    location = this.find.byText("Camera");
                     if (location == null) {
                         this.scrollDown();
-                        location = this.find.byText("Location");
+                        location = this.find.byText("Camera");
                         if (location == null) {
                             this.scrollDown();
-                            location = this.find.byText("Location");
+                            location = this.find.byText("Camera");
                             if (location == null) {
                                 this.scrollDown();
-                                location = this.find.byText("Location");
+                                location = this.find.byText("Camera");
                                 if (location == null) {
                                     this.scrollDown();
-                                    location = this.find.byText("Location");
+                                    location = this.find.byText("Camera");
                                     if (location == null) {
                                         this.scrollDown();
-                                        location = this.find.byText("Location");
+                                        location = this.find.byText("Camera");
                                     }
                                 }
                             }
@@ -64,7 +64,7 @@ public class ComponentsPage extends BasePage {
                     }
                 }
             }
-            location = this.find.byText("Location");
+            location = this.find.byText("Camera");
             Assert.assertNotNull(location, "Page Not Scrolled correctly!");
         }
         Assert.assertNotNull(browse, "Components page not loaded!");
@@ -109,7 +109,7 @@ public class ComponentsPage extends BasePage {
     }
 
     public void scrollDown() {
-       this.gestures.scrollToElement(SwipeElementDirection.DOWN, "Location",1);
+       this.gestures.scrollToElement(SwipeElementDirection.DOWN, "Camera",1);
        this.log.info("Scroll Down");
     }
 }
