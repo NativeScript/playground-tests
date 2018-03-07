@@ -415,9 +415,23 @@ public class NsPlayDevTests extends MobileTest {
             componentsVisualizationPage.waitForElement(2000);
             componentsVisualizationPage.navigate("Take Photo");
             componentsVisualizationPage.waitForElement(3000);
-            this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).get(0).click();
+            if(this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).size()>0)
+            {
+                this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).get(0).click();
+            }
+            if(this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).size()>0)
+            {
+                this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).get(0).click();
+            }
             componentsVisualizationPage.waitForElement(2000);
-            this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).get(0).click();
+            if(this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).size()>0)
+            {
+                this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).get(0).click();
+            }
+            if(this.client.driver.findElements(By.xpath("//*[@resource-id=\"com.android.camera:id/btn_done\"]")).size()>0)
+            {
+                this.client.driver.findElements(By.xpath("//*[@resource-id=\"com.android.camera:id/btn_done\"]")).get(0).click();
+            }
             componentsVisualizationPage.waitForElement(2000);
         }
         if(settings.deviceType == settings.deviceType.Simulator) {
