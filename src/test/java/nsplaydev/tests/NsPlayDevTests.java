@@ -398,6 +398,10 @@ public class NsPlayDevTests extends MobileTest {
             componentsVisualizationPage.waitForElement(2000);
             UIElement photos = find.byText("Photos");
             this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 40, 500);
+            if(this.device.getName().contains("Ipad"))
+            {
+
+            }
             componentsVisualizationPage.waitForElement(2000);
         }
         else {
