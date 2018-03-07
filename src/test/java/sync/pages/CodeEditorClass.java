@@ -719,11 +719,21 @@ public class CodeEditorClass extends BasePage {
             this.setupClass.s.click(new Pattern("devicename.png").targetOffset(-29,39));
             this.setupClass.wait(1000);
             this.setupClass.s.doubleClick(new Pattern("devicename.png").targetOffset(-43,76));
-            for (int i=22; i>0; i--)
+            for (int i=34; i>0; i--)
             {
                 this.setupClass.s.type(Key.DOWN, KeyModifier.SHIFT);
             }
             String componentsVersion = this.getTextWithCopy();
+            if(this.setupClass.browser.equals("Safari"))
+            {
+                setupClass.s.click("ErrorsNotSelectedSafari");
+            }
+            else {
+                setupClass.s.click("ErrorsNotSelected");
+            }
+            this.setupClass.wait(2000);
+            this.setupClass.s.click("devicestab");
+            this.setupClass.wait(2000);
             this.setupClass.s.dragDrop(new Pattern("devicename.png").targetOffset(8,39),new Pattern("model.png").targetOffset(-25,40));
             String deviceName = this.getTextWithCopy();
             this.setupClass.s.click("devicestab");

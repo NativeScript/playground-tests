@@ -107,7 +107,7 @@ public class  NSSyncTests extends MobileTest {
             osVersionExpected ="iOS ";
             osVersionExpected = osVersionExpected+String.valueOf(this.context.client.driver.getCapabilities().getCapability("platformVersion"));
         }
-        String previewAppVersionExpected = "1.9.0";
+        String previewAppVersionExpected = "1.10.0";
 
         String runtimeVersionExpected="";
         if(settings.deviceType == settings.deviceType.Emulator) {
@@ -128,16 +128,27 @@ public class  NSSyncTests extends MobileTest {
                 "  \"@angular/platform-browser\": \"5.2.0\",\n" +
                 "  \"@angular/platform-browser-dynamic\": \"5.2.0\",\n" +
                 "  \"@angular/router\": \"5.2.0\",\n" +
+                "  \"tns-core-modules\": \"3.4.1\",\n" +
+                "  \"nativescript-angular\": \"5.2.0\",\n" +
+                "  \"nativescript-ui-chart\": \"3.5.0\",\n" +
+                "  \"nativescript-ui-listview\": \"3.5.0\",\n" +
+                "  \"nativescript-ui-sidedrawer\": \"3.5.0\",\n" +
+                "  \"nativescript-ui-calendar\": \"3.5.0\",\n" +
+                "  \"nativescript-ui-autocomplete\": \"3.5.0\",\n" +
+                "  \"nativescript-ui-dataform\": \"3.5.0\",\n" +
+                "  \"nativescript-ui-gauge\": \"3.5.0\",\n" +
                 "  \"kinvey-nativescript-sdk\": \"3.9.10\",\n" +
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
-                "  \"nativescript-angular\": \"5.2.0\",\n" +
-                "  \"nativescript-vue\": \"1.2.0\",\n" +
+                "  \"nativescript-fresco\": \"3.0.6\",\n" +
                 "  \"nativescript-geolocation\": \"4.2.3\",\n" +
-                "  \"nativescript-pro-ui\": \"3.4.0\",\n" +
+                "  \"nativescript-iqkeyboardmanager\": \"1.2.0\",\n" +
+                "  \"nativescript-intl\": \"3.0.0\",\n" +
+                "  \"nativescript-camera\": \"3.2.1\",\n" +
+                "  \"nativescript-social-share\": \"1.5.0\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.4\",\n" +
+                "  \"nativescript-vue\": \"1.3.0\",\n" +
                 "  \"reflect-metadata\": \"0.1.12\",\n" +
                 "  \"rxjs\": \"5.5.6\",\n" +
-                "  \"tns-core-modules\": \"3.4.1\",\n" +
                 "  \"zone.js\": \"0.8.20\"\n" +
                 "}";
         codeEditor.assertDeviceTab(this.deviceName, modelExpected, osVersionExpected, previewAppVersionExpected, runtimeVersionExpected, componentVersionsExpected);
