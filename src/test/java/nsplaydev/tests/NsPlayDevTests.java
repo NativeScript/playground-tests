@@ -49,7 +49,14 @@ public class NsPlayDevTests extends MobileTest {
         this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
         componentsPage.navigate("Image");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Image");
-        this.assertScreen("nsplaydev-image-view", this.settings.shortTimeout);
+        if(settings.deviceName.contains("Api19"))
+        {
+            this.assertScreen("nsplaydev-image-view_api19", this.settings.shortTimeout);
+
+        }
+        else {
+            this.assertScreen("nsplaydev-image-view", this.settings.shortTimeout);
+        }
     }
 
     @Test(description = "Verify Image Deitals page looks OK.", groups = {"android", "ios"})
@@ -64,7 +71,7 @@ public class NsPlayDevTests extends MobileTest {
     }
 
     @Test(description = "Verify Label Visualization page looks OK.", groups = {"android", "ios"})
-    public void test_06_image_page_looks_ok() throws Exception {
+    public void test_06_label_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
         this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
         componentsPage.navigate("Label");
@@ -73,7 +80,7 @@ public class NsPlayDevTests extends MobileTest {
     }
 
     @Test(description = "Verify Label Deitals page looks OK.", groups = {"android", "ios"})
-    public void test_07_image_details_page_looks_ok() throws Exception {
+    public void test_07_label_details_page_looks_ok() throws Exception {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Label");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
@@ -234,7 +241,14 @@ public class NsPlayDevTests extends MobileTest {
         componentsPage.navigate("ListView");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("ListView");
         componentsPage.waitForElement(8000);
-        this.assertScreen("nsplaydev-listview-view", this.settings.shortTimeout);
+        if(settings.deviceName.contains("Api19"))
+        {
+            this.assertScreen("nsplaydev-listview-view_api19", this.settings.shortTimeout);
+
+        }
+        else {
+            this.assertScreen("nsplaydev-listview-view", this.settings.shortTimeout);
+        }
     }
 
     @Test(description = "Verify ListView Deitals page looks OK.", groups = {"android", "ios"})
