@@ -400,7 +400,7 @@ public class NsPlayDevTests extends MobileTest {
             this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 40, 500);
             if(this.device.getName().contains("Ipad"))
             {
-
+                this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 80, 500);
             }
             componentsVisualizationPage.waitForElement(2000);
         }
