@@ -143,7 +143,7 @@ public class  NSSyncTests extends MobileTest {
                 "  \"nativescript-geolocation\": \"4.2.3\",\n" +
                 "  \"nativescript-iqkeyboardmanager\": \"1.2.0\",\n" +
                 "  \"nativescript-intl\": \"3.0.0\",\n" +
-                "  \"nativescript-camera\": \"3.2.1\",\n" +
+                "  \"nativescript-camera\": \"4.0.0\",\n" +
                 "  \"nativescript-social-share\": \"1.5.0\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.4\",\n" +
                 "  \"nativescript-vue\": \"1.3.0\",\n" +
