@@ -37,7 +37,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.getScreenShot("BeforeStartOfTests_AfterLiveSync");
         this.setupClass.closeTutorial();
         this.setupClass.getScreenShot("BeforeStartOfTests_AfterCloseTutorial");
-    }
+}
     @AfterClass
     public void afterClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
         if(settings.deviceName.contains("Api25")==false)
@@ -815,9 +815,13 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(10000);
         this.setupClass.navigateToSavedSession("Tap to open the saved");
         this.setupClass.wait(7000);
-
-        this.assertScreen("nsplaydev-synced-saved-session", this.settings.shortTimeout,10);
-
+        if(settings.deviceName.contains("Api19"))
+        {
+            this.assertScreen("nsplaydev-synced-saved-session-api19", this.settings.shortTimeout, 10);
+        }
+        else {
+            this.assertScreen("nsplaydev-synced-saved-session", this.settings.shortTimeout, 10);
+        }
         //shit appium ios 10 and 9
         if(settings.deviceType == settings.deviceType.Simulator)
         {

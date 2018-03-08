@@ -49,7 +49,7 @@ public int deviceScreenWidth;
 public String appName;
 public Client client;
 public App browserAPP;
-public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","vue");
+public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","ng");
 public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome");
 public String folderForScreenshots;
 public MobileSettings mobileSettings;
