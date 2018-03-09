@@ -20,6 +20,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.sikuli.script.Image;
 import org.testng.Assert;
 import org.sikuli.script.*;
@@ -182,18 +183,25 @@ public MobileSettings mobileSettings;
             if(foundItem == "Open") {
                 if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
                     if(this.settings.platformVersion.toString().contains("10.")) {
-                        this.client.driver.switchTo().alert().accept();
+                        this.wait(5000);
+                        if (ExpectedConditions.alertIsPresent() != null) {
+                            this.client.driver.switchTo().alert().accept();
+                        }
 
                         this.wait(2000);
-                        this.waitPreviewAppToLoad(10, "Open");
 
-                        this.client.driver.switchTo().alert().accept();
+                        this.waitPreviewAppToLoad(10, "Open");
+                        if (ExpectedConditions.alertIsPresent() != null) {
+                            this.client.driver.switchTo().alert().accept();
+                        }
 
                         this.wait(2000);
                     }
                     else {
                         this.wait(5000);
-                        this.client.driver.switchTo().alert().dismiss();
+                        if (ExpectedConditions.alertIsPresent() != null) {
+                            this.client.driver.switchTo().alert().dismiss();
+                        }
                         this.wait(5000);
                         functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
                         this.deviceId=ios.getId();
@@ -202,9 +210,13 @@ public MobileSettings mobileSettings;
                         Capabilities newiOSCapabilities = new Capabilities();
                         context.client.driver = new IOSDriver(context.server.service.getUrl(), newiOSCapabilities.loadDesiredCapabilities(context.settings));
                         this.wait(6000);
-                        this.client.driver.switchTo().alert().dismiss();
+                        if (ExpectedConditions.alertIsPresent() != null) {
+                            this.client.driver.switchTo().alert().dismiss();
+                        }
                         this.wait(6000);
-                        this.client.driver.switchTo().alert().dismiss();
+                        if (ExpectedConditions.alertIsPresent() != null) {
+                            this.client.driver.switchTo().alert().dismiss();
+                        }
                         this.wait(6000);
                     }
                 }
