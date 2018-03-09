@@ -131,13 +131,13 @@ public class  NSSyncTests extends MobileTest {
                 "  \"tns-core-modules\": \"3.4.1\",\n" +
                 "  \"nativescript-angular\": \"5.2.0\",\n" +
                 "  \"nativescript-ui-chart\": \"3.5.0\",\n" +
-                "  \"nativescript-ui-listview\": \"3.5.0\",\n" +
-                "  \"nativescript-ui-sidedrawer\": \"3.5.0\",\n" +
+                "  \"nativescript-ui-listview\": \"3.5.1\",\n" +
+                "  \"nativescript-ui-sidedrawer\": \"3.5.1\",\n" +
                 "  \"nativescript-ui-calendar\": \"3.5.0\",\n" +
-                "  \"nativescript-ui-autocomplete\": \"3.5.0\",\n" +
+                "  \"nativescript-ui-autocomplete\": \"3.6.0\",\n" +
                 "  \"nativescript-ui-dataform\": \"3.5.0\",\n" +
                 "  \"nativescript-ui-gauge\": \"3.5.0\",\n" +
-                "  \"kinvey-nativescript-sdk\": \"3.9.10\",\n" +
+                "  \"kinvey-nativescript-sdk\": \"3.10.0\",\n" +
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
                 "  \"nativescript-fresco\": \"3.0.6\",\n" +
                 "  \"nativescript-geolocation\": \"4.2.3\",\n" +
