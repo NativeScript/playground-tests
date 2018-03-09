@@ -114,7 +114,7 @@ public class CodeEditorClass extends BasePage {
 
         if (this.setupClass.typeOfProject.equals("vue")) {
             this.deleteAllCode();
-            this.typeCode("const Vue = require(\"./nativescript-vue\");\n");
+            this.typeCode("const Vue = require(\"nativescript-vue\");\n");
             this.typeCode("new Vue({\n");
             this.typeCode("template: `\n");
             this.typeCode("<Page class=\"page\">\n");
@@ -244,7 +244,7 @@ public class CodeEditorClass extends BasePage {
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("const Vue = require(\"./nativescript-vue\");\n");
+            this.typeCode("const Vue = require(\"nativescript-vue\");\n");
 
             this.typeCode("new Vue({\n");
             this.typeCode("template: `\n");
@@ -320,7 +320,7 @@ public class CodeEditorClass extends BasePage {
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("const Vue = require(\"./nativescript-vue\");\n");
+            this.typeCode("const Vue = require(\"nativescript-vue\");\n");
 
             this.typeCode("new Vue({\n");
             this.typeCode("template: `\n");
@@ -395,7 +395,7 @@ public class CodeEditorClass extends BasePage {
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("const Vue = require(\"./nativescript-vue\");\n");
+            this.typeCode("const Vue = require(\"nativescript-vue\");\n");
 
             this.typeCode("new Vue({\n");
             this.typeCode("template: `\n");
@@ -473,7 +473,7 @@ public class CodeEditorClass extends BasePage {
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("const Vue = require(\"./nativescript-vue\");\n");
+            this.typeCode("const Vue = require(\"nativescript-vue\");\n");
 
             this.typeCode("new Vue({\n");
             this.typeCode("template: `\n");
@@ -552,7 +552,7 @@ public class CodeEditorClass extends BasePage {
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("const Vue = require(\"./nativescript-vue\");\n");
+            this.typeCode("const Vue = require(\"nativescript-vue\");\n");
 
             this.typeCode("new Vue({\n");
             this.typeCode("template: `\n");
