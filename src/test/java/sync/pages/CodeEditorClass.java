@@ -350,7 +350,8 @@ public class CodeEditorClass extends BasePage {
         this.deleteAllCode();
         if (this.setupClass.typeOfProject.equals("ng")) {
             this.typeCode("import { Component, OnInit } from \"@angular/core\";\n");
-            this.typeCode("declare var java : any;\n");
+            this.typeCode("declare var java : any");
+            this.typeCode(";\n");
             this.typeCode("@Component({\n");
             this.typeCode("selector: \"Home\",\n");
             this.typeCode("moduleId: module.id,\n");
@@ -426,7 +427,8 @@ public class CodeEditorClass extends BasePage {
         this.deleteAllCode();
         if (this.setupClass.typeOfProject.equals("ng")) {
             this.typeCode("import { Component, OnInit } from \"@angular/core\";\n");
-            this.typeCode("declare var NSFileManager : any;\n");
+            this.typeCode("declare var NSFileManager : any");
+            this.typeCode(";\n");
             this.typeCode("@Component({\n");
             this.typeCode("selector: \"Home\",\n");
             this.typeCode("moduleId: module.id,\n");
@@ -505,7 +507,8 @@ public class CodeEditorClass extends BasePage {
         this.deleteAllCode();
         if (this.setupClass.typeOfProject.equals("ng")) {
             this.typeCode("import { Component, OnInit } from \"@angular/core\";\n");
-            this.typeCode("declare var NSArray : any;\n");
+            this.typeCode("declare var NSArray : any");
+            this.typeCode(";\n");
             this.typeCode("@Component({\n");
             this.typeCode("selector: \"Home\",\n");
             this.typeCode("moduleId: module.id,\n");
