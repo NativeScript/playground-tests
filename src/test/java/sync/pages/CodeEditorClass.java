@@ -199,7 +199,8 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("@Component({\n");
             this.typeCode("selector: \"Home\",\n");
             this.typeCode("moduleId: module.id");
-            this.typeCode(",\n");
+            this.typeCode(",");
+            this.typeCode("\n");
             this.typeCode("templateUrl: \"./home.component.html\",\n");
             this.typeCode("styleUrls: ['./home.component.css']\n");
             this.setupClass.s.type(Key.DOWN);
@@ -280,7 +281,9 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("import { Component, OnInit } from \"@angular/core\";\n");
             this.typeCode("@Component({\n");
             this.typeCode("selector: \"Home\",\n");
-            this.typeCode("moduleId: module.id,\n");
+            this.typeCode("moduleId: module.id");
+            this.typeCode(",");
+            this.typeCode("\n");
             this.typeCode("templateUrl: \"./home.component.html\",\n");
             this.typeCode("styleUrls: ['./home.component.css']\n");
             this.setupClass.s.type(Key.DOWN);
@@ -354,7 +357,9 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(";\n");
             this.typeCode("@Component({\n");
             this.typeCode("selector: \"Home\",\n");
-            this.typeCode("moduleId: module.id,\n");
+            this.typeCode("moduleId: module.id");
+            this.typeCode(",");
+            this.typeCode("\n");
             this.setupClass.wait(1000);
             this.typeCode("templateUrl: \"./home.component.html\",\n");
             this.typeCode("styleUrls: ['./home.component.css']\n");
@@ -431,7 +436,9 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(";\n");
             this.typeCode("@Component({\n");
             this.typeCode("selector: \"Home\",\n");
-            this.typeCode("moduleId: module.id,\n");
+            this.typeCode("moduleId: module.id");
+            this.typeCode(",");
+            this.typeCode("\n");
             this.typeCode("templateUrl: \"./home.component.html\",\n");
             this.typeCode("styleUrls: ['./home.component.css']\n");
             this.setupClass.s.type(Key.DOWN);
@@ -511,7 +518,9 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(";\n");
             this.typeCode("@Component({\n");
             this.typeCode("selector: \"Home\",\n");
-            this.typeCode("moduleId: module.id,\n");
+            this.typeCode("moduleId: module.id");
+            this.typeCode(",");
+            this.typeCode("\n");
             this.typeCode("templateUrl: \"./home.component.html\",\n");
             this.typeCode("styleUrls: ['./home.component.css']\n");
             this.setupClass.s.type(Key.DOWN);
