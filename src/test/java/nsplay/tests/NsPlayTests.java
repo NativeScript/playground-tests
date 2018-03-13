@@ -50,7 +50,7 @@ public class NsPlayTests extends MobileTest {
                 scanPage.navigate("Allow");
             }
             QRPage detailsPage = new QRPage();
-            this.assertScreen("v", this.settings.defaultTimeout,50.0);
+            this.assertScreen("nsplay-home-view", this.settings.defaultTimeout,50.0);
             detailsPage.navigateBack();
             scanPage.navigate("Scan QR code");
             scanPage.waitForElement(9000);
