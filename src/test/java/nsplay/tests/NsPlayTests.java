@@ -2,6 +2,7 @@ package nsplay.tests;
 
 import functional.tests.core.enums.PlatformType;
 import functional.tests.core.mobile.basetest.MobileTest;
+import functional.tests.core.mobile.element.UIElement;
 import nsplay.pages.QRPage;
 import nsplay.pages.ScanPage;
 import nsplay.pages.WebPage;
@@ -25,13 +26,11 @@ public class NsPlayTests extends MobileTest {
     public void test_02_QR_page_looks_ok() throws Exception {
         ScanPage scanPage = new ScanPage();
         scanPage.navigate("Scan QR code");
-        scanPage.waitForElement(7000);
+        scanPage.waitForElement(9000);
         if(settings.deviceType == settings.deviceType.Simulator)
         {
-            this.assertScreen("nsplay-home-view", this.settings.shortTimeout);
-            scanPage.navigate("Scan QR code");
-            scanPage.waitForElement(9000);
-            this.assertScreen("nsplay-home-view", this.settings.shortTimeout);
+            this.assertScreen("nsplay-qr-ios-view", this.settings.shortTimeout);
+            scanPage.navigate("Close");
 
         }
         else if(settings.deviceType == settings.deviceType.Emulator)
@@ -51,7 +50,7 @@ public class NsPlayTests extends MobileTest {
                 scanPage.navigate("Allow");
             }
             QRPage detailsPage = new QRPage();
-            this.assertScreen("nsplay-qr-android-emulator-view", this.settings.defaultTimeout,50.0);
+            this.assertScreen("v", this.settings.defaultTimeout,50.0);
             detailsPage.navigateBack();
             scanPage.navigate("Scan QR code");
             scanPage.waitForElement(9000);
@@ -67,6 +66,7 @@ public class NsPlayTests extends MobileTest {
 
     @Test(description = "Verify scan page looks OK.", groups = {"android", "ios"})
     public void test_03_info_page_looks_ok() throws Exception {
+
         if(settings.deviceType == settings.deviceType.Emulator)
         {
         QRPage detailsPage = new QRPage();
@@ -89,6 +89,11 @@ public class NsPlayTests extends MobileTest {
     @Test(description = "Verify web nativescript page looks OK.", groups = { "iOS"})
     public void test_04_WebNativescript_page_looks_ok() throws Exception {
         ScanPage scanPage = new ScanPage();
+        UIElement scan = this.find.byText("Scan");
+        if(scan!=null)
+        {
+            scan.click();
+        }
         scanPage.navigate("https://www.nativescript.org");
         if(settings.deviceName.contains("Api26")||settings.deviceName.contains("Api25"))
         {
