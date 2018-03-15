@@ -94,9 +94,13 @@ public class NsPlayTests extends MobileTest {
         {
             scan.click();
         }
-        scanPage.navigate("https://www.nativescript.org");
+
         if(settings.deviceName.contains("Api19")) {
-            scanPage.navigate("http://www.progress.org");
+
+        }
+        else
+        {
+            scanPage.navigate("https://www.nativescript.org");
         }
         if(settings.deviceName.contains("Api26")||settings.deviceName.contains("Api25"))
         {
