@@ -102,7 +102,7 @@ public class NsPlayTests extends MobileTest {
         {
             scanPage.navigate("https://www.nativescript.org");
         }
-        if(settings.deviceName.contains("Api26")||settings.deviceName.contains("Api25"))
+        if(settings.deviceName.contains("Api27")||settings.deviceName.contains("Api26")||settings.deviceName.contains("Api25"))
         {
             scanPage.waitForElement(4000);
             if(scanPage.checkIfElementisShown("Chrome")) {
@@ -116,6 +116,10 @@ public class NsPlayTests extends MobileTest {
             if(scanPage.checkIfElementisShown("ACCEPT & CONTINUE"))
             {
                 scanPage.navigate("Accept & continue");
+                if(scanPage.checkIfElementisShown("Next")) {
+                    scanPage.navigate("Next");
+                    scanPage.waitForElement(4000);
+                }
                 scanPage.navigate("No thanks");
             }
 
