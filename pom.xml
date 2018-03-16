@@ -148,6 +148,13 @@
             </properties>
         </profile>
         <profile>
+            <id>nsplaydev.emu.default.api27</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.emu.default.api27.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
             <id>nsplaydev.sim.Ipad5thgeneration.ios10</id>
             <properties>
                 <app.config>nsplaydev/nsplaydev.sim.Ipad5thgeneration.ios10.properties</app.config>
@@ -214,6 +221,13 @@
             <id>live-sync.emu.default.api26</id>
             <properties>
                 <app.config>nsplay/nsplay.emu.default.api26.properties</app.config>
+                <testsuite>live-sync</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>live-sync.emu.default.api27</id>
+            <properties>
+                <app.config>nsplay/nsplay.emu.default.api27.properties</app.config>
                 <testsuite>live-sync</testsuite>
             </properties>
         </profile>
