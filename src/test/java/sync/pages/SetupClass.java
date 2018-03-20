@@ -230,6 +230,7 @@ public MobileSettings mobileSettings;
         }
 
         this.waitPreviewAppToLoad(10);
+        this.wait(6000);
     }
 
     public void waitPreviewAppToLoad(int numberOfTries) throws InterruptedException {
