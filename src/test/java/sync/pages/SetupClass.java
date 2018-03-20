@@ -134,6 +134,8 @@ public MobileSettings mobileSettings;
             }
         }
         this.wait(3000);
+        s.click("devicesLinkMessage.png");
+        this.wait(3000);
         s.dragDrop(new Pattern("devicesLinkMessage.png").similar(0.63f).targetOffset(-101,0),
                 new Pattern("devicesLinkMessage.png").similar(0.63f).targetOffset(500,25));
         this.wait(3000);
