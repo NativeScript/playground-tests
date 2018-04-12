@@ -404,12 +404,12 @@ public class NsPlayDevTests extends MobileTest {
             componentsVisualizationPage.navigate("Ok");
         }
 
-        componentsVisualizationPage.waitForElement(2000);
+        componentsVisualizationPage.waitForElement(4000);
         componentsVisualizationPage.navigate("Take Photo");
-        componentsVisualizationPage.waitForElement(2000);
+        componentsVisualizationPage.waitForElement(6000);
         if(settings.deviceType == settings.deviceType.Simulator) {
             componentsVisualizationPage.navigate("Camera Roll");
-            componentsVisualizationPage.waitForElement(2000);
+            componentsVisualizationPage.waitForElement(4000);
             UIElement photos = find.byText("Photos");
             this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 40, 500);
             if(this.device.getName().contains("Ipad"))
@@ -441,7 +441,7 @@ public class NsPlayDevTests extends MobileTest {
             {
                 this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).get(0).click();
             }
-            componentsVisualizationPage.waitForElement(2000);
+            componentsVisualizationPage.waitForElement(3000);
             if(this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).size()>0)
             {
                 this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).get(0).click();
