@@ -83,10 +83,10 @@ public MobileSettings mobileSettings;
         }
         else {
             functional.tests.core.mobile.device.android.AndroidDevice android = new functional.tests.core.mobile.device.android.AndroidDevice(client, mobileSettings);
-            android.installApp("preview-release.apk", "org.nativescript.preview");
+            android.installApp("app-x86-release.apk", "org.nativescript.preview");
             this.deviceId=android.getId();
             context.settings.packageId = "org.nativescript.preview";
-            context.settings.testAppFileName = "preview-release.apk";
+            context.settings.testAppFileName = "app-x86-release.apk";
             Capabilities newAndroidCapabilities = new Capabilities();
             context.client.driver = new AndroidDriver(context.server.service.getUrl(), newAndroidCapabilities.loadDesiredCapabilities(context.settings));
         }
