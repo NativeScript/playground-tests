@@ -132,10 +132,10 @@ public class  NSSyncTests extends MobileTest {
                 "  \"nativescript-angular\": \"5.2.0\",\n" +
                 "  \"nativescript-ui-chart\": \"3.5.0\",\n" +
                 "  \"nativescript-ui-listview\": \"3.5.4\",\n" +
-                "  \"nativescript-ui-sidedrawer\": \"3.5.1\",\n" +
+                "  \"nativescript-ui-sidedrawer\": \"4.0.0\",\n" +
                 "  \"nativescript-ui-calendar\": \"3.5.2\",\n" +
                 "  \"nativescript-ui-autocomplete\": \"3.6.0\",\n" +
-                "  \"nativescript-ui-dataform\": \"3.5.0\",\n" +
+                "  \"nativescript-ui-dataform\": \"3.5.2\",\n" +
                 "  \"nativescript-ui-gauge\": \"3.5.0\",\n" +
                 "  \"kinvey-nativescript-sdk\": \"3.10.2\",\n" +
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
@@ -145,6 +145,7 @@ public class  NSSyncTests extends MobileTest {
                 "  \"nativescript-intl\": \"3.0.0\",\n" +
                 "  \"nativescript-camera\": \"4.0.2\",\n" +
                 "  \"nativescript-social-share\": \"1.5.0\",\n" +
+                "  \"nativescript-background-http\": \"3.2.2\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.4\",\n" +
                 "  \"nativescript-vue\": \"1.3.1\",\n" +
                 "  \"reflect-metadata\": \"0.1.12\",\n" +
