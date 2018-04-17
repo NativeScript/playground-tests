@@ -457,7 +457,7 @@ public class NsPlayDevTests extends MobileTest {
         }
         else
         {
-            this.assertScreen("nsplaydev-camera-working-view-android", this.settings.shortTimeout, 39);
+            this.assertScreen("nsplaydev-camera-working-view-android", this.settings.shortTimeout, 44);
 
         }
     }
