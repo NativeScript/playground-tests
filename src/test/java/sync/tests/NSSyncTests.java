@@ -219,7 +219,6 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(2000);
         codeEditor.save();
         this.setupClass.wait(2000);
-        codeEditor.assertImageIsOnScreen("ErrorDialogWhenErrorInCode");
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
         this.setupClass.wait(2000);
         this.setupClass.s.type(Key.ESC);
@@ -788,12 +787,12 @@ public class  NSSyncTests extends MobileTest {
         if(settings.deviceType == settings.deviceType.Simulator)
         {
             this.setupClass.changeIosDriverToWebView();
-            this.setupClass.wait(6000);
+            this.setupClass.wait(8000);
         }
         else
         {
             this.setupClass.refreshAndroidDriver();
-            this.setupClass.wait(6000);
+            this.setupClass.wait(8000);
         }
 
 
@@ -813,9 +812,9 @@ public class  NSSyncTests extends MobileTest {
         {
             this.setupClass.openURL("https://play.telerik.rocks/?template=play-vue&id=Y7CDht");
         }
-        this.setupClass.wait(10000);
+        this.setupClass.wait(12000);
         this.setupClass.navigateToSavedSession("Tap to open the saved");
-        this.setupClass.wait(7000);
+        this.setupClass.wait(10000);
         if(settings.deviceName.contains("Api19"))
         {
             this.assertScreen("nsplaydev-synced-saved-session-api19", this.settings.shortTimeout, 10);
