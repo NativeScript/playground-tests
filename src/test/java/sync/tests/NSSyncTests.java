@@ -129,7 +129,7 @@ public class  NSSyncTests extends MobileTest {
                 "  \"@angular/platform-browser-dynamic\": \"5.2.0\",\n" +
                 "  \"@angular/router\": \"5.2.0\",\n" +
                 "  \"tns-core-modules\": \"4.0.0\",\n" +
-                "  \"nativescript-angular\": \"5.2.0\",\n" +
+                "  \"nativescript-angular\": \"5.3.0\",\n" +
                 "  \"nativescript-ui-chart\": \"3.5.0\",\n" +
                 "  \"nativescript-ui-listview\": \"3.5.4\",\n" +
                 "  \"nativescript-ui-sidedrawer\": \"4.0.0\",\n" +
