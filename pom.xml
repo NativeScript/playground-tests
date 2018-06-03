@@ -286,7 +286,7 @@
             <artifactId>functional.tests.core</artifactId>
             <version>0.0.5</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/functional.tests.core-0.0.5.jar</systemPath>
+            <systemPath>libs/functional.tests.core-0.0.5.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>

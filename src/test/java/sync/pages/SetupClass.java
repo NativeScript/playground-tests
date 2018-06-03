@@ -14,6 +14,7 @@ import functional.tests.core.mobile.settings.MobileSettings;
 import functional.tests.core.image.Sikuli;
 import functional.tests.core.image.ImageUtils;
 import functional.tests.core.utils.FileSystem;
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import org.openqa.selenium.By;
@@ -541,14 +542,16 @@ public MobileSettings mobileSettings;
         {
             UIRectangle link = this.findImageOnScreen("SavedSession", 0.8d);
             if(link!=null) {
-                this.client.driver.tap(1,link.getRectangle().x,link.getRectangle().y,500);
+                new TouchAction((MobileDriver) this.client.driver).tap((link.getRectangle().x ), (link.getRectangle().y)).perform();
+                //this.client.driver.tap(1,link.getRectangle().x,link.getRectangle().y,500);
                 this.wait(7000);
                 if(this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
                     this.client.driver.switchTo().alert().accept();
                 }
                 else {
                     UIRectangle openButton = this.findImageOnScreen("Open", 0.8d);
-                    this.client.driver.tap(1,openButton.getRectangle().x,openButton.getRectangle().y,500);
+                    new TouchAction((MobileDriver) this.client.driver).tap((openButton.getRectangle().x ), (openButton.getRectangle().y)).perform();
+                    //this.client.driver.tap(1,openButton.getRectangle().x,openButton.getRectangle().y,500);
                 }
                 this.wait(7000);
             }

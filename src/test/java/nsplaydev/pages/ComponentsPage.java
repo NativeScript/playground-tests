@@ -1,8 +1,10 @@
 package nsplaydev.pages;
 
+import functional.tests.core.enums.SwipeElementDirection;
 import functional.tests.core.mobile.basepage.BasePage;
 import functional.tests.core.mobile.element.UIElement;
-import io.appium.java_client.SwipeElementDirection;
+import io.appium.java_client.MobileDriver;
+import io.appium.java_client.TouchAction;
 import org.testng.Assert;
 
 public class ComponentsPage extends BasePage {
@@ -11,30 +13,24 @@ public class ComponentsPage extends BasePage {
         super();
         UIElement browse = null;
         UIElement detailsElement = this.find.byText("Details");
-        if(detailsElement!=null)
-        {
-            detailsElement=null;
+        if (detailsElement != null) {
+            detailsElement = null;
             this.navigateBack();
             this.waitForElement(1000);
             detailsElement = this.find.byText("Details");
-            if(detailsElement!=null)
-            {
-                detailsElement=null;
+            if (detailsElement != null) {
+                detailsElement = null;
                 this.navigateBack();
                 this.waitForElement(1000);
                 browse = this.find.byText("Components");
-            }
-            else
-            {
+            } else {
                 browse = this.find.byText("Components");
             }
-        }
-        else
-        {
+        } else {
             browse = this.wait.waitForVisible(this.locators.findByTextLocator("Components", true));
         }
 
-        if(isScrolled) {
+        if (isScrolled) {
             UIElement location = this.find.byText("Camera");
             if (location == null) {
                 this.scrollDown();
@@ -77,11 +73,11 @@ public class ComponentsPage extends BasePage {
     public void navigate(String button) throws InterruptedException {
 
         UIElement buttonToClick = this.find.byText(button);
-        if(buttonToClick!=null) {
-            this.client.driver.tap(1, buttonToClick.getCenter().x, buttonToClick.getCenter().y, 500);
+        if (buttonToClick != null) {
+            new TouchAction((MobileDriver) this.client.driver).tap((buttonToClick.getCenter().x), (buttonToClick.getCenter().y)).perform();
+            //this.client.driver.tap(1, buttonToClick.getCenter().x, buttonToClick.getCenter().y, 500);
             this.log.info("Navigate to " + button);
-        }
-        else {
+        } else {
             this.log.info("Element " + button + " not found! Not able to click it!");
         }
 
@@ -90,26 +86,23 @@ public class ComponentsPage extends BasePage {
     public boolean checkIfElementisShown(String elementText) {
         boolean isElementFound = false;
         UIElement element = this.find.byText(elementText);
-        if(element != null)
-        {
+        if (element != null) {
             isElementFound = true;
             this.log.info("Item " + elementText + " found!");
-        }
-        else
-        {
+        } else {
             this.log.info("Item " + elementText + " not found!");
         }
         return isElementFound;
     }
 
     public void waitForElement(int time) throws InterruptedException {
-        synchronized(this.wait) {
+        synchronized (this.wait) {
             this.wait.wait(time);
         }
     }
 
     public void scrollDown() {
-       this.gestures.scrollToElement(SwipeElementDirection.DOWN, "Camera",1);
-       this.log.info("Scroll Down");
+        this.gestures.scrollToElement(SwipeElementDirection.DOWN, "Camera", 1);
+        this.log.info("Scroll Down");
     }
 }

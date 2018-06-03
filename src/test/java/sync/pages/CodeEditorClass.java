@@ -1,8 +1,8 @@
 package sync.pages;
 
+import functional.tests.core.enums.SwipeElementDirection;
 import functional.tests.core.mobile.basepage.BasePage;
 import functional.tests.core.mobile.element.UIElement;
-import io.appium.java_client.SwipeElementDirection;
 import net.sf.saxon.Err;
 import org.sikuli.script.*;
 import org.testng.Assert;
