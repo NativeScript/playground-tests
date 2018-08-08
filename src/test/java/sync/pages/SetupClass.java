@@ -117,12 +117,15 @@ public MobileSettings mobileSettings;
         this.wait(1000);
         s.type(Key.ENTER);
         this.wait(20000);
-
     }
 
     public void GetDeviceLink() throws InterruptedException, FindFailed, IOException, UnsupportedFlavorException {
         if(s.exists("playnowbutton.png")!=null) {
             s.click("playnowbutton.png");
+            this.wait(2000);
+        }
+        if(s.exists("acceptCookies.png")!=null) {
+            s.click("acceptCookies.png");
             this.wait(2000);
         }
         if(s.exists("devicesLinkMessage.png") == null) {

@@ -40,3 +40,4 @@ Pattern("runtimeversion.png").targetOffset(85,37)
 "playnowbutton.png"
 Pattern("home.png").targetOffset(75,88)
 "ErrorsNotSelectedSafari.png"
+"acceptCookies.png"
