@@ -134,7 +134,7 @@ public MobileSettings mobileSettings;
                 s.click("qrcodeSafari.png");
             }
             else {
-                s.click(new Pattern("qrcode.png").similar(0.7f));
+                s.click(new Pattern("qrcode.png").similar(0.63f));
             }
         }
         this.wait(3000);
