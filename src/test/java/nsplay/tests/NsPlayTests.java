@@ -113,6 +113,10 @@ public class NsPlayTests extends MobileTest {
                 scanPage.navigate("Just once");
                 scanPage.waitForElement(4000);
             }
+            if(scanPage.checkIfElementisShown("JUST ONCE")) {
+                scanPage.navigate("JUST ONCE");
+                scanPage.waitForElement(4000);
+            }
             if(scanPage.checkIfElementisShown("ACCEPT & CONTINUE"))
             {
                 scanPage.navigate("Accept & continue");
