@@ -119,7 +119,7 @@ public class NsPlayTests extends MobileTest {
             }
             if(scanPage.checkIfElementisShown("ACCEPT & CONTINUE"))
             {
-                scanPage.navigate("Accept & continue");
+                scanPage.navigate("ACCEPT & CONTINUE");
                 if(scanPage.checkIfElementisShown("Next")) {
                     scanPage.navigate("Next");
                     scanPage.waitForElement(4000);
