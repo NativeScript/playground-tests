@@ -81,7 +81,7 @@ public class NsPlayTests extends MobileTest {
             scanPage.scrollDown();
             scanPage.scrollDown();
             scanPage.scrollDown();
-            this.assertScreen("nsplay-info-view-scrolled-emulator", this.settings.shortTimeout);
+            this.assertScreen("nsplay-info-view-scrolled-emulator", this.settings.shortTimeout, 1.00);
         }
 
     }
