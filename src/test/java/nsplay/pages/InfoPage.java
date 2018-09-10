@@ -9,7 +9,7 @@ public class InfoPage extends BasePage {
 
     public InfoPage() {
         super();
-        this.find.byText("INFO").click();
+        this.find.byText("Info").click();
         UIElement browse = this.wait.waitForVisible(this.locators.findByTextLocator("Info", true));
         Assert.assertNotNull(browse, "Info page not loaded!");
         this.log.info("Info page loaded.");
