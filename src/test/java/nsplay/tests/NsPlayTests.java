@@ -134,6 +134,6 @@ public class NsPlayTests extends MobileTest {
             }
         }
         WebPage webPage = new WebPage();
-        this.assertScreen("nsplay-opened-history-element", this.settings.shortTimeout,20.0);
+        this.assertScreen("nsplay-opened-history-element", this.settings.shortTimeout,25.0);
     }
 }
