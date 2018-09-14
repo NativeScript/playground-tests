@@ -5,6 +5,7 @@ import functional.tests.core.mobile.basetest.MobileTest;
 import functional.tests.core.mobile.element.UIElement;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 import nsplaydev.pages.ComponentsDetailsPage;
 import nsplaydev.pages.ComponentsPage;
 import nsplaydev.pages.ComponentsVisualizationPage;
@@ -397,10 +398,10 @@ public class NsPlayDevTests extends MobileTest {
             componentsVisualizationPage.navigate("Camera Roll");
             componentsVisualizationPage.waitForElement(4000);
             UIElement photos = find.byText("Photos");
-            new TouchAction((MobileDriver) this.client.driver).tap((photos.getCenter().x + 40), (photos.getCenter().y + 40)).perform();
+            new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 40), (photos.getCenter().y + 40)))).perform();
             //this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 40, 500);
             if (this.device.getName().contains("Ipad")) {
-                new TouchAction((MobileDriver) this.client.driver).tap((photos.getCenter().x + 80), (photos.getCenter().y + 80)).perform();
+                new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 80), (photos.getCenter().y + 80)))).perform();
                 //this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 80, 500);
             }
             componentsVisualizationPage.waitForElement(2000);

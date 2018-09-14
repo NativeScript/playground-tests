@@ -5,6 +5,8 @@ import functional.tests.core.mobile.basepage.BasePage;
 import functional.tests.core.mobile.element.UIElement;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.TapOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.testng.Assert;
 
 public class ComponentsPage extends BasePage {
@@ -74,8 +76,9 @@ public class ComponentsPage extends BasePage {
 
         UIElement buttonToClick = this.find.byText(button);
         if (buttonToClick != null) {
-            new TouchAction((MobileDriver) this.client.driver).tap((buttonToClick.getCenter().x), (buttonToClick.getCenter().y)).perform();
+            new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((buttonToClick.getCenter().x), (buttonToClick.getCenter().y)))).perform();
             //this.client.driver.tap(1, buttonToClick.getCenter().x, buttonToClick.getCenter().y, 500);
+            //new TouchAction((MobileDriver) this.client.driver).tap((buttonToClick.getCenter().x), (buttonToClick.getCenter().y)).perform();
             this.log.info("Navigate to " + button);
         } else {
             this.log.info("Element " + button + " not found! Not able to click it!");
