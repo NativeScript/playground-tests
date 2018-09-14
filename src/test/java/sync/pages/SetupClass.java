@@ -17,6 +17,7 @@ import functional.tests.core.utils.FileSystem;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.html5.Location;
@@ -545,7 +546,7 @@ public MobileSettings mobileSettings;
         {
             UIRectangle link = this.findImageOnScreen("SavedSession", 0.8d);
             if(link!=null) {
-                new TouchAction((MobileDriver) this.client.driver).tap((link.getRectangle().x ), (link.getRectangle().y)).perform();
+                new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((link.getRectangle().x ), (link.getRectangle().y)))).perform();
                 //this.client.driver.tap(1,link.getRectangle().x,link.getRectangle().y,500);
                 this.wait(7000);
                 if(this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
@@ -553,7 +554,7 @@ public MobileSettings mobileSettings;
                 }
                 else {
                     UIRectangle openButton = this.findImageOnScreen("Open", 0.8d);
-                    new TouchAction((MobileDriver) this.client.driver).tap((openButton.getRectangle().x ), (openButton.getRectangle().y)).perform();
+                    new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((openButton.getRectangle().x ), (openButton.getRectangle().y)))).perform();
                     //this.client.driver.tap(1,openButton.getRectangle().x,openButton.getRectangle().y,500);
                 }
                 this.wait(7000);
