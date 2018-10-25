@@ -102,7 +102,7 @@ public class NsPlayTests extends MobileTest {
         {
             scanPage.navigate("https://www.nativescript.org");
         }
-        if(settings.deviceName.contains("Api27")||settings.deviceName.contains("Api26")||settings.deviceName.contains("Api25"))
+        if(settings.deviceName.contains("Api28")||settings.deviceName.contains("Api27")||settings.deviceName.contains("Api26")||settings.deviceName.contains("Api25"))
         {
             scanPage.waitForElement(4000);
             if(scanPage.checkIfElementisShown("Chrome")) {
