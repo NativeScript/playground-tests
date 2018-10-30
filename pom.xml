@@ -176,6 +176,13 @@
             </properties>
         </profile>
         <profile>
+            <id>nsplaydev.emu.default.api28</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.emu.default.api28.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
             <id>nsplaydev.sim.Ipad5thgeneration.ios10</id>
             <properties>
                 <app.config>nsplaydev/nsplaydev.sim.Ipad5thgeneration.ios10.properties</app.config>
@@ -193,6 +200,13 @@
             <id>nsplaydev.sim.iphone7.ios11</id>
             <properties>
                 <app.config>nsplaydev/nsplaydev.sim.iphone7.ios11.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplaydev.sim.iphone7.ios12</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.sim.iphone7.ios12.properties</app.config>
                 <testsuite>nsplaydev</testsuite>
             </properties>
         </profile>
