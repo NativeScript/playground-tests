@@ -4,3 +4,4 @@ test-output
 target*/
 out
 playground-tests.zip
+.DS_Store
