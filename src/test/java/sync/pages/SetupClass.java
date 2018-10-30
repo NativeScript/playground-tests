@@ -41,7 +41,7 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class SetupClass extends BasePage {
-public  Screen s = new Screen();;
+public  Screen s = Screen.all();;
 public String liveSyncConnectionString;
 public String deviceId = "";
 public Sikuli sikuli;
