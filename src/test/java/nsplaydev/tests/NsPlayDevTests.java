@@ -181,6 +181,7 @@ public class NsPlayDevTests extends MobileTest {
             componentsPage = new ComponentsPage(false);
             this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
         }
+
         componentsPage.navigate("DatePicker");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("DatePicker");
         this.assertScreen("nsplaydev-datepicker-view", this.settings.shortTimeout);
@@ -205,6 +206,7 @@ public class NsPlayDevTests extends MobileTest {
         } else {
             this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
         }
+
         ComponentsPage componentsPage = new ComponentsPage(true);
         this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout, 20);
     }
@@ -238,7 +240,6 @@ public class NsPlayDevTests extends MobileTest {
         componentsPage.waitForElement(8000);
         if (settings.deviceName.contains("Api19")) {
             this.assertScreen("nsplaydev-listview-view_api19", this.settings.shortTimeout);
-
         } else {
             this.assertScreen("nsplaydev-listview-view", this.settings.shortTimeout);
         }
@@ -302,7 +303,6 @@ public class NsPlayDevTests extends MobileTest {
         componentsVisualizationPage.waitForElement(6000);
         if (componentsVisualizationPage.checkIfElementisShown("Allow")) {
             componentsVisualizationPage.navigate("Allow");
-
         } else {
             try {
                 if (ExpectedConditions.alertIsPresent() != null) {
@@ -312,11 +312,12 @@ public class NsPlayDevTests extends MobileTest {
                 this.log.error(e.getMessage());
             }
         }
+
         componentsVisualizationPage.waitForElement(2000);
         if (componentsVisualizationPage.checkIfElementisShown("OK")) {
             componentsVisualizationPage.navigate("OK");
-
         }
+
         componentsVisualizationPage.waitForElement(4000);
         this.assertScreen("nsplaydev-location-working-view", this.settings.shortTimeout, 20);
     }
@@ -372,6 +373,7 @@ public class NsPlayDevTests extends MobileTest {
                 componentsVisualizationPage.navigate("Allow");
             }
         }
+
         componentsVisualizationPage.waitForElement(2000);
         componentsVisualizationPage.navigate("Check for camera");
         componentsVisualizationPage.waitForElement(2000);
@@ -404,15 +406,18 @@ public class NsPlayDevTests extends MobileTest {
                 new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 80), (photos.getCenter().y + 80)))).perform();
                 //this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 80, 500);
             }
+
             componentsVisualizationPage.waitForElement(2000);
         } else {
             if (find.byText("Allow") != null) {
                 componentsVisualizationPage.navigate("Allow");
             }
+
             componentsVisualizationPage.waitForElement(2000);
             if (find.byText("Next") != null) {
                 componentsVisualizationPage.navigate("Next");
             }
+
             componentsVisualizationPage.waitForElement(2000);
             componentsVisualizationPage.navigateBackPage();
             componentsVisualizationPage.waitForElement(3000);
@@ -423,23 +428,28 @@ public class NsPlayDevTests extends MobileTest {
             if (this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).size() > 0) {
                 this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).get(0).click();
             }
+
             if (this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).size() > 0) {
                 this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).get(0).click();
             }
+
             componentsVisualizationPage.waitForElement(3000);
+
             if (this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).size() > 0) {
                 this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).get(0).click();
             }
+
             if (this.client.driver.findElements(By.xpath("//*[@resource-id=\"com.android.camera:id/btn_done\"]")).size() > 0) {
                 this.client.driver.findElements(By.xpath("//*[@resource-id=\"com.android.camera:id/btn_done\"]")).get(0).click();
             }
+
             componentsVisualizationPage.waitForElement(2000);
         }
+
         if (settings.deviceType == settings.deviceType.Simulator) {
             this.assertScreen("nsplaydev-camera-working-view-ios", this.settings.shortTimeout);
         } else {
             this.assertScreen("nsplaydev-camera-working-view-android", this.settings.shortTimeout, 44);
-
         }
     }
 

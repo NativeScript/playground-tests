@@ -13,7 +13,6 @@ public class InfoPage extends BasePage {
         UIElement browse = this.wait.waitForVisible(this.locators.findByTextLocator("Info", true));
         Assert.assertNotNull(browse, "Info page not loaded!");
         this.log.info("Info page loaded.");
-
     }
 
     /**

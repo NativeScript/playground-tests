@@ -5,7 +5,6 @@ import functional.tests.core.mobile.basepage.BasePage;
 import functional.tests.core.mobile.element.UIElement;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.testng.Assert;
 
@@ -16,12 +15,10 @@ public class ComponentsPage extends BasePage {
         UIElement browse = null;
         UIElement detailsElement = this.find.byText("Details");
         if (detailsElement != null) {
-            detailsElement = null;
             this.navigateBack();
             this.waitForElement(1000);
             detailsElement = this.find.byText("Details");
             if (detailsElement != null) {
-                detailsElement = null;
                 this.navigateBack();
                 this.waitForElement(1000);
                 browse = this.find.byText("Components");
@@ -34,37 +31,14 @@ public class ComponentsPage extends BasePage {
 
         if (isScrolled) {
             UIElement location = this.find.byText("Camera");
-            if (location == null) {
+            while (location == null) {
                 this.scrollDown();
                 location = this.find.byText("Camera");
-                if (location == null) {
-                    this.scrollDown();
-                    location = this.find.byText("Camera");
-                    if (location == null) {
-                        this.scrollDown();
-                        location = this.find.byText("Camera");
-                        if (location == null) {
-                            this.scrollDown();
-                            location = this.find.byText("Camera");
-                            if (location == null) {
-                                this.scrollDown();
-                                location = this.find.byText("Camera");
-                                if (location == null) {
-                                    this.scrollDown();
-                                    location = this.find.byText("Camera");
-                                    if (location == null) {
-                                        this.scrollDown();
-                                        location = this.find.byText("Camera");
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
             }
-            location = this.find.byText("Camera");
+
             Assert.assertNotNull(location, "Page Not Scrolled correctly!");
         }
+
         Assert.assertNotNull(browse, "Components page not loaded!");
         this.log.info("Components page loaded.");
     }
@@ -73,7 +47,6 @@ public class ComponentsPage extends BasePage {
      * Verify home page loaded.
      */
     public void navigate(String button) throws InterruptedException {
-
         UIElement buttonToClick = this.find.byText(button);
         if (buttonToClick != null) {
             new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((buttonToClick.getCenter().x), (buttonToClick.getCenter().y)))).perform();
@@ -83,7 +56,6 @@ public class ComponentsPage extends BasePage {
         } else {
             this.log.info("Element " + button + " not found! Not able to click it!");
         }
-
     }
 
     public boolean checkIfElementisShown(String elementText) {
@@ -95,6 +67,7 @@ public class ComponentsPage extends BasePage {
         } else {
             this.log.info("Item " + elementText + " not found!");
         }
+
         return isElementFound;
     }
 

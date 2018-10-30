@@ -35,20 +35,18 @@ public class ComponentsVisualizationPage extends BasePage {
     public boolean checkIfElementisShown(String elementText) {
         boolean isElementFound = false;
         UIElement element = this.find.byText(elementText);
-        if(element != null)
-        {
+        if (element != null) {
             isElementFound = true;
             this.log.info("Item " + elementText + " found!");
-        }
-        else
-        {
+        } else {
             this.log.info("Item " + elementText + " not found!");
         }
+
         return isElementFound;
     }
 
     public void waitForElement(int time) throws InterruptedException {
-        synchronized(this.wait) {
+        synchronized (this.wait) {
             this.wait.wait(time);
         }
     }

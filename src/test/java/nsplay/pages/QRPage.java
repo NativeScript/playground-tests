@@ -9,15 +9,12 @@ public class QRPage extends BasePage {
     public QRPage() {
         super();
         UIElement browse = null;
-        if(settings.deviceType == settings.deviceType.iOS  ) {
+
+        if (settings.deviceType == settings.deviceType.iOS) {
             browse = this.wait.waitForVisible(this.locators.findByTextLocator("Close", true));
-        }
-        else if(settings.deviceType == settings.deviceType.Android)
-        {
+        } else if (settings.deviceType == settings.deviceType.Android) {
             browse = this.wait.waitForVisible(this.locators.findByTextLocator("Close", true));
-        }
-        else if(settings.deviceType == settings.deviceType.Emulator)
-        {
+        } else if (settings.deviceType == settings.deviceType.Emulator) {
             browse = this.wait.waitForVisible(this.locators.findByTextLocator("Place a barcode inside the viewfinder rectangle to scan it.", true));
         }
 
