@@ -326,9 +326,13 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Location");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        // Temporary image check till find workaround for Google Play services
-        this.assertScreen("nsplaydev-location-details-view_temp", this.settings.shortTimeout);
-        // this.assertScreen("nsplaydev-location-details-view", this.settings.shortTimeout);
+        if (settings.deviceName.contains("Api24")) {
+            // Temporary image check for api24 till find workaround for Google Play services
+            this.assertScreen("nsplaydev-location-details-view_temp", this.settings.shortTimeout);
+        }else {
+            this.assertScreen("nsplaydev-location-details-view", this.settings.shortTimeout);
+        }
+
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("Location");
         componentsVisualizationPage2.navigateBackPage();
