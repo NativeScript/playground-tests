@@ -732,7 +732,7 @@ public class CodeEditorClass extends BasePage {
             this.setupClass.s.click(new Pattern("devicename.png").targetOffset(-29,39));
             this.setupClass.wait(1000);
             this.setupClass.s.doubleClick(new Pattern("devicename.png").targetOffset(-43,76));
-            for (int i=34; i>0; i--)
+            for (int i=36; i>0; i--)
             {
                 this.setupClass.s.type(Key.DOWN, KeyModifier.SHIFT);
             }

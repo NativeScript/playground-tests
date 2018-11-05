@@ -107,51 +107,54 @@ public class  NSSyncTests extends MobileTest {
             osVersionExpected ="iOS ";
             osVersionExpected = osVersionExpected+String.valueOf(this.context.client.driver.getCapabilities().getCapability("platformVersion"));
         }
-        String previewAppVersionExpected = "1.14.0";
+        String previewAppVersionExpected = "1.16.0";
 
         String runtimeVersionExpected="";
         if(settings.deviceType == settings.deviceType.Emulator) {
 
-            runtimeVersionExpected ="4.2.0";
+            runtimeVersionExpected ="5.0.0";
         }
         else {
-            runtimeVersionExpected = "4.2.0";
+            runtimeVersionExpected = "5.0.0";
         }
 
         String componentVersionsExpected = "{\n" +
-                "  \"@angular/animations\": \"6.1.1\",\n" +
-                "  \"@angular/common\": \"6.1.1\",\n" +
-                "  \"@angular/compiler\": \"6.1.1\",\n" +
-                "  \"@angular/core\": \"6.1.1\",\n" +
-                "  \"@angular/forms\": \"6.1.1\",\n" +
-                "  \"@angular/http\": \"6.1.1\",\n" +
-                "  \"@angular/platform-browser\": \"6.1.1\",\n" +
-                "  \"@angular/platform-browser-dynamic\": \"6.1.1\",\n" +
-                "  \"@angular/router\": \"6.1.1\",\n" +
+                "  \"@angular/animations\": \"6.1.10\",\n" +
+                "  \"@angular/common\": \"6.1.10\",\n" +
+                "  \"@angular/compiler\": \"6.1.10\",\n" +
+                "  \"@angular/core\": \"6.1.10\",\n" +
+                "  \"@angular/forms\": \"6.1.10\",\n" +
+                "  \"@angular/http\": \"6.1.10\",\n" +
+                "  \"@angular/platform-browser\": \"6.1.10\",\n" +
+                "  \"@angular/platform-browser-dynamic\": \"6.1.10\",\n" +
+                "  \"@angular/router\": \"6.1.10\",\n" +
+                "  \"@progress-nativechat/nativescript-nativechat\": \"2.0.3\",\n" +
                 "  \"kinvey-nativescript-sdk\": \"3.11.6\",\n" +
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
-                "  \"nativescript-angular\": \"6.1.0\",\n" +
+                "  \"nativescript-angular\": \"6.2.0\",\n" +
                 "  \"nativescript-background-http\": \"3.3.0\",\n" +
-                "  \"nativescript-camera\": \"4.0.2\",\n" +
-                "  \"nativescript-fresco\": \"4.0.0\",\n" +
-                "  \"nativescript-geolocation\": \"4.3.0\",\n" +
+                "  \"nativescript-camera\": \"4.0.3\",\n" +
+                "  \"nativescript-fresco\": \"5.1.0\",\n" +
+                "  \"nativescript-geolocation\": \"4.3.1\",\n" +
+                "  \"nativescript-imagepicker\": \"6.0.4\",\n" +
                 "  \"nativescript-intl\": \"3.0.0\",\n" +
                 "  \"nativescript-iqkeyboardmanager\": \"1.3.0\",\n" +
-                "  \"nativescript-social-share\": \"1.5.0\",\n" +
+                "  \"nativescript-social-share\": \"1.5.1\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.4\",\n" +
-                "  \"nativescript-ui-autocomplete\": \"3.8.0\",\n" +
-                "  \"nativescript-ui-calendar\": \"3.7.0\",\n" +
-                "  \"nativescript-ui-chart\": \"3.7.0\",\n" +
-                "  \"nativescript-ui-dataform\": \"3.6.2\",\n" +
-                "  \"nativescript-ui-gauge\": \"3.6.0\",\n" +
-                "  \"nativescript-ui-listview\": \"3.5.11\",\n" +
-                "  \"nativescript-ui-sidedrawer\": \"4.2.1\",\n" +
-                "  \"nativescript-vue\": \"1.3.1\",\n" +
+                "  \"nativescript-ui-autocomplete\": \"3.10.1\",\n" +
+                "  \"nativescript-ui-calendar\": \"3.9.0\",\n" +
+                "  \"nativescript-ui-chart\": \"3.9.1\",\n" +
+                "  \"nativescript-ui-dataform\": \"3.7.4\",\n" +
+                "  \"nativescript-ui-gauge\": \"3.7.1\",\n" +
+                "  \"nativescript-ui-listview\": \"3.7.2\",\n" +
+                "  \"nativescript-ui-sidedrawer\": \"5.0.0\",\n" +
+                "  \"nativescript-vue\": \"2.0.2\",\n" +
                 "  \"reflect-metadata\": \"0.1.12\",\n" +
                 "  \"rxjs\": \"6.2.2\",\n" +
-                "  \"tns-core-modules\": \"4.2.0\",\n" +
+                "  \"tns-core-modules\": \"5.0.1\"," +
                 "  \"zone.js\": \"0.8.26\"\n" +
                 "}";
+
         codeEditor.assertDeviceTab(this.deviceName, modelExpected, osVersionExpected, previewAppVersionExpected, runtimeVersionExpected, componentVersionsExpected);
     }
     @Test(description = "Verify XML/HTML valid code change is apllied!", groups = {"android", "ios"})
