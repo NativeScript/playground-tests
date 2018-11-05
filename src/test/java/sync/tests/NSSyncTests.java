@@ -151,7 +151,7 @@ public class  NSSyncTests extends MobileTest {
                 "  \"nativescript-vue\": \"2.0.2\",\n" +
                 "  \"reflect-metadata\": \"0.1.12\",\n" +
                 "  \"rxjs\": \"6.2.2\",\n" +
-                "  \"tns-core-modules\": \"5.0.1\"\n" +
+                "  \"tns-core-modules\": \"5.0.1\",\n" +
                 "  \"zone.js\": \"0.8.26\"\n" +
                 "}";
 
