@@ -480,6 +480,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(1000);
         codeEditor.save();
         this.setupClass.wait(4000);
+        this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterValidCode");
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
 
     }
