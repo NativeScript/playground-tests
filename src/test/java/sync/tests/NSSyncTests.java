@@ -107,7 +107,15 @@ public class  NSSyncTests extends MobileTest {
             osVersionExpected ="iOS ";
             osVersionExpected = osVersionExpected+String.valueOf(this.context.client.driver.getCapabilities().getCapability("platformVersion"));
         }
-        String previewAppVersionExpected = "1.16.0";
+
+        String previewAppVersionExpected="";
+        if(settings.deviceType == settings.deviceType.Emulator) {
+
+            previewAppVersionExpected ="1.16.0";
+        }
+        else {
+            previewAppVersionExpected = "1.16.1";
+        }
 
         String runtimeVersionExpected="";
         if(settings.deviceType == settings.deviceType.Emulator) {
