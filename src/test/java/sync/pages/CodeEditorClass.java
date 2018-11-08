@@ -116,7 +116,7 @@ public class CodeEditorClass extends BasePage {
             this.deleteAllCode();
             this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />`\n");
+            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
@@ -281,7 +281,7 @@ public class CodeEditorClass extends BasePage {
             this.deleteAllCode();
             this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />`\n");
+            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
@@ -397,7 +397,7 @@ public class CodeEditorClass extends BasePage {
 
             this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />`\n");
+            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
@@ -505,7 +505,7 @@ public class CodeEditorClass extends BasePage {
             this.deleteAllCode();
             this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />`\n");
+            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
@@ -616,7 +616,7 @@ public class CodeEditorClass extends BasePage {
             this.deleteAllCode();
             this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />`\n");
+            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
@@ -728,7 +728,7 @@ public class CodeEditorClass extends BasePage {
             this.deleteAllCode();
             this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />`\n");
+            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
