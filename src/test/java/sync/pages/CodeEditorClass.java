@@ -129,11 +129,13 @@ public class CodeEditorClass extends BasePage {
             {
                 this.typeCode("</StackLayoutggggggggggg\n");
             }
-
+            this.typeCode(Key.ENTER);
             this.typeCode("</ScrollView>\n");
+            this.typeCode(Key.ENTER);
             this.typeCode("</Page>\n");
+            this.typeCode(Key.ENTER);
             this.typeCode("</template>\n");
-            this.typeCode("\n");
+            this.typeCode(Key.ENTER);
 
             this.typeCode("<script>\n");
 
@@ -150,6 +152,7 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(Key.DOWN);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
             this.typeCode("</script>\n");
             this.typeCode(Key.ENTER);
 
@@ -276,29 +279,66 @@ public class CodeEditorClass extends BasePage {
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("const Vue = require(\"nativescript-vue\");\n");
-
-            this.typeCode("new Vue({\n");
-            this.typeCode("template: `\n");
+            this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
+            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />`\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
             this.typeCode("</StackLayout>\n");
+            this.typeCode(Key.ENTER);
             this.typeCode("</ScrollView>\n");
+            this.typeCode(Key.ENTER);
             this.typeCode("</Page>\n");
-            this.typeCode("`,\n");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</template>\n");
+            this.typeCode(Key.ENTER);
+
+            this.typeCode("<script>\n");
+
+            this.typeCode("export default {");
+            this.typeCode(Key.ENTER);
             this.typeCode("mounted: function () {\n");
             this.typeCode("console.log(\"log\");\n");
             this.typeCode(Key.DOWN);
-            this.typeCode(Key.DOWN);
+            this.typeCode(",");
+
+            if(isValid==false && this.setupClass.typeOfProject.equals("vue"))
+            {
+                this.typeCode("}");
+            }
+
+            this.typeCode("data () {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("return {");
             this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
+            this.typeCode(";");
             this.typeCode(Key.DOWN);
-            this.typeCode(".$start();\n");
+            this.typeCode(",");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</script>\n");
+            this.typeCode(Key.ENTER);
+
+            this.typeCode("<style scoped>\n");
+            this.typeCode(".home-panel {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("vertical-align: center;\n");
+            this.typeCode("font-size: 20;\n");
+            this.typeCode("margin: 15;\n");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode(".description-label {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("margin-bottom: 15;");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</style>\n");
         }
-        if(isValid==false)
+        if(isValid==false && !this.setupClass.typeOfProject.equals("vue"))
         {
             this.typeCode("}");
         }
@@ -354,27 +394,58 @@ public class CodeEditorClass extends BasePage {
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("const Vue = require(\"nativescript-vue\");\n");
 
-            this.typeCode("new Vue({\n");
-            this.typeCode("template: `\n");
+            this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
+            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />`\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
             this.typeCode("</StackLayout>\n");
+            this.typeCode(Key.ENTER);
             this.typeCode("</ScrollView>\n");
+            this.typeCode(Key.ENTER);
             this.typeCode("</Page>\n");
-            this.typeCode("`,\n");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</template>\n");
+            this.typeCode(Key.ENTER);
+
+            this.typeCode("<script>\n");
+            this.typeCode("export default {");
+            this.typeCode(Key.ENTER);
             this.typeCode("mounted: function () {\n");
             this.typeCode("throw new Error(\"Error\");\n");
             this.typeCode(Key.DOWN);
-            this.typeCode(Key.DOWN);
+            this.typeCode(",");
+            this.typeCode("data () {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("return {");
             this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
+            this.typeCode(";");
             this.typeCode(Key.DOWN);
-            this.typeCode(".$start();\n");
+            this.typeCode(",");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</script>\n");
+            this.typeCode(Key.ENTER);
+
+            this.typeCode("<style scoped>\n");
+            this.typeCode(".home-panel {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("vertical-align: center;\n");
+            this.typeCode("font-size: 20;\n");
+            this.typeCode("margin: 15;\n");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode(".description-label {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("margin-bottom: 15;");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</style>\n");
         }
         this.setupClass.wait(2000);
     }
@@ -432,27 +503,57 @@ public class CodeEditorClass extends BasePage {
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("const Vue = require(\"nativescript-vue\");\n");
-
-            this.typeCode("new Vue({\n");
-            this.typeCode("template: `\n");
+            this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
+            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />`\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
             this.typeCode("</StackLayout>\n");
+            this.typeCode(Key.ENTER);
             this.typeCode("</ScrollView>\n");
+            this.typeCode(Key.ENTER);
             this.typeCode("</Page>\n");
-            this.typeCode("`,\n");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</template>\n");
+            this.typeCode(Key.ENTER);
+
+            this.typeCode("<script>\n");
+            this.typeCode("export default {");
+            this.typeCode(Key.ENTER);
             this.typeCode("mounted: function () {\n");
             this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");\n");
             this.typeCode(Key.DOWN);
-            this.typeCode(Key.DOWN);
+            this.typeCode(",");
+            this.typeCode("data () {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("return {");
             this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
+            this.typeCode(";");
             this.typeCode(Key.DOWN);
-            this.typeCode(".$start();\n");
+            this.typeCode(",");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</script>\n");
+            this.typeCode(Key.ENTER);
+
+            this.typeCode("<style scoped>\n");
+            this.typeCode(".home-panel {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("vertical-align: center;\n");
+            this.typeCode("font-size: 20;\n");
+            this.typeCode("margin: 15;\n");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode(".description-label {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("margin-bottom: 15;");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</style>\n");
         }
 
         this.setupClass.wait(2000);
@@ -513,28 +614,58 @@ public class CodeEditorClass extends BasePage {
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("const Vue = require(\"nativescript-vue\");\n");
-
-            this.typeCode("new Vue({\n");
-            this.typeCode("template: `\n");
+            this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
+            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />`\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
             this.typeCode("</StackLayout>\n");
+            this.typeCode(Key.ENTER);
             this.typeCode("</ScrollView>\n");
+            this.typeCode(Key.ENTER);
             this.typeCode("</Page>\n");
-            this.typeCode("`,\n");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</template>\n");
+            this.typeCode(Key.ENTER);
+
+            this.typeCode("<script>\n");
+            this.typeCode("export default {");
+            this.typeCode(Key.ENTER);
             this.typeCode("mounted: function () {\n");
             this.typeCode("var fileManager = NSFileManager.defaultManager;\n");
             this.typeCode("fileManager.contentsOfDirectoryAtPathError(\"/not-existing-path\");\n");
             this.typeCode(Key.DOWN);
-            this.typeCode(Key.DOWN);
+            this.typeCode(",");
+            this.typeCode("data () {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("return {");
             this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
+            this.typeCode(";");
             this.typeCode(Key.DOWN);
-            this.typeCode(".$start();\n");
+            this.typeCode(",");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</script>\n");
+            this.typeCode(Key.ENTER);
+
+            this.typeCode("<style scoped>\n");
+            this.typeCode(".home-panel {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("vertical-align: center;\n");
+            this.typeCode("font-size: 20;\n");
+            this.typeCode("margin: 15;\n");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode(".description-label {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("margin-bottom: 15;");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</style>\n");
         }
 
         this.setupClass.wait(2000);
@@ -595,28 +726,58 @@ public class CodeEditorClass extends BasePage {
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("const Vue = require(\"nativescript-vue\");\n");
-
-            this.typeCode("new Vue({\n");
-            this.typeCode("template: `\n");
+            this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
+            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />`\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
             this.typeCode("</StackLayout>\n");
+            this.typeCode(Key.ENTER);
             this.typeCode("</ScrollView>\n");
+            this.typeCode(Key.ENTER);
             this.typeCode("</Page>\n");
-            this.typeCode("`,\n");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</template>\n");
+            this.typeCode(Key.ENTER);
+
+            this.typeCode("<script>\n");
+            this.typeCode("export default {");
+            this.typeCode(Key.ENTER);
             this.typeCode("mounted: function () {\n");
             this.typeCode("var arr = new NSArray();\n");
             this.typeCode("var o = arr.objectAtIndex(\"5\");\n");
             this.typeCode(Key.DOWN);
-            this.typeCode(Key.DOWN);
+            this.typeCode(",");
+            this.typeCode("data () {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("return {");
             this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
+            this.typeCode(";");
             this.typeCode(Key.DOWN);
-            this.typeCode(".$start();\n");
+            this.typeCode(",");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</script>\n");
+            this.typeCode(Key.ENTER);
+
+            this.typeCode("<style scoped>\n");
+            this.typeCode(".home-panel {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("vertical-align: center;\n");
+            this.typeCode("font-size: 20;\n");
+            this.typeCode("margin: 15;\n");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode(".description-label {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("margin-bottom: 15;");
+            this.typeCode(Key.DOWN);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</style>\n");
         }
 
         this.setupClass.wait(2000);
