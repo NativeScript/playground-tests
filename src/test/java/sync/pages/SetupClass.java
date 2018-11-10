@@ -72,15 +72,15 @@ public MobileSettings mobileSettings;
         String currentPath = System.getProperty("user.dir");
         ImagePathDirectory = currentPath+"/src/test/java/sync/pages/images.sikuli";
         this.folderForScreenshots = currentPath+"/target/surefire-reports/screenshots/";
-        //this.folderForDesktopScreenshots = currentPath+"/temp/";
-        //File directory = new File(folderForDesktopScreenshots);
-       // if (!directory.exists()){
-        //    directory.mkdir();
-       // }
-       // else{
-       //     directory.delete();
-       //     directory.mkdir();
-       // }
+        this.folderForDesktopScreenshots = currentPath+"/temp/";
+        File directory = new File(folderForDesktopScreenshots);
+        if (!directory.exists()){
+            directory.mkdir();
+        }
+        else{
+            directory.delete();
+            directory.mkdir();
+        }
         this.client.driver.removeApp("org.nativescript.preview");
         this.wait(2000);
         if(settings.deviceType == settings.deviceType.Simulator)
