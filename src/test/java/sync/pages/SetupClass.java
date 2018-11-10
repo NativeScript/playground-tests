@@ -58,8 +58,8 @@ public App browserAPP;
 public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","ng");
 public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome");
 public String folderForScreenshots;
-//public String folderForDesktopScreenshots;
-//public Integer imageNumber = 0;
+public String folderForDesktopScreenshots;
+public Integer imageNumber = 0;
 public MobileSettings mobileSettings;
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
@@ -646,46 +646,53 @@ public MobileSettings mobileSettings;
     }
 
     public BufferedImage getScreenShotForSikuli() {
-            //Process p = Runtime.getRuntime().exec("screencapture -S -x -r -t png " + this.folderForDesktopScreenshots + this.imageNumber + ".png");
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice[] screens = ge.getScreenDevices();
-
-        Rectangle allScreenBounds = new Rectangle();
-        for (GraphicsDevice screen : screens) {
-            Rectangle screenBounds = screen.getDefaultConfiguration().getBounds();
-
-            allScreenBounds.width += screenBounds.width;
-            allScreenBounds.height = Math.max(allScreenBounds.height, screenBounds.height);
-        }
-
-        Robot robot = null;
+        Process p = null;
         try {
-            robot = new Robot();
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
-        BufferedImage screenShot = robot.createScreenCapture(allScreenBounds);
-        File f = new File(this.folderForScreenshots + "test" + ".png");
-        try {
-            ImageIO.write(screenShot, "png", f);
+            p = Runtime.getRuntime().exec("screencapture -S -x -r -t png " + this.folderForDesktopScreenshots + this.imageNumber + ".png");
+            this.imageNumber++;
+            p = Runtime.getRuntime().exec("screencapture -S -x -r -t png " + this.folderForDesktopScreenshots + this.imageNumber + ".png");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return screenShot;
-            //try {
-                //p.waitFor();
-            //} catch (InterruptedException e) {
-                //e.printStackTrace();
-
-
-//        File screenFile = new File(this.folderForDesktopScreenshots + this.imageNumber + ".png");
-//        this.imageNumber++;
+//        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+//        GraphicsDevice[] screens = ge.getScreenDevices();
+//
+//        Rectangle allScreenBounds = new Rectangle();
+//        for (GraphicsDevice screen : screens) {
+//            Rectangle screenBounds = screen.getDefaultConfiguration().getBounds();
+//
+//            allScreenBounds.width += screenBounds.width;
+//            allScreenBounds.height = Math.max(allScreenBounds.height, screenBounds.height);
+//        }
+//
+//        Robot robot = null;
 //        try {
-//            return ImageIO.read(screenFile);
+//            robot = new Robot();
+//        } catch (AWTException e) {
+//            e.printStackTrace();
+//        }
+//        BufferedImage screenShot = robot.createScreenCapture(allScreenBounds);
+//        File f = new File(this.folderForScreenshots + "test" + ".png");
+//        try {
+//            ImageIO.write(screenShot, "png", f);
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-//        return null;
+//        return screenShot;
+        try {
+            p.waitFor();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        File screenFile = new File(this.folderForDesktopScreenshots + this.imageNumber + ".png");
+        this.imageNumber++;
+        try {
+            return ImageIO.read(screenFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static String getImageFullName(String imageFolderPath, String imageName) {
