@@ -58,8 +58,8 @@ public App browserAPP;
 public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","ng");
 public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome");
 public String folderForScreenshots;
-public String folderForDesktopScreenshots;
-public Integer imageNumber = 0;
+//public String folderForDesktopScreenshots;
+//public Integer imageNumber = 0;
 public MobileSettings mobileSettings;
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
@@ -72,15 +72,15 @@ public MobileSettings mobileSettings;
         String currentPath = System.getProperty("user.dir");
         ImagePathDirectory = currentPath+"/src/test/java/sync/pages/images.sikuli";
         this.folderForScreenshots = currentPath+"/target/surefire-reports/screenshots/";
-        this.folderForDesktopScreenshots = currentPath+"/temp/";
-        File directory = new File(folderForDesktopScreenshots);
-        if (!directory.exists()){
-            directory.mkdir();
-        }
-        else{
-            directory.delete();
-            directory.mkdir();
-        }
+        //this.folderForDesktopScreenshots = currentPath+"/temp/";
+        //File directory = new File(folderForDesktopScreenshots);
+       // if (!directory.exists()){
+        //    directory.mkdir();
+       // }
+       // else{
+       //     directory.delete();
+       //     directory.mkdir();
+       // }
         this.client.driver.removeApp("org.nativescript.preview");
         this.wait(2000);
         if(settings.deviceType == settings.deviceType.Simulator)
@@ -646,27 +646,46 @@ public MobileSettings mobileSettings;
     }
 
     public BufferedImage getScreenShotForSikuli() {
-        Process p = null;
+            //Process p = Runtime.getRuntime().exec("screencapture -S -x -r -t png " + this.folderForDesktopScreenshots + this.imageNumber + ".png");
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice[] screens = ge.getScreenDevices();
+
+        Rectangle allScreenBounds = new Rectangle();
+        for (GraphicsDevice screen : screens) {
+            Rectangle screenBounds = screen.getDefaultConfiguration().getBounds();
+
+            allScreenBounds.width += screenBounds.width;
+            allScreenBounds.height = Math.max(allScreenBounds.height, screenBounds.height);
+        }
+
+        Robot robot = null;
         try {
-            p = Runtime.getRuntime().exec("screencapture -C -x -r -t png " + this.folderForDesktopScreenshots + this.imageNumber + ".png");
+            robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+        BufferedImage screenShot = robot.createScreenCapture(allScreenBounds);
+        File f = new File(this.folderForScreenshots + "test" + ".png");
+        try {
+            ImageIO.write(screenShot, "png", f);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try {
-                p.waitFor();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        return screenShot;
+            //try {
+                //p.waitFor();
+            //} catch (InterruptedException e) {
+                //e.printStackTrace();
 
 
-        File screenFile = new File(this.folderForDesktopScreenshots + this.imageNumber + ".png");
-        this.imageNumber++;
-        try {
-            return ImageIO.read(screenFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+//        File screenFile = new File(this.folderForDesktopScreenshots + this.imageNumber + ".png");
+//        this.imageNumber++;
+//        try {
+//            return ImageIO.read(screenFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
     }
 
     public static String getImageFullName(String imageFolderPath, String imageName) {
