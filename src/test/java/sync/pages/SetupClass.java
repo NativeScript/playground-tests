@@ -648,9 +648,8 @@ public MobileSettings mobileSettings;
     public BufferedImage getScreenShotForSikuli() {
         Process p = null;
         try {
-            p = Runtime.getRuntime().exec("screencapture -C -x " + this.folderForDesktopScreenshots + this.imageNumber + ".png");
-            this.imageNumber++;
             p = Runtime.getRuntime().exec("screencapture -S -x -r -t png " + this.folderForDesktopScreenshots + this.imageNumber + ".png");
+            this.wait(10000);
         } catch (IOException e) {
             e.printStackTrace();
         }
