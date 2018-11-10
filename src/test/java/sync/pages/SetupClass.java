@@ -40,6 +40,9 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
 public class SetupClass extends BasePage {
 public  Screen s = Screen.all();;
 public String liveSyncConnectionString;
@@ -55,6 +58,8 @@ public App browserAPP;
 public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","ng");
 public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome");
 public String folderForScreenshots;
+//public String folderForDesktopScreenshots;
+//public Integer imageNumber = 0;
 public MobileSettings mobileSettings;
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
@@ -67,6 +72,15 @@ public MobileSettings mobileSettings;
         String currentPath = System.getProperty("user.dir");
         ImagePathDirectory = currentPath+"/src/test/java/sync/pages/images.sikuli";
         this.folderForScreenshots = currentPath+"/target/surefire-reports/screenshots/";
+        //this.folderForDesktopScreenshots = currentPath+"/temp/";
+        //File directory = new File(folderForDesktopScreenshots);
+       // if (!directory.exists()){
+        //    directory.mkdir();
+       // }
+       // else{
+       //     directory.delete();
+       //     directory.mkdir();
+       // }
         this.client.driver.removeApp("org.nativescript.preview");
         this.wait(2000);
         if(settings.deviceType == settings.deviceType.Simulator)
@@ -132,10 +146,10 @@ public MobileSettings mobileSettings;
         if(s.exists("devicesLinkMessage.png") == null) {
             if(this.browser.equals("Safari"))
             {
-                s.click("qrcodeSafari.png");
+                clickOnDesktop("qrcodeSafari.png");
             }
             else {
-                s.click(new Pattern("qrcode.png").similar(0.63f));
+                clickOnDesktop("qrcode.png", 0.63f);
             }
         }
         this.wait(3000);
@@ -336,7 +350,7 @@ public MobileSettings mobileSettings;
 
     public UIRectangle findImageOnScreen(String imageName, double similarity) {
         BufferedImage screenBufferImage = this.device.getScreenshot();
-        Finder finder = this.getFinder(screenBufferImage, imageName, (float)similarity);
+        Finder finder = this.getFinder(screenBufferImage, imageName, (float)similarity, false);
         Match searchedImageMatch = finder.next();
         Point point;
         if(searchedImageMatch != null) {
@@ -349,9 +363,17 @@ public MobileSettings mobileSettings;
         Rectangle rectangle = this.getRectangle(point, screenBufferImage.getWidth());
         return new UIRectangle(rectangle);
     }
-    private Finder getFinder(BufferedImage screenBufferImage, String imageName, float similarity) {
+
+    private Finder getFinder(BufferedImage screenBufferImage, String imageName, float similarity, boolean isDesktop) {
         ImageUtils var10001 = this.imageUtils;
-        BufferedImage searchedBufferImage = this.imageUtils.getImageFromFile(ImageUtils.getImageFullName(this.getImageFolderPath(this.appName), imageName));
+        BufferedImage searchedBufferImage = null;
+        if(!isDesktop) {
+            searchedBufferImage = this.imageUtils.getImageFromFile(this.getImageFullName(this.getImageFolderPath(this.appName), imageName));
+        }
+        else
+        {
+            searchedBufferImage = this.imageUtils.getImageFromFile(this.getImageFullName(this.ImagePathDirectory, imageName));
+        }
         Image searchedImage = new Image(searchedBufferImage);
         Pattern searchedImagePattern = new Pattern(searchedImage);
         Image mainImage = new Image(screenBufferImage);
@@ -360,6 +382,7 @@ public MobileSettings mobileSettings;
         finder.findAll(searchedImagePattern);
         return finder;
     }
+
     protected String getImageFolderPath(String appName) {
         String imageFolderPath = this.settings.screenshotResDir + File.separator + appName + File.separator + this.settings.deviceName;
         FileSystem.ensureFolderExists(imageFolderPath);
@@ -444,7 +467,7 @@ public MobileSettings mobileSettings;
 
     public void getScreenShot(String screenshotName){
         try {
-            Process p = Runtime.getRuntime().exec("screencapture -C -x "+this.folderForScreenshots+screenshotName+".png");
+            Process p = Runtime.getRuntime().exec("screencapture -C -x " + this.folderForScreenshots + screenshotName + ".png");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -588,4 +611,87 @@ public MobileSettings mobileSettings;
         context.client.driver = new AndroidDriver(context.server.service.getUrl(), newAndroidCapabilities.loadDesiredCapabilities(context.settings));
 
     }
+
+    public Region findImageOnDesktopScreen(String imageName, double similarity) {
+        BufferedImage screenBufferImage = getScreenShotForSikuli();
+
+        Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity, true);
+
+        Match searchedImageMatch = finder.next();
+        Point point = searchedImageMatch.getCenter().getPoint();
+
+        Rectangle rectangle =  new Rectangle(point.x , point.y , 0, 0);
+
+        return new Region(rectangle);
+    }
+
+    public void clickOnDesktop(String imageName, double similarity){
+        Region objectToClick = findImageOnDesktopScreen(imageName, similarity);
+
+        try {
+            this.s.click(objectToClick);
+        } catch (FindFailed findFailed) {
+            findFailed.printStackTrace();
+        }
+    }
+
+    public void clickOnDesktop(String imageName){
+        Region objectToClick = new Region(findImageOnDesktopScreen(imageName, 0.67));
+
+        try {
+            this.s.click(objectToClick);
+        } catch (FindFailed findFailed) {
+            findFailed.printStackTrace();
+        }
+    }
+
+    public BufferedImage getScreenShotForSikuli() {
+            //Process p = Runtime.getRuntime().exec("screencapture -S -x -r -t png " + this.folderForDesktopScreenshots + this.imageNumber + ".png");
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice[] screens = ge.getScreenDevices();
+
+        Rectangle allScreenBounds = new Rectangle();
+        for (GraphicsDevice screen : screens) {
+            Rectangle screenBounds = screen.getDefaultConfiguration().getBounds();
+
+            allScreenBounds.width += screenBounds.width;
+            allScreenBounds.height = Math.max(allScreenBounds.height, screenBounds.height);
+        }
+
+        Robot robot = null;
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+        BufferedImage screenShot = robot.createScreenCapture(allScreenBounds);
+        return screenShot;
+            //try {
+                //p.waitFor();
+            //} catch (InterruptedException e) {
+                //e.printStackTrace();
+
+
+//        File screenFile = new File(this.folderForDesktopScreenshots + this.imageNumber + ".png");
+//        this.imageNumber++;
+//        try {
+//            return ImageIO.read(screenFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+    }
+
+    public static String getImageFullName(String imageFolderPath, String imageName) {
+        String imageFullName = null;
+        if(imageName.contains(".png")) {
+            imageFullName = imageFolderPath + File.separator + imageName;
+        }
+        else{
+            imageFullName = imageFolderPath + File.separator + imageName + ".png";
+        }
+
+        return imageFullName;
+    }
+
 }
