@@ -648,6 +648,7 @@ public MobileSettings mobileSettings;
     public BufferedImage getScreenShotForSikuli() {
         Process p = null;
         try {
+            this.wait(10000);
             p = Runtime.getRuntime().exec("screencapture -S -x -r -t png " + this.folderForDesktopScreenshots + this.imageNumber + ".png");
             this.wait(10000);
         } catch (IOException e) {
@@ -678,12 +679,12 @@ public MobileSettings mobileSettings;
 //            e.printStackTrace();
 //        }
 //        return screenShot;
-        try {
-            p.waitFor();
+        //try {
+            //p.waitFor();
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+       // } catch (InterruptedException e) {
+            //e.printStackTrace();
+        //}
         File screenFile = new File(this.folderForDesktopScreenshots + this.imageNumber + ".png");
         this.imageNumber++;
         try {
