@@ -672,7 +672,8 @@ public MobileSettings mobileSettings;
             e.printStackTrace();
         }
         BufferedImage screenShot = robot.createScreenCapture(allScreenBounds);
-        File f = new File(this.folderForScreenshots + "test" + ".png");
+        File f = new File(this.folderForScreenshots + "test" +imageNumber+ ".png");
+        imageNumber++;
         try {
             ImageIO.write(screenShot, "png", f);
         } catch (IOException e) {
