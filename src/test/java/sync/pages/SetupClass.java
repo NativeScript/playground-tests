@@ -647,53 +647,53 @@ public MobileSettings mobileSettings;
     }
 
     public BufferedImage getScreenShotForSikuli() {
-        Process p = null;
-        try {
-            this.wait(10000);
-            p = Runtime.getRuntime().exec("screencapture -S -x -r -t png " + this.folderForDesktopScreenshots + this.imageNumber + ".png");
-            this.wait(10000);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-//        GraphicsDevice[] screens = ge.getScreenDevices();
-//
-//        Rectangle allScreenBounds = new Rectangle();
-//        for (GraphicsDevice screen : screens) {
-//            Rectangle screenBounds = screen.getDefaultConfiguration().getBounds();
-//
-//            allScreenBounds.width += screenBounds.width;
-//            allScreenBounds.height = Math.max(allScreenBounds.height, screenBounds.height);
-//        }
-//
-//        Robot robot = null;
+//        Process p = null;
 //        try {
-//            robot = new Robot();
-//        } catch (AWTException e) {
-//            e.printStackTrace();
-//        }
-//        BufferedImage screenShot = robot.createScreenCapture(allScreenBounds);
-//        File f = new File(this.folderForScreenshots + "test" + ".png");
-//        try {
-//            ImageIO.write(screenShot, "png", f);
+//            this.wait(10000);
+//            p = Runtime.getRuntime().exec("screencapture -S -x -r -t png " + this.folderForDesktopScreenshots + this.imageNumber + ".png");
+//            this.wait(10000);
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-//        return screenShot;
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice[] screens = ge.getScreenDevices();
+
+        Rectangle allScreenBounds = new Rectangle();
+        for (GraphicsDevice screen : screens) {
+            Rectangle screenBounds = screen.getDefaultConfiguration().getBounds();
+
+            allScreenBounds.width += screenBounds.width;
+            allScreenBounds.height = Math.max(allScreenBounds.height, screenBounds.height);
+        }
+
+        Robot robot = null;
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+        BufferedImage screenShot = robot.createScreenCapture(allScreenBounds);
+        File f = new File(this.folderForScreenshots + "test" + ".png");
+        try {
+            ImageIO.write(screenShot, "png", f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return screenShot;
         //try {
             //p.waitFor();
 
        // } catch (InterruptedException e) {
             //e.printStackTrace();
         //}
-        File screenFile = new File(this.folderForDesktopScreenshots + this.imageNumber + ".png");
-        this.imageNumber++;
-        try {
-            return ImageIO.read(screenFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+//        File screenFile = new File(this.folderForDesktopScreenshots + this.imageNumber + ".png");
+//        this.imageNumber++;
+//        try {
+//            return ImageIO.read(screenFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
     }
 
     public static String getImageFullName(String imageFolderPath, String imageName) {
