@@ -135,13 +135,12 @@ public MobileSettings mobileSettings;
     }
 
     public void GetDeviceLink() throws InterruptedException, FindFailed, IOException, UnsupportedFlavorException {
-        clickOnDesktop("qrcodeSafari.png");
         if(s.exists("playnowbutton.png")!=null) {
-            s.click("playnowbutton.png");
+            clickOnDesktop("playnowbutton.png");
             this.wait(2000);
         }
         if(s.exists("acceptCookies.png")!=null) {
-            s.click("acceptCookies.png");
+            clickOnDesktop("acceptCookies.png");
             this.wait(2000);
         }
         if(s.exists("devicesLinkMessage.png") == null) {
@@ -154,7 +153,7 @@ public MobileSettings mobileSettings;
             }
         }
         this.wait(3000);
-        s.click("devicesLinkMessage.png");
+        clickOnDesktop("devicesLinkMessage.png");
         this.wait(3000);
         s.dragDrop(new Pattern("devicesLinkMessage.png").similar(0.63f).targetOffset(-101,0),
                 new Pattern("devicesLinkMessage.png").similar(0.63f).targetOffset(500,25));
