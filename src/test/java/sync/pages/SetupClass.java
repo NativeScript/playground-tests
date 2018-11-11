@@ -135,6 +135,7 @@ public MobileSettings mobileSettings;
     }
 
     public void GetDeviceLink() throws InterruptedException, FindFailed, IOException, UnsupportedFlavorException {
+        clickOnDesktop("qrcodeSafari.png");
         if(s.exists("playnowbutton.png")!=null) {
             s.click("playnowbutton.png");
             this.wait(2000);
