@@ -680,6 +680,7 @@ public MobileSettings mobileSettings;
         Click myClick = new Click(objectToClick.x, objectToClick.y);
         Thread click = new Thread(myClick);
         click.start();
+        this.wait(2000);
         System.out.println("CLick on " + imageName);
     }
 
