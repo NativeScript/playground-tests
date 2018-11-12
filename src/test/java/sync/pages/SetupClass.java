@@ -135,15 +135,15 @@ public MobileSettings mobileSettings;
     }
 
     public void GetDeviceLink() throws InterruptedException, FindFailed, IOException, UnsupportedFlavorException {
-        if(s.exists("playnowbutton.png")!=null) {
+        if(existsOnDesktopScreen("playnowbutton.png")) {
             clickOnDesktop("playnowbutton.png");
             this.wait(2000);
         }
-        if(s.exists("acceptCookies.png")!=null) {
+        if(existsOnDesktopScreen("acceptCookies.png")) {
             clickOnDesktop("acceptCookies.png");
             this.wait(2000);
         }
-        if(s.exists("devicesLinkMessage.png") == null) {
+        if(existsOnDesktopScreen("devicesLinkMessage.png")) {
             if(this.browser.equals("Safari"))
             {
                 clickOnDesktop("qrcodeSafari.png");
@@ -633,6 +633,27 @@ public MobileSettings mobileSettings;
         Rectangle rectangle =  new Rectangle(point.x , point.y , 0, 0);
 
         return new Region(rectangle);
+    }
+
+    public boolean existsOnDesktopScreen(String imageName, double similarity) {
+        BufferedImage screenBufferImage = getScreenShotForSikuli();
+
+        Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity, 0, 0, true);
+
+        Match searchedImageMatch = finder.next();
+        if(searchedImageMatch !=  null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    public boolean existsOnDesktopScreen(String imageName) {
+        return existsOnDesktopScreen(imageName, 0);
     }
 
     public void clickOnDesktop(String imageName, double similarity, int offsetX, int offsetY){
