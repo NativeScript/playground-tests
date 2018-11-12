@@ -27,6 +27,7 @@ import org.sikuli.script.Image;
 import org.testng.Assert;
 import org.sikuli.script.*;
 import functional.tests.core.mobile.appium.Client;
+import java.awt.event.InputEvent;
 
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -665,11 +666,20 @@ public MobileSettings mobileSettings;
     public void clickOnDesktop(String imageName, double similarity, int offsetX, int offsetY){
         Region objectToClick = findImageOnDesktopScreen(imageName, similarity, offsetX, offsetY);
 
+        //try {
+        //    this.s.click(objectToClick);
+        //} catch (FindFailed findFailed) {
+        //    findFailed.printStackTrace();
+       // }
+        Robot bot = null;
         try {
-            this.s.click(objectToClick);
-        } catch (FindFailed findFailed) {
-            findFailed.printStackTrace();
+            bot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
         }
+        bot.mouseMove(objectToClick.x, objectToClick.y);
+        bot.mousePress(InputEvent.BUTTON1_MASK);
+        bot.mouseRelease(InputEvent.BUTTON1_MASK);
     }
 
     public void clickOnDesktop(String imageName, double similarity){
