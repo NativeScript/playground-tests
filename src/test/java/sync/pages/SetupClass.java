@@ -681,6 +681,7 @@ public MobileSettings mobileSettings;
         robot.mousePress(InputEvent.BUTTON1_MASK);
         robot.delay(1000);
         robot.mouseRelease(InputEvent.BUTTON1_MASK);
+        robot.delay(1000);
     }
 
     public void clickOnDesktop(String imageName, double similarity){
