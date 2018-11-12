@@ -685,7 +685,6 @@ public MobileSettings mobileSettings;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        click.
         System.out.println("CLick on " + imageName);
     }
 
