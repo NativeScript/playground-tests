@@ -144,7 +144,7 @@ public MobileSettings mobileSettings;
             clickOnDesktop("acceptCookies.png");
             this.wait(2000);
         }
-        if(existsOnDesktopScreen("devicesLinkMessage.png")) {
+        if(!existsOnDesktopScreen("devicesLinkMessage.png")) {
             if(this.browser.equals("Safari"))
             {
                 clickOnDesktop("qrcodeSafari.png");
@@ -679,6 +679,7 @@ public MobileSettings mobileSettings;
         }
         bot.mouseMove(objectToClick.x, objectToClick.y);
         bot.mousePress(InputEvent.BUTTON1_MASK);
+        bot.delay(1000);
         bot.mouseRelease(InputEvent.BUTTON1_MASK);
     }
 
