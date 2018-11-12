@@ -61,12 +61,18 @@ public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome"
 public String folderForScreenshots;
 public String folderForDesktopScreenshots;
 public Integer imageNumber = 0;
+public Robot robot = null;
 public MobileSettings mobileSettings;
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
         this.mobileSettings = mobileSettings;
         this.client = client;
         this.device = device;
+        try {
+            this.robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
         this.imageUtils = new ImageUtils(settings, client, device);
         this.appName = this.app.getName().replaceAll(".app", "");
         this.sikuli = new Sikuli(this.appName, client, this.imageUtils);
@@ -671,16 +677,10 @@ public MobileSettings mobileSettings;
         //} catch (FindFailed findFailed) {
         //    findFailed.printStackTrace();
        // }
-        Robot bot = null;
-        try {
-            bot = new Robot();
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
-        bot.mouseMove(objectToClick.x, objectToClick.y);
-        bot.mousePress(InputEvent.BUTTON1_MASK);
-        bot.delay(1000);
-        bot.mouseRelease(InputEvent.BUTTON1_MASK);
+        robot.mouseMove(objectToClick.x, objectToClick.y);
+        robot.mousePress(InputEvent.BUTTON1_MASK);
+        robot.delay(1000);
+        robot.mouseRelease(InputEvent.BUTTON1_MASK);
     }
 
     public void clickOnDesktop(String imageName, double similarity){
@@ -715,12 +715,6 @@ public MobileSettings mobileSettings;
             allScreenBounds.height = Math.max(allScreenBounds.height, screenBounds.height);
         }
 
-        Robot robot = null;
-        try {
-            robot = new Robot();
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
         BufferedImage screenShot = robot.createScreenCapture(allScreenBounds);
         File f = new File(this.folderForScreenshots + "test" +imageNumber+ ".png");
         imageNumber++;
