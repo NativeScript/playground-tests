@@ -680,7 +680,7 @@ public MobileSettings mobileSettings;
         Click myClick = new Click(objectToClick.x, objectToClick.y);
         Thread click = new Thread(myClick);
         click.start();
-
+        System.out.println("CLick on " + imageName);
     }
 
     public class Click implements Runnable {
@@ -742,6 +742,7 @@ public MobileSettings mobileSettings;
         BufferedImage screenShot = robot.createScreenCapture(allScreenBounds);
         File f = new File(this.folderForScreenshots + "test" +imageNumber+ ".png");
         imageNumber++;
+        System.out.println("Save image " + imageNumber);
         try {
             ImageIO.write(screenShot, "png", f);
         } catch (IOException e) {
