@@ -685,6 +685,11 @@ public MobileSettings mobileSettings;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        try {
+            giveFocus();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("CLick on " + imageName);
     }
 
