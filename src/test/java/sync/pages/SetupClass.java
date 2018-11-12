@@ -677,11 +677,34 @@ public MobileSettings mobileSettings;
         //} catch (FindFailed findFailed) {
         //    findFailed.printStackTrace();
        // }
-        robot.mouseMove(objectToClick.x, objectToClick.y);
-        robot.mousePress(InputEvent.BUTTON1_MASK);
-        robot.delay(1000);
-        robot.mouseRelease(InputEvent.BUTTON1_MASK);
-        robot.delay(1000);
+        Click myClick = new Click(objectToClick.x, objectToClick.y);
+        Thread click = new Thread(myClick);
+        click.start();
+
+    }
+
+    public class Click implements Runnable {
+        private int x;
+        private int y;
+
+        public Click(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public void run() {
+            try {
+                Robot myRobot = new Robot();
+                myRobot.mouseMove(x, y);
+                myRobot.mousePress(InputEvent.BUTTON1_MASK);
+                myRobot.delay(1000);
+                myRobot.mouseRelease(InputEvent.BUTTON1_MASK);
+                myRobot.delay(1000);
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public void clickOnDesktop(String imageName, double similarity){
