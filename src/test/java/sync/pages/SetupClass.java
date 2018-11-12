@@ -681,7 +681,7 @@ public MobileSettings mobileSettings;
         Thread click = new Thread(myClick);
         click.start();
         try {
-            click.wait();
+            click.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
