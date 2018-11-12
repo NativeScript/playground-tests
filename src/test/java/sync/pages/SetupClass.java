@@ -155,8 +155,8 @@ public MobileSettings mobileSettings;
         this.wait(3000);
         clickOnDesktop("devicesLinkMessage.png");
         this.wait(3000);
-        s.dragDrop(new Pattern("devicesLinkMessage.png").similar(0.63f).targetOffset(-101,0),
-                new Pattern("devicesLinkMessage.png").similar(0.63f).targetOffset(500,25));
+        s.dragDrop(findImageOnDesktopScreen("devicesLinkMessage.png", 0.63, -101, 0),
+                findImageOnDesktopScreen("devicesLinkMessage.png", 0.63, 500, 25));
         this.wait(3000);
         s.type("c", KeyModifier.CMD);
         this.liveSyncConnectionString = (String) Toolkit.getDefaultToolkit()
@@ -350,7 +350,7 @@ public MobileSettings mobileSettings;
 
     public UIRectangle findImageOnScreen(String imageName, double similarity) {
         BufferedImage screenBufferImage = this.device.getScreenshot();
-        Finder finder = this.getFinder(screenBufferImage, imageName, (float)similarity, false);
+        Finder finder = this.getFinder(screenBufferImage, imageName, (float)similarity, 0, 0, false);
         Match searchedImageMatch = finder.next();
         Point point;
         if(searchedImageMatch != null) {
@@ -364,7 +364,7 @@ public MobileSettings mobileSettings;
         return new UIRectangle(rectangle);
     }
 
-    private Finder getFinder(BufferedImage screenBufferImage, String imageName, float similarity, boolean isDesktop) {
+    private Finder getFinder(BufferedImage screenBufferImage, String imageName, float similarity, int offsetX, int offsetY, boolean isDesktop) {
         ImageUtils var10001 = this.imageUtils;
         BufferedImage searchedBufferImage = null;
         if(!isDesktop) {
@@ -377,7 +377,17 @@ public MobileSettings mobileSettings;
         Image searchedImage = new Image(searchedBufferImage);
         Pattern searchedImagePattern = new Pattern(searchedImage);
         Image mainImage = new Image(screenBufferImage);
-        searchedImagePattern.similar(similarity);
+
+        if (similarity != 0.0)
+        {
+            searchedImagePattern.similar(similarity);
+        }
+
+        if (offsetX != 0 && offsetY != 0)
+        {
+            searchedImagePattern.targetOffset(offsetX, offsetY);
+        }
+
         Finder finder = new Finder(mainImage);
         finder.findAll(searchedImagePattern);
         return finder;
@@ -612,10 +622,10 @@ public MobileSettings mobileSettings;
 
     }
 
-    public Region findImageOnDesktopScreen(String imageName, double similarity) {
+    public Region findImageOnDesktopScreen(String imageName, double similarity, int offsetX, int offsetY) {
         BufferedImage screenBufferImage = getScreenShotForSikuli();
 
-        Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity, true);
+        Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity, offsetX, offsetY, true);
 
         Match searchedImageMatch = finder.next();
         Point point = searchedImageMatch.getCenter().getPoint();
@@ -625,8 +635,8 @@ public MobileSettings mobileSettings;
         return new Region(rectangle);
     }
 
-    public void clickOnDesktop(String imageName, double similarity){
-        Region objectToClick = findImageOnDesktopScreen(imageName, similarity);
+    public void clickOnDesktop(String imageName, double similarity, int offsetX, int offsetY){
+        Region objectToClick = findImageOnDesktopScreen(imageName, similarity, offsetX, offsetY);
 
         try {
             this.s.click(objectToClick);
@@ -635,14 +645,16 @@ public MobileSettings mobileSettings;
         }
     }
 
-    public void clickOnDesktop(String imageName){
-        Region objectToClick = new Region(findImageOnDesktopScreen(imageName, 0.67));
+    public void clickOnDesktop(String imageName, double similarity){
+        clickOnDesktop(imageName, similarity, 0, 0);
+    }
 
-        try {
-            this.s.click(objectToClick);
-        } catch (FindFailed findFailed) {
-            findFailed.printStackTrace();
-        }
+    public void clickOnDesktop(String imageName, int offsetX, int offsetY){
+        clickOnDesktop(imageName, 0, offsetX, offsetY);
+    }
+
+    public void clickOnDesktop(String imageName){
+        clickOnDesktop(imageName, 0, 0, 0);
     }
 
     public BufferedImage getScreenShotForSikuli() {
