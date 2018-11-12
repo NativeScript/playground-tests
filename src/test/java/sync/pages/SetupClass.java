@@ -628,6 +628,12 @@ public MobileSettings mobileSettings;
         Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity, offsetX, offsetY, true);
 
         Match searchedImageMatch = finder.next();
+
+        if(searchedImageMatch == null)
+        {
+            throw new Error(imageName + " with severity " + similarity + " could not be found!");
+        }
+
         Point point = searchedImageMatch.getCenter().getPoint();
 
         Rectangle rectangle =  new Rectangle(point.x , point.y , 0, 0);
