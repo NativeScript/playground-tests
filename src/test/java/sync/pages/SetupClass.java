@@ -706,6 +706,7 @@ public MobileSettings mobileSettings;
             try {
                 Robot myRobot = new Robot();
                 myRobot.mouseMove(x, y);
+                myRobot.delay(1000);
                 myRobot.mousePress(InputEvent.BUTTON1_MASK);
                 myRobot.delay(1000);
                 myRobot.mouseRelease(InputEvent.BUTTON1_MASK);
