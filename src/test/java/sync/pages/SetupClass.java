@@ -704,7 +704,7 @@ public MobileSettings mobileSettings;
 
         public void run() {
             try {
-                Robot myRobot = new Robot();
+                Robot myRobot = new Robot(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice());
                 myRobot.mouseMove(x, y);
                 myRobot.delay(1000);
                 myRobot.mousePress(InputEvent.BUTTON1_MASK);
