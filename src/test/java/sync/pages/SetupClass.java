@@ -749,8 +749,14 @@ public MobileSettings mobileSettings;
             allScreenBounds.width += screenBounds.width;
             allScreenBounds.height = Math.max(allScreenBounds.height, screenBounds.height);
         }
+        BufferedImage screenShot = null;
+        try {
+            Robot myRobot = new Robot(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice());
+            screenShot = myRobot.createScreenCapture(allScreenBounds);
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
 
-        BufferedImage screenShot = robot.createScreenCapture(allScreenBounds);
         File f = new File(this.folderForScreenshots + "test" +imageNumber+ ".png");
         imageNumber++;
         System.out.println("Save image " + imageNumber);
