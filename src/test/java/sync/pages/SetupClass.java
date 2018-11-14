@@ -150,7 +150,6 @@ public WebDriver driver;
 //        s.type(Key.ENTER);
 //        this.wait(20000);
         driver.get(URL);
-        driver.wait(20000);
         driver.findElements(By.xpath("//a[contains(.,'Accept Cookies')]")).get(0).click();
     }
 
