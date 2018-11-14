@@ -93,11 +93,11 @@ public WebDriver driver;
             directory.mkdir();
         }
         this.client.driver.removeApp("org.nativescript.preview");
-        this.wait(2000);
+
         if(settings.deviceType == settings.deviceType.Simulator)
         {
             functional.tests.core.utils.Archive.extractArchive(new File(currentPath+"/testapp/nsplaydev.tgz"),new File(currentPath+"/testapp/"));
-            this.wait(2000);
+
             functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
             ios.installApp("nsplaydev.app","org.nativescript.preview");
             this.deviceId=ios.getId();
@@ -150,7 +150,7 @@ public WebDriver driver;
 //        s.type(Key.ENTER);
 //        this.wait(20000);
         driver.get(URL);
-        this.wait(20000);
+        driver.wait(20000);
         driver.findElements(By.xpath("//a[contains(.,'Accept Cookies')]")).get(0).click();
     }
 
@@ -432,7 +432,7 @@ public WebDriver driver;
     public void wait(int time) {
         synchronized(this.s) {
             try {
-                this.s.wait(time);
+                    this.s.wait(time);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -441,7 +441,7 @@ public WebDriver driver;
 
     public void giveFocus() throws InterruptedException {
         //this.browserAPP.focus();
-        this.wait(2000);
+        //this.wait(2000);
     }
 
     public String getComputerName()
