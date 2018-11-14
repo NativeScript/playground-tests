@@ -4,7 +4,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
+import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import functional.tests.core.enums.PlatformType;
 import functional.tests.core.mobile.appium.Capabilities;
 import functional.tests.core.mobile.basepage.BasePage;
@@ -20,6 +22,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -40,7 +43,7 @@ import functional.tests.core.utils.OSUtils;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
+import io.github.bonigarcia.wdm.WebDriverManager;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -63,6 +66,7 @@ public String folderForDesktopScreenshots;
 public Integer imageNumber = 0;
 public Robot robot = null;
 public MobileSettings mobileSettings;
+public WebDriver driver;
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
         this.mobileSettings = mobileSettings;
@@ -125,50 +129,59 @@ public MobileSettings mobileSettings;
     }
 
     public void OpenBrowser() throws InterruptedException {
-        this.wait(1000);
-        this.browserAPP = App.open(this.browser);
-        this.wait(12000);
-        s.type("f", KeyModifier.CMD+KeyModifier.CTRL);
-        this.wait(2000);
+//        this.wait(1000);
+//        this.browserAPP = App.open(this.browser);
+//        this.wait(12000);
+//        s.type("f", KeyModifier.CMD+KeyModifier.CTRL);
+//        this.wait(2000);
+        WebDriverManager.chromedriver().setup();
+
+        final ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-fullscreen");
+        this.driver=new ChromeDriver(options);
+
     }
 
     public void NavigateToPage(String URL) throws InterruptedException {
-        s.type("l", KeyModifier.CMD);
-        this.wait(1000);
-        s.type(URL);
-        this.wait(1000);
-        s.type(Key.ENTER);
+//        s.type("l", KeyModifier.CMD);
+//        this.wait(1000);
+//        s.type(URL);
+//        this.wait(1000);
+//        s.type(Key.ENTER);
+//        this.wait(20000);
+        driver.get(URL);
         this.wait(20000);
+        driver.findElements(By.xpath("//a[contains(.,'Accept Cookies')]")).get(0).click();
     }
 
     public void GetDeviceLink() throws InterruptedException, FindFailed, IOException, UnsupportedFlavorException {
-        if(existsOnDesktopScreen("playnowbutton.png")) {
-            clickOnDesktop("playnowbutton.png");
-            this.wait(2000);
-        }
-        if(existsOnDesktopScreen("acceptCookies.png")) {
-            clickOnDesktop("acceptCookies.png");
-            this.wait(2000);
-        }
-        if(!existsOnDesktopScreen("devicesLinkMessage.png")) {
-            if(this.browser.equals("Safari"))
-            {
-                clickOnDesktop("qrcodeSafari.png");
-            }
-            else {
-                clickOnDesktop("qrcode.png", 0.63f);
-            }
-        }
-        this.wait(3000);
-        clickOnDesktop("devicesLinkMessage.png");
-        this.wait(3000);
-        s.dragDrop(findImageOnDesktopScreen("devicesLinkMessage.png", 0.63, -101, 0),
-                findImageOnDesktopScreen("devicesLinkMessage.png", 0.63, 500, 25));
-        this.wait(3000);
-        s.type("c", KeyModifier.CMD);
-        this.liveSyncConnectionString = (String) Toolkit.getDefaultToolkit()
-                .getSystemClipboard().getData(DataFlavor.stringFlavor);
-
+//        if(existsOnDesktopScreen("playnowbutton.png")) {
+//            clickOnDesktop("playnowbutton.png");
+//            this.wait(2000);
+//        }
+//        if(existsOnDesktopScreen("acceptCookies.png")) {
+//            clickOnDesktop("acceptCookies.png");
+//            this.wait(2000);
+//        }
+//        if(!existsOnDesktopScreen("devicesLinkMessage.png")) {
+//            if(this.browser.equals("Safari"))
+//            {
+//                clickOnDesktop("qrcodeSafari.png");
+//            }
+//            else {
+//                clickOnDesktop("qrcode.png", 0.63f);
+//            }
+//        }
+//        this.wait(3000);
+//        clickOnDesktop("devicesLinkMessage.png");
+//        this.wait(3000);
+//        s.dragDrop(findImageOnDesktopScreen("devicesLinkMessage.png", 0.63, -101, 0),
+//                findImageOnDesktopScreen("devicesLinkMessage.png", 0.63, 500, 25));
+//        this.wait(3000);
+//        s.type("c", KeyModifier.CMD);
+//        this.liveSyncConnectionString = (String) Toolkit.getDefaultToolkit()
+//                .getSystemClipboard().getData(DataFlavor.stringFlavor);
+         this.liveSyncConnectionString =  driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]")).get(0).getText();
     }
 
     public void startPreviewAppWithLiveSync() throws InterruptedException, FindFailed, IOException {
@@ -426,7 +439,7 @@ public MobileSettings mobileSettings;
     }
 
     public void giveFocus() throws InterruptedException {
-        this.browserAPP.focus();
+        //this.browserAPP.focus();
         this.wait(2000);
     }
 
@@ -502,7 +515,7 @@ public MobileSettings mobileSettings;
         }
         if(gettingStartedRegion!=null) {
             try {
-                closeButton = gettingStartedRegion.right().find("closebutton");
+                closeButton = gettingStartedRegion.right().above().find("closebutton");
             } catch (FindFailed findFailed) {
                 findFailed.printStackTrace();
                 log.info("Couldn't find close button for tutorial!");

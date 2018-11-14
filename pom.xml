@@ -322,9 +322,9 @@
             <version>6.10</version>
         </dependency>
         <dependency>
-            <groupId>com.sikulix</groupId>
-            <artifactId>sikulixapi</artifactId>
-            <version>1.1.2</version>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <groupId>net.sf.saxon</groupId>
