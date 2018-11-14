@@ -24,17 +24,17 @@ public class  NSSyncTests extends MobileTest {
     public void beforeClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
         this.setupClass = new SetupClass(this.client,this.settings, this.device);
         String projectURL = "https://play.telerik.rocks/?template=play-"+ setupClass.typeOfProject+"&debug=true";
-        this.setupClass.getScreenShot("BeforeStartOfTests_BeforeNavigateToProject");
+        //this.setupClass.getScreenShot("BeforeStartOfTests_BeforeNavigateToProject");
         this.setupClass.giveFocus();
         this.setupClass.NavigateToPage(projectURL);
-        this.setupClass.getScreenShot("BeforeStartOfTests_AfterNavigateToProject");
+        //this.setupClass.getScreenShot("BeforeStartOfTests_AfterNavigateToProject");
         this.setupClass.giveFocus();
         this.setupClass.GetDeviceLink();
-        this.setupClass.getScreenShot("BeforeStartOfTests_AfterGetDeviceLink");
+        //this.setupClass.getScreenShot("BeforeStartOfTests_AfterGetDeviceLink");
         this.setupClass.giveFocus();
         this.setupClass.startPreviewAppWithLiveSync();
         this.setupClass.giveFocus();
-        this.setupClass.getScreenShot("BeforeStartOfTests_AfterLiveSync");
+        //this.setupClass.getScreenShot("BeforeStartOfTests_AfterLiveSync");
         this.setupClass.closeTutorial();
         this.setupClass.getScreenShot("BeforeStartOfTests_AfterCloseTutorial");
 }

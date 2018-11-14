@@ -48,7 +48,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class SetupClass extends BasePage {
-public  Screen s = Screen.all();;
+public  Screen s = null;
 public String liveSyncConnectionString;
 public String deviceId = "";
 public Sikuli sikuli;
@@ -182,6 +182,7 @@ public WebDriver driver;
 //        this.liveSyncConnectionString = (String) Toolkit.getDefaultToolkit()
 //                .getSystemClipboard().getData(DataFlavor.stringFlavor);
          this.liveSyncConnectionString =  driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]")).get(0).getText();
+         this.s = Screen.all();
     }
 
     public void startPreviewAppWithLiveSync() throws InterruptedException, FindFailed, IOException {
