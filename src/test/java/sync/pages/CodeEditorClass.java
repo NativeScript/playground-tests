@@ -6,11 +6,13 @@ import functional.tests.core.mobile.element.UIElement;
 import net.sf.saxon.Err;
 import org.sikuli.script.*;
 import org.testng.Assert;
-
+import java.util.List;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
 
 public class CodeEditorClass extends BasePage {
     public Screen s = new Screen();
@@ -19,8 +21,9 @@ public class CodeEditorClass extends BasePage {
     public CodeEditorClass(SetupClass setupClass) throws InterruptedException {
         super();
         this.setupClass = setupClass;
-        String currentPath = System.getProperty("user.dir");
-        ImagePath.add(currentPath+"/src/test/java/sync/pages/images.sikuli");
+        //old sikuli way
+        //String currentPath = System.getProperty("user.dir");
+        //ImagePath.add(currentPath+"/src/test/java/sync/pages/images.sikuli");
     }
 
     /**
@@ -54,14 +57,7 @@ public class CodeEditorClass extends BasePage {
 
     public void deleteAllCode()
     {
-        try {
-            s.click(new Pattern("NativescriptLogo.png").targetOffset(330,119));
-            this.setupClass.wait(500);
-            s.click(new Pattern("NativescriptLogo.png").targetOffset(330,119));
-        } catch (FindFailed findFailed) {
-            findFailed.printStackTrace();
-        }
-        this.setupClass.wait(1500);
+        this.setupClass.driver.findElements(By.tagName("monaco-editor")).get(0).click();
         s.type("a", KeyModifier.CMD);
         this.setupClass.wait(500);
         s.type(Key.DELETE);
@@ -917,55 +913,65 @@ public class CodeEditorClass extends BasePage {
 
     public void assertDeviceTab(String deviceNameExpected, String modelExpected, String osVersionExpected, String previewAppVersionExpected, String runtimeVersionExpected, String componentVersionsExpected)
     {
-        try {
-            this.setupClass.s.click("devicestab");
-            this.setupClass.wait(2000);
-            this.setupClass.s.click(new Pattern("devicename.png").targetOffset(-29,39));
-            this.setupClass.wait(1000);
-            this.setupClass.s.doubleClick(new Pattern("devicename.png").targetOffset(-43,76));
-            for (int i=36; i>0; i--)
-            {
-                this.setupClass.s.type(Key.DOWN, KeyModifier.SHIFT);
-            }
-            String componentsVersion = this.getTextWithCopy();
-            if(this.setupClass.browser.equals("Safari"))
-            {
-                setupClass.s.click("ErrorsNotSelectedSafari");
-            }
-            else {
-                setupClass.s.click("ErrorsNotSelected");
-            }
-            this.setupClass.wait(2000);
-            this.setupClass.s.click("devicestab");
-            this.setupClass.wait(2000);
-            this.setupClass.s.dragDrop(new Pattern("devicename.png").targetOffset(8,39),new Pattern("model.png").targetOffset(-25,40));
-            String deviceName = this.getTextWithCopy();
-            this.setupClass.s.click("devicestab");
-            if(settings.deviceType == settings.deviceType.Emulator) {
-                this.setupClass.s.dragDrop(new Pattern("model.png").targetOffset(-25,40), new Pattern("model.png").targetOffset(153,39));
+        //old sikuli way of testing
+//        try {
+//            this.setupClass.s.click("devicestab");
+//            this.setupClass.wait(2000);
+//            this.setupClass.s.click(new Pattern("devicename.png").targetOffset(-29,39));
+//            this.setupClass.wait(1000);
+//            this.setupClass.s.doubleClick(new Pattern("devicename.png").targetOffset(-43,76));
+//            for (int i=36; i>0; i--)
+//            {
+//                this.setupClass.s.type(Key.DOWN, KeyModifier.SHIFT);
+//            }
+//            String componentsVersion = this.getTextWithCopy();
+//            if(this.setupClass.browser.equals("Safari"))
+//            {
+//                setupClass.s.click("ErrorsNotSelectedSafari");
+//            }
+//            else {
+//                setupClass.s.click("ErrorsNotSelected");
+//            }
+//            this.setupClass.wait(2000);
+//            this.setupClass.s.click("devicestab");
+//            this.setupClass.wait(2000);
+//            this.setupClass.s.dragDrop(new Pattern("devicename.png").targetOffset(8,39),new Pattern("model.png").targetOffset(-25,40));
+//            String deviceName = this.getTextWithCopy();
+//            this.setupClass.s.click("devicestab");
+//            if(settings.deviceType == settings.deviceType.Emulator) {
+//                this.setupClass.s.dragDrop(new Pattern("model.png").targetOffset(-25,40), new Pattern("model.png").targetOffset(153,39));
+//
+//            }
+//            else
+//            {
+//                this.setupClass.s.dragDrop(new Pattern("model.png").targetOffset(-25,40), new Pattern("model.png").targetOffset(82,40));
+//            }
+//            String modelName = this.getTextWithCopy();
+//            this.setupClass.s.dragDrop(new Pattern("osversion.png").targetOffset(-35,41), new Pattern("osversion.png").targetOffset(75,41));
+//            String osVersionText = this.getTextWithCopy();
+//            this.setupClass.s.dragDrop(new Pattern("previewappversion.png").targetOffset(-61,38), new Pattern("previewappversion.png").targetOffset(71,38));
+//            String previewAppVersionText = this.getTextWithCopy();
+//            this.setupClass.s.dragDrop(new Pattern("runtimeversion.png").targetOffset(-52,37), new Pattern("runtimeversion.png").targetOffset(85,37));
+//            String runtimeVersionText = this.getTextWithCopy();
+        //tableRows.get(1)..getText();
+        //Assert.assertEquals(componentsVersion, componentVersionsExpected,"components version is not correct!");
+        //Assert.assertEquals(deviceName, deviceNameExpected, "device name is not correct!");
+        //Assert.assertEquals(modelName, modelExpected, "model name is not correct!");
+        //Assert.assertTrue(osVersionText.contains(osVersionExpected), "Actual os version is "+osVersionText+" , expected os version is "+osVersionExpected);
+        //Assert.assertEquals(previewAppVersionText, previewAppVersionExpected, "preview app version is not correct!");
+        //Assert.assertEquals(runtimeVersionText, runtimeVersionExpected, "runtime version is not correct!");
 
-            }
-            else
-            {
-                this.setupClass.s.dragDrop(new Pattern("model.png").targetOffset(-25,40), new Pattern("model.png").targetOffset(82,40));
-            }
-            String modelName = this.getTextWithCopy();
-            this.setupClass.s.dragDrop(new Pattern("osversion.png").targetOffset(-35,41), new Pattern("osversion.png").targetOffset(75,41));
-            String osVersionText = this.getTextWithCopy();
-            this.setupClass.s.dragDrop(new Pattern("previewappversion.png").targetOffset(-61,38), new Pattern("previewappversion.png").targetOffset(71,38));
-            String previewAppVersionText = this.getTextWithCopy();
-            this.setupClass.s.dragDrop(new Pattern("runtimeversion.png").targetOffset(-52,37), new Pattern("runtimeversion.png").targetOffset(85,37));
-            String runtimeVersionText = this.getTextWithCopy();
-            Assert.assertEquals(componentsVersion, componentVersionsExpected,"components version is not correct!");
-            Assert.assertEquals(deviceName, deviceNameExpected, "device name is not correct!");
-            Assert.assertEquals(modelName, modelExpected, "model name is not correct!");
-            Assert.assertTrue(osVersionText.contains(osVersionExpected), "Actual os version is "+osVersionText+" , expected os version is "+osVersionExpected);
-            Assert.assertEquals(previewAppVersionText, previewAppVersionExpected, "preview app version is not correct!");
-            Assert.assertEquals(runtimeVersionText, runtimeVersionExpected, "runtime version is not correct!");
-
-        } catch (FindFailed findFailed) {
-            findFailed.printStackTrace();
-        }
+            WebElement baseTable = setupClass.driver.findElement(By.className("devices"));
+            List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
+            tableRows.get(0).findElements(By.tagName("td")).get(0).click();
+            baseTable = setupClass.driver.findElement(By.className("devices"));
+            tableRows = baseTable.findElements(By.tagName("tr"));
+            String componentsVersion = tableRows.get(1).findElements(By.tagName("td")).get(0).getText();
+            String deviceName = tableRows.get(0).findElements(By.tagName("td")).get(0).getText();
+            String modelName = tableRows.get(0).findElements(By.tagName("td")).get(1).getText();
+            String osVersionText = tableRows.get(0).findElements(By.tagName("td")).get(2).getText();
+            String previewAppVersionText = tableRows.get(0).findElements(By.tagName("td")).get(3).getText();
+            String runtimeVersionText = tableRows.get(0).findElements(By.tagName("td")).get(4).getText();
     }
 
     public String getTextWithCopy() {

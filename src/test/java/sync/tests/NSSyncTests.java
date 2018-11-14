@@ -24,42 +24,27 @@ public class  NSSyncTests extends MobileTest {
     public void beforeClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
         this.setupClass = new SetupClass(this.client,this.settings, this.device);
         String projectURL = "https://play.telerik.rocks/?template=play-"+ setupClass.typeOfProject+"&debug=true";
-        //this.setupClass.getScreenShot("BeforeStartOfTests_BeforeNavigateToProject");
+        this.setupClass.getScreenShot("BeforeStartOfTests_BeforeNavigateToProject");
         this.setupClass.giveFocus();
         this.setupClass.NavigateToPage(projectURL);
-        //this.setupClass.getScreenShot("BeforeStartOfTests_AfterNavigateToProject");
+        this.setupClass.getScreenShot("BeforeStartOfTests_AfterNavigateToProject");
         this.setupClass.giveFocus();
         this.setupClass.GetDeviceLink();
-        //this.setupClass.getScreenShot("BeforeStartOfTests_AfterGetDeviceLink");
+        this.setupClass.getScreenShot("BeforeStartOfTests_AfterGetDeviceLink");
         this.setupClass.giveFocus();
         this.setupClass.startPreviewAppWithLiveSync();
         this.setupClass.giveFocus();
-        //this.setupClass.getScreenShot("BeforeStartOfTests_AfterLiveSync");
+        this.setupClass.getScreenShot("BeforeStartOfTests_AfterLiveSync");
         this.setupClass.closeTutorial();
         this.setupClass.getScreenShot("BeforeStartOfTests_AfterCloseTutorial");
 }
     @AfterClass
     public void afterClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
-        if(settings.deviceName.contains("Api25")==false)
-        {
-            this.setupClass.wait(2000);
-            this.setupClass.CloseBrowser();
-            this.setupClass.wait(2000);
-        }
-        else
-        {
-            CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
-            codeEditor.save();
-            this.setupClass.s.type("q", KeyModifier.CMD);
-            this.setupClass.wait(2000);
-            this.setupClass.s.type(Key.ENTER);
-            this.setupClass.wait(2000);
-        }
+        setupClass.driver.quit();
     }
 
     @BeforeMethod
     public void beforeTest() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
-        this.setupClass.giveFocus();
         this.setupClass.getScreenShot(this.context.getTestName()+"_BeforeStart");
         this.context.shouldRestartAppOnFailure = false;
     }
@@ -76,7 +61,7 @@ public class  NSSyncTests extends MobileTest {
     @Test(description = "Verify devices tab is showing valid data!", groups = {"android", "ios"})
     public void test_01_verify_devices_tab() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
-        this.setupClass.wait(7000);
+
         if(settings.deviceType == settings.deviceType.Emulator) {
             this.deviceName = "Android SDK built for x86";
 
@@ -100,12 +85,11 @@ public class  NSSyncTests extends MobileTest {
         String osVersionExpected = "";
         if(settings.deviceType == settings.deviceType.Emulator) {
             osVersionExpected ="Android ";
-            osVersionExpected = osVersionExpected+this.setupClass.getIOSVersion();
-
+            osVersionExpected = osVersionExpected+String.valueOf(this.context.client.driver.getCapabilities().getCapability("platformVersion"));
         }
         else {
             osVersionExpected ="iOS ";
-            osVersionExpected = osVersionExpected+String.valueOf(this.context.client.driver.getCapabilities().getCapability("platformVersion"));
+            osVersionExpected = osVersionExpected+this.setupClass.getIOSVersion();
         }
 
         String previewAppVersionExpected="";
