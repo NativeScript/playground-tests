@@ -51,11 +51,19 @@ public class CodeEditorClass extends BasePage {
                 e.printStackTrace();
             }
         }
+        if(code.contains("{"))
+        {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         s.type(code);
         if(code.contains("{"))
         {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
