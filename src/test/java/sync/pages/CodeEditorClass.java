@@ -79,6 +79,11 @@ public class CodeEditorClass extends BasePage {
 
     public void deleteAllCode()
     {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         this.setupClass.driver.findElements(By.tagName("monaco-editor")).get(0).click();
         try {
             Thread.sleep(1000);
@@ -86,7 +91,7 @@ public class CodeEditorClass extends BasePage {
             e.printStackTrace();
         }
         s.type("a", KeyModifier.CMD);
-        this.setupClass.wait(500);
+        this.setupClass.wait(1000);
         s.type(Key.DELETE);
         this.setupClass.wait(1000);
 
