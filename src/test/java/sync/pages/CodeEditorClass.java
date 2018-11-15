@@ -243,7 +243,7 @@ public class CodeEditorClass extends BasePage {
         this.typeCode("margin-bottom: 15;");
         s.type(Key.ENTER);
 
-        this.setupClass.wait(2000);
+        this.setupClass.wait(1000);
     }
 
     public void save() {
@@ -1068,9 +1068,14 @@ public class CodeEditorClass extends BasePage {
     }
 
     public String getLogsTextFromDeviceLogsTab(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
        setupClass.driver.findElements(By.xpath("//span[contains(.,'Device Logs')]")).get(0).click();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -1079,6 +1084,11 @@ public class CodeEditorClass extends BasePage {
 
     public void clearDeviceLogs()
     {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         setupClass.driver.findElements(By.xpath("//span[contains(.,'Device Logs')]")).get(0).click();
         try {
             Thread.sleep(1000);
