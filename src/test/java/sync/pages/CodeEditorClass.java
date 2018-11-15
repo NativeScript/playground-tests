@@ -53,7 +53,7 @@ public class CodeEditorClass extends BasePage {
         }
         s.type(code);
         try {
-            Thread.sleep(1500);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -195,7 +195,8 @@ public class CodeEditorClass extends BasePage {
     public void typeCSSCode(boolean isValid) {
         this.deleteAllCode();
         if (isValid == false) {
-            this.typeCode(".description-label{");
+            this.typeCode(".description-label");
+            this.typeCode("{");
             s.type(Key.ENTER);
             this.typeCode("margin-bottom: 15;");
             s.type(Key.ENTER);
@@ -205,7 +206,8 @@ public class CodeEditorClass extends BasePage {
         s.type(Key.ENTER);
         this.typeCode("@import 'nativescript-theme-core/css/core.dark.css';");
         s.type(Key.ENTER);
-        this.typeCode(".home-panel{");
+        this.typeCode(".home-panel");
+        this.typeCode("{");
         s.type(Key.ENTER);
         this.typeCode("vertical-align: center;");
         s.type(Key.ENTER);
@@ -217,7 +219,8 @@ public class CodeEditorClass extends BasePage {
         s.type(Key.DOWN);
         s.type(Key.DOWN);
         s.type(Key.ENTER);
-        this.typeCode(".description-label{");
+        this.typeCode(".description-label");
+        this.typeCode("{");
         s.type(Key.ENTER);
         this.typeCode("margin-bottom: 15;");
         s.type(Key.ENTER);
@@ -247,77 +250,108 @@ public class CodeEditorClass extends BasePage {
         this.deleteAllCode();
         if(this.setupClass.typeOfProject.equals("ng")) {
             this.typeCode("import { Component, OnInit } from \"@angular/core\";\n");
-            this.typeCode("@Component({\n");
-            this.typeCode("selector: \"Home\",\n");
+            this.typeCode(Key.ENTER);
+            this.typeCode("@Component({");
+            this.typeCode(Key.ENTER);
+            this.typeCode("selector: \"Home\",");
+            this.typeCode(Key.ENTER);
             this.typeCode("moduleId: module.id");
             this.typeCode(",");
-            this.typeCode("\n");
-            this.typeCode("templateUrl: \"./home.component.html\",\n");
-            this.typeCode("styleUrls: ['./home.component.css']\n");
+            this.typeCode("");
+            this.typeCode(Key.ENTER);
+            this.typeCode("templateUrl: \"./home.component.html\",");
+            this.typeCode(Key.ENTER);
+            this.typeCode("styleUrls: ['./home.component.css']");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("export class HomeComponent implements OnInit {\n");
-            this.typeCode("constructor() {\n");
-            this.typeCode("console.log(\"log\");\n");
+            this.typeCode("export class HomeComponent implements OnInit {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("constructor() {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("console.log(\"log\");");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("ngOnInit(): void {\n");
+            this.typeCode("ngOnInit(): void {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.typeCode(Key.ENTER);
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
-            this.typeCode("var frameModule = require(\"ui/frame\");\n");
-            this.typeCode("var HomeViewModel = require(\"./home-view-model\");\n");
-            this.typeCode("var homeViewModel = new HomeViewModel();\n");
-            this.typeCode("function pageLoaded(args) {\n");
+            this.typeCode("var frameModule = require(\"ui/frame\");");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var HomeViewModel = require(\"./home-view-model\");");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var homeViewModel = new HomeViewModel();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("function pageLoaded(args) {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("var page = args.object;\n");
-            this.typeCode("page.bindingContext = homeViewModel;\n");
-            this.typeCode("console.log(\"log\");\n");
+            this.typeCode("var page = args.object;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("page.bindingContext = homeViewModel;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("console.log(\"log\");");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("exports.pageLoaded = pageLoaded;\n");
+            this.typeCode("exports.pageLoaded = pageLoaded;");
+            this.typeCode(Key.ENTER);
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            this.typeCode("import { Observable } from 'data/observable';\n");
-            this.typeCode("export class HomeViewModel extends Observable {\n");
+            this.typeCode("import { Observable } from 'data/observable';");
+            this.typeCode(Key.ENTER);
+            this.typeCode("export class HomeViewModel extends Observable {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("constructor() {\n");
+            this.typeCode("constructor() {");
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("super();\n");
-            this.typeCode("console.log(\"log\");\n");
+            this.typeCode("super();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("console.log(\"log\");");
+            this.typeCode(Key.ENTER);
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("<template>\n");
-            this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
-            this.typeCode("<ScrollView>\n");
-            this.typeCode("<StackLayout class=\"home-panel\">\n");
-            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
-            this.typeCode("</StackLayout>\n");
+            this.typeCode("<template>");
             this.typeCode(Key.ENTER);
-            this.typeCode("</ScrollView>\n");
+            this.typeCode("<Page class=\"page\">");
             this.typeCode(Key.ENTER);
-            this.typeCode("</Page>\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />");
             this.typeCode(Key.ENTER);
-            this.typeCode("</template>\n");
+            this.typeCode("<ScrollView>");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<StackLayout class=\"home-panel\">");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</StackLayout>");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</ScrollView>");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</Page>");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</template>");
             this.typeCode(Key.ENTER);
 
-            this.typeCode("<script>\n");
+            this.typeCode("<script>");
+            this.typeCode(Key.ENTER);
 
             this.typeCode("export default {");
             this.typeCode(Key.ENTER);
-            this.typeCode("mounted: function () {\n");
-            this.typeCode("console.log(\"log\");\n");
+            this.typeCode("mounted: function () {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("console.log(\"log\");");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
             this.typeCode(",");
 
@@ -338,15 +372,19 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(Key.DOWN);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("</script>\n");
+            this.typeCode("</script>");
             this.typeCode(Key.ENTER);
 
-            this.typeCode("<style scoped>\n");
+            this.typeCode("<style scoped>");
+            this.typeCode(Key.ENTER);
             this.typeCode(".home-panel {");
             this.typeCode(Key.ENTER);
-            this.typeCode("vertical-align: center;\n");
-            this.typeCode("font-size: 20;\n");
-            this.typeCode("margin: 15;\n");
+            this.typeCode("vertical-align: center;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("font-size: 20;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("margin: 15;");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
             this.typeCode(".description-label {");
@@ -354,7 +392,8 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("margin-bottom: 15;");
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("</style>\n");
+            this.typeCode("</style>");
+            this.typeCode(Key.ENTER);
         }
         if(isValid==false && !this.setupClass.typeOfProject.equals("vue"))
         {
@@ -366,73 +405,108 @@ public class CodeEditorClass extends BasePage {
     public void typeJSTSCodeWithThrowError() {
         this.deleteAllCode();
         if (this.setupClass.typeOfProject.equals("ng")) {
-            this.typeCode("import { Component, OnInit } from \"@angular/core\";\n");
-            this.typeCode("@Component({\n");
-            this.typeCode("selector: \"Home\",\n");
+            this.typeCode("import { Component, OnInit } from \"@angular/core\";");
+            this.typeCode(Key.ENTER);
+            this.typeCode("@Component({");
+            this.typeCode(Key.ENTER);
+            this.typeCode("selector: \"Home\",");
+            this.typeCode(Key.ENTER);
             this.typeCode("moduleId: module.id");
             this.typeCode(",");
-            this.typeCode("\n");
-            this.typeCode("templateUrl: \"./home.component.html\",\n");
-            this.typeCode("styleUrls: ['./home.component.css']\n");
+            this.typeCode("");
+            this.typeCode(Key.ENTER);
+            this.typeCode("templateUrl: \"./home.component.html\",");
+            this.typeCode(Key.ENTER);
+            this.typeCode("styleUrls: ['./home.component.css']");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("export class HomeComponent implements OnInit {\n");
-            this.typeCode("constructor() {\n");
-            this.typeCode("throw new Error(\"Error\");\n");
+            this.typeCode("export class HomeComponent implements OnInit {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("constructor() {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("throw new Error(\"Error\");");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("ngOnInit(): void {\n");
+            this.typeCode("ngOnInit(): void {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
         } else if (this.setupClass.typeOfProject.equals("js")) {
-            this.typeCode("var frameModule = require(\"ui/frame\");\n");
-            this.typeCode("var HomeViewModel = require(\"./home-view-model\");\n");
-            this.typeCode("var homeViewModel = new HomeViewModel();\n");
-            this.typeCode("function pageLoaded(args) {\n");
+            this.typeCode("var frameModule = require(\"ui/frame\");");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var HomeViewModel = require(\"./home-view-model\");");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var homeViewModel = new HomeViewModel();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("function pageLoaded(args) {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("var page = args.object;\n");
-            this.typeCode("page.bindingContext = homeViewModel;\n");
-            this.typeCode("throw new Error(\"Error\");\n");
+            this.typeCode("var page = args.object;");
+            this.typeCode("page.bindingContext = homeViewModel;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("throw new Error(\"Error\");");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("exports.pageLoaded = pageLoaded;\n");
+            this.typeCode("exports.pageLoaded = pageLoaded;");
+            this.typeCode(Key.ENTER);
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
-            this.typeCode("import { Observable } from 'data/observable';\n");
-            this.typeCode("export class HomeViewModel extends Observable {\n");
+            this.typeCode("import { Observable } from 'data/observable';");
+            this.typeCode(Key.ENTER);
+            this.typeCode("export class HomeViewModel extends Observable {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("constructor() {\n");
+            this.typeCode("constructor() {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("super();\n");
-            this.typeCode("throw new Error(\"Error\");\n");
+            this.typeCode("super();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("throw new Error(\"Error\");");
+            this.typeCode(Key.ENTER);
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
 
-            this.typeCode("<template>\n");
-            this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
-            this.typeCode("<ScrollView>\n");
-            this.typeCode("<StackLayout class=\"home-panel\">\n");
-            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
-            this.typeCode("</StackLayout>\n");
+            this.typeCode("<template>");
             this.typeCode(Key.ENTER);
-            this.typeCode("</ScrollView>\n");
+            this.typeCode("<Page class=\"page\">");
             this.typeCode(Key.ENTER);
-            this.typeCode("</Page>\n");
+            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />");
             this.typeCode(Key.ENTER);
-            this.typeCode("</template>\n");
+            this.typeCode("<ScrollView>");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<StackLayout class=\"home-panel\">");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</StackLayout>");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</ScrollView>");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</Page>");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</template>");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.ENTER);
 
-            this.typeCode("<script>\n");
+            this.typeCode("<script>");
+            this.typeCode(Key.ENTER);
             this.typeCode("export default {");
             this.typeCode(Key.ENTER);
-            this.typeCode("mounted: function () {\n");
-            this.typeCode("throw new Error(\"Error\");\n");
+            this.typeCode("mounted: function () {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("throw new Error(\"Error\");");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
             this.typeCode(",");
             this.typeCode("data () {");
@@ -447,15 +521,20 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(Key.DOWN);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("</script>\n");
+            this.typeCode("</script>");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.ENTER);
 
-            this.typeCode("<style scoped>\n");
+            this.typeCode("<style scoped>");
+            this.typeCode(Key.ENTER);
             this.typeCode(".home-panel {");
             this.typeCode(Key.ENTER);
-            this.typeCode("vertical-align: center;\n");
-            this.typeCode("font-size: 20;\n");
-            this.typeCode("margin: 15;\n");
+            this.typeCode("vertical-align: center;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("font-size: 20;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("margin: 15;");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
             this.typeCode(".description-label {");
@@ -463,7 +542,8 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("margin-bottom: 15;");
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("</style>\n");
+            this.typeCode("</style>");
+            this.typeCode(Key.ENTER);
         }
         this.setupClass.wait(2000);
     }
@@ -471,76 +551,114 @@ public class CodeEditorClass extends BasePage {
     public void typeJSTSCodeWithThrowJavaError() {
         this.deleteAllCode();
         if (this.setupClass.typeOfProject.equals("ng")) {
-            this.typeCode("import { Component, OnInit } from \"@angular/core\";\n");
+            this.typeCode("import { Component, OnInit } from \"@angular/core\";");
+            this.typeCode(Key.ENTER);
             this.typeCode("declare var java : any");
-            this.typeCode(";\n");
-            this.typeCode("@Component({\n");
-            this.typeCode("selector: \"Home\",\n");
+            this.typeCode(";");
+            this.typeCode(Key.ENTER);
+            this.typeCode("@Component({");
+            this.typeCode(Key.ENTER);
+            this.typeCode("selector: \"Home\",");
+            this.typeCode(Key.ENTER);
             this.typeCode("moduleId: module.id");
             this.typeCode(",");
-            this.typeCode("\n");
+            this.typeCode("");
+            this.typeCode(Key.ENTER);
             this.setupClass.wait(1000);
-            this.typeCode("templateUrl: \"./home.component.html\",\n");
-            this.typeCode("styleUrls: ['./home.component.css']\n");
+            this.typeCode("templateUrl: \"./home.component.html\",");
+            this.typeCode(Key.ENTER);
+            this.typeCode("styleUrls: ['./home.component.css']");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("export class HomeComponent implements OnInit {\n");
-            this.typeCode("constructor() {\n");
-            this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");\n");
+            this.typeCode("export class HomeComponent implements OnInit {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("constructor() {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("ngOnInit(): void {\n");
+            this.typeCode("ngOnInit(): void {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
         } else if (this.setupClass.typeOfProject.equals("js")) {
-            this.typeCode("var frameModule = require(\"ui/frame\");\n");
-            this.typeCode("var HomeViewModel = require(\"./home-view-model\");\n");
-            this.typeCode("var homeViewModel = new HomeViewModel();\n");
-            this.typeCode("function pageLoaded(args) {\n");
+            this.typeCode("var frameModule = require(\"ui/frame\");");
             this.typeCode(Key.ENTER);
-            this.typeCode("var page = args.object;\n");
-            this.typeCode("page.bindingContext = homeViewModel;\n");
-            this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");\n");
+            this.typeCode("var HomeViewModel = require(\"./home-view-model\");");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var homeViewModel = new HomeViewModel();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("function pageLoaded(args) {");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("var page = args.object;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("page.bindingContext = homeViewModel;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("exports.pageLoaded = pageLoaded;\n");
+            this.typeCode("exports.pageLoaded = pageLoaded;");
+            this.typeCode(Key.ENTER);
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
-            this.typeCode("declare var java : any;\n");
-            this.typeCode("import { Observable } from 'data/observable';\n");
-            this.typeCode("export class HomeViewModel extends Observable {\n");
-            this.setupClass.s.type(Key.ENTER);
-            this.typeCode("constructor() {\n");
+            this.typeCode("declare var java : any;");
             this.typeCode(Key.ENTER);
-            this.typeCode("super();\n");
-            this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");\n");
+            this.typeCode("import { Observable } from 'data/observable';");
+            this.typeCode(Key.ENTER);
+            this.typeCode("export class HomeViewModel extends Observable {");
+            this.typeCode(Key.ENTER);
+            this.setupClass.s.type(Key.ENTER);
+            this.typeCode("constructor() {");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("super();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");");
+            this.typeCode(Key.ENTER);
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("<template>\n");
-            this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
-            this.typeCode("<ScrollView>\n");
-            this.typeCode("<StackLayout class=\"home-panel\">\n");
-            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
-            this.typeCode("</StackLayout>\n");
+            this.typeCode("<template>");
             this.typeCode(Key.ENTER);
-            this.typeCode("</ScrollView>\n");
+            this.typeCode("<Page class=\"page\">");
             this.typeCode(Key.ENTER);
-            this.typeCode("</Page>\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />");
             this.typeCode(Key.ENTER);
-            this.typeCode("</template>\n");
+            this.typeCode("<ScrollView>");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<StackLayout class=\"home-panel\">");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</StackLayout>");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</ScrollView>");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</Page>");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</template>");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.ENTER);
 
-            this.typeCode("<script>\n");
+            this.typeCode("<script>");
+            this.typeCode(Key.ENTER);
             this.typeCode("export default {");
             this.typeCode(Key.ENTER);
-            this.typeCode("mounted: function () {\n");
-            this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");\n");
+            this.typeCode("mounted: function () {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("java.lang.Integer.parseInt(\"sdklfjsd\");");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
             this.typeCode(",");
             this.typeCode("data () {");
@@ -555,15 +673,20 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(Key.DOWN);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("</script>\n");
+            this.typeCode("</script>");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.ENTER);
 
-            this.typeCode("<style scoped>\n");
+            this.typeCode("<style scoped>");
+            this.typeCode(Key.ENTER);
             this.typeCode(".home-panel {");
             this.typeCode(Key.ENTER);
-            this.typeCode("vertical-align: center;\n");
-            this.typeCode("font-size: 20;\n");
-            this.typeCode("margin: 15;\n");
+            this.typeCode("vertical-align: center;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("font-size: 20;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("margin: 15;");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
             this.typeCode(".description-label {");
@@ -571,7 +694,8 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("margin-bottom: 15;");
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("</style>\n");
+            this.typeCode("</style>");
+            this.typeCode(Key.ENTER);
         }
 
         this.setupClass.wait(2000);
@@ -580,79 +704,120 @@ public class CodeEditorClass extends BasePage {
     public void typeJSTSCodeWithThrowiOSError() {
         this.deleteAllCode();
         if (this.setupClass.typeOfProject.equals("ng")) {
-            this.typeCode("import { Component, OnInit } from \"@angular/core\";\n");
+            this.typeCode("import { Component, OnInit } from \"@angular/core\";");
+            this.typeCode(Key.ENTER);
             this.typeCode("declare var NSFileManager : any");
-            this.typeCode(";\n");
-            this.typeCode("@Component({\n");
-            this.typeCode("selector: \"Home\",\n");
+            this.typeCode(";");
+            this.typeCode(Key.ENTER);
+            this.typeCode("@Component({");
+            this.typeCode(Key.ENTER);
+            this.typeCode("selector: \"Home\",");
+            this.typeCode(Key.ENTER);
             this.typeCode("moduleId: module.id");
             this.typeCode(",");
-            this.typeCode("\n");
-            this.typeCode("templateUrl: \"./home.component.html\",\n");
-            this.typeCode("styleUrls: ['./home.component.css']\n");
+            this.typeCode(Key.ENTER);
+            this.typeCode("templateUrl: \"./home.component.html\",");
+            this.typeCode(Key.ENTER);
+            this.typeCode("styleUrls: ['./home.component.css']");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("export class HomeComponent implements OnInit {\n");
-            this.typeCode("constructor() {\n");
-            this.typeCode("var fileManager = NSFileManager.defaultManager;\n");
-            this.typeCode("fileManager.contentsOfDirectoryAtPathError(\"/not-existing-path\");\n");
+            this.typeCode("export class HomeComponent implements OnInit {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("constructor() {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var fileManager = NSFileManager.defaultManager;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("fileManager.contentsOfDirectoryAtPathError(\"/not-existing-path\");");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("ngOnInit(): void {\n");
+            this.typeCode("ngOnInit(): void {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
         } else if (this.setupClass.typeOfProject.equals("js")) {
-            this.typeCode("var frameModule = require(\"ui/frame\");\n");
-            this.typeCode("var HomeViewModel = require(\"./home-view-model\");\n");
-            this.typeCode("var homeViewModel = new HomeViewModel();\n");
-            this.typeCode("function pageLoaded(args) {\n");
+            this.typeCode("var frameModule = require(\"ui/frame\");");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var HomeViewModel = require(\"./home-view-model\");");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var homeViewModel = new HomeViewModel();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("function pageLoaded(args) {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("var page = args.object;\n");
-            this.typeCode("page.bindingContext = homeViewModel;\n");
-            this.typeCode("var fileManager = NSFileManager.defaultManager;\n");
-            this.typeCode("fileManager.contentsOfDirectoryAtPathError(\"/not-existing-path\");\n");
+            this.typeCode("var page = args.object;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("page.bindingContext = homeViewModel;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var fileManager = NSFileManager.defaultManager;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("fileManager.contentsOfDirectoryAtPathError(\"/not-existing-path\");");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("exports.pageLoaded = pageLoaded;\n");
+            this.typeCode("exports.pageLoaded = pageLoaded;");
+            this.typeCode(Key.ENTER);
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
-            this.typeCode("declare var NSFileManager : any;\n");
-            this.typeCode("import { Observable } from 'data/observable';\n");
-            this.typeCode("export class HomeViewModel extends Observable {\n");
+            this.typeCode("declare var NSFileManager : any;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("import { Observable } from 'data/observable';");
+            this.typeCode(Key.ENTER);
+            this.typeCode("export class HomeViewModel extends Observable {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("constructor() {\n");
+            this.typeCode("constructor() {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("super();\n");
-            this.typeCode("var fileManager = NSFileManager.defaultManager;\n");
-            this.typeCode("fileManager.contentsOfDirectoryAtPathError(\"/not-existing-path\");\n");
+            this.typeCode("super();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var fileManager = NSFileManager.defaultManager;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("fileManager.contentsOfDirectoryAtPathError(\"/not-existing-path\");");
+            this.typeCode(Key.ENTER);
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("<template>\n");
-            this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
-            this.typeCode("<ScrollView>\n");
-            this.typeCode("<StackLayout class=\"home-panel\">\n");
-            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
-            this.typeCode("</StackLayout>\n");
+            this.typeCode("<template>");
             this.typeCode(Key.ENTER);
-            this.typeCode("</ScrollView>\n");
+            this.typeCode("<Page class=\"page\">");
             this.typeCode(Key.ENTER);
-            this.typeCode("</Page>\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />");
             this.typeCode(Key.ENTER);
-            this.typeCode("</template>\n");
+            this.typeCode("<ScrollView>");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<StackLayout class=\"home-panel\">");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</StackLayout>");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</ScrollView>");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</Page>");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</template>");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.ENTER);
 
-            this.typeCode("<script>\n");
+            this.typeCode("<script>");
+            this.typeCode(Key.ENTER);
             this.typeCode("export default {");
             this.typeCode(Key.ENTER);
-            this.typeCode("mounted: function () {\n");
-            this.typeCode("var fileManager = NSFileManager.defaultManager;\n");
-            this.typeCode("fileManager.contentsOfDirectoryAtPathError(\"/not-existing-path\");\n");
+            this.typeCode("mounted: function () {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var fileManager = NSFileManager.defaultManager;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("fileManager.contentsOfDirectoryAtPathError(\"/not-existing-path\");");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
             this.typeCode(",");
             this.typeCode("data () {");
@@ -667,15 +832,20 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(Key.DOWN);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("</script>\n");
+            this.typeCode("</script>");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.ENTER);
 
-            this.typeCode("<style scoped>\n");
+            this.typeCode("<style scoped>");
+            this.typeCode(Key.ENTER);
             this.typeCode(".home-panel {");
             this.typeCode(Key.ENTER);
-            this.typeCode("vertical-align: center;\n");
-            this.typeCode("font-size: 20;\n");
-            this.typeCode("margin: 15;\n");
+            this.typeCode("vertical-align: center;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("font-size: 20;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("margin: 15;");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
             this.typeCode(".description-label {");
@@ -683,7 +853,8 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("margin-bottom: 15;");
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("</style>\n");
+            this.typeCode("</style>");
+            this.typeCode(Key.ENTER);
         }
 
         this.setupClass.wait(2000);
@@ -692,79 +863,121 @@ public class CodeEditorClass extends BasePage {
     public void typeJSTSCodeWithThrowiOSCocoaError() {
         this.deleteAllCode();
         if (this.setupClass.typeOfProject.equals("ng")) {
-            this.typeCode("import { Component, OnInit } from \"@angular/core\";\n");
+            this.typeCode("import { Component, OnInit } from \"@angular/core\";");
+            this.typeCode(Key.ENTER);
             this.typeCode("declare var NSArray : any");
-            this.typeCode(";\n");
-            this.typeCode("@Component({\n");
-            this.typeCode("selector: \"Home\",\n");
+            this.typeCode(";");
+            this.typeCode(Key.ENTER);
+            this.typeCode("@Component({");
+            this.typeCode(Key.ENTER);
+            this.typeCode("selector: \"Home\",");
+            this.typeCode(Key.ENTER);
             this.typeCode("moduleId: module.id");
             this.typeCode(",");
-            this.typeCode("\n");
-            this.typeCode("templateUrl: \"./home.component.html\",\n");
-            this.typeCode("styleUrls: ['./home.component.css']\n");
+            this.typeCode(Key.ENTER);
+            this.typeCode("templateUrl: \"./home.component.html\",");
+            this.typeCode(Key.ENTER);
+            this.typeCode("styleUrls: ['./home.component.css']");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("export class HomeComponent implements OnInit {\n");
-            this.typeCode("constructor() {\n");
-            this.typeCode("var arr = new NSArray();\n");
-            this.typeCode("var o = arr.objectAtIndex(\"5\");\n");
+            this.typeCode("export class HomeComponent implements OnInit {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("constructor() {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var arr = new NSArray();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var o = arr.objectAtIndex(\"5\");");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("ngOnInit(): void {\n");
+            this.typeCode("ngOnInit(): void {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
         } else if (this.setupClass.typeOfProject.equals("js")) {
-            this.typeCode("var frameModule = require(\"ui/frame\");\n");
-            this.typeCode("var HomeViewModel = require(\"./home-view-model\");\n");
-            this.typeCode("var homeViewModel = new HomeViewModel();\n");
-            this.typeCode("function pageLoaded(args) {\n");
+            this.typeCode("var frameModule = require(\"ui/frame\");");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var HomeViewModel = require(\"./home-view-model\");");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var homeViewModel = new HomeViewModel();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("function pageLoaded(args) {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("var page = args.object;\n");
-            this.typeCode("page.bindingContext = homeViewModel;\n");
-            this.typeCode("var arr = new NSArray();\n");
-            this.typeCode("var o = arr.objectAtIndex(\"5\");\n");
+            this.typeCode("var page = args.object;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("page.bindingContext = homeViewModel;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var arr = new NSArray();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var o = arr.objectAtIndex(\"5\");");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.DOWN);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("exports.pageLoaded = pageLoaded;\n");
+            this.typeCode("exports.pageLoaded = pageLoaded;");
+            this.typeCode(Key.ENTER);
+
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
-            this.typeCode("declare var NSArray : any;\n");
-            this.typeCode("import { Observable } from 'data/observable';\n");
-            this.typeCode("export class HomeViewModel extends Observable {\n");
+            this.typeCode("declare var NSArray : any;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("import { Observable } from 'data/observable';");
+            this.typeCode(Key.ENTER);
+            this.typeCode("export class HomeViewModel extends Observable {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("constructor() {\n");
+            this.typeCode("constructor() {");
+            this.typeCode(Key.ENTER);
             this.setupClass.s.type(Key.ENTER);
-            this.typeCode("super();\n");
-            this.typeCode("var arr = new NSArray();\n");
-            this.typeCode("var o = arr.objectAtIndex(\"5\");\n");
+            this.typeCode("super();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var arr = new NSArray();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var o = arr.objectAtIndex(\"5\");");
+            this.typeCode(Key.ENTER);
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
             this.deleteAllCode();
-            this.typeCode("<template>\n");
-            this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
-            this.typeCode("<ScrollView>\n");
-            this.typeCode("<StackLayout class=\"home-panel\">\n");
-            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
-            this.typeCode("</StackLayout>\n");
+            this.typeCode("<template>");
             this.typeCode(Key.ENTER);
-            this.typeCode("</ScrollView>\n");
+            this.typeCode("<Page class=\"page\">");
             this.typeCode(Key.ENTER);
-            this.typeCode("</Page>\n");
+            this.typeCode("<ActionBar title=\"Test</StackLayout>\" class=\"action-bar\" />");
             this.typeCode(Key.ENTER);
-            this.typeCode("</template>\n");
+            this.typeCode("<ScrollView>");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<StackLayout class=\"home-panel\">");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
+            this.typeCode(Key.ENTER);
+            this.typeCode("</StackLayout>");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</ScrollView>");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</Page>");
+            this.typeCode(Key.ENTER);
+            this.typeCode(Key.ENTER);
+            this.typeCode("</template>");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.ENTER);
 
-            this.typeCode("<script>\n");
+            this.typeCode("<script>");
+            this.typeCode(Key.ENTER);
             this.typeCode("export default {");
             this.typeCode(Key.ENTER);
-            this.typeCode("mounted: function () {\n");
-            this.typeCode("var arr = new NSArray();\n");
-            this.typeCode("var o = arr.objectAtIndex(\"5\");\n");
+            this.typeCode("mounted: function () {");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var arr = new NSArray();");
+            this.typeCode(Key.ENTER);
+            this.typeCode("var o = arr.objectAtIndex(\"5\");");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
             this.typeCode(",");
             this.typeCode("data () {");
@@ -779,15 +992,20 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(Key.DOWN);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("</script>\n");
+            this.typeCode("</script>");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.ENTER);
 
-            this.typeCode("<style scoped>\n");
+            this.typeCode("<style scoped>");
+            this.typeCode(Key.ENTER);
             this.typeCode(".home-panel {");
             this.typeCode(Key.ENTER);
-            this.typeCode("vertical-align: center;\n");
-            this.typeCode("font-size: 20;\n");
-            this.typeCode("margin: 15;\n");
+            this.typeCode("vertical-align: center;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("font-size: 20;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("margin: 15;");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
             this.typeCode(".description-label {");
@@ -795,7 +1013,8 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("margin-bottom: 15;");
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("</style>\n");
+            this.typeCode("</style>");
+            this.typeCode(Key.ENTER);
         }
 
         this.setupClass.wait(2000);
@@ -813,110 +1032,47 @@ public class CodeEditorClass extends BasePage {
         this.log.info("Scroll Down");
     }
 
-    public void openFile(Pattern fileToOpen){
+    public void openFile(String fileToOpen){
+        setupClass.driver.findElements(By.xpath("//span[contains(.,'" + fileToOpen + "')]")).get(0).click();
         try {
-            this.setupClass.s.click(fileToOpen);
-        } catch (FindFailed findFailed) {
-            findFailed.printStackTrace();
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        this.setupClass.wait(3000);
     }
     public String getErrorsTextFromErrorTab(){
-        String ErrorText = "";
         try {
-            if(this.setupClass.browser.equals("Safari"))
-            {
-                setupClass.s.dragDrop(new Pattern("ErrorsSafari").similar(0.7f).targetOffset(-3, 16),
-                        new Pattern("ErrorsSafari").similar(0.7f).targetOffset(16, 170));
-            }
-            else {
-                setupClass.s.dragDrop(new Pattern("Errors").similar(0.75f).targetOffset(-3, 16),
-                        new Pattern("Errors").similar(0.75f).targetOffset(16, 170));
-            }
-        } catch (FindFailed findFailed) {
-            findFailed.printStackTrace();
-        }
-        this.setupClass.wait(3000);
-        s.type("c", KeyModifier.CMD);
-        this.setupClass.wait(1000);
-        try {
-            ErrorText =  (String) Toolkit.getDefaultToolkit()
-                    .getSystemClipboard().getData(DataFlavor.stringFlavor);
-        } catch (UnsupportedFlavorException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return ErrorText;
+        return setupClass.driver.findElements(By.className("errors")).get(0).getText();
     }
 
     public String getLogsTextFromDeviceLogsTab(){
-        String ErrorText = "";
-        setupClass.wait(3000);
+       setupClass.driver.findElements(By.xpath("//span[contains(.,'Device Logs')]")).get(0).click();
         try {
-            if(this.setupClass.browser.equals("Safari")) {
-                setupClass.s.click("devicelogsSafari");
-            }
-            else
-            {
-                setupClass.s.click("devicelogs");
-            }
-        } catch (FindFailed findFailed) {
-            findFailed.printStackTrace();
-        }
-        setupClass.wait(3000);
-        try {
-            if(this.setupClass.browser.equals("Safari"))
-            {
-                setupClass.s.dragDrop(new Pattern("devicelogsSafari").targetOffset(-3, 16),
-                        new Pattern("devicelogsSafari").targetOffset(16, 45));
-            }
-            else {
-                setupClass.s.dragDrop(new Pattern("devicelogs").targetOffset(-3, 16),
-                        new Pattern("devicelogs").targetOffset(16, 45));
-            }
-        } catch (FindFailed findFailed) {
-            findFailed.printStackTrace();
-        }
-        this.setupClass.wait(3000);
-
-        for (int i=0;i<70;i++)
-        {
-            s.type(Key.DOWN,KeyModifier.SHIFT);
-        }
-
-        this.setupClass.wait(3000);
-        s.type("c", KeyModifier.CMD);
-        this.setupClass.wait(1500);
-        try {
-            ErrorText =  (String) Toolkit.getDefaultToolkit()
-                    .getSystemClipboard().getData(DataFlavor.stringFlavor);
-        } catch (UnsupportedFlavorException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return ErrorText;
+       return setupClass.driver.findElements(By.className("logs")).get(0).getText();
     }
 
     public void clearDeviceLogs()
     {
+        setupClass.driver.findElements(By.xpath("//span[contains(.,'Device Logs')]")).get(0).click();
         try {
-            if (this.setupClass.browser.equals("Safari")) {
-                setupClass.s.click("devicelogsSafari");
-            } else {
-                setupClass.s.click("devicelogs");
-            }
-        } catch (FindFailed findFailed) {
-            findFailed.printStackTrace();
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        setupClass.wait(3000);
+        setupClass.driver.findElements(By.xpath("//*[@title=\"Clear logs\"]")).get(0).click();
         try {
-            setupClass.s.click("cleardevicelogs");
-        } catch (FindFailed findFailed) {
-            findFailed.printStackTrace();
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        setupClass.wait(3000);
     }
 
     public void assertImageIsOnScreen(String imageToFind, float similarity){
@@ -935,47 +1091,6 @@ public class CodeEditorClass extends BasePage {
 
     public void assertDeviceTab(String deviceNameExpected, String modelExpected, String osVersionExpected, String previewAppVersionExpected, String runtimeVersionExpected, String componentVersionsExpected)
     {
-        //old sikuli way of testing
-//        try {
-//            this.setupClass.s.click("devicestab");
-//            this.setupClass.wait(2000);
-//            this.setupClass.s.click(new Pattern("devicename.png").targetOffset(-29,39));
-//            this.setupClass.wait(1000);
-//            this.setupClass.s.doubleClick(new Pattern("devicename.png").targetOffset(-43,76));
-//            for (int i=36; i>0; i--)
-//            {
-//                this.setupClass.s.type(Key.DOWN, KeyModifier.SHIFT);
-//            }
-//            String componentsVersion = this.getTextWithCopy();
-//            if(this.setupClass.browser.equals("Safari"))
-//            {
-//                setupClass.s.click("ErrorsNotSelectedSafari");
-//            }
-//            else {
-//                setupClass.s.click("ErrorsNotSelected");
-//            }
-//            this.setupClass.wait(2000);
-//            this.setupClass.s.click("devicestab");
-//            this.setupClass.wait(2000);
-//            this.setupClass.s.dragDrop(new Pattern("devicename.png").targetOffset(8,39),new Pattern("model.png").targetOffset(-25,40));
-//            String deviceName = this.getTextWithCopy();
-//            this.setupClass.s.click("devicestab");
-//            if(settings.deviceType == settings.deviceType.Emulator) {
-//                this.setupClass.s.dragDrop(new Pattern("model.png").targetOffset(-25,40), new Pattern("model.png").targetOffset(153,39));
-//
-//            }
-//            else
-//            {
-//                this.setupClass.s.dragDrop(new Pattern("model.png").targetOffset(-25,40), new Pattern("model.png").targetOffset(82,40));
-//            }
-//            String modelName = this.getTextWithCopy();
-//            this.setupClass.s.dragDrop(new Pattern("osversion.png").targetOffset(-35,41), new Pattern("osversion.png").targetOffset(75,41));
-//            String osVersionText = this.getTextWithCopy();
-//            this.setupClass.s.dragDrop(new Pattern("previewappversion.png").targetOffset(-61,38), new Pattern("previewappversion.png").targetOffset(71,38));
-//            String previewAppVersionText = this.getTextWithCopy();
-//            this.setupClass.s.dragDrop(new Pattern("runtimeversion.png").targetOffset(-52,37), new Pattern("runtimeversion.png").targetOffset(85,37));
-//            String runtimeVersionText = this.getTextWithCopy();
-
             WebElement baseTable = null;
             if(setupClass.waitUntilWebElementIsPresentByClassName("device-name-td"))
             {

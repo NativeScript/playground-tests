@@ -204,7 +204,7 @@ public class  NSSyncTests extends MobileTest {
         {
             codeEditor.typeXMLOrHTMLCode(true);
         }
-        codeEditor.openFile(new Pattern("appcss").similar(0.70f));
+        codeEditor.openFile("app.css");
         codeEditor.typeCSSCode(true);
         codeEditor.save();
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
@@ -241,49 +241,19 @@ public class  NSSyncTests extends MobileTest {
         codeEditor.clearDeviceLogs();
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            if(this.setupClass.browser.equals("Safari"))
-            {
-                this.setupClass.s.hover("angulartsSafari");
-                this.setupClass.wait(1000);
-                this.setupClass.s.wheel(WHEEL_UP,3);
-                codeEditor.openFile(new Pattern("home.png").targetOffset(75,88));
-            }
-            else {
-                this.setupClass.s.hover("angularts");
-                this.setupClass.wait(1000);
-                this.setupClass.s.wheel(WHEEL_UP,3);
-                codeEditor.openFile(new Pattern("home.png").targetOffset(75,88));
-            }
+            codeEditor.openFile("home.component");
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
-            if(this.setupClass.browser.equals("Safari"))
-            {
-                codeEditor.openFile(new Pattern("javascriptjsSafari").similar(0.88f));
-            }
-            else {
-                codeEditor.openFile(new Pattern("javascriptjs").similar(0.88f));
-            }
+            codeEditor.openFile("home-view-model.js");
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            if(this.setupClass.browser.equals("Safari"))
-            {
-                codeEditor.openFile(new Pattern("typescripttsSafari").similar(0.88f));
-            }
-            else {
-                codeEditor.openFile(new Pattern("typescriptts").similar(0.88f));
-            }
+            codeEditor.openFile("home-view-model.ts");
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
-            if(this.setupClass.browser.equals("Safari"))
-            {
-                codeEditor.openFile(new Pattern("vuejsSafari").similar(0.88f));
-            }
-            else {
-                codeEditor.openFile(new Pattern("vuejs").similar(0.88f));
-            }
+            codeEditor.openFile("HelloWorld.vue");
         }
         codeEditor.typeJSTSCode(true);
         this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterCode");
@@ -336,7 +306,8 @@ public class  NSSyncTests extends MobileTest {
         Assert.assertTrue(errorText.contains(expectedText),"Expected text \""+expectedText+ "\" does not contains \""+errorText+"\" .");
         this.setupClass.wait(2000);
         codeEditor.save();
-        codeEditor.assertImageIsOnScreen("ErrorDialogWhenErrorInCode");
+        Assert.assertTrue(setupClass.driver.findElements(By.xpath("//span[contains(.,'Unable to apply changes')]")).size() != 0);
+        Assert.assertTrue(setupClass.driver.findElements(By.xpath("//div[contains(.,'Please fix the errors and try again.')]")).size() != 0);
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
         this.setupClass.s.type(Key.ESC);
         this.setupClass.wait(3000);
@@ -354,54 +325,24 @@ public class  NSSyncTests extends MobileTest {
             codeEditor.typeJSTSCode(true);
         }
         codeEditor.clearDeviceLogs();
-        this.setupClass.wait(2000);
-        if(this.setupClass.browser.equals("Safari"))
-        {
-            setupClass.s.click("ErrorsNotSelectedSafari");
-        }
-        else {
-            setupClass.s.click("ErrorsNotSelected");
-        }
-        this.setupClass.wait(2000);
+        this.setupClass.wait(1000);
+        setupClass.driver.findElements(By.xpath("//span[contains(.,'Errors')]")).get(0).click();
+        this.setupClass.wait(1000);
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            if(this.setupClass.browser.equals("Safari"))
-            {
-                codeEditor.openFile(new Pattern("home.png").targetOffset(75,88));
-            }
-            else {
-                codeEditor.openFile(new Pattern("home.png").targetOffset(75,88));
-            }
+            codeEditor.openFile("home.component");
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
-            if(this.setupClass.browser.equals("Safari"))
-            {
-                codeEditor.openFile(new Pattern("javascriptjsSafari").similar(0.88f));
-            }
-            else {
-                codeEditor.openFile(new Pattern("javascriptjs").similar(0.88f));
-            }
+            codeEditor.openFile("home-view-model.js");
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            if(this.setupClass.browser.equals("Safari"))
-            {
-                codeEditor.openFile(new Pattern("typescripttsSafari").similar(0.88f));
-            }
-            else {
-                codeEditor.openFile(new Pattern("typescriptts").similar(0.88f));
-            }
+            codeEditor.openFile("home-view-model.ts");
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
-            if(this.setupClass.browser.equals("Safari"))
-            {
-                codeEditor.openFile(new Pattern("vuejsSafari").similar(0.88f));
-            }
-            else {
-                codeEditor.openFile(new Pattern("vuejs").similar(0.88f));
-            }
+            codeEditor.openFile("HelloWorld.vue");
         }
 
         this.setupClass.wait(2000);
@@ -494,14 +435,7 @@ public class  NSSyncTests extends MobileTest {
         }
         codeEditor.clearDeviceLogs();
         this.setupClass.wait(1000);
-
-        if(this.setupClass.browser.equals("Safari"))
-        {
-            setupClass.s.click("ErrorsNotSelectedSafari");
-        }
-        else {
-            setupClass.s.click("ErrorsNotSelected");
-        }
+        setupClass.driver.findElements(By.xpath("//span[contains(.,'Errors')]")).get(0).click();
         this.setupClass.wait(1000);
         codeEditor.typeJSTSCodeWithThrowJavaError();
         this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterErrorCode");
@@ -607,13 +541,7 @@ public class  NSSyncTests extends MobileTest {
             this.setupClass.wait(3000);
         }
         codeEditor.clearDeviceLogs();
-        if(this.setupClass.browser.equals("Safari"))
-        {
-            setupClass.s.click("ErrorsNotSelectedSafari");
-        }
-        else {
-            setupClass.s.click("ErrorsNotSelected");
-        }
+        setupClass.driver.findElements(By.xpath("//span[contains(.,'Errors')]")).get(0).click();
         codeEditor.typeJSTSCodeWithThrowiOSError();
         this.setupClass.wait(2000);
         this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterErrorCode");
@@ -712,13 +640,7 @@ public class  NSSyncTests extends MobileTest {
         if(settings.deviceType == settings.deviceType.Simulator) {
             codeEditor.clearDeviceLogs();
             this.device.cleanConsoleLog();
-            if(this.setupClass.browser.equals("Safari"))
-            {
-                setupClass.s.click("ErrorsNotSelectedSafari");
-            }
-            else {
-                setupClass.s.click("ErrorsNotSelected");
-            }
+            setupClass.driver.findElements(By.xpath("//span[contains(.,'Errors')]")).get(0).click();
             codeEditor.typeJSTSCodeWithThrowiOSCocoaError();
             codeEditor.save();
             if (settings.deviceType == settings.deviceType.Simulator) {
@@ -812,7 +734,7 @@ public class  NSSyncTests extends MobileTest {
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
-            this.setupClass.openURL("https://play.telerik.rocks/?template=play-vue&id=Y7CDht");
+            this.setupClass.openURL("https://play.telerik.rocks/?template=play-vue&id=zNs2HL");
         }
         this.setupClass.wait(12000);
         this.setupClass.navigateToSavedSession("Tap to open the saved");

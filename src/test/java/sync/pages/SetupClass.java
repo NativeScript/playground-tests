@@ -688,18 +688,18 @@ public WebDriver driver;
         Region objectToClick = findImageOnDesktopScreen(imageName, similarity, offsetX, offsetY);
 
         //try {
-        //    this.s.click(objectToClick);
+        //    this.cti(objectToClick);
         //} catch (FindFailed findFailed) {
         //    findFailed.printStackTrace();
        // }
-        Click myClick = new Click(objectToClick.x, objectToClick.y);
-        Thread click = new Thread(myClick);
-        click.start();
-        try {
-            click.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        //Click myClick = new Click(objectToClick.x, objectToClick.y);
+        //Thread click = new Thread(myClick);
+        //click.start();
+//        try {
+//        //    click.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         try {
             giveFocus();
         } catch (InterruptedException e) {
@@ -708,52 +708,7 @@ public WebDriver driver;
         System.out.println("CLick on " + imageName);
     }
 
-    public class Click implements Runnable {
-        private int x;
-        private int y;
-
-        public Click(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public void run() {
-            try {
-                Robot myRobot = new Robot(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice());
-                myRobot.mouseMove(x, y);
-                myRobot.delay(1000);
-                myRobot.mousePress(InputEvent.BUTTON1_MASK);
-                myRobot.delay(1000);
-                myRobot.mouseRelease(InputEvent.BUTTON1_MASK);
-                myRobot.delay(1000);
-            } catch (AWTException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
-
-    public void clickOnDesktop(String imageName, double similarity){
-        clickOnDesktop(imageName, similarity, 0, 0);
-    }
-
-    public void clickOnDesktop(String imageName, int offsetX, int offsetY){
-        clickOnDesktop(imageName, 0, offsetX, offsetY);
-    }
-
-    public void clickOnDesktop(String imageName){
-        clickOnDesktop(imageName, 0, 0, 0);
-    }
-
     public BufferedImage getScreenShotForSikuli() {
-//        Process p = null;
-//        try {
-//            this.wait(10000);
-//            p = Runtime.getRuntime().exec("screencapture -S -x -r -t png " + this.folderForDesktopScreenshots + this.imageNumber + ".png");
-//            this.wait(10000);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice[] screens = ge.getScreenDevices();
 
@@ -781,20 +736,6 @@ public WebDriver driver;
             e.printStackTrace();
         }
         return screenShot;
-        //try {
-            //p.waitFor();
-
-       // } catch (InterruptedException e) {
-            //e.printStackTrace();
-        //}
-//        File screenFile = new File(this.folderForDesktopScreenshots + this.imageNumber + ".png");
-//        this.imageNumber++;
-//        try {
-//            return ImageIO.read(screenFile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
     }
 
     public static String getImageFullName(String imageFolderPath, String imageName) {
