@@ -110,7 +110,8 @@ public class CodeEditorClass extends BasePage {
 
         if (this.setupClass.typeOfProject.equals("vue")) {
             this.deleteAllCode();
-            this.typeCode("<template>\n");
+            this.typeCode("<template>");
+            this.typeCode("\n");
             this.typeCode("<Page class=\"page\">\n");
             this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
             this.typeCode("<ScrollView>\n");
@@ -130,7 +131,8 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(Key.ENTER);
             this.typeCode("</Page>\n");
             this.typeCode(Key.ENTER);
-            this.typeCode("</template>\n");
+            this.typeCode("</template>");
+            this.typeCode("\n");
             this.typeCode(Key.ENTER);
 
             this.typeCode("<script>\n");

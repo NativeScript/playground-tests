@@ -135,10 +135,11 @@ public WebDriver driver;
 //        s.type("f", KeyModifier.CMD+KeyModifier.CTRL);
 //        this.wait(2000);
         WebDriverManager.chromedriver().setup();
-
+        Thread.sleep(5000);
         final ChromeOptions options = new ChromeOptions();
         options.addArguments("start-fullscreen");
         this.driver=new ChromeDriver(options);
+        Thread.sleep(5000);
 
     }
 
@@ -150,6 +151,7 @@ public WebDriver driver;
 //        s.type(Key.ENTER);
 //        this.wait(20000);
         driver.get(URL);
+        Thread.sleep(5000);
         driver.findElements(By.xpath("//a[contains(.,'Accept Cookies')]")).get(0).click();
     }
 

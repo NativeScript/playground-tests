@@ -35,8 +35,8 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.startPreviewAppWithLiveSync();
         this.setupClass.giveFocus();
         this.setupClass.getScreenShot("BeforeStartOfTests_AfterLiveSync");
-        this.setupClass.closeTutorial();
-        this.setupClass.getScreenShot("BeforeStartOfTests_AfterCloseTutorial");
+        //this.setupClass.closeTutorial();
+        //this.setupClass.getScreenShot("BeforeStartOfTests_AfterCloseTutorial");
 }
     @AfterClass
     public void afterClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
