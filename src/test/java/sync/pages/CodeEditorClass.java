@@ -46,18 +46,27 @@ public class CodeEditorClass extends BasePage {
                 findFailed.printStackTrace();
             }
             try {
-                this.wait(1000);
+                Thread.sleep(1500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         s.type(code);
-        this.setupClass.wait(1500);
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteAllCode()
     {
         this.setupClass.driver.findElements(By.tagName("monaco-editor")).get(0).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         s.type("a", KeyModifier.CMD);
         this.setupClass.wait(500);
         s.type(Key.DELETE);
@@ -111,31 +120,37 @@ public class CodeEditorClass extends BasePage {
         if (this.setupClass.typeOfProject.equals("vue")) {
             this.deleteAllCode();
             this.typeCode("<template>");
-            this.typeCode("\n");
-            this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
-            this.typeCode("<ScrollView>\n");
-            this.typeCode("<StackLayout class=\"home-panel\">\n");
-            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
-
+            this.typeCode(Key.ENTER);
+            this.typeCode("<Page class=\"page\">");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<ScrollView>");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<StackLayout class=\"home-panel\">");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
+            this.typeCode(Key.ENTER);
 
             if (isValid) {
-                this.typeCode("</StackLayout>\n");
+                this.typeCode("</StackLayout>");
+                this.typeCode(Key.ENTER);
             }
             else
             {
-                this.typeCode("</StackLayoutggggggggggg\n");
+                this.typeCode("</StackLayoutggggggggggg");
+                this.typeCode(Key.ENTER);
             }
             this.typeCode(Key.ENTER);
-            this.typeCode("</ScrollView>\n");
+            this.typeCode("</ScrollView>");
             this.typeCode(Key.ENTER);
-            this.typeCode("</Page>\n");
+            this.typeCode("</Page>");
             this.typeCode(Key.ENTER);
             this.typeCode("</template>");
-            this.typeCode("\n");
             this.typeCode(Key.ENTER);
 
-            this.typeCode("<script>\n");
+            this.typeCode("<script>");
+            this.typeCode(Key.ENTER);
 
             this.typeCode("export default {");
             this.typeCode(Key.ENTER);
@@ -151,15 +166,19 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(Key.DOWN);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("</script>\n");
+            this.typeCode("</script>");
             this.typeCode(Key.ENTER);
-
-            this.typeCode("<style scoped>\n");
+            this.typeCode(Key.ENTER);
+            this.typeCode("<style scoped>");
+            this.typeCode(Key.ENTER);
             this.typeCode(".home-panel {");
             this.typeCode(Key.ENTER);
-            this.typeCode("vertical-align: center;\n");
-            this.typeCode("font-size: 20;\n");
-            this.typeCode("margin: 15;\n");
+            this.typeCode("vertical-align: center;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("font-size: 20;");
+            this.typeCode(Key.ENTER);
+            this.typeCode("margin: 15;");
+            this.typeCode(Key.ENTER);
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
             this.typeCode(".description-label {");
@@ -167,7 +186,8 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("margin-bottom: 15;");
             this.typeCode(Key.DOWN);
             this.typeCode(Key.ENTER);
-            this.typeCode("</style>\n");
+            this.typeCode("</style>");
+            this.typeCode(Key.ENTER);
         }
         this.setupClass.wait(2000);
     }
@@ -279,7 +299,7 @@ public class CodeEditorClass extends BasePage {
             this.deleteAllCode();
             this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
@@ -503,7 +523,7 @@ public class CodeEditorClass extends BasePage {
             this.deleteAllCode();
             this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
@@ -614,7 +634,7 @@ public class CodeEditorClass extends BasePage {
             this.deleteAllCode();
             this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
@@ -726,7 +746,7 @@ public class CodeEditorClass extends BasePage {
             this.deleteAllCode();
             this.typeCode("<template>\n");
             this.typeCode("<Page class=\"page\">\n");
-            this.typeCode("<ActionBar title=\"Home\" class=\"action-bar\" />\n");
+            this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />\n");
             this.typeCode("<ScrollView>\n");
             this.typeCode("<StackLayout class=\"home-panel\">\n");
             this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n");
@@ -955,15 +975,15 @@ public class CodeEditorClass extends BasePage {
 //            String previewAppVersionText = this.getTextWithCopy();
 //            this.setupClass.s.dragDrop(new Pattern("runtimeversion.png").targetOffset(-52,37), new Pattern("runtimeversion.png").targetOffset(85,37));
 //            String runtimeVersionText = this.getTextWithCopy();
-        //tableRows.get(1)..getText();
-        //Assert.assertEquals(componentsVersion, componentVersionsExpected,"components version is not correct!");
-        //Assert.assertEquals(deviceName, deviceNameExpected, "device name is not correct!");
-        //Assert.assertEquals(modelName, modelExpected, "model name is not correct!");
-        //Assert.assertTrue(osVersionText.contains(osVersionExpected), "Actual os version is "+osVersionText+" , expected os version is "+osVersionExpected);
-        //Assert.assertEquals(previewAppVersionText, previewAppVersionExpected, "preview app version is not correct!");
-        //Assert.assertEquals(runtimeVersionText, runtimeVersionExpected, "runtime version is not correct!");
 
-            WebElement baseTable = setupClass.driver.findElement(By.className("devices"));
+            WebElement baseTable = null;
+            if(setupClass.waitUntilWebElementIsPresentByClassName("device-name-td"))
+            {
+                baseTable = setupClass.driver.findElements(By.className("devices")).get(0);
+            }
+            else {
+                Assert.assertTrue(false, "Devices tab could not be found!!!");
+            }
             List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
             tableRows.get(0).findElements(By.tagName("td")).get(0).click();
             baseTable = setupClass.driver.findElement(By.className("devices"));
@@ -974,6 +994,13 @@ public class CodeEditorClass extends BasePage {
             String osVersionText = tableRows.get(0).findElements(By.tagName("td")).get(2).getText();
             String previewAppVersionText = tableRows.get(0).findElements(By.tagName("td")).get(3).getText();
             String runtimeVersionText = tableRows.get(0).findElements(By.tagName("td")).get(4).getText();
+
+            Assert.assertEquals(componentsVersion, componentVersionsExpected,"components version is not correct!");
+            Assert.assertEquals(deviceName, deviceNameExpected, "device name is not correct!");
+            Assert.assertEquals(modelName, modelExpected, "model name is not correct!");
+            Assert.assertTrue(osVersionText.contains(osVersionExpected), "Actual os version is "+osVersionText+" , expected os version is "+osVersionExpected);
+            Assert.assertEquals(previewAppVersionText, previewAppVersionExpected, "preview app version is not correct!");
+            Assert.assertEquals(runtimeVersionText, runtimeVersionExpected, "runtime version is not correct!");
     }
 
     public String getTextWithCopy() {
@@ -992,6 +1019,5 @@ public class CodeEditorClass extends BasePage {
         this.setupClass.wait(1000);
         return text.trim();
     }
-
 
 }

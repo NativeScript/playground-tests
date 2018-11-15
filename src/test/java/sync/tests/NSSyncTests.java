@@ -1,6 +1,7 @@
 package sync.tests;
 
 import functional.tests.core.mobile.basetest.MobileTest;
+import org.openqa.selenium.By;
 import org.openqa.selenium.logging.LogEntries;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Key;
@@ -162,6 +163,11 @@ public class  NSSyncTests extends MobileTest {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         codeEditor.typeXMLOrHTMLCode(false);
         codeEditor.save();
+        if(setupClass.waitUntilWebElementIsPresentByXpath("//button[contains(.,'Not now')]"))
+        {
+            setupClass.driver.findElements(By.xpath("//button[contains(.,'Not now')]")).get(0).click();
+        }
+
         this.setupClass.wait(2000);
         if(this.setupClass.typeOfProject.equals("ng"))
         {

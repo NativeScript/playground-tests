@@ -809,4 +809,53 @@ public WebDriver driver;
         return imageFullName;
     }
 
+
+    public boolean waitUntilWebElementIsPresentByXpath(String xpath, int tries)
+    {
+        while (true) {
+            tries--;
+            List<WebElement> elements = driver.findElements(By.xpath(xpath));
+            if (elements.size() != 0) {
+                return true;
+            }
+            if (tries < 1) {
+                return false;
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public boolean waitUntilWebElementIsPresentByXpath(String xpath)
+    {
+        return waitUntilWebElementIsPresentByXpath(xpath, 20);
+    }
+
+    public boolean waitUntilWebElementIsPresentByClassName(String className, int tries)
+    {
+        while (true) {
+            tries--;
+            List<WebElement> elements = driver.findElements(By.className(className));
+            if (elements.size() != 0) {
+                return true;
+            }
+            if (tries < 1) {
+                return false;
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public boolean waitUntilWebElementIsPresentByClassName(String className)
+    {
+        return waitUntilWebElementIsPresentByClassName(className, 20);
+    }
+
 }
