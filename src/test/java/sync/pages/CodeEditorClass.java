@@ -54,7 +54,7 @@ public class CodeEditorClass extends BasePage {
         if(code.contains("{"))
         {
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -223,7 +223,6 @@ public class CodeEditorClass extends BasePage {
             s.type(Key.ENTER);
             this.typeCode("margin-bottom: 15;");
             s.type(Key.ENTER);
-            this.typeCode("}");
             this.typeCode("}");
             s.type(Key.ENTER);
         }
