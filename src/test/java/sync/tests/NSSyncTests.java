@@ -313,6 +313,7 @@ public class  NSSyncTests extends MobileTest {
         if(!this.setupClass.typeOfProject.equals("vue")) {
             this.setupClass.wait(2000);
             codeEditor.save();
+            this.setupClass.wait(2000);
             Assert.assertTrue(setupClass.driver.findElements(By.xpath("//span[contains(.,'Unable to apply changes')]")).size() != 0);
             Assert.assertTrue(setupClass.driver.findElements(By.xpath("//div[contains(.,'Please fix the errors and try again.')]")).size() != 0);
             this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
