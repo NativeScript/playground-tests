@@ -51,29 +51,27 @@ public class CodeEditorClass extends BasePage {
                 e.printStackTrace();
             }
         }
+
         if(code.contains("{"))
         {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        s.type(code);
-        if(code.contains("{"))
-        {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        else {
+            s.type(code);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            s.type("}");
+            s.type(Key.LEFT);
+        }
+        else
+        {
+            s.type(code);
+        }
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -886,7 +884,10 @@ public class CodeEditorClass extends BasePage {
     public void typeJSTSCodeWithThrowiOSCocoaError() {
         this.deleteAllCode();
         if (this.setupClass.typeOfProject.equals("ng")) {
-            this.typeCode("import { Component, OnInit } from \"@angular/core\";");
+            this.typeCode("import {");
+            this.typeCode("Component, OnInit");
+            this.typeCode(Key.RIGHT);
+            this.typeCode(" from \"@angular/core\";");
             this.typeCode(Key.ENTER);
             this.typeCode("declare var NSArray : any");
             this.typeCode(";");
