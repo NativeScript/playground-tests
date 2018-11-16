@@ -315,7 +315,7 @@ public class CodeEditorClass extends BasePage {
             this.typeCode(Key.ENTER);
             this.typeCode("function pageLoaded(args) {");
             this.typeCode(Key.ENTER);
-            this.setupClass.s.type(Key.ENTER);
+            this.typeCode(Key.ENTER);
             this.typeCode("var page = args.object;");
             this.typeCode(Key.ENTER);
             this.typeCode("page.bindingContext = homeViewModel;");
