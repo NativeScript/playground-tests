@@ -248,7 +248,7 @@ public class CodeEditorClass extends BasePage {
         this.typeCode("margin-bottom: 15;");
         s.type(Key.ENTER);
 
-        this.setupClass.wait(1000);
+        this.setupClass.wait(2000);
     }
 
     public void save() {

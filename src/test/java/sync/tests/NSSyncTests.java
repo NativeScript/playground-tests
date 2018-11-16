@@ -285,8 +285,14 @@ public class  NSSyncTests extends MobileTest {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         codeEditor.typeJSTSCode(false);
         this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterErrorCode");
-        String errorText = codeEditor.getErrorsTextFromErrorTab();
         String expectedText = "";
+        if(this.setupClass.typeOfProject.equals("vue"))
+        {
+            expectedText = "An error occurred while transpiling components/HelloWorld.vue.";
+            codeEditor.save();
+        }
+        String errorText = codeEditor.getErrorsTextFromErrorTab();
+
         if(this.setupClass.typeOfProject.equals("ng"))
         {
             expectedText = "home/home.component.ts";
@@ -304,11 +310,13 @@ public class  NSSyncTests extends MobileTest {
             expectedText = "app.js";
         }
         Assert.assertTrue(errorText.contains(expectedText),"Expected text \""+expectedText+ "\" does not contains \""+errorText+"\" .");
-        this.setupClass.wait(2000);
-        codeEditor.save();
-        Assert.assertTrue(setupClass.driver.findElements(By.xpath("//span[contains(.,'Unable to apply changes')]")).size() != 0);
-        Assert.assertTrue(setupClass.driver.findElements(By.xpath("//div[contains(.,'Please fix the errors and try again.')]")).size() != 0);
-        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
+        if(!this.setupClass.typeOfProject.equals("vue")) {
+            this.setupClass.wait(2000);
+            codeEditor.save();
+            Assert.assertTrue(setupClass.driver.findElements(By.xpath("//span[contains(.,'Unable to apply changes')]")).size() != 0);
+            Assert.assertTrue(setupClass.driver.findElements(By.xpath("//div[contains(.,'Please fix the errors and try again.')]")).size() != 0);
+            this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
+        }
         this.setupClass.s.type(Key.ESC);
         this.setupClass.wait(3000);
         codeEditor.typeJSTSCode(true);
