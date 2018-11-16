@@ -270,7 +270,10 @@ public class CodeEditorClass extends BasePage {
     public void typeJSTSCode(boolean isValid) {
         this.deleteAllCode();
         if(this.setupClass.typeOfProject.equals("ng")) {
-            this.typeCode("import { Component, OnInit } from \"@angular/core\";\n");
+            this.typeCode("import {");
+            this.typeCode("Component, OnInit");
+            this.typeCode(Key.RIGHT);
+            this.typeCode(" from \"@angular/core\";");
             this.typeCode(Key.ENTER);
             this.typeCode("@Component({");
             this.typeCode(Key.ENTER);
@@ -426,7 +429,10 @@ public class CodeEditorClass extends BasePage {
     public void typeJSTSCodeWithThrowError() {
         this.deleteAllCode();
         if (this.setupClass.typeOfProject.equals("ng")) {
-            this.typeCode("import { Component, OnInit } from \"@angular/core\";");
+            this.typeCode("import {");
+            this.typeCode("Component, OnInit");
+            this.typeCode(Key.RIGHT);
+            this.typeCode(" from \"@angular/core\";");
             this.typeCode(Key.ENTER);
             this.typeCode("@Component({");
             this.typeCode(Key.ENTER);
@@ -572,7 +578,10 @@ public class CodeEditorClass extends BasePage {
     public void typeJSTSCodeWithThrowJavaError() {
         this.deleteAllCode();
         if (this.setupClass.typeOfProject.equals("ng")) {
-            this.typeCode("import { Component, OnInit } from \"@angular/core\";");
+            this.typeCode("import {");
+            this.typeCode("Component, OnInit");
+            this.typeCode(Key.RIGHT);
+            this.typeCode(" from \"@angular/core\";");
             this.typeCode(Key.ENTER);
             this.typeCode("declare var java : any");
             this.typeCode(";");
@@ -725,7 +734,10 @@ public class CodeEditorClass extends BasePage {
     public void typeJSTSCodeWithThrowiOSError() {
         this.deleteAllCode();
         if (this.setupClass.typeOfProject.equals("ng")) {
-            this.typeCode("import { Component, OnInit } from \"@angular/core\";");
+            this.typeCode("import {");
+            this.typeCode("Component, OnInit");
+            this.typeCode(Key.RIGHT);
+            this.typeCode(" from \"@angular/core\";");
             this.typeCode(Key.ENTER);
             this.typeCode("declare var NSFileManager : any");
             this.typeCode(";");
