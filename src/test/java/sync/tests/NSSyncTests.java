@@ -241,15 +241,15 @@ public class  NSSyncTests extends MobileTest {
         codeEditor.clearDeviceLogs();
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            codeEditor.openFile("home.component");
+            codeEditor.openFile("home.component.ts");
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
-            codeEditor.openFile("home-view-model.js");
+            codeEditor.openFile("home-page.js");
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            codeEditor.openFile("home-view-model.ts");
+            codeEditor.openFile("home-page.ts");
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
@@ -338,15 +338,15 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(1000);
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            codeEditor.openFile("home.component");
+            codeEditor.openFile("home.component.ts");
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
-            codeEditor.openFile("home-view-model.js");
+            codeEditor.openFile("home-page.js");
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            codeEditor.openFile("home-view-model.ts");
+            codeEditor.openFile("home-page.ts");
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
