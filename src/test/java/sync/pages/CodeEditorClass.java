@@ -331,7 +331,10 @@ public class CodeEditorClass extends BasePage {
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            this.typeCode("import { Observable } from 'data/observable';");
+            this.typeCode("import {");
+            this.typeCode(" Observable ");
+            this.typeCode(Key.RIGHT);
+            this.typeCode(" from 'data/observable';");
             this.typeCode(Key.ENTER);
             this.typeCode("export class HomeViewModel extends Observable {");
             this.typeCode(Key.ENTER);
@@ -484,7 +487,10 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("exports.pageLoaded = pageLoaded;");
             this.typeCode(Key.ENTER);
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
-            this.typeCode("import { Observable } from 'data/observable';");
+            this.typeCode("import {");
+            this.typeCode(" Observable ");
+            this.typeCode(Key.RIGHT);
+            this.typeCode(" from 'data/observable';");
             this.typeCode(Key.ENTER);
             this.typeCode("export class HomeViewModel extends Observable {");
             this.typeCode(Key.ENTER);
@@ -640,7 +646,10 @@ public class CodeEditorClass extends BasePage {
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
             this.typeCode("declare var java : any;");
             this.typeCode(Key.ENTER);
-            this.typeCode("import { Observable } from 'data/observable';");
+            this.typeCode("import {");
+            this.typeCode(" Observable ");
+            this.typeCode(Key.RIGHT);
+            this.typeCode(" from 'data/observable';");
             this.typeCode(Key.ENTER);
             this.typeCode("export class HomeViewModel extends Observable {");
             this.typeCode(Key.ENTER);
@@ -798,7 +807,10 @@ public class CodeEditorClass extends BasePage {
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
             this.typeCode("declare var NSFileManager : any;");
             this.typeCode(Key.ENTER);
-            this.typeCode("import { Observable } from 'data/observable';");
+            this.typeCode("import {");
+            this.typeCode(" Observable ");
+            this.typeCode(Key.RIGHT);
+            this.typeCode(" from 'data/observable';");
             this.typeCode(Key.ENTER);
             this.typeCode("export class HomeViewModel extends Observable {");
             this.typeCode(Key.ENTER);
@@ -961,7 +973,10 @@ public class CodeEditorClass extends BasePage {
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
             this.typeCode("declare var NSArray : any;");
             this.typeCode(Key.ENTER);
-            this.typeCode("import { Observable } from 'data/observable';");
+            this.typeCode("import {");
+            this.typeCode(" Observable ");
+            this.typeCode(Key.RIGHT);
+            this.typeCode(" from 'data/observable';");
             this.typeCode(Key.ENTER);
             this.typeCode("export class HomeViewModel extends Observable {");
             this.typeCode(Key.ENTER);
