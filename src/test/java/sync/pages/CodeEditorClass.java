@@ -224,6 +224,7 @@ public class CodeEditorClass extends BasePage {
             this.typeCode("margin-bottom: 15;");
             s.type(Key.ENTER);
             this.typeCode("}");
+            this.typeCode("}");
             s.type(Key.ENTER);
         }
         s.type(Key.ENTER);
