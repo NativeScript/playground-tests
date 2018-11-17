@@ -656,45 +656,86 @@ public class CodeEditorClass extends BasePage {
                 this.typeCode(Key.ENTER);
             }
             else{
-                String code = "<template>\n" +
-                        "    <Page class=\"page\">\n" +
-                        "        <ActionBar title=\"Home\" class=\"action-bar\" />\n" +
-                        "        <ScrollView>\n" +
-                        "            <StackLayout class=\"home-panel\">\n" +
-                        "                <!--Add your page content here-->\n" +
-                        "                <Label textWrap=\"true\" text=\"Play with NativeScript!\" class=\"h2 description-label\" />\n" +
-                        "                <Label textWrap=\"true\" text=\"Write code in the editor or drag and drop components to build a NativeScript mobile application.\"\n" +
-                        "                    class=\"h2 description-label\" />\n" +
-                        "                <Label textWrap=\"true\" text=\"Scan the QR code with your mobile device and watch the changes sync live while you play with the code.\"\n" +
-                        "                    class=\"h2 description-label\" />\n" +
-                        "            </StackLayout>\n" +
-                        "        </ScrollView>\n" +
-                        "    </Page>\n" +
-                        "</template>\n" +
-                        "\n" +
-                        "<script>\n" +
-                        "    export default {\n" +
-                        "        mounted: function() {\n" +
-                        "            console.log(\"log\");\n" +
-                        "        },\n" +
-                        "        data() {\n" +
-                        "            return {};\n" +
-                        "        },\n" +
-                        "    }\n" +
-                        "</script>\n" +
-                        "\n" +
-                        "<style scoped>\n" +
-                        "    .home-panel {\n" +
-                        "        vertical-align: center;\n" +
-                        "        font-size: 20;\n" +
-                        "        margin: 15;\n" +
-                        "    }\n" +
-                        "\n" +
-                        "    .description-label {\n" +
-                        "        margin-bottom: 15;\n" +
-                        "    }\n" +
-                        "</style>";
-
+                if(isValid) {
+                    String code = "<template>\n" +
+                            "    <Page class=\"page\">\n" +
+                            "        <ActionBar title=\"Home\" class=\"action-bar\" />\n" +
+                            "        <ScrollView>\n" +
+                            "            <StackLayout class=\"home-panel\">\n" +
+                            "                <!--Add your page content here-->\n" +
+                            "                <Label textWrap=\"true\" text=\"Play with NativeScript!\" class=\"h2 description-label\" />\n" +
+                            "                <Label textWrap=\"true\" text=\"Write code in the editor or drag and drop components to build a NativeScript mobile application.\"\n" +
+                            "                    class=\"h2 description-label\" />\n" +
+                            "                <Label textWrap=\"true\" text=\"Scan the QR code with your mobile device and watch the changes sync live while you play with the code.\"\n" +
+                            "                    class=\"h2 description-label\" />\n" +
+                            "            </StackLayout>\n" +
+                            "        </ScrollView>\n" +
+                            "    </Page>\n" +
+                            "</template>\n" +
+                            "\n" +
+                            "<script>\n" +
+                            "    export default {\n" +
+                            "        mounted: function() {\n" +
+                            "            console.log(\"log\");\n" +
+                            "        },\n" +
+                            "        data() {\n" +
+                            "            return {};\n" +
+                            "        },\n" +
+                            "    }\n" +
+                            "</script>\n" +
+                            "\n" +
+                            "<style scoped>\n" +
+                            "    .home-panel {\n" +
+                            "        vertical-align: center;\n" +
+                            "        font-size: 20;\n" +
+                            "        margin: 15;\n" +
+                            "    }\n" +
+                            "\n" +
+                            "    .description-label {\n" +
+                            "        margin-bottom: 15;\n" +
+                            "    }\n" +
+                            "</style>";
+                }
+                else{
+                    String code = "<template>\n" +
+                            "    <Page class=\"page\">\n" +
+                            "        <ActionBar title=\"Home\" class=\"action-bar\" />\n" +
+                            "        <ScrollView>\n" +
+                            "            <StackLayout class=\"home-panel\">\n" +
+                            "                <!--Add your page content here-->\n" +
+                            "                <Label textWrap=\"true\" text=\"Play with NativeScript!\" class=\"h2 description-label\" />\n" +
+                            "                <Label textWrap=\"true\" text=\"Write code in the editor or drag and drop components to build a NativeScript mobile application.\"\n" +
+                            "                    class=\"h2 description-label\" />\n" +
+                            "                <Label textWrap=\"true\" text=\"Scan the QR code with your mobile device and watch the changes sync live while you play with the code.\"\n" +
+                            "                    class=\"h2 description-label\" />\n" +
+                            "            </StackLayout>\n" +
+                            "        </ScrollView>\n" +
+                            "    </Page>\n" +
+                            "</template>\n" +
+                            "\n" +
+                            "<script>\n" +
+                            "    export default {\n" +
+                            "        mounted: function() {\n" +
+                            "            console.log(\"log\");\n" +
+                            "        },}\n" +
+                            "        data() {\n" +
+                            "            return {};\n" +
+                            "        },\n" +
+                            "    }\n" +
+                            "</script>\n" +
+                            "\n" +
+                            "<style scoped>\n" +
+                            "    .home-panel {\n" +
+                            "        vertical-align: center;\n" +
+                            "        font-size: 20;\n" +
+                            "        margin: 15;\n" +
+                            "    }\n" +
+                            "\n" +
+                            "    .description-label {\n" +
+                            "        margin-bottom: 15;\n" +
+                            "    }\n" +
+                            "</style>";
+                }
                 pasteText(code);
             }
         }
