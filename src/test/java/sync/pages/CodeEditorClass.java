@@ -151,7 +151,6 @@ public class CodeEditorClass extends BasePage {
                             "        <StackLayout class=\"home-panel\">\n" +
                             "            <!--Add your page content here-->\n" +
                             "            <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n" +
-                            "\n" +
                             "    </ScrollView>\n" +
                             "</Page>";
                 }
