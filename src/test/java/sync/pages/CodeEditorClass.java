@@ -156,6 +156,7 @@ public class CodeEditorClass extends BasePage {
                 }
 
                 pasteText(code);
+                s.type(Key.ENTER);
             }
         }
         if (this.setupClass.typeOfProject.equals("ng")) {
