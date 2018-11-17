@@ -123,6 +123,7 @@ public class CodeEditorClass extends BasePage {
                 this.typeCode("</ScrollView>");
                 s.type(Key.ENTER);
                 this.typeCode("</Page>");
+                s.type(Key.ENTER);
             }
             else
             {
