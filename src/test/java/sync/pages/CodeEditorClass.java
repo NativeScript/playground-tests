@@ -78,6 +78,11 @@ public class CodeEditorClass extends BasePage {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
         s.type("v", KeyModifier.CMD);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteAllCode()
@@ -156,7 +161,7 @@ public class CodeEditorClass extends BasePage {
                 }
 
                 pasteText(code);
-                s.type(Key.ENTER);
+                typeCode(Key.ENTER);
             }
         }
         if (this.setupClass.typeOfProject.equals("ng")) {
