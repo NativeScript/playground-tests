@@ -251,6 +251,7 @@ public class CodeEditorClass extends BasePage {
                 this.typeCode("return {");
                 this.typeCode(Key.ENTER);
                 this.typeCode(Key.DOWN);
+                this.typeCode(Key.LEFT);
                 this.typeCode(";");
                 this.typeCode(Key.DOWN);
                 this.typeCode(",");
