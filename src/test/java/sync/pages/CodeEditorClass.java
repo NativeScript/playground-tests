@@ -79,7 +79,7 @@ public class CodeEditorClass extends BasePage {
         clipboard.setContents(stringSelection, null);
         s.type("v", KeyModifier.CMD);
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
