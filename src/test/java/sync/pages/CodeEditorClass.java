@@ -656,8 +656,9 @@ public class CodeEditorClass extends BasePage {
                 this.typeCode(Key.ENTER);
             }
             else{
+                String code = null;
                 if(isValid) {
-                    String code = "<template>\n" +
+                    code = "<template>\n" +
                             "    <Page class=\"page\">\n" +
                             "        <ActionBar title=\"Home\" class=\"action-bar\" />\n" +
                             "        <ScrollView>\n" +
@@ -697,7 +698,7 @@ public class CodeEditorClass extends BasePage {
                             "</style>";
                 }
                 else{
-                    String code = "<template>\n" +
+                    code = "<template>\n" +
                             "    <Page class=\"page\">\n" +
                             "        <ActionBar title=\"Home\" class=\"action-bar\" />\n" +
                             "        <ScrollView>\n" +
