@@ -560,7 +560,7 @@ public class CodeEditorClass extends BasePage {
                 this.typeCode("import {");
                 this.typeCode(" Observable ");
                 this.typeCode(Key.RIGHT);
-                this.typeCode(" from 'data/observable';");
+                this.typeCode(" from 'tns-core-modules/data/observable';");
                 this.typeCode(Key.ENTER);
                 this.typeCode("export class HomeViewModel extends Observable {");
                 this.typeCode(Key.ENTER);
