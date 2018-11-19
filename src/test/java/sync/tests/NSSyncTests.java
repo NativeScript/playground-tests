@@ -249,7 +249,7 @@ public class  NSSyncTests extends MobileTest {
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            codeEditor.openFile("home-page.ts");
+            codeEditor.openFile("home-view-model.ts");
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
@@ -347,7 +347,7 @@ public class  NSSyncTests extends MobileTest {
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            codeEditor.openFile("home-page.ts");
+            codeEditor.openFile("home-view-model.ts");
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
