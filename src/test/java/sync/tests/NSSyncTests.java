@@ -24,7 +24,7 @@ public class  NSSyncTests extends MobileTest {
     @BeforeClass
     public void beforeClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
         this.setupClass = new SetupClass(this.client,this.settings, this.device);
-        String projectURL = "https://play.telerik.rocks/?template=play-"+ setupClass.typeOfProject+"&debug=true";
+        String projectURL = "https://play.telerik.rocks/?template=play-"+ setupClass.typeOfProject+"&debug=true&enableHMR=false";
         this.setupClass.getScreenShot("BeforeStartOfTests_BeforeNavigateToProject");
         this.setupClass.giveFocus();
         this.setupClass.NavigateToPage(projectURL);
