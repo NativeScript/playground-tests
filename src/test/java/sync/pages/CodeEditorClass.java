@@ -437,6 +437,7 @@ public class CodeEditorClass extends BasePage {
     }
 
     public void save(String waitForChanges) {
+        this.setupClass.wait(1000);
         s.type("s", KeyModifier.CMD);
         if(waitForChanges!=null) {
             try {
