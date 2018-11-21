@@ -558,7 +558,7 @@ public class  NSSyncTests extends MobileTest {
         if(settings.deviceType == settings.deviceType.Simulator) {
             this.setupClass.wait(7000);
             this.context.client.driver.launchApp();
-            this.setupClass.wait(4000);
+            this.setupClass.wait(6000);
         }
         else
         {
@@ -653,11 +653,11 @@ public class  NSSyncTests extends MobileTest {
             codeEditor.typeJSTSCodeWithThrowiOSCocoaError();
             codeEditor.save();
             if (settings.deviceType == settings.deviceType.Simulator) {
-                this.setupClass.wait(4000);
+                this.setupClass.wait(7000);
                 this.context.client.driver.launchApp();
-                this.setupClass.wait(4000);
+                this.setupClass.wait(6000);
             } else {
-                this.setupClass.wait(4000);
+                this.setupClass.wait(6000);
             }
             if (this.setupClass.typeOfProject.equals("ng")) {
                 this.assertScreen("nsplaydev-synced-ios-cocoa-error-ng", this.settings.shortTimeout, 20);
