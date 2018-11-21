@@ -265,8 +265,8 @@ public WebDriver driver;
                 }
                 else {
                     this.find.byText("Open").click();
-                    this.waitPreviewAppToLoad(10, "Open");
-                    this.find.byText("Open").click();
+                    //this.waitPreviewAppToLoad(10, "Open");
+                    //this.find.byText("Open").click();
                 }
             }
 
