@@ -796,7 +796,7 @@ public WebDriver driver;
 
     public boolean waitUntilWebElementIsPresentByClassName(String className)
     {
-        return waitUntilWebElementIsPresentByClassName(className, 20);
+        return waitUntilWebElementIsPresentByClassName(className, 30);
     }
 
 }
