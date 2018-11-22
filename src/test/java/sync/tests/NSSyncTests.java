@@ -731,19 +731,19 @@ public class  NSSyncTests extends MobileTest {
 
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            this.setupClass.openURL("https://play.telerik.rocks/?template=play-ng&id=MGByvi");
+            this.setupClass.openURL("https://play.nativescript.be/?template=play-ng&id=uolyao");
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
-            this.setupClass.openURL("https://play.telerik.rocks/?template=play-js&id=oRM07v");
+            this.setupClass.openURL("https://play.nativescript.be/?template=play-js&id=WFQqZ2");
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            this.setupClass.openURL("https://play.telerik.rocks/?template=play-tsc&id=Si8yCG");
+            this.setupClass.openURL("https://play.nativescript.be/?template=play-tsc&id=Oh69ux");
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
-            this.setupClass.openURL("https://play.telerik.rocks/?template=play-vue&id=zNs2HL");
+            this.setupClass.openURL("https://play.nativescript.be/?template=play-vue&id=vxaCzV");
         }
         this.setupClass.wait(12000);
         this.setupClass.navigateToSavedSession("Tap to open the saved");
