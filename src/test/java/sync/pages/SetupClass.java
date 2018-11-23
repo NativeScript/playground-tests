@@ -194,14 +194,17 @@ public WebDriver driver;
                             this.client.driver.switchTo().alert().accept();
                         }
 
-                        this.wait(2000);
+                        this.wait(7000);
+                        try {
+                            if (ExpectedConditions.alertIsPresent() != null) {
+                                this.client.driver.switchTo().alert().accept();
+                                this.wait(2000);
+                            }
+                        }
+                        catch (Exception e)
+                        {
 
-                        //this.waitPreviewAppToLoad(10, "Open");
-                        //if (ExpectedConditions.alertIsPresent() != null) {
-                            //this.client.driver.switchTo().alert().accept();
-                        //}
-
-                        //this.wait(2000);
+                        }
                     }
                     else {
                         this.wait(5000);
@@ -228,8 +231,11 @@ public WebDriver driver;
                 }
                 else {
                     this.find.byText("Open").click();
-                    //this.waitPreviewAppToLoad(10, "Open");
-                    //this.find.byText("Open").click();
+                    this.wait(7000);
+                    if(this.find.byText("Open") != null)
+                    {
+                        this.find.byText("Open").click();
+                    }
                 }
             }
 

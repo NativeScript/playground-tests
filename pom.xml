@@ -267,6 +267,13 @@
             </properties>
         </profile>
         <profile>
+            <id>live-sync.emu.default.api28</id>
+            <properties>
+                <app.config>nsplay/nsplay.emu.default.api28.properties</app.config>
+                <testsuite>live-sync</testsuite>
+            </properties>
+        </profile>
+        <profile>
             <id>live-sync.emu.default.api19</id>
             <properties>
                 <app.config>nsplay/nsplay.emu.default.api19.properties</app.config>
@@ -277,6 +284,13 @@
             <id>live-sync.sim.iphone7.ios11</id>
             <properties>
                 <app.config>nsplay/nsplay.sim.iphone7.ios11.properties</app.config>
+                <testsuite>live-sync</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>live-sync.sim.iphone7.ios12</id>
+            <properties>
+                <app.config>nsplay/nsplay.sim.iphone7.ios12.properties</app.config>
                 <testsuite>live-sync</testsuite>
             </properties>
         </profile>
