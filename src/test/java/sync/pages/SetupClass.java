@@ -129,11 +129,6 @@ public WebDriver driver;
     }
 
     public void OpenBrowser() throws InterruptedException {
-//        this.wait(1000);
-//        this.browserAPP = App.open(this.browser);
-//        this.wait(12000);
-//        s.type("f", KeyModifier.CMD+KeyModifier.CTRL);
-//        this.wait(2000);
         WebDriverManager.chromedriver().setup();
         Thread.sleep(5000);
         final ChromeOptions options = new ChromeOptions();
@@ -144,44 +139,12 @@ public WebDriver driver;
     }
 
     public void NavigateToPage(String URL) throws InterruptedException {
-//        s.type("l", KeyModifier.CMD);
-//        this.wait(1000);
-//        s.type(URL);
-//        this.wait(1000);
-//        s.type(Key.ENTER);
-//        this.wait(20000);
         driver.get(URL);
         Thread.sleep(5000);
         driver.findElements(By.xpath("//a[contains(.,'Accept Cookies')]")).get(0).click();
     }
 
     public void GetDeviceLink() throws InterruptedException, FindFailed, IOException, UnsupportedFlavorException {
-//        if(existsOnDesktopScreen("playnowbutton.png")) {
-//            clickOnDesktop("playnowbutton.png");
-//            this.wait(2000);
-//        }
-//        if(existsOnDesktopScreen("acceptCookies.png")) {
-//            clickOnDesktop("acceptCookies.png");
-//            this.wait(2000);
-//        }
-//        if(!existsOnDesktopScreen("devicesLinkMessage.png")) {
-//            if(this.browser.equals("Safari"))
-//            {
-//                clickOnDesktop("qrcodeSafari.png");
-//            }
-//            else {
-//                clickOnDesktop("qrcode.png", 0.63f);
-//            }
-//        }
-//        this.wait(3000);
-//        clickOnDesktop("devicesLinkMessage.png");
-//        this.wait(3000);
-//        s.dragDrop(findImageOnDesktopScreen("devicesLinkMessage.png", 0.63, -101, 0),
-//                findImageOnDesktopScreen("devicesLinkMessage.png", 0.63, 500, 25));
-//        this.wait(3000);
-//        s.type("c", KeyModifier.CMD);
-//        this.liveSyncConnectionString = (String) Toolkit.getDefaultToolkit()
-//                .getSystemClipboard().getData(DataFlavor.stringFlavor);
          this.liveSyncConnectionString =  driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]")).get(0).getText();
          this.s = Screen.all();
     }
@@ -233,12 +196,12 @@ public WebDriver driver;
 
                         this.wait(2000);
 
-                        this.waitPreviewAppToLoad(10, "Open");
-                        if (ExpectedConditions.alertIsPresent() != null) {
-                            this.client.driver.switchTo().alert().accept();
-                        }
+                        //this.waitPreviewAppToLoad(10, "Open");
+                        //if (ExpectedConditions.alertIsPresent() != null) {
+                            //this.client.driver.switchTo().alert().accept();
+                        //}
 
-                        this.wait(2000);
+                        //this.wait(2000);
                     }
                     else {
                         this.wait(5000);
