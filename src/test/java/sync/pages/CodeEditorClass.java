@@ -1233,7 +1233,14 @@ public class CodeEditorClass extends BasePage {
                 baseTable = setupClass.driver.findElements(By.className("devices")).get(0);
             }
             else {
-                Assert.assertTrue(false, "Devices tab could not be found!!!");
+                setupClass.driver.findElements(By.xpath("//span[contains(.,'Devices')]")).get(0).click();
+                if(setupClass.waitUntilWebElementIsPresentByClassName("device-name-td"))
+                {
+                    baseTable = setupClass.driver.findElements(By.className("devices")).get(0);
+                }
+                else{
+                    Assert.assertTrue(false, "Devices tab could not be found!!!");
+                }
             }
             List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
             tableRows.get(0).findElements(By.tagName("td")).get(0).click();
