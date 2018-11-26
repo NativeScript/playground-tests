@@ -673,7 +673,7 @@ public class  NSSyncTests extends MobileTest {
             String expectedText = null;
             if (this.setupClass.typeOfProject.equals("ng")) {
                 if (settings.deviceType == settings.deviceType.Simulator) {
-                    expectedText = "The Preview app has terminated unexpectedly";
+                    expectedText = "PlayLiveSync: Uncaught Exception";
                 } else {
                     expectedText = "ReferenceError";
                 }
@@ -750,10 +750,10 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(10000);
         if(settings.deviceName.contains("Api19"))
         {
-            this.assertScreen("nsplaydev-synced-saved-session-api19", this.settings.shortTimeout, 10);
+            this.assertScreen("nsplaydev-synced-saved-session-api19", this.settings.shortTimeout, 5);
         }
         else {
-            this.assertScreen("nsplaydev-synced-saved-session", this.settings.shortTimeout, 10);
+            this.assertScreen("nsplaydev-synced-saved-session", this.settings.shortTimeout, 5);
         }
         //shit appium ios 10 and 9
         if(settings.deviceType == settings.deviceType.Simulator)
