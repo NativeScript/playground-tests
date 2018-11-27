@@ -67,6 +67,7 @@ public Integer imageNumber = 0;
 public Robot robot = null;
 public MobileSettings mobileSettings;
 public WebDriver driver;
+public boolean isLive = false;
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
         this.mobileSettings = mobileSettings;

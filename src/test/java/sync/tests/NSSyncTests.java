@@ -25,6 +25,12 @@ public class  NSSyncTests extends MobileTest {
     public void beforeClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
         this.setupClass = new SetupClass(this.client,this.settings, this.device);
         String projectURL = "https://play.nativescript.org/?template=play-"+ setupClass.typeOfProject+"&debug=true&enableHMR=false";
+
+        if(projectURL.contains("play.nativescript.org"))
+        {
+            this.setupClass.isLive = true;
+        }
+
         this.setupClass.getScreenShot("BeforeStartOfTests_BeforeNavigateToProject");
         this.setupClass.giveFocus();
         this.setupClass.NavigateToPage(projectURL);
@@ -733,22 +739,28 @@ public class  NSSyncTests extends MobileTest {
             this.setupClass.wait(8000);
         }
 
-
-        if(this.setupClass.typeOfProject.equals("ng"))
-        {
-            this.setupClass.openURL("https://play.nativescript.be/?template=play-ng&id=uolyao");
+        if(this.setupClass.isLive) {
+            if (this.setupClass.typeOfProject.equals("ng")) {
+                this.setupClass.openURL("https://play.nativescript.org/?template=play-ng&id=6F74Ey");
+            } else if (this.setupClass.typeOfProject.equals("js")) {
+                this.setupClass.openURL("https://play.nativescript.org/?template=play-js&id=eRObPw");
+            } else if (this.setupClass.typeOfProject.equals("tsc")) {
+                this.setupClass.openURL("https://play.nativescript.org/?template=play-tsc&id=peX6hs");
+            } else if (this.setupClass.typeOfProject.equals("vue")) {
+                this.setupClass.openURL("https://play.nativescript.org/?template=play-vue&id=fqRxUm");
+            }
         }
-        else if(this.setupClass.typeOfProject.equals("js"))
+        else
         {
-            this.setupClass.openURL("https://play.nativescript.be/?template=play-js&id=WFQqZ2");
-        }
-        else if(this.setupClass.typeOfProject.equals("tsc"))
-        {
-            this.setupClass.openURL("https://play.nativescript.be/?template=play-tsc&id=Oh69ux");
-        }
-        else if(this.setupClass.typeOfProject.equals("vue"))
-        {
-            this.setupClass.openURL("https://play.nativescript.be/?template=play-vue&id=vxaCzV");
+            if (this.setupClass.typeOfProject.equals("ng")) {
+                this.setupClass.openURL("https://play.nativescript.be/?template=play-ng&id=uolyao");
+            } else if (this.setupClass.typeOfProject.equals("js")) {
+                this.setupClass.openURL("https://play.nativescript.be/?template=play-js&id=WFQqZ2");
+            } else if (this.setupClass.typeOfProject.equals("tsc")) {
+                this.setupClass.openURL("https://play.nativescript.be/?template=play-tsc&id=Oh69ux");
+            } else if (this.setupClass.typeOfProject.equals("vue")) {
+                this.setupClass.openURL("https://play.nativescript.be/?template=play-vue&id=vxaCzV");
+            }
         }
         this.setupClass.wait(12000);
         this.setupClass.navigateToSavedSession("Tap to open the saved");
