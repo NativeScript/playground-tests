@@ -129,7 +129,7 @@ public class  NSSyncTests extends MobileTest {
                 "  \"@progress-nativechat/nativescript-nativechat\": \"2.0.3\",\n" +
                 "  \"kinvey-nativescript-sdk\": \"3.12.3\",\n" +
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
-                "  \"nativescript-angular\": \"7.0.1\",\n" +
+                "  \"nativescript-angular\": \"7.0.2\",\n" +
                 "  \"nativescript-background-http\": \"3.3.1\",\n" +
                 "  \"nativescript-camera\": \"4.1.1\",\n" +
                 "  \"nativescript-fresco\": \"5.1.0\",\n" +
@@ -144,12 +144,12 @@ public class  NSSyncTests extends MobileTest {
                 "  \"nativescript-ui-chart\": \"3.10.0\",\n" +
                 "  \"nativescript-ui-dataform\": \"3.9.0\",\n" +
                 "  \"nativescript-ui-gauge\": \"3.7.1\",\n" +
-                "  \"nativescript-ui-listview\": \"4.0.0\",\n" +
+                "  \"nativescript-ui-listview\": \"5.0.0\",\n" +
                 "  \"nativescript-ui-sidedrawer\": \"5.0.0\",\n" +
                 "  \"nativescript-vue\": \"2.0.2\",\n" +
                 "  \"reflect-metadata\": \"0.1.12\",\n" +
                 "  \"rxjs\": \"6.3.3\",\n" +
-                "  \"tns-core-modules\": \"5.0.3\",\n" +
+                "  \"tns-core-modules\": \"5.0.5\",\n" +
                 "  \"zone.js\": \"0.8.26\"\n" +
                 "}";
 
