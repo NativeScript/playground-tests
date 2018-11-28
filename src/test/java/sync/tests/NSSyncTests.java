@@ -24,7 +24,7 @@ public class  NSSyncTests extends MobileTest {
     @BeforeClass
     public void beforeClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
         this.setupClass = new SetupClass(this.client,this.settings, this.device);
-        String projectURL = "https://play.nativescript.org/?template=play-"+ setupClass.typeOfProject+"&debug=true&enableHMR=false";
+        String projectURL = "https://play.nativescript.be/?template=play-"+ setupClass.typeOfProject+"&debug=true&enableHMR=false";
 
         if(projectURL.contains("play.nativescript.org"))
         {
