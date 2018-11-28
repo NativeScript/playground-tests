@@ -166,7 +166,7 @@ public class  NSSyncTests extends MobileTest {
     CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
     codeEditor.typeXMLOrHTMLCode(true, true);
     codeEditor.save("Test");
-    this.assertScreen("nsplaydev-synced-valid-code", this.settings.shortTimeout);
+    this.assertScreen("nsplaydev-synced-valid-code", this.settings.defaultTimeout);
     }
 
     @Test(description = "Verify XML/HTML invalid code change is apllied and after fix is corrected!", groups = {"android", "ios"})
@@ -182,15 +182,15 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(2000);
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            this.assertScreen("nsplaydev-synced-invalid-code-ng", this.settings.shortTimeout);
+            this.assertScreen("nsplaydev-synced-invalid-code-ng", this.settings.defaultTimeout);
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
-            this.assertScreen("nsplaydev-synced-valid-code", this.settings.shortTimeout);
+            this.assertScreen("nsplaydev-synced-valid-code", this.settings.defaultTimeout);
         }
         else {
             //remove after bug in {N}
-            //this.assertScreen("nsplaydev-synced-invalid-code", this.settings.shortTimeout);
+            //this.assertScreen("nsplaydev-synced-invalid-code", this.settings.defaultTimeout);
             if(settings.deviceType == settings.deviceType.Simulator) {
                 this.setupClass.wait(5000);
                 this.context.client.driver.launchApp();
@@ -205,7 +205,7 @@ public class  NSSyncTests extends MobileTest {
         else {
             codeEditor.save("Test");
         }
-        this.assertScreen("nsplaydev-synced-valid-code", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-synced-valid-code", this.settings.defaultTimeout);
     }
 
     @Test(description = "Verify css valid code change is applied corrected!", groups = {"android", "ios"})
@@ -218,7 +218,7 @@ public class  NSSyncTests extends MobileTest {
         codeEditor.openFile("app.css");
         codeEditor.typeCSSCode(true, true);
         codeEditor.save();
-        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
     }
 
     @Test(description = "Verify css invalid code change is applied corrected!", groups = {"android", "ios"})
@@ -231,13 +231,13 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(2000);
         codeEditor.save();
         this.setupClass.wait(2000);
-        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
         this.setupClass.wait(2000);
         this.setupClass.s.type(Key.ESC);
         this.setupClass.wait(5000);
         codeEditor.typeCSSCode(true, false);
         codeEditor.save();
-        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
     }
 
     @Test(description = "Verify js/ts valid code change is applied corrected!", groups = {"android", "ios"})
@@ -271,7 +271,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(1000);
         codeEditor.save();
         this.setupClass.wait(3000);
-        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText;
         if(!this.setupClass.typeOfProject.equals("vue")) {
@@ -327,14 +327,14 @@ public class  NSSyncTests extends MobileTest {
             this.setupClass.wait(2000);
             Assert.assertTrue(setupClass.driver.findElements(By.xpath("//div[contains(.,'Unable to apply changes')]")).size() != 0);
             Assert.assertTrue(setupClass.driver.findElements(By.xpath("//div[contains(.,'Please fix the errors and try again.')]")).size() != 0);
-            this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
+            this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
         }
         this.setupClass.s.type(Key.ESC);
         this.setupClass.wait(3000);
         codeEditor.typeJSTSCode(true, false);
         codeEditor.save();
         this.setupClass.wait(3000);
-        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
     }
 
     @Test(description = "Verify javascript error is handle correctly!", groups = {"android", "ios"})
@@ -380,19 +380,19 @@ public class  NSSyncTests extends MobileTest {
         }
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            this.assertScreen("nsplaydev-synced-javascript-error-ng", this.settings.shortTimeout,20);
+            this.assertScreen("nsplaydev-synced-javascript-error-ng", this.settings.defaultTimeout,20);
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
-            this.assertScreen("nsplaydev-synced-javascript-error-js", this.settings.shortTimeout,20);
+            this.assertScreen("nsplaydev-synced-javascript-error-js", this.settings.defaultTimeout,20);
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            this.assertScreen("nsplaydev-synced-javascript-error-tsc", this.settings.shortTimeout,20);
+            this.assertScreen("nsplaydev-synced-javascript-error-tsc", this.settings.defaultTimeout,20);
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
-            this.assertScreen("nsplaydev-synced-javascript-error-vue", this.settings.shortTimeout,20);
+            this.assertScreen("nsplaydev-synced-javascript-error-vue", this.settings.defaultTimeout,20);
         }
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText=null;
@@ -440,7 +440,7 @@ public class  NSSyncTests extends MobileTest {
         codeEditor.save();
         this.setupClass.wait(4000);
         this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterValidCode");
-        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
 
     }
 
@@ -471,19 +471,19 @@ public class  NSSyncTests extends MobileTest {
         }
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            this.assertScreen("nsplaydev-synced-java-error-ng", this.settings.shortTimeout,20);
+            this.assertScreen("nsplaydev-synced-java-error-ng", this.settings.defaultTimeout,20);
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
-            this.assertScreen("nsplaydev-synced-java-error-js", this.settings.shortTimeout,20);
+            this.assertScreen("nsplaydev-synced-java-error-js", this.settings.defaultTimeout,20);
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            this.assertScreen("nsplaydev-synced-java-error-tsc", this.settings.shortTimeout,20);
+            this.assertScreen("nsplaydev-synced-java-error-tsc", this.settings.defaultTimeout,20);
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
-            this.assertScreen("nsplaydev-synced-java-error-vue", this.settings.shortTimeout,20);
+            this.assertScreen("nsplaydev-synced-java-error-vue", this.settings.defaultTimeout,20);
         }
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText=null;
@@ -548,7 +548,7 @@ public class  NSSyncTests extends MobileTest {
         codeEditor.typeJSTSCode(true, false);
         codeEditor.save();
         this.setupClass.wait(5000);
-        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
     }
 
     @Test(description = "Verify ios error is handle correctly!", groups = {"android", "ios"})
@@ -577,19 +577,19 @@ public class  NSSyncTests extends MobileTest {
         }
         if(this.setupClass.typeOfProject.equals("ng"))
         {
-            this.assertScreen("nsplaydev-synced-ios-error-ng", this.settings.shortTimeout,20);
+            this.assertScreen("nsplaydev-synced-ios-error-ng", this.settings.defaultTimeout,20);
         }
         else if(this.setupClass.typeOfProject.equals("js"))
         {
-            this.assertScreen("nsplaydev-synced-ios-error-js", this.settings.shortTimeout,20);
+            this.assertScreen("nsplaydev-synced-ios-error-js", this.settings.defaultTimeout,20);
         }
         else if(this.setupClass.typeOfProject.equals("tsc"))
         {
-            this.assertScreen("nsplaydev-synced-ios-error-tsc", this.settings.shortTimeout,20);
+            this.assertScreen("nsplaydev-synced-ios-error-tsc", this.settings.defaultTimeout,20);
         }
         else if(this.setupClass.typeOfProject.equals("vue"))
         {
-            this.assertScreen("nsplaydev-synced-ios-error-vue", this.settings.shortTimeout,20);
+            this.assertScreen("nsplaydev-synced-ios-error-vue", this.settings.defaultTimeout,20);
         }
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText=null;
@@ -644,7 +644,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(1000);
         codeEditor.save();
         this.setupClass.wait(4000);
-        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
 
     }
 
@@ -671,13 +671,13 @@ public class  NSSyncTests extends MobileTest {
                 this.setupClass.wait(6000);
             }
             if (this.setupClass.typeOfProject.equals("ng")) {
-                this.assertScreen("nsplaydev-synced-ios-cocoa-error-ng", this.settings.shortTimeout, 20);
+                this.assertScreen("nsplaydev-synced-ios-cocoa-error-ng", this.settings.defaultTimeout, 20);
             } else if (this.setupClass.typeOfProject.equals("js")) {
-                this.assertScreen("nsplaydev-synced-ios-cocoa-error-js", this.settings.shortTimeout, 20);
+                this.assertScreen("nsplaydev-synced-ios-cocoa-error-js", this.settings.defaultTimeout, 20);
             } else if (this.setupClass.typeOfProject.equals("tsc")) {
-                this.assertScreen("nsplaydev-synced-ios-cocoa-error-tsc", this.settings.shortTimeout, 20);
+                this.assertScreen("nsplaydev-synced-ios-cocoa-error-tsc", this.settings.defaultTimeout, 20);
             }else if (this.setupClass.typeOfProject.equals("vue")) {
-                this.assertScreen("nsplaydev-synced-ios-cocoa-error-vue", this.settings.shortTimeout, 20);
+                this.assertScreen("nsplaydev-synced-ios-cocoa-error-vue", this.settings.defaultTimeout, 20);
             }
             String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
             this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterErrorCode");
@@ -713,7 +713,7 @@ public class  NSSyncTests extends MobileTest {
             codeEditor.typeJSTSCode(true, false);
             codeEditor.save();
             this.setupClass.wait(3000);
-            this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.shortTimeout);
+            this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
         }
     }
 
@@ -767,10 +767,10 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(10000);
         if(settings.deviceName.contains("Api19"))
         {
-            this.assertScreen("nsplaydev-synced-saved-session-api19", this.settings.shortTimeout, 5);
+            this.assertScreen("nsplaydev-synced-saved-session-api19", this.settings.defaultTimeout, 5);
         }
         else {
-            this.assertScreen("nsplaydev-synced-saved-session", this.settings.shortTimeout, 5);
+            this.assertScreen("nsplaydev-synced-saved-session", this.settings.defaultTimeout, 5);
         }
         //shit appium ios 10 and 9
         if(settings.deviceType == settings.deviceType.Simulator)
