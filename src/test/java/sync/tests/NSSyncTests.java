@@ -334,7 +334,7 @@ public class  NSSyncTests extends MobileTest {
         codeEditor.typeJSTSCode(true, false);
         codeEditor.save();
         this.setupClass.wait(3000);
-        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
+        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.deviceBootTimeout);
     }
 
     @Test(description = "Verify javascript error is handle correctly!", groups = {"android", "ios"})
@@ -548,7 +548,7 @@ public class  NSSyncTests extends MobileTest {
         codeEditor.typeJSTSCode(true, false);
         codeEditor.save();
         this.setupClass.wait(5000);
-        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
+        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.deviceBootTimeout);
     }
 
     @Test(description = "Verify ios error is handle correctly!", groups = {"android", "ios"})
@@ -644,7 +644,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(1000);
         codeEditor.save();
         this.setupClass.wait(4000);
-        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
+        this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.deviceBootTimeout);
 
     }
 
@@ -713,7 +713,7 @@ public class  NSSyncTests extends MobileTest {
             codeEditor.typeJSTSCode(true, false);
             codeEditor.save();
             this.setupClass.wait(3000);
-            this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
+            this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.deviceBootTimeout);
         }
     }
 
