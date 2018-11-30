@@ -78,26 +78,14 @@ public class CodeEditorClass extends BasePage {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
         s.type("v", KeyModifier.CMD);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        this.setupClass.wait(1000);
     }
 
     public void deleteAllCode()
     {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        this.setupClass.wait(1000);
         this.setupClass.driver.findElements(By.tagName("monaco-editor")).get(0).click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        this.setupClass.wait(1000);
         s.type("a", KeyModifier.CMD);
         this.setupClass.wait(1000);
         s.type(Key.DELETE);
