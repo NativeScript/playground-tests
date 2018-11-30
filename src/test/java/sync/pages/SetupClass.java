@@ -107,6 +107,7 @@ public boolean isLive = false;
             Capabilities newiOSCapabilities = new Capabilities();
             DesiredCapabilities newDesireCapabilites = new DesiredCapabilities();
             newDesireCapabilites = newiOSCapabilities.loadDesiredCapabilities(context.settings);
+            newDesireCapabilites.setCapability("newCommandTimeout",0);
             context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesireCapabilites);
         }
         else {
@@ -116,7 +117,10 @@ public boolean isLive = false;
             context.settings.packageId = "org.nativescript.preview";
             context.settings.testAppFileName = "app-universal-release.apk";
             Capabilities newAndroidCapabilities = new Capabilities();
-            context.client.driver = new AndroidDriver(context.server.service.getUrl(), newAndroidCapabilities.loadDesiredCapabilities(context.settings));
+            DesiredCapabilities newDesireCapabilites = new DesiredCapabilities();
+            newDesireCapabilites = newAndroidCapabilities.loadDesiredCapabilities(context.settings);
+            newDesireCapabilites.setCapability("newCommandTimeout",0);
+            context.client.driver = new AndroidDriver(context.server.service.getUrl(), newDesireCapabilites);
         }
 
         ImagePath.add(ImagePathDirectory);
