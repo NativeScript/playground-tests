@@ -607,14 +607,18 @@ public boolean isLive = false;
 
     public void restoreIosDriver(){
         Capabilities newiOSCapabilities = new Capabilities();
-        DesiredCapabilities newDesiredCapabilites = new DesiredCapabilities();
-        newDesiredCapabilites = newiOSCapabilities.loadDesiredCapabilities(this.mobileSettings);
-        context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesiredCapabilites);
+        DesiredCapabilities newDesireCapabilites = new DesiredCapabilities();
+        newDesireCapabilites = newiOSCapabilities.loadDesiredCapabilities(context.settings);
+        newDesireCapabilites.setCapability("newCommandTimeout",0);
+        context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesireCapabilites);
     }
 
     public void refreshAndroidDriver(){
         Capabilities newAndroidCapabilities = new Capabilities();
-        context.client.driver = new AndroidDriver(context.server.service.getUrl(), newAndroidCapabilities.loadDesiredCapabilities(context.settings));
+        DesiredCapabilities newDesireCapabilites = new DesiredCapabilities();
+        newDesireCapabilites = newAndroidCapabilities.loadDesiredCapabilities(context.settings);
+        newDesireCapabilites.setCapability("newCommandTimeout",0);
+        context.client.driver = new AndroidDriver(context.server.service.getUrl(), newDesireCapabilites);
 
     }
 
