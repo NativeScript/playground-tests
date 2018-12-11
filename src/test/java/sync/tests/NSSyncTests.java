@@ -436,7 +436,7 @@ public class  NSSyncTests extends MobileTest {
         Assert.assertTrue(deviceLog.contains(expectedText),"Actual log \""+deviceLog+ "\" does not cointains the expected text \""+expectedText+"\" .");
 
         codeEditor.typeJSTSCode(true, false);
-        this.setupClass.wait(1000);
+        this.setupClass.wait(10000);
         codeEditor.save();
         this.setupClass.wait(4000);
         this.setupClass.getScreenShot(this.context.getTestName()+"_AfterEnterValidCode");
@@ -546,6 +546,7 @@ public class  NSSyncTests extends MobileTest {
         Assert.assertTrue(deviceLog.contains(expectedText),"Actual log \""+deviceLog+ "\" does not cointains the expected text \""+expectedText+"\" .");
 
         codeEditor.typeJSTSCode(true, false);
+        this.setupClass.wait(10000);
         codeEditor.save();
         this.setupClass.wait(5000);
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.deviceBootTimeout);
@@ -641,7 +642,7 @@ public class  NSSyncTests extends MobileTest {
         Assert.assertTrue(deviceLog.contains(expectedText),"Actual log \""+deviceLog+ "\" does not cointains the expected text \""+expectedText+"\" .");
 
         codeEditor.typeJSTSCode(true, false);
-        this.setupClass.wait(1000);
+        this.setupClass.wait(10000);
         codeEditor.save();
         this.setupClass.wait(4000);
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.deviceBootTimeout);
@@ -711,6 +712,7 @@ public class  NSSyncTests extends MobileTest {
             Assert.assertTrue(deviceLog.contains(expectedText), "Actual log \"" + deviceLog + "\" does not cointains the expected text \"" + expectedText + "\" .");
 
             codeEditor.typeJSTSCode(true, false);
+            this.setupClass.wait(10000);
             codeEditor.save();
             this.setupClass.wait(3000);
             this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.deviceBootTimeout);
