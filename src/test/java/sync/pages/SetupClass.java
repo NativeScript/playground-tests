@@ -107,7 +107,7 @@ public boolean isLive = false;
             Capabilities newiOSCapabilities = new Capabilities();
             DesiredCapabilities newDesireCapabilites = new DesiredCapabilities();
             newDesireCapabilites = newiOSCapabilities.loadDesiredCapabilities(context.settings);
-            newDesireCapabilites.setCapability("newCommandTimeout",0);
+            newDesireCapabilites.setCapability("newCommandTimeout",60000);
             context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesireCapabilites);
         }
         else {
@@ -119,7 +119,7 @@ public boolean isLive = false;
             Capabilities newAndroidCapabilities = new Capabilities();
             DesiredCapabilities newDesireCapabilites = new DesiredCapabilities();
             newDesireCapabilites = newAndroidCapabilities.loadDesiredCapabilities(context.settings);
-            newDesireCapabilites.setCapability("newCommandTimeout",0);
+            newDesireCapabilites.setCapability("newCommandTimeout",60000);
             context.client.driver = new AndroidDriver(context.server.service.getUrl(), newDesireCapabilites);
         }
 
