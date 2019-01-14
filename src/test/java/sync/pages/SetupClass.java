@@ -4,8 +4,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
+import functional.tests.core.mobile.device.android.Adb;
 import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import functional.tests.core.enums.PlatformType;
 import functional.tests.core.mobile.appium.Capabilities;
@@ -17,26 +18,22 @@ import functional.tests.core.image.Sikuli;
 import functional.tests.core.image.ImageUtils;
 import functional.tests.core.utils.FileSystem;
 import io.appium.java_client.MobileDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.html5.Location;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.sikuli.script.Image;
 import org.testng.Assert;
 import org.sikuli.script.*;
 import functional.tests.core.mobile.appium.Client;
-import java.awt.event.InputEvent;
 
-import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.List;
 import java.io.File;
+
 import functional.tests.core.mobile.element.UIRectangle;
 import functional.tests.core.utils.OSUtils;
 
@@ -44,30 +41,33 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
 import javax.imageio.ImageIO;
-import javax.swing.*;
 
 public class SetupClass extends BasePage {
-public  Screen s = null;
-public String liveSyncConnectionString;
-public String deviceId = "";
-public Sikuli sikuli;
-public String ImagePathDirectory = "";
-public ImageUtils imageUtils;
-public Device device;
-public int deviceScreenWidth;
-public String appName;
-public Client client;
-public App browserAPP;
-public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject","ng");
-public String browser = OSUtils.getEnvironmentVariable("browser","Google Chrome");
-public String folderForScreenshots;
-public String folderForDesktopScreenshots;
-public Integer imageNumber = 0;
-public Robot robot = null;
-public MobileSettings mobileSettings;
-public WebDriver driver;
-public boolean isLive = false;
+    public Screen s = null;
+    public String liveSyncConnectionString;
+    public String deviceId = "";
+    public Sikuli sikuli;
+    public String ImagePathDirectory = "";
+    public ImageUtils imageUtils;
+    public Device device;
+    public int deviceScreenWidth;
+    public String appName;
+    public Client client;
+    public App browserAPP;
+    public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject", "ng");
+    public String browser = OSUtils.getEnvironmentVariable("browser", "Google Chrome");
+    public String isHMREnabled = OSUtils.getEnvironmentVariable("hmr", "false");
+    public String folderForScreenshots;
+    public String folderForDesktopScreenshots;
+    public Integer imageNumber = 0;
+    public Robot robot = null;
+    public MobileSettings mobileSettings;
+    public WebDriver driver;
+
+    public boolean isLive = false;
+
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
         super();
         this.mobileSettings = mobileSettings;
@@ -82,44 +82,42 @@ public boolean isLive = false;
         this.appName = this.app.getName().replaceAll(".app", "");
         this.sikuli = new Sikuli(this.appName, client, this.imageUtils);
         String currentPath = System.getProperty("user.dir");
-        ImagePathDirectory = currentPath+"/src/test/java/sync/pages/images.sikuli";
-        this.folderForScreenshots = currentPath+"/target/surefire-reports/screenshots/";
-        this.folderForDesktopScreenshots = currentPath+"/temp/";
+        ImagePathDirectory = currentPath + "/src/test/java/sync/pages/images.sikuli";
+        this.folderForScreenshots = currentPath + "/target/surefire-reports/screenshots/";
+        this.folderForDesktopScreenshots = currentPath + "/temp/";
         File directory = new File(folderForDesktopScreenshots);
-        if (!directory.exists()){
+        if (!directory.exists()) {
             directory.mkdir();
-        }
-        else{
+        } else {
             directory.delete();
             directory.mkdir();
         }
-        this.client.driver.removeApp("org.nativescript.preview");
 
-        if(settings.deviceType == settings.deviceType.Simulator)
-        {
-            functional.tests.core.utils.Archive.extractArchive(new File(currentPath+"/testapp/nsplaydev.tgz"),new File(currentPath+"/testapp/"));
+        if (settings.deviceType == settings.deviceType.Simulator) {
+            this.client.driver.removeApp("org.nativescript.preview");
+            functional.tests.core.utils.Archive.extractArchive(new File(currentPath + "/testapp/nsplaydev.tgz"), new File(currentPath + "/testapp/"));
 
             functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
-            ios.installApp("nsplaydev.app","org.nativescript.preview");
-            this.deviceId=ios.getId();
+            ios.installApp("nsplaydev.app", "org.nativescript.preview");
+            this.deviceId = ios.getId();
             context.settings.packageId = "org.nativescript.preview";
             context.settings.testAppFileName = "nsplaydev.app";
             Capabilities newiOSCapabilities = new Capabilities();
             DesiredCapabilities newDesireCapabilites = new DesiredCapabilities();
             newDesireCapabilites = newiOSCapabilities.loadDesiredCapabilities(context.settings);
-            newDesireCapabilites.setCapability("newCommandTimeout",60000);
+            newDesireCapabilites.setCapability("newCommandTimeout", 6000);
             context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesireCapabilites);
-        }
-        else {
+        } else {
             functional.tests.core.mobile.device.android.AndroidDevice android = new functional.tests.core.mobile.device.android.AndroidDevice(client, mobileSettings);
+            new Adb(this.mobileSettings).uninstallApp("org.nativescript.preview");
             android.installApp("app-universal-release.apk", "org.nativescript.preview");
-            this.deviceId=android.getId();
+            this.deviceId = android.getId();
             context.settings.packageId = "org.nativescript.preview";
             context.settings.testAppFileName = "app-universal-release.apk";
             Capabilities newAndroidCapabilities = new Capabilities();
             DesiredCapabilities newDesireCapabilites = new DesiredCapabilities();
             newDesireCapabilites = newAndroidCapabilities.loadDesiredCapabilities(context.settings);
-            newDesireCapabilites.setCapability("newCommandTimeout",60000);
+            newDesireCapabilites.setCapability("newCommandTimeout", 6000);
             context.client.driver = new AndroidDriver(context.server.service.getUrl(), newDesireCapabilites);
         }
 
@@ -138,7 +136,7 @@ public boolean isLive = false;
         Thread.sleep(5000);
         final ChromeOptions options = new ChromeOptions();
         options.addArguments("start-fullscreen");
-        this.driver=new ChromeDriver(options);
+        this.driver = new ChromeDriver(options);
         Thread.sleep(5000);
 
     }
@@ -150,22 +148,19 @@ public boolean isLive = false;
     }
 
     public void GetDeviceLink() throws InterruptedException, FindFailed, IOException, UnsupportedFlavorException {
-         this.liveSyncConnectionString =  driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]")).get(0).getText();
-         this.s = Screen.all();
+        this.liveSyncConnectionString = driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]")).get(0).getText();
+        this.s = Screen.all();
     }
 
     public void startPreviewAppWithLiveSync() throws InterruptedException, FindFailed, IOException {
         List<String> params;
         this.deviceScreenWidth = client.driver.manage().window().getSize().width;
-        if(settings.deviceType == settings.deviceType.Simulator)
-        {
+        if (settings.deviceType == settings.deviceType.Simulator) {
             this.liveSyncConnectionString = this.liveSyncConnectionString.replaceAll("\\\\", "/");
             params = java.util.Arrays.asList("xcrun", "simctl", "openurl", this.deviceId, liveSyncConnectionString);
-        }
-        else
-        {
+        } else {
             log.info(liveSyncConnectionString);
-            params = java.util.Arrays.asList(System.getenv("ANDROID_HOME")+"/platform-tools/adb", "-s" ,this.deviceId, "shell" ,"am" , "start" , "-a", "android.intent.action.VIEW", "-d", "\""+liveSyncConnectionString+"\"", "org.nativescript.preview");
+            params = java.util.Arrays.asList(System.getenv("ANDROID_HOME") + "/platform-tools/adb", "-s", this.deviceId, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", "\"" + liveSyncConnectionString + "\"", "org.nativescript.preview");
         }
 
         try {
@@ -186,14 +181,14 @@ public boolean isLive = false;
             log.info(ex.toString());
         }
 
-        if(settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == settings.deviceType.Simulator) {
             log.info("Searching for Home or Open");
             this.wait(5000);
-            String foundItem = this.waitText1OrText2ToBeShown(12,"Home", "Open");
-            log.info("Found Item "+foundItem);
-            if(foundItem == "Open") {
+            String foundItem = this.waitText1OrText2ToBeShown(12, "Home", "Open");
+            log.info("Found Item " + foundItem);
+            if (foundItem == "Open") {
                 if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
-                    if(this.settings.platformVersion.toString().contains("10.")) {
+                    if (this.settings.platformVersion.toString().contains("10.")) {
                         this.wait(5000);
                         if (ExpectedConditions.alertIsPresent() != null) {
                             this.client.driver.switchTo().alert().accept();
@@ -205,20 +200,17 @@ public boolean isLive = false;
                                 this.client.driver.switchTo().alert().accept();
                                 this.wait(2000);
                             }
-                        }
-                        catch (Exception e)
-                        {
+                        } catch (Exception e) {
 
                         }
-                    }
-                    else {
+                    } else {
                         this.wait(5000);
                         if (ExpectedConditions.alertIsPresent() != null) {
                             this.client.driver.switchTo().alert().dismiss();
                         }
                         this.wait(5000);
                         functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
-                        this.deviceId=ios.getId();
+                        this.deviceId = ios.getId();
                         context.settings.packageId = "org.nativescript.preview";
                         context.settings.testAppFileName = "nsplaydev.app";
                         Capabilities newiOSCapabilities = new Capabilities();
@@ -233,12 +225,10 @@ public boolean isLive = false;
                         }
                         this.wait(6000);
                     }
-                }
-                else {
+                } else {
                     this.find.byText("Open").click();
                     this.wait(7000);
-                    if(this.find.byText("Open") != null)
-                    {
+                    if (this.find.byText("Open") != null) {
                         this.find.byText("Open").click();
                     }
                 }
@@ -255,7 +245,7 @@ public boolean isLive = false;
     }
 
     public String waitText1OrText2ToBeShown(int numberOfTries, String text1, String text2) throws InterruptedException {
-        String textFound="";
+        String textFound = "";
         while (true) {
             if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
                 log.info("Search for image!");
@@ -269,7 +259,7 @@ public boolean isLive = false;
                 }
                 numberOfTries = numberOfTries - 1;
                 if (numberOfTries <= 0) {
-                    log.info("Image "+ text1 + " and Image "+text2 + " are not found!");
+                    log.info("Image " + text1 + " and Image " + text2 + " are not found!");
                     break;
                 }
 
@@ -280,12 +270,12 @@ public boolean isLive = false;
                 log.info("start checking!");
                 if (text1element != null) {
                     textFound = text1;
-                    log.info("Found "+textFound);
+                    log.info("Found " + textFound);
                     break;
                 }
                 if (text2element != null) {
                     textFound = text2;
-                    log.info("Found "+textFound);
+                    log.info("Found " + textFound);
                     break;
                 }
                 numberOfTries = numberOfTries - 1;
@@ -294,27 +284,25 @@ public boolean isLive = false;
                     break;
                 }
             }
-            log.info("Nothing found in turn "+numberOfTries);
+            log.info("Nothing found in turn " + numberOfTries);
         }
-        log.info("Exit loop! Text found "+textFound);
+        log.info("Exit loop! Text found " + textFound);
         return textFound;
     }
 
     public void waitTextToBeShown(int numberOfTries, String object) throws InterruptedException {
-        while (true)
-        {
+        while (true) {
             if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
                 if (this.sikuli.waitForImage(object, 0.7d, 2)) {
                     break;
                 }
                 numberOfTries = numberOfTries - 1;
                 if (numberOfTries <= 0) {
-                    log.info("Image "+ object + " is not found!");
+                    log.info("Image " + object + " is not found!");
                     break;
                 }
 
-            }
-            else {
+            } else {
                 UIElement home = this.find.byText(object);
                 if (home != null || numberOfTries <= 0) {
                     if (numberOfTries <= 0) {
@@ -324,21 +312,20 @@ public boolean isLive = false;
                 }
                 numberOfTries = numberOfTries - 1;
             }
-            log.info("Nothing found in turn "+numberOfTries);
+            log.info("Nothing found in turn " + numberOfTries);
         }
     }
 
     public void waitPreviewAppToLoad(int numberOfTries, String object) throws InterruptedException {
-        this.waitTextToBeShown(numberOfTries,object);
+        this.waitTextToBeShown(numberOfTries, object);
         if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
             UIRectangle home = this.findImageOnScreen(object, 0.9d);
-            Assert.assertNotNull(home, "Preview app not synced! Item missing "+ object);
-            this.log.info("Preview app synced! The item "+object+" is found!");
-        }
-        else{
+            Assert.assertNotNull(home, "Preview app not synced! Item missing " + object);
+            this.log.info("Preview app synced! The item " + object + " is found!");
+        } else {
             UIElement home = this.find.byText(object);
-            Assert.assertNotNull(home, "Preview app not synced! Item missing "+ object);
-            this.log.info("Preview app synced! The item "+object+" is found!");
+            Assert.assertNotNull(home, "Preview app not synced! Item missing " + object);
+            this.log.info("Preview app synced! The item " + object + " is found!");
         }
 
 
@@ -346,14 +333,12 @@ public boolean isLive = false;
 
     public UIRectangle findImageOnScreen(String imageName, double similarity) {
         BufferedImage screenBufferImage = this.device.getScreenshot();
-        Finder finder = this.getFinder(screenBufferImage, imageName, (float)similarity, 0, 0, false);
+        Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity, 0, 0, false);
         Match searchedImageMatch = finder.next();
         Point point;
-        if(searchedImageMatch != null) {
+        if (searchedImageMatch != null) {
             point = searchedImageMatch.getCenter().getPoint();
-        }
-        else
-        {
+        } else {
             return null;
         }
         Rectangle rectangle = this.getRectangle(point, screenBufferImage.getWidth());
@@ -363,24 +348,20 @@ public boolean isLive = false;
     private Finder getFinder(BufferedImage screenBufferImage, String imageName, float similarity, int offsetX, int offsetY, boolean isDesktop) {
         ImageUtils var10001 = this.imageUtils;
         BufferedImage searchedBufferImage = null;
-        if(!isDesktop) {
+        if (!isDesktop) {
             searchedBufferImage = this.imageUtils.getImageFromFile(this.getImageFullName(this.getImageFolderPath(this.appName), imageName));
-        }
-        else
-        {
+        } else {
             searchedBufferImage = this.imageUtils.getImageFromFile(this.getImageFullName(this.ImagePathDirectory, imageName));
         }
         Image searchedImage = new Image(searchedBufferImage);
         Pattern searchedImagePattern = new Pattern(searchedImage);
         Image mainImage = new Image(screenBufferImage);
 
-        if (similarity != 0.0)
-        {
+        if (similarity != 0.0) {
             searchedImagePattern.similar(similarity);
         }
 
-        if (offsetX != 0 && offsetY != 0)
-        {
+        if (offsetX != 0 && offsetY != 0) {
             searchedImagePattern.targetOffset(offsetX, offsetY);
         }
 
@@ -394,6 +375,7 @@ public boolean isLive = false;
         FileSystem.ensureFolderExists(imageFolderPath);
         return imageFolderPath;
     }
+
     public Rectangle getRectangle(Point point, int screenShotWidth) {
         int densityRatio = this.getDensityRatio(screenShotWidth);
         Rectangle rectangle = new Rectangle(point.x / densityRatio, point.y / densityRatio, 50, 50);
@@ -405,9 +387,9 @@ public boolean isLive = false;
     }
 
     public void wait(int time) {
-        synchronized(this.s) {
+        synchronized (this.s) {
             try {
-                    this.s.wait(time);
+                this.s.wait(time);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -419,8 +401,7 @@ public boolean isLive = false;
         //this.wait(2000);
     }
 
-    public String getComputerName()
-    {
+    public String getComputerName() {
         String computerName = "";
         try {
             ProcessBuilder pb = new
@@ -433,19 +414,17 @@ public boolean isLive = false;
             String line;
             while ((line = br.readLine()) != null) {
                 log.info(line);
-                if(line.trim()!="")
-                {
+                if (line.trim() != "") {
                     computerName = line.trim();
                 }
             }
         } catch (Exception ex) {
             log.info(ex.toString());
         }
-        return  computerName;
+        return computerName;
     }
 
-    public String getIOSVersion()
-    {
+    public String getIOSVersion() {
         String version = "";
         List<String> params = java.util.Arrays.asList("xcrun", "simctl", "getenv", this.deviceId, "SIMULATOR_RUNTIME_VERSION");
 
@@ -460,18 +439,17 @@ public boolean isLive = false;
             String line;
             while ((line = br.readLine()) != null) {
                 log.info(line);
-                if(line.trim()!="")
-                {
+                if (line.trim() != "") {
                     version = line.trim();
                 }
             }
         } catch (Exception ex) {
             log.info(ex.toString());
         }
-        return  version;
+        return version;
     }
 
-    public void getScreenShot(String screenshotName){
+    public void getScreenShot(String screenshotName) {
         try {
             Process p = Runtime.getRuntime().exec("screencapture -C -x " + this.folderForScreenshots + screenshotName + ".png");
         } catch (IOException e) {
@@ -479,17 +457,16 @@ public boolean isLive = false;
         }
     }
 
-    public void closeTutorial()
-    {
+    public void closeTutorial() {
         Region gettingStartedRegion = null;
         Region closeButton = null;
         try {
-             gettingStartedRegion = this.s.find("gettingstartedlogo");
+            gettingStartedRegion = this.s.find("gettingstartedlogo");
         } catch (FindFailed findFailed) {
             findFailed.printStackTrace();
             log.info("Tutorial is not opened!");
         }
-        if(gettingStartedRegion!=null) {
+        if (gettingStartedRegion != null) {
             try {
                 closeButton = gettingStartedRegion.right().above().find("closebutton");
             } catch (FindFailed findFailed) {
@@ -508,87 +485,77 @@ public boolean isLive = false;
         }
     }
 
-    public void openURL(String url)
-    {
+    public void openURL(String url) {
         List<String> params = null;
-        if(settings.deviceType == settings.deviceType.Simulator)
-        {
+        if (settings.deviceType == settings.deviceType.Simulator) {
             url = url.replaceAll("\\\\", "/");
             params = java.util.Arrays.asList("xcrun", "simctl", "openurl", this.deviceId, url);
-        }
-        else {
+        } else {
             params = java.util.Arrays.asList(System.getenv("ANDROID_HOME") + "/platform-tools/adb", "-s", this.deviceId, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", "\"" + url + "\"");
         }
-            try {
-                ProcessBuilder pb = new
-                        ProcessBuilder(params);
-                log.info(pb.command().toString());
-                final Process p = pb.start();
-                log.info("Start logging command...");
-                BufferedReader br = new BufferedReader(
-                        new InputStreamReader(
-                                p.getInputStream()));
-                String line;
-                while ((line = br.readLine()) != null) {
-                    log.info(line);
-                }
-                log.info("End logging command...");
-            } catch (Exception ex) {
-                log.info(ex.toString());
+        try {
+            ProcessBuilder pb = new
+                    ProcessBuilder(params);
+            log.info(pb.command().toString());
+            final Process p = pb.start();
+            log.info("Start logging command...");
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(
+                            p.getInputStream()));
+            String line;
+            while ((line = br.readLine()) != null) {
+                log.info(line);
             }
+            log.info("End logging command...");
+        } catch (Exception ex) {
+            log.info(ex.toString());
+        }
 
-        if(settings.deviceType == settings.deviceType.Emulator) {
+        if (settings.deviceType == settings.deviceType.Emulator) {
             this.wait(4000);
             UIElement webView = this.find.byTextContains("WebView");
-           if(webView!=null) {
+            if (webView != null) {
                 webView.click();
                 this.log.info("Navigate to " + webView);
-            }
-            else {
+            } else {
                 this.log.info("Element " + webView + " not found! Not able to click it!");
             }
 
             this.wait(3000);
-            UIElement webViewForJust  = this.find.byTextContains("Just Once");
-            if(webViewForJust!=null) {
+            UIElement webViewForJust = this.find.byTextContains("Just Once");
+            if (webViewForJust != null) {
                 webViewForJust.click();
                 this.log.info("Navigate to " + webViewForJust);
-            }
-            else {
+            } else {
                 this.log.info("Element " + webViewForJust + " not found! Not able to click it!");
             }
         }
     }
 
     public void navigateToSavedSession(String button) throws InterruptedException {
-        if(settings.deviceType == settings.deviceType.Emulator) {
+        if (settings.deviceType == settings.deviceType.Emulator) {
             List<WebElement> link = (List<WebElement>) this.client.driver.findElements(By.xpath("//*[@content-desc='Load project in Preview app Tap to open the saved project in the Preview app']"));
-            if(link.size()!=0) {
+            if (link.size() != 0) {
                 link.get(0).click();
                 this.log.info("Navigate to " + button);
-            }
-            else {
+            } else {
                 this.log.info("Element " + button + " not found! Not able to click it!");
             }
-        }
-        else if (settings.deviceType == settings.deviceType.Simulator)
-        {
+        } else if (settings.deviceType == settings.deviceType.Simulator) {
             UIRectangle link = this.findImageOnScreen("SavedSession", 0.8d);
-            if(link!=null) {
-                new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((link.getRectangle().x ), (link.getRectangle().y)))).perform();
+            if (link != null) {
+                new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((link.getRectangle().x), (link.getRectangle().y)))).perform();
                 //this.client.driver.tap(1,link.getRectangle().x,link.getRectangle().y,500);
                 this.wait(7000);
-                if(this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
+                if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
                     this.client.driver.switchTo().alert().accept();
-                }
-                else {
+                } else {
                     UIRectangle openButton = this.findImageOnScreen("Open", 0.8d);
-                    new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((openButton.getRectangle().x ), (openButton.getRectangle().y)))).perform();
+                    new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((openButton.getRectangle().x), (openButton.getRectangle().y)))).perform();
                     //this.client.driver.tap(1,openButton.getRectangle().x,openButton.getRectangle().y,500);
                 }
                 this.wait(7000);
-            }
-            else {
+            } else {
                 this.log.info("Element " + button + " not found! Not able to click it!");
             }
         }
@@ -596,28 +563,28 @@ public boolean isLive = false;
 
     }
 
-   public void changeIosDriverToWebView(){
-       Capabilities newiOSCapabilities = new Capabilities();
-       DesiredCapabilities newDesiredCapabilites = new DesiredCapabilities();
-       newDesiredCapabilites = newiOSCapabilities.loadDesiredCapabilities(context.settings);
-       newDesiredCapabilites.setBrowserName("Safari");
-       newDesiredCapabilites.setCapability("autoWebview",true);
-       context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesiredCapabilites);
-   }
+    public void changeIosDriverToWebView() {
+        Capabilities newiOSCapabilities = new Capabilities();
+        DesiredCapabilities newDesiredCapabilites = new DesiredCapabilities();
+        newDesiredCapabilites = newiOSCapabilities.loadDesiredCapabilities(context.settings);
+        newDesiredCapabilites.setBrowserName("Safari");
+        newDesiredCapabilites.setCapability("autoWebview", true);
+        context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesiredCapabilites);
+    }
 
-    public void restoreIosDriver(){
+    public void restoreIosDriver() {
         Capabilities newiOSCapabilities = new Capabilities();
         DesiredCapabilities newDesireCapabilites = new DesiredCapabilities();
         newDesireCapabilites = newiOSCapabilities.loadDesiredCapabilities(context.settings);
-        newDesireCapabilites.setCapability("newCommandTimeout",60000);
+        newDesireCapabilites.setCapability("newCommandTimeout", 6000);
         context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesireCapabilites);
     }
 
-    public void refreshAndroidDriver(){
+    public void refreshAndroidDriver() {
         Capabilities newAndroidCapabilities = new Capabilities();
         DesiredCapabilities newDesireCapabilites = new DesiredCapabilities();
         newDesireCapabilites = newAndroidCapabilities.loadDesiredCapabilities(context.settings);
-        newDesireCapabilites.setCapability("newCommandTimeout",60000);
+        newDesireCapabilites.setCapability("newCommandTimeout", 6000);
         context.client.driver = new AndroidDriver(context.server.service.getUrl(), newDesireCapabilites);
 
     }
@@ -629,14 +596,13 @@ public boolean isLive = false;
 
         Match searchedImageMatch = finder.next();
 
-        if(searchedImageMatch == null)
-        {
+        if (searchedImageMatch == null) {
             throw new Error(imageName + " with severity " + similarity + " could not be found!");
         }
 
         Point point = searchedImageMatch.getCenter().getPoint();
 
-        Rectangle rectangle =  new Rectangle(point.x , point.y , 0, 0);
+        Rectangle rectangle = new Rectangle(point.x, point.y, 0, 0);
 
         return new Region(rectangle);
     }
@@ -647,43 +613,12 @@ public boolean isLive = false;
         Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity, 0, 0, true);
 
         Match searchedImageMatch = finder.next();
-        if(searchedImageMatch !=  null)
-        {
+        if (searchedImageMatch != null) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
 
-    }
-
-    public boolean existsOnDesktopScreen(String imageName) {
-        return existsOnDesktopScreen(imageName, 0);
-    }
-
-    public void clickOnDesktop(String imageName, double similarity, int offsetX, int offsetY){
-        Region objectToClick = findImageOnDesktopScreen(imageName, similarity, offsetX, offsetY);
-
-        //try {
-        //    this.cti(objectToClick);
-        //} catch (FindFailed findFailed) {
-        //    findFailed.printStackTrace();
-       // }
-        //Click myClick = new Click(objectToClick.x, objectToClick.y);
-        //Thread click = new Thread(myClick);
-        //click.start();
-//        try {
-//        //    click.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        try {
-            giveFocus();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("CLick on " + imageName);
     }
 
     public BufferedImage getScreenShotForSikuli() {
@@ -705,7 +640,7 @@ public boolean isLive = false;
             e.printStackTrace();
         }
 
-        File f = new File(this.folderForScreenshots + "test" +imageNumber+ ".png");
+        File f = new File(this.folderForScreenshots + "test" + imageNumber + ".png");
         imageNumber++;
         System.out.println("Save image " + imageNumber);
         try {
@@ -718,10 +653,9 @@ public boolean isLive = false;
 
     public static String getImageFullName(String imageFolderPath, String imageName) {
         String imageFullName = null;
-        if(imageName.contains(".png")) {
+        if (imageName.contains(".png")) {
             imageFullName = imageFolderPath + File.separator + imageName;
-        }
-        else{
+        } else {
             imageFullName = imageFolderPath + File.separator + imageName + ".png";
         }
 
@@ -729,8 +663,7 @@ public boolean isLive = false;
     }
 
 
-    public boolean waitUntilWebElementIsPresentByXpath(String xpath, int tries)
-    {
+    public boolean waitUntilWebElementIsPresentByXpath(String xpath, int tries) {
         while (true) {
             tries--;
             List<WebElement> elements = driver.findElements(By.xpath(xpath));
@@ -748,13 +681,11 @@ public boolean isLive = false;
         }
     }
 
-    public boolean waitUntilWebElementIsPresentByXpath(String xpath)
-    {
+    public boolean waitUntilWebElementIsPresentByXpath(String xpath) {
         return waitUntilWebElementIsPresentByXpath(xpath, 20);
     }
 
-    public boolean waitUntilWebElementIsPresentByClassName(String className, int tries)
-    {
+    public boolean waitUntilWebElementIsPresentByClassName(String className, int tries) {
         while (true) {
             tries--;
             List<WebElement> elements = driver.findElements(By.className(className));
@@ -772,8 +703,7 @@ public boolean isLive = false;
         }
     }
 
-    public boolean waitUntilWebElementIsPresentByClassName(String className)
-    {
+    public boolean waitUntilWebElementIsPresentByClassName(String className) {
         return waitUntilWebElementIsPresentByClassName(className, 30);
     }
 
