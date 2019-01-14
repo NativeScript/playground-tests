@@ -58,7 +58,7 @@ public class SetupClass extends BasePage {
     public App browserAPP;
     public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject", "ng");
     public String browser = OSUtils.getEnvironmentVariable("browser", "Google Chrome");
-    public String isHMREnabled = OSUtils.getEnvironmentVariable("hmr", "false");
+    public String isHMREnabled = OSUtils.getEnvironmentVariable("isHMREnabled", "false");
     public String folderForScreenshots;
     public String folderForDesktopScreenshots;
     public Integer imageNumber = 0;
