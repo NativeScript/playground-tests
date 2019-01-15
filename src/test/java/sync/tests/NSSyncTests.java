@@ -19,7 +19,12 @@ public class  NSSyncTests extends MobileTest {
     @BeforeClass
     public void beforeClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
         this.setupClass = new SetupClass(this.client, this.settings, this.device);
-        String projectURL = "https://play.nativescript.be/?template=play-" + setupClass.typeOfProject + "&debug=true&enableHMR=" + setupClass.isHMREnabled;
+        String projectURL = "https://play.nativescript.be/?template=play-" + setupClass.typeOfProject + "&debug=true";
+
+        if(setupClass.isHMREnabled=="false")
+        {
+            projectURL = projectURL + "&enableHMR=false";
+        }
 
         if (projectURL.contains("play.nativescript.org")) {
             this.setupClass.isLive = true;
@@ -174,9 +179,9 @@ public class  NSSyncTests extends MobileTest {
             //remove after bug in {N}
             //this.assertScreen("nsplaydev-synced-invalid-code", this.settings.defaultTimeout);
             if (settings.deviceType == settings.deviceType.Simulator) {
-                this.setupClass.wait(5000);
+                this.setupClass.wait(9000);
                 this.context.client.driver.launchApp();
-                this.setupClass.wait(4000);
+                this.setupClass.wait(10000);
             }
         }
         codeEditor.typeXMLOrHTMLCode(true, false);
