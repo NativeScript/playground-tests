@@ -21,9 +21,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass = new SetupClass(this.client, this.settings, this.device);
         String projectURL = "https://play.nativescript.be/?template=play-" + setupClass.typeOfProject + "&debug=true";
 
-        System.out.println("-------->");
-        System.out.println(setupClass.isHMREnabled);
-        if(setupClass.isHMREnabled=="false")
+        if(setupClass.isHMREnabled.contains("false"))
         {
             projectURL = projectURL + "&enableHMR=false";
         }
