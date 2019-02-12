@@ -133,14 +133,14 @@ public class  NSSyncTests extends MobileTest {
                 "  \"nativescript-geolocation\": \"4.4.2\",\n" +
                 "  \"nativescript-imagepicker\": \"6.0.6\",\n" +
                 "  \"nativescript-intl\": \"3.0.0\",\n" +
-                "  \"nativescript-iqkeyboardmanager\": \"1.4.0\"\",\n" +
+                "  \"nativescript-iqkeyboardmanager\": \"1.4.0\",\n" +
                 "  \"nativescript-social-share\": \"1.5.1\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.4\",\n" +
                 "  \"nativescript-ui-autocomplete\": \"3.11.0\",\n" +
                 "  \"nativescript-ui-calendar\": \"3.10.0\",\n" +
                 "  \"nativescript-ui-chart\": \"3.11.1\",\n" +
                 "  \"nativescript-ui-dataform\": \"3.10.0\",\n" +
-                "  \"nativescript-ui-gauge\": \3.8.0\",\n" +
+                "  \"nativescript-ui-gauge\": \"3.8.0\",\n" +
                 "  \"nativescript-ui-listview\": \"5.1.1\",\n" +
                 "  \"nativescript-ui-sidedrawer\": \"5.1.0\",\n" +
                 "  \"nativescript-vue\": \"2.0.2\",\n" +
