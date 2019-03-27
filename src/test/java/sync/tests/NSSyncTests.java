@@ -114,41 +114,41 @@ public class  NSSyncTests extends MobileTest {
         }
 
         String componentVersionsExpected = "{\n" +
-                "  \"@angular/animations\": \"7.2.4\",\n" +
-                "  \"@angular/common\": \"7.2.4\",\n" +
-                "  \"@angular/compiler\": \"7.2.4\",\n" +
-                "  \"@angular/core\": \"7.2.4\",\n" +
-                "  \"@angular/forms\": \"7.2.4\",\n" +
-                "  \"@angular/http\": \"7.2.4\",\n" +
-                "  \"@angular/platform-browser\": \"7.2.4\",\n" +
-                "  \"@angular/platform-browser-dynamic\": \"7.2.4\",\n" +
-                "  \"@angular/router\": \"7.2.4\",\n" +
+                "  \"@angular/animations\": \"7.2.11\",\n" +
+                "  \"@angular/common\": \"7.2.11\",\n" +
+                "  \"@angular/compiler\": \"7.2.11\",\n" +
+                "  \"@angular/core\": \"7.2.11\",\n" +
+                "  \"@angular/forms\": \"7.2.11\",\n" +
+                "  \"@angular/http\": \"7.2.11\",\n" +
+                "  \"@angular/platform-browser\": \"7.2.11\",\n" +
+                "  \"@angular/platform-browser-dynamic\": \"7.2.11\",\n" +
+                "  \"@angular/router\": \"7.2.11\",\n" +
                 "  \"@progress-nativechat/nativescript-nativechat\": \"2.0.3\",\n" +
-                "  \"kinvey-nativescript-sdk\": \"3.12.3\",\n" +
+                "  \"kinvey-nativescript-sdk\": \"3.12.4\",\n" +
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
-                "  \"nativescript-angular\": \"7.2.1\",\n" +
-                "  \"nativescript-background-http\": \"3.3.1\",\n" +
-                "  \"nativescript-camera\": \"4.1.1\",\n" +
+                "  \"nativescript-angular\": \"7.2.3\",\n" +
+                "  \"nativescript-background-http\": \"3.4.0\",\n" +
+                "  \"nativescript-camera\": \"4.4.0\",\n" +
                 "  \"nativescript-fresco\": \"5.2.0\",\n" +
-                "  \"nativescript-geolocation\": \"4.4.2\",\n" +
-                "  \"nativescript-imagepicker\": \"6.0.6\",\n" +
+                "  \"nativescript-geolocation\": \"5.0.0\",\n" +
+                "  \"nativescript-imagepicker\": \"6.1.2\",\n" +
                 "  \"nativescript-intl\": \"3.0.0\",\n" +
                 "  \"nativescript-iqkeyboardmanager\": \"1.4.0\",\n" +
                 "  \"nativescript-social-share\": \"1.5.1\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.4\",\n" +
-                "  \"nativescript-ui-autocomplete\": \"3.11.0\",\n" +
-                "  \"nativescript-ui-calendar\": \"3.10.0\",\n" +
-                "  \"nativescript-ui-chart\": \"3.11.1\",\n" +
-                "  \"nativescript-ui-dataform\": \"3.10.0\",\n" +
-                "  \"nativescript-ui-gauge\": \"3.8.0\",\n" +
-                "  \"nativescript-ui-listview\": \"5.1.1\",\n" +
-                "  \"nativescript-ui-sidedrawer\": \"5.1.0\",\n" +
-                "  \"nativescript-vue\": \"2.0.2\",\n" +
+                "  \"nativescript-ui-autocomplete\": \"4.0.0\",\n" +
+                "  \"nativescript-ui-calendar\": \"4.0.0\",\n" +
+                "  \"nativescript-ui-chart\": \"4.0.0\",\n" +
+                "  \"nativescript-ui-dataform\": \"4.0.0\",\n" +
+                "  \"nativescript-ui-gauge\": \"4.0.0\",\n" +
+                "  \"nativescript-ui-listview\": \"6.1.0\",\n" +
+                "  \"nativescript-ui-sidedrawer\": \"6.0.0\",\n" +
+                "  \"nativescript-vue\": \"2.2.0\",\n" +
                 "  \"reflect-metadata\": \"0.1.13\",\n" +
                 "  \"rxjs\": \"6.4.0\",\n" +
                 "  \"rxjs-compat\": \"6.4.0\",\n" +
-                "  \"tns-core-modules\": \"5.2.0\",\n" +
-                "  \"zone.js\": \"0.8.29\"\n" +
+                "  \"tns-core-modules\": \"5.3.0\",\n" +
+                "  \"zone.js\": \"0.9.0\"\n" +
                 "}";
 
         codeEditor.assertDeviceTab(this.deviceName, modelExpected, osVersionExpected, previewAppVersionExpected, runtimeVersionExpected, componentVersionsExpected);
