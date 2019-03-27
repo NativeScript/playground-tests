@@ -100,17 +100,17 @@ public class  NSSyncTests extends MobileTest {
         String previewAppVersionExpected = "";
         if (settings.deviceType == settings.deviceType.Emulator) {
 
-            previewAppVersionExpected = "1.19.0";
+            previewAppVersionExpected = "1.20.0";
         } else {
-            previewAppVersionExpected = "1.19.0";
+            previewAppVersionExpected = "1.20.0";
         }
 
         String runtimeVersionExpected = "";
         if (settings.deviceType == settings.deviceType.Emulator) {
 
-            runtimeVersionExpected = "5.2.0";
+            runtimeVersionExpected = "5.3.0";
         } else {
-            runtimeVersionExpected = "5.2.0";
+            runtimeVersionExpected = "5.3.0";
         }
 
         String componentVersionsExpected = "{\n" +
