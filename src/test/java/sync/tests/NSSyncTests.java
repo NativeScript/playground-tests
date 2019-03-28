@@ -147,7 +147,7 @@ public class  NSSyncTests extends MobileTest {
                 "  \"reflect-metadata\": \"0.1.13\",\n" +
                 "  \"rxjs\": \"6.4.0\",\n" +
                 "  \"rxjs-compat\": \"6.4.0\",\n" +
-                "  \"tns-core-modules\": \"5.3.0\",\n" +
+                "  \"tns-core-modules\": \"5.3.1\",\n" +
                 "  \"zone.js\": \"0.9.0\"\n" +
                 "}";
 
