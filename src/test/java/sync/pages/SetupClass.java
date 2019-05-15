@@ -144,7 +144,7 @@ public class SetupClass extends BasePage {
     public void NavigateToPage(String URL) throws InterruptedException {
         driver.get(URL);
         Thread.sleep(5000);
-        driver.findElements(By.xpath("//a[contains(.,'Accept Cookies')]")).get(0).click();
+        driver.findElements(By.xpath("//button[contains(.,'Accept Cookies')]")).get(0).click();
     }
 
     public void GetDeviceLink() throws InterruptedException, FindFailed, IOException, UnsupportedFlavorException {

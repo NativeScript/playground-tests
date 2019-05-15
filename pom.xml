@@ -319,11 +319,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.sikulix</groupId>
-            <artifactId>sikulixapi</artifactId>
-            <version>1.1.2</version>
-        </dependency>
-        <dependency>
             <groupId>functional.tests.core</groupId>
             <artifactId>functional.tests.core</artifactId>
             <version>0.0.5</version>
