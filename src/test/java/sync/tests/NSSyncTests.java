@@ -335,13 +335,13 @@ public class  NSSyncTests extends MobileTest {
             this.setupClass.wait(4000);
         }
         if (this.setupClass.typeOfProject.equals("ng")) {
-            this.assertScreen("nsplaydev-synced-javascript-error-ng", this.settings.defaultTimeout, 20);
+            this.assertScreen("nsplaydev-synced-javascript-error-ng", this.settings.defaultTimeout, 21);
         } else if (this.setupClass.typeOfProject.equals("js")) {
-            this.assertScreen("nsplaydev-synced-javascript-error-js", this.settings.defaultTimeout, 20);
+            this.assertScreen("nsplaydev-synced-javascript-error-js", this.settings.defaultTimeout, 21);
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
-            this.assertScreen("nsplaydev-synced-javascript-error-tsc", this.settings.defaultTimeout, 20);
+            this.assertScreen("nsplaydev-synced-javascript-error-tsc", this.settings.defaultTimeout, 21);
         } else if (this.setupClass.typeOfProject.equals("vue")) {
-            this.assertScreen("nsplaydev-synced-javascript-error-vue", this.settings.defaultTimeout, 20);
+            this.assertScreen("nsplaydev-synced-javascript-error-vue", this.settings.defaultTimeout, 21);
         }
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText = null;
