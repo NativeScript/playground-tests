@@ -435,7 +435,7 @@ public class CodeEditorClass extends BasePage {
             }
         }
         else {
-        this.setupClass.wait(4000);
+            this.setupClass.wait(4000);
         }
     }
 
@@ -481,22 +481,22 @@ public class CodeEditorClass extends BasePage {
             else
             {
                 String code = "import { Component, OnInit } from \"@angular/core\";\n" +
-                            "\n" +
-                            "@Component({\n" +
-                            "    selector: \"Home\",\n" +
-                            "    moduleId: module.id,\n" +
-                            "    templateUrl: \"./home.component.html\",\n" +
-                            "    styleUrls: ['./home.component.css']\n" +
-                            "})\n" +
-                            "export class HomeComponent implements OnInit {\n" +
-                            "\n" +
-                            "    constructor() {\n" +
-                            "        console.log(\"log\");\n" +
-                            "    }\n" +
-                            "\n" +
-                            "    ngOnInit(): void {\n" +
-                            "    }\n" +
-                            "}\n";
+                        "\n" +
+                        "@Component({\n" +
+                        "    selector: \"Home\",\n" +
+                        "    moduleId: module.id,\n" +
+                        "    templateUrl: \"./home.component.html\",\n" +
+                        "    styleUrls: ['./home.component.css']\n" +
+                        "})\n" +
+                        "export class HomeComponent implements OnInit {\n" +
+                        "\n" +
+                        "    constructor() {\n" +
+                        "        console.log(\"log\");\n" +
+                        "    }\n" +
+                        "\n" +
+                        "    ngOnInit(): void {\n" +
+                        "    }\n" +
+                        "}\n";
 
                 pasteText(code);
             }
@@ -768,8 +768,8 @@ public class CodeEditorClass extends BasePage {
                     "  var page = args.object;\n" +
                     "  page.bindingContext = homeViewModel;\n" +
                     "  throw new Error(\"Error\");\n" +
-                "}\n" +
-                "exports.pageLoaded = pageLoaded;\n";
+                    "}\n" +
+                    "exports.pageLoaded = pageLoaded;\n";
 
             pasteText(code);
         }
@@ -781,8 +781,8 @@ public class CodeEditorClass extends BasePage {
                     "    constructor() {\n" +
                     "        super();\n" +
                     "        throw new Error(\"Error\");\n" +
-                "    }\n" +
-                "}";
+                    "    }\n" +
+                    "}";
 
             pasteText(code);
         }
@@ -808,28 +808,28 @@ public class CodeEditorClass extends BasePage {
                     "    export default {\n" +
                     "        mounted: function() {\n" +
                     "            throw new Error(\"Error\");\n" +
-                "        },\n" +
-                "        data() {\n" +
-                "            return {};\n" +
-                "        },\n" +
-                "    }\n" +
-                "</script>\n" +
-                "\n" +
-                "<style scoped>\n" +
-                "    .home-panel {\n" +
-                "        vertical-align: center;\n" +
-                "        font-size: 20;\n" +
-                "        margin: 15;\n" +
-                "    }\n" +
-                "\n" +
-                "    .description-label {\n" +
-                "        margin-bottom: 15;\n" +
-                "    }\n" +
-                "</style>";
+                    "        },\n" +
+                    "        data() {\n" +
+                    "            return {};\n" +
+                    "        },\n" +
+                    "    }\n" +
+                    "</script>\n" +
+                    "\n" +
+                    "<style scoped>\n" +
+                    "    .home-panel {\n" +
+                    "        vertical-align: center;\n" +
+                    "        font-size: 20;\n" +
+                    "        margin: 15;\n" +
+                    "    }\n" +
+                    "\n" +
+                    "    .description-label {\n" +
+                    "        margin-bottom: 15;\n" +
+                    "    }\n" +
+                    "</style>";
 
-        pasteText(code);
+            pasteText(code);
 
-    }
+        }
         this.setupClass.wait(2000);
     }
 
@@ -924,9 +924,9 @@ public class CodeEditorClass extends BasePage {
                     "    }\n" +
                     "</style>";
 
-        pasteText(code);
+            pasteText(code);
 
-    }
+        }
         this.setupClass.wait(2000);
     }
 
@@ -1025,9 +1025,9 @@ public class CodeEditorClass extends BasePage {
                     "    }\n" +
                     "</style>";
 
-        pasteText(code);
+            pasteText(code);
 
-    }
+        }
 
         this.setupClass.wait(2000);
     }
@@ -1127,9 +1127,9 @@ public class CodeEditorClass extends BasePage {
                     "    }\n" +
                     "</style>";
 
-        pasteText(code);
+            pasteText(code);
 
-    }
+        }
 
         this.setupClass.wait(2000);
     }
@@ -1169,13 +1169,13 @@ public class CodeEditorClass extends BasePage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-       setupClass.driver.findElements(By.xpath("//span[contains(.,'Device Logs')]")).get(0).click();
+        setupClass.driver.findElements(By.xpath("//span[contains(.,'Device Logs')]")).get(0).click();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-       return setupClass.driver.findElements(By.className("logs")).get(0).getText();
+        return setupClass.driver.findElements(By.className("logs")).get(0).getText();
     }
 
     public void clearDeviceLogs()
@@ -1213,40 +1213,37 @@ public class CodeEditorClass extends BasePage {
         this.assertImageIsOnScreen(imageToFind, 0.7f);
     }
 
-    public void assertDeviceTab(String deviceNameExpected, String modelExpected, String osVersionExpected, String previewAppVersionExpected, String runtimeVersionExpected, String componentVersionsExpected)
-    {
-            WebElement baseTable = null;
-            if(setupClass.waitUntilWebElementIsPresentByClassName("device-name-td"))
-            {
+    public void assertDeviceTab(String deviceNameExpected, String modelExpected, String osVersionExpected, String previewAppVersionExpected, String runtimeVersionExpected, String componentVersionsExpected) {
+        WebElement baseTable = null;
+        if (setupClass.waitUntilWebElementIsPresentByClassName("device-name-td")) {
+            baseTable = setupClass.driver.findElements(By.className("devices")).get(0);
+        } else {
+            setupClass.driver.findElements(By.xpath("//span[contains(.,'Devices')]")).get(0).click();
+            if (setupClass.waitUntilWebElementIsPresentByClassName("device-name-td")) {
                 baseTable = setupClass.driver.findElements(By.className("devices")).get(0);
+            } else {
+                Assert.assertTrue(false, "Devices tab could not be found!!!");
             }
-            else {
-                setupClass.driver.findElements(By.xpath("//span[contains(.,'Devices')]")).get(0).click();
-                if(setupClass.waitUntilWebElementIsPresentByClassName("device-name-td"))
-                {
-                    baseTable = setupClass.driver.findElements(By.className("devices")).get(0);
-                }
-                else{
-                    Assert.assertTrue(false, "Devices tab could not be found!!!");
-                }
-            }
-            List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
-            tableRows.get(0).findElements(By.tagName("td")).get(0).click();
-            baseTable = setupClass.driver.findElement(By.className("devices"));
-            tableRows = baseTable.findElements(By.tagName("tr"));
-            String componentsVersion = tableRows.get(1).findElements(By.tagName("td")).get(0).getText();
-            String deviceName = tableRows.get(0).findElements(By.tagName("td")).get(0).getText();
-            String modelName = tableRows.get(0).findElements(By.tagName("td")).get(1).getText();
-            String osVersionText = tableRows.get(0).findElements(By.tagName("td")).get(2).getText();
-            String previewAppVersionText = tableRows.get(0).findElements(By.tagName("td")).get(3).getText();
-            String runtimeVersionText = tableRows.get(0).findElements(By.tagName("td")).get(4).getText();
+        }
+        List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
+        tableRows.get(0).findElements(By.tagName("td")).get(0).click();
+        baseTable = setupClass.driver.findElement(By.className("devices"));
+        tableRows = baseTable.findElements(By.tagName("tr"));
+        String componentsVersion = tableRows.get(1).findElements(By.tagName("td")).get(0).getText();
+        String deviceName = tableRows.get(0).findElements(By.tagName("td")).get(0).getText();
+        String modelName = tableRows.get(0).findElements(By.tagName("td")).get(1).getText();
+        String osVersionText = tableRows.get(0).findElements(By.tagName("td")).get(2).getText();
+        String previewAppVersionText = tableRows.get(0).findElements(By.tagName("td")).get(3).getText();
+        String runtimeVersionText = tableRows.get(0).findElements(By.tagName("td")).get(4).getText();
 
-            Assert.assertEquals(componentsVersion, componentVersionsExpected,"components version is not correct!");
-            Assert.assertEquals(deviceName, deviceNameExpected, "device name is not correct!");
-            Assert.assertEquals(modelName, modelExpected, "model name is not correct!");
-            Assert.assertTrue(osVersionText.contains(osVersionExpected), "Actual os version is "+osVersionText+" , expected os version is "+osVersionExpected);
+        if (!componentsVersion.contains("-next-")) {
+            Assert.assertEquals(componentsVersion, componentVersionsExpected, "components version is not correct!");
             Assert.assertEquals(previewAppVersionText, previewAppVersionExpected, "preview app version is not correct!");
             Assert.assertEquals(runtimeVersionText, runtimeVersionExpected, "runtime version is not correct!");
+        }
+        Assert.assertEquals(deviceName, deviceNameExpected, "device name is not correct!");
+        Assert.assertEquals(modelName, modelExpected, "model name is not correct!");
+        Assert.assertTrue(osVersionText.contains(osVersionExpected), "Actual os version is " + osVersionText + " , expected os version is " + osVersionExpected);
     }
 
     public String getTextWithCopy() {
