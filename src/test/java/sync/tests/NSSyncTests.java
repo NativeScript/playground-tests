@@ -48,7 +48,7 @@ public class  NSSyncTests extends MobileTest {
 
     @AfterClass
     public void afterClass() {
-        //setupClass.driver.quit();
+        setupClass.driver.quit();
     }
 
     @BeforeMethod
