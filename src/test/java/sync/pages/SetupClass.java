@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
+import org.sikuli.script.*;
 import functional.tests.core.mobile.device.android.Adb;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,9 +26,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.sikuli.script.Image;
 import org.testng.Assert;
-import org.sikuli.script.*;
 import functional.tests.core.mobile.appium.Client;
-
+import java.awt.Robot;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.List;
@@ -45,7 +44,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import javax.imageio.ImageIO;
 
 public class SetupClass extends BasePage {
-    public Screen s = null;
+    public Robot s = new Robot();
     public String liveSyncConnectionString;
     public String deviceId = "";
     public Sikuli sikuli;
@@ -55,7 +54,6 @@ public class SetupClass extends BasePage {
     public int deviceScreenWidth;
     public String appName;
     public Client client;
-    public App browserAPP;
     public String typeOfProject = OSUtils.getEnvironmentVariable("typeOfProject", "ng");
     public String browser = OSUtils.getEnvironmentVariable("browser", "Google Chrome");
     public String isHMREnabled = OSUtils.getEnvironmentVariable("isHMREnabled", "false");
@@ -68,7 +66,7 @@ public class SetupClass extends BasePage {
 
     public boolean isLive = false;
 
-    public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed {
+    public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed, AWTException {
         super();
         this.mobileSettings = mobileSettings;
         this.client = client;
@@ -121,14 +119,8 @@ public class SetupClass extends BasePage {
             context.client.driver = new AndroidDriver(context.server.service.getUrl(), newDesireCapabilites);
         }
 
-        ImagePath.add(ImagePathDirectory);
         //this.CloseBrowser();
         this.OpenBrowser();
-    }
-
-    public void CloseBrowser() throws InterruptedException, IOException {
-        App.close(this.browser);
-        this.wait(5000);
     }
 
     public void OpenBrowser() throws InterruptedException {
@@ -147,12 +139,11 @@ public class SetupClass extends BasePage {
         driver.findElements(By.xpath("//button[contains(.,'Accept Cookies')]")).get(0).click();
     }
 
-    public void GetDeviceLink() throws InterruptedException, FindFailed, IOException, UnsupportedFlavorException {
+    public void GetDeviceLink() throws InterruptedException, IOException, UnsupportedFlavorException {
         this.liveSyncConnectionString = driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]")).get(0).getText();
-        this.s = Screen.all();
     }
 
-    public void startPreviewAppWithLiveSync() throws InterruptedException, FindFailed, IOException {
+    public void startPreviewAppWithLiveSync() throws InterruptedException, IOException {
         List<String> params;
         this.deviceScreenWidth = client.driver.manage().window().getSize().width;
         if (settings.deviceType == settings.deviceType.Simulator) {
@@ -387,12 +378,10 @@ public class SetupClass extends BasePage {
     }
 
     public void wait(int time) {
-        synchronized (this.s) {
-            try {
-                this.s.wait(time);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -454,34 +443,6 @@ public class SetupClass extends BasePage {
             Process p = Runtime.getRuntime().exec("screencapture -C -x " + this.folderForScreenshots + screenshotName + ".png");
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void closeTutorial() {
-        Region gettingStartedRegion = null;
-        Region closeButton = null;
-        try {
-            gettingStartedRegion = this.s.find("gettingstartedlogo");
-        } catch (FindFailed findFailed) {
-            findFailed.printStackTrace();
-            log.info("Tutorial is not opened!");
-        }
-        if (gettingStartedRegion != null) {
-            try {
-                closeButton = gettingStartedRegion.right().above().find("closebutton");
-            } catch (FindFailed findFailed) {
-                findFailed.printStackTrace();
-                log.info("Couldn't find close button for tutorial!");
-            }
-            closeButton.click();
-            this.wait(3000);
-            try {
-                s.click("okbuttonTutorial");
-            } catch (FindFailed findFailed) {
-                findFailed.printStackTrace();
-            }
-            this.wait(3000);
-            log.info("Tutorial is closed!");
         }
     }
 
@@ -587,68 +548,6 @@ public class SetupClass extends BasePage {
         newDesireCapabilites.setCapability("newCommandTimeout", 6000);
         context.client.driver = new AndroidDriver(context.server.service.getUrl(), newDesireCapabilites);
 
-    }
-
-    public Region findImageOnDesktopScreen(String imageName, double similarity, int offsetX, int offsetY) {
-        BufferedImage screenBufferImage = getScreenShotForSikuli();
-
-        Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity, offsetX, offsetY, true);
-
-        Match searchedImageMatch = finder.next();
-
-        if (searchedImageMatch == null) {
-            throw new Error(imageName + " with severity " + similarity + " could not be found!");
-        }
-
-        Point point = searchedImageMatch.getCenter().getPoint();
-
-        Rectangle rectangle = new Rectangle(point.x, point.y, 0, 0);
-
-        return new Region(rectangle);
-    }
-
-    public boolean existsOnDesktopScreen(String imageName, double similarity) {
-        BufferedImage screenBufferImage = getScreenShotForSikuli();
-
-        Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity, 0, 0, true);
-
-        Match searchedImageMatch = finder.next();
-        if (searchedImageMatch != null) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
-
-    public BufferedImage getScreenShotForSikuli() {
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice[] screens = ge.getScreenDevices();
-
-        Rectangle allScreenBounds = new Rectangle();
-        for (GraphicsDevice screen : screens) {
-            Rectangle screenBounds = screen.getDefaultConfiguration().getBounds();
-
-            allScreenBounds.width += screenBounds.width;
-            allScreenBounds.height = Math.max(allScreenBounds.height, screenBounds.height);
-        }
-        BufferedImage screenShot = null;
-        try {
-            Robot myRobot = new Robot(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice());
-            screenShot = myRobot.createScreenCapture(allScreenBounds);
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
-
-        File f = new File(this.folderForScreenshots + "test" + imageNumber + ".png");
-        imageNumber++;
-        System.out.println("Save image " + imageNumber);
-        try {
-            ImageIO.write(screenShot, "png", f);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return screenShot;
     }
 
     public static String getImageFullName(String imageFolderPath, String imageName) {

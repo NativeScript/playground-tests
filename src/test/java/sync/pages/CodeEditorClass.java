@@ -3,8 +3,6 @@ package sync.pages;
 import functional.tests.core.enums.SwipeElementDirection;
 import functional.tests.core.mobile.basepage.BasePage;
 import functional.tests.core.mobile.element.UIElement;
-import net.sf.saxon.Err;
-import org.sikuli.script.*;
 import org.testng.Assert;
 import java.util.List;
 import java.awt.*;
@@ -15,17 +13,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import java.awt.datatransfer.*;
 import java.awt.Toolkit;
-
+import java.awt.event.KeyEvent;
 public class CodeEditorClass extends BasePage {
-    public Screen s = new Screen();
-    public SetupClass setupClass;
+    public Robot s = new Robot();
+    private SetupClass setupClass;
 
-    public CodeEditorClass(SetupClass setupClass) throws InterruptedException {
+    public CodeEditorClass(SetupClass setupClass) throws AWTException {
         super();
         this.setupClass = setupClass;
-        //old sikuli way
-        //String currentPath = System.getProperty("user.dir");
-        //ImagePath.add(currentPath+"/src/test/java/sync/pages/images.sikuli");
     }
 
     /**
@@ -36,34 +31,60 @@ public class CodeEditorClass extends BasePage {
         this.log.info("Navigate to " + button);
     }
 
-    public void typeCode(String code) {
-        this.typeCode(code, null);
+
+    public void pressButton(Integer key) {
+        pressButton(key, null);
+    }
+    public void pressButton(Integer key, boolean shouldWait) {
+        pressButton(key, null, shouldWait);
     }
 
-    public void typeCode(String code, String whereToType) {
-        if (whereToType != null) {
+    public void pressButton(Integer key, Integer keyModifier) {
+        pressButton(key, keyModifier, false);
+    }
+
+    public void pressButton(Integer key, Integer keyModifier, boolean shouldWait) {
+        if (keyModifier != null)
+        {
+            s.keyPress(keyModifier);
+        }
+        s.keyPress(key);
+        if(shouldWait)
+        {
             try {
-                s.click(whereToType);
-            } catch (FindFailed findFailed) {
-                findFailed.printStackTrace();
-            }
-            try {
-                Thread.sleep(1500);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+        if (keyModifier != null)
+        {
+            s.keyRelease(keyModifier);
+        }
+        s.keyRelease(key);
+        if(shouldWait)
+        {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void typeCode(String code) {
         if (code.contains("{")) {
-            s.type(code);
+            pasteText(code);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            s.type("}");
-            s.type(Key.LEFT);
+            pressButton(KeyEvent.VK_BRACERIGHT);
+            pressButton(KeyEvent.VK_BRACERIGHT);
+            pressButton(KeyEvent.VK_LEFT);
         } else {
-            s.type(code);
+            pasteText(code);
         }
 
         try {
@@ -77,7 +98,7 @@ public class CodeEditorClass extends BasePage {
         StringSelection stringSelection = new StringSelection(code);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
-        s.type("v", KeyModifier.CMD);
+        pressButton(KeyEvent.VK_V, KeyEvent.VK_META, true);
         this.setupClass.wait(1000);
     }
 
@@ -86,9 +107,9 @@ public class CodeEditorClass extends BasePage {
         this.setupClass.wait(1000);
         this.setupClass.driver.findElements(By.tagName("monaco-editor")).get(0).click();
         this.setupClass.wait(1000);
-        s.type("a", KeyModifier.CMD);
+        pressButton(KeyEvent.VK_A, KeyEvent.VK_META);
         this.setupClass.wait(1000);
-        s.type(Key.DELETE);
+        pressButton(KeyEvent.VK_DELETE);
         this.setupClass.wait(1000);
 
     }
@@ -98,25 +119,25 @@ public class CodeEditorClass extends BasePage {
         if (this.setupClass.typeOfProject.equals("js") || this.setupClass.typeOfProject.equals("tsc")) {
             if(shouldType) {
                 this.typeCode("<Page loaded=\"pageLoaded\" class=\"page\" xmlns=\"http://www.nativescript.org/tns.xsd\">");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\">");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("</ActionBar>");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("<ScrollView>");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("<StackLayout class=\"home-panel\">");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 if (isValid) {
                     this.typeCode("</StackLayout>");
                 }
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("</ScrollView>");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("</Page>");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
             }
             else
             {
@@ -149,27 +170,27 @@ public class CodeEditorClass extends BasePage {
                 }
 
                 pasteText(code);
-                typeCode(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER, true);
             }
         }
         if (this.setupClass.typeOfProject.equals("ng")) {
             if(shouldType) {
                 this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\">");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("</ActionBar>");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("<ScrollView class=\"page\">");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("<StackLayout class=\"home-panel\">");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" ></Label>");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 if (isValid) {
                     this.typeCode("</StackLayout>");
                 }
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("</ScrollView>");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
             }
             else {
                 String code = "";
@@ -207,72 +228,72 @@ public class CodeEditorClass extends BasePage {
         if (this.setupClass.typeOfProject.equals("vue")) {
             if(shouldType) {
                 this.typeCode("<template>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("<Page class=\"page\">");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("<ScrollView>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("<StackLayout class=\"home-panel\">");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
 
                 if (isValid) {
                     this.typeCode("</StackLayout>");
-                    this.typeCode(Key.ENTER);
+                    this.pressButton(KeyEvent.VK_ENTER, true);
                 } else {
                     this.typeCode("</StackLayoutggggggggggg");
-                    this.typeCode(Key.ENTER);
+                    this.pressButton(KeyEvent.VK_ENTER, true);
                 }
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("</ScrollView>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("</Page>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("</template>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
 
                 this.typeCode("<script>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
 
                 this.typeCode("export default {");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("data () {");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("return {");
-                this.typeCode(Key.ENTER);
-                this.typeCode(Key.DOWN);
+                this.pressButton(KeyEvent.VK_ENTER, true);
+                this.pressButton(KeyEvent.VK_DOWN, true);
                 this.typeCode(";");
-                this.typeCode(Key.DOWN);
+                this.pressButton(KeyEvent.VK_DOWN, true);
                 this.typeCode(",");
-                this.typeCode(Key.DOWN);
-                this.typeCode(Key.DOWN);
-                this.typeCode(Key.DOWN);
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_DOWN, true);
+                this.pressButton(KeyEvent.VK_DOWN, true);
+                this.pressButton(KeyEvent.VK_DOWN, true);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("</script>");
-                this.typeCode(Key.ENTER);
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("<style scoped>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode(".home-panel {");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("vertical-align: center;");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("font-size: 20;");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("margin: 15;");
-                this.typeCode(Key.ENTER);
-                this.typeCode(Key.DOWN);
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
+                this.pressButton(KeyEvent.VK_DOWN, true);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode(".description-label {");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("margin-bottom: 15;");
-                this.typeCode(Key.DOWN);
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_DOWN, true);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("</style>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
             }
             else{
                 String code = "";
@@ -357,33 +378,33 @@ public class CodeEditorClass extends BasePage {
             if (isValid == false) {
                 this.typeCode(".description-label");
                 this.typeCode("{");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("margin-bottom: 15;");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("}");
-                s.type(Key.ENTER);
+                pressButton(KeyEvent.VK_ENTER);
             }
-            s.type(Key.ENTER);
+            pressButton(KeyEvent.VK_ENTER);
             this.typeCode("@import 'nativescript-theme-core/css/core.dark.css';");
-            s.type(Key.ENTER);
+            pressButton(KeyEvent.VK_ENTER);
             this.typeCode(".home-panel");
             this.typeCode("{");
-            s.type(Key.ENTER);
+            pressButton(KeyEvent.VK_ENTER);
             this.typeCode("vertical-align: center;");
-            s.type(Key.ENTER);
+            pressButton(KeyEvent.VK_ENTER);
             this.typeCode("font-size: 20;");
-            s.type(Key.ENTER);
+            pressButton(KeyEvent.VK_ENTER);
             this.typeCode("margin: 15;");
-            s.type(Key.ENTER);
-            s.type(Key.DOWN);
-            s.type(Key.DOWN);
-            s.type(Key.DOWN);
-            s.type(Key.ENTER);
+            pressButton(KeyEvent.VK_ENTER);
+            this.pressButton(KeyEvent.VK_DOWN);
+            this.pressButton(KeyEvent.VK_DOWN);
+            this.pressButton(KeyEvent.VK_DOWN);
+            pressButton(KeyEvent.VK_ENTER);
             this.typeCode(".description-label");
             this.typeCode("{");
-            s.type(Key.ENTER);
+            pressButton(KeyEvent.VK_ENTER);
             this.typeCode("margin-bottom: 15;");
-            s.type(Key.ENTER);
+            pressButton(KeyEvent.VK_ENTER);
         }
         else{
             String code = "";
@@ -426,7 +447,8 @@ public class CodeEditorClass extends BasePage {
 
     public void save(String waitForChanges) {
         this.setupClass.wait(1000);
-        s.type("s", KeyModifier.CMD);
+        pressButton(KeyEvent.VK_S, KeyEvent.VK_META);
+
         if(waitForChanges!=null) {
             try {
                 this.setupClass.waitPreviewAppToLoad(30, waitForChanges);
@@ -445,38 +467,38 @@ public class CodeEditorClass extends BasePage {
             if(shouldType) {
                 this.typeCode("import {");
                 this.typeCode("Component, OnInit");
-                this.typeCode(Key.RIGHT);
+                pressButton(KeyEvent.VK_RIGHT);
                 this.typeCode(" from \"@angular/core\";");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("@Component({");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("selector: \"Home\",");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("moduleId: module.id");
                 this.typeCode(",");
                 this.typeCode("");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("templateUrl: \"./home.component.html\",");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("styleUrls: ['./home.component.css']");
-                this.typeCode(Key.ENTER);
-                this.setupClass.s.type(Key.DOWN);
-                this.setupClass.s.type(Key.DOWN);
-                this.setupClass.s.type(Key.DOWN);
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
+                this.pressButton(KeyEvent.VK_DOWN);
+                this.pressButton(KeyEvent.VK_DOWN);
+                this.pressButton(KeyEvent.VK_DOWN);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("export class HomeComponent implements OnInit {");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("constructor() {");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("console.log(\"log\");");
-                this.typeCode(Key.ENTER);
-                this.setupClass.s.type(Key.DOWN);
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
+                this.pressButton(KeyEvent.VK_DOWN);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("ngOnInit(): void {");
-                this.typeCode(Key.ENTER);
-                this.setupClass.s.type(Key.DOWN);
-                this.setupClass.s.type(Key.DOWN);
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
+                this.pressButton(KeyEvent.VK_DOWN);
+                this.pressButton(KeyEvent.VK_DOWN);
+                this.pressButton(KeyEvent.VK_ENTER, true);
             }
             else
             {
@@ -505,26 +527,26 @@ public class CodeEditorClass extends BasePage {
         {
             if(shouldType) {
                 this.typeCode("var frameModule = require(\"ui/frame\");");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("var HomeViewModel = require(\"./home-view-model\");");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("var homeViewModel = new HomeViewModel();");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("function pageLoaded(args) {");
-                this.typeCode(Key.ENTER);
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("var page = args.object;");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("page.bindingContext = homeViewModel;");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("console.log(\"log\");");
-                this.typeCode(Key.ENTER);
-                this.setupClass.s.type(Key.DOWN);
-                this.setupClass.s.type(Key.DOWN);
-                this.setupClass.s.type(Key.DOWN);
-                this.setupClass.s.type(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
+                this.pressButton(KeyEvent.VK_DOWN);
+                this.pressButton(KeyEvent.VK_DOWN);
+                this.pressButton(KeyEvent.VK_DOWN);
+                this.pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("exports.pageLoaded = pageLoaded;");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
             }
             else
             {
@@ -548,18 +570,18 @@ public class CodeEditorClass extends BasePage {
             if(shouldType) {
                 this.typeCode("import {");
                 this.typeCode(" Observable ");
-                this.typeCode(Key.RIGHT);
+                pressButton(KeyEvent.VK_RIGHT);
                 this.typeCode(" from 'tns-core-modules/data/observable';");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("export class HomeViewModel extends Observable {");
-                this.typeCode(Key.ENTER);
-                this.setupClass.s.type(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
+                this.pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("constructor() {");
-                this.setupClass.s.type(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER);
                 this.typeCode("super();");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("console.log(\"log\");");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
             }
             else
             {
@@ -579,36 +601,36 @@ public class CodeEditorClass extends BasePage {
         {
             if(shouldType) {
                 this.typeCode("<template>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("<Page class=\"page\">");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("<ScrollView>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("<StackLayout class=\"home-panel\">");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("</StackLayout>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("</ScrollView>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("</Page>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("</template>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
 
                 this.typeCode("<script>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
 
                 this.typeCode("export default {");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("mounted: function () {");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("console.log(\"log\");");
-                this.typeCode(Key.ENTER);
-                this.typeCode(Key.DOWN);
+                this.pressButton(KeyEvent.VK_ENTER, true);
+                this.pressButton(KeyEvent.VK_DOWN, true);
                 this.typeCode(",");
 
                 if (isValid == false && this.setupClass.typeOfProject.equals("vue")) {
@@ -616,39 +638,39 @@ public class CodeEditorClass extends BasePage {
                 }
 
                 this.typeCode("data () {");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("return {");
-                this.typeCode(Key.ENTER);
-                this.typeCode(Key.DOWN);
+                this.pressButton(KeyEvent.VK_ENTER, true);
+                this.pressButton(KeyEvent.VK_DOWN, true);
                 this.typeCode(";");
-                this.typeCode(Key.DOWN);
+                this.pressButton(KeyEvent.VK_DOWN, true);
                 this.typeCode(",");
-                this.typeCode(Key.DOWN);
-                this.typeCode(Key.DOWN);
-                this.typeCode(Key.DOWN);
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_DOWN, true);
+                this.pressButton(KeyEvent.VK_DOWN, true);
+                this.pressButton(KeyEvent.VK_DOWN, true);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("</script>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
 
                 this.typeCode("<style scoped>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode(".home-panel {");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("vertical-align: center;");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("font-size: 20;");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("margin: 15;");
-                this.typeCode(Key.ENTER);
-                this.typeCode(Key.DOWN);
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
+                this.pressButton(KeyEvent.VK_DOWN, true);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode(".description-label {");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("margin-bottom: 15;");
-                this.typeCode(Key.DOWN);
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_DOWN, true);
+                this.pressButton(KeyEvent.VK_ENTER, true);
                 this.typeCode("</style>");
-                this.typeCode(Key.ENTER);
+                this.pressButton(KeyEvent.VK_ENTER, true);
             }
             else{
                 String code = null;
@@ -1199,29 +1221,20 @@ public class CodeEditorClass extends BasePage {
         }
     }
 
-    public void assertImageIsOnScreen(String imageToFind, float similarity){
-        try {
-            this.setupClass.s.find(new Pattern(imageToFind).similar(similarity));
-        } catch (FindFailed findFailed) {
-            this.setupClass.getScreenShot(imageToFind+"_Not_Found");
-            Assert.assertTrue(false, "Image "+imageToFind+" not found on screen!");
-        }
-        Assert.assertTrue(true, "Image "+imageToFind+" found on screen!");
-    }
-
-    public void assertImageIsOnScreen(String imageToFind){
-        this.assertImageIsOnScreen(imageToFind, 0.7f);
-    }
-
-    public void assertDeviceTab(String deviceNameExpected, String modelExpected, String osVersionExpected, String previewAppVersionExpected, String runtimeVersionExpected, String componentVersionsExpected) {
+    public void assertDeviceTab(String deviceNameExpected, String modelExpected, String osVersionExpected, String previewAppVersionExpected, String runtimeVersionExpected, String componentVersionsExpected)
+    {
         WebElement baseTable = null;
-        if (setupClass.waitUntilWebElementIsPresentByClassName("device-name-td")) {
+        if(setupClass.waitUntilWebElementIsPresentByClassName("device-name-td"))
+        {
             baseTable = setupClass.driver.findElements(By.className("devices")).get(0);
-        } else {
+        }
+        else {
             setupClass.driver.findElements(By.xpath("//span[contains(.,'Devices')]")).get(0).click();
-            if (setupClass.waitUntilWebElementIsPresentByClassName("device-name-td")) {
+            if(setupClass.waitUntilWebElementIsPresentByClassName("device-name-td"))
+            {
                 baseTable = setupClass.driver.findElements(By.className("devices")).get(0);
-            } else {
+            }
+            else{
                 Assert.assertTrue(false, "Devices tab could not be found!!!");
             }
         }
@@ -1235,7 +1248,6 @@ public class CodeEditorClass extends BasePage {
         String osVersionText = tableRows.get(0).findElements(By.tagName("td")).get(2).getText();
         String previewAppVersionText = tableRows.get(0).findElements(By.tagName("td")).get(3).getText();
         String runtimeVersionText = tableRows.get(0).findElements(By.tagName("td")).get(4).getText();
-
         if (!componentsVersion.contains("-next-")) {
             Assert.assertEquals(componentsVersion, componentVersionsExpected, "components version is not correct!");
             Assert.assertEquals(previewAppVersionText, previewAppVersionExpected, "preview app version is not correct!");
@@ -1243,13 +1255,14 @@ public class CodeEditorClass extends BasePage {
         }
         Assert.assertEquals(deviceName, deviceNameExpected, "device name is not correct!");
         Assert.assertEquals(modelName, modelExpected, "model name is not correct!");
-        Assert.assertTrue(osVersionText.contains(osVersionExpected), "Actual os version is " + osVersionText + " , expected os version is " + osVersionExpected);
+        Assert.assertTrue(osVersionText.contains(osVersionExpected), "Actual os version is "+osVersionText+" , expected os version is "+osVersionExpected);
+
     }
 
     public String getTextWithCopy() {
         String text = "";
-        this.setupClass.wait(1000);
-        s.type("c", KeyModifier.CMD);
+        this.setupClass.wait(1000);;
+        pressButton(KeyEvent.VK_C, KeyEvent.VK_META);
         this.setupClass.wait(1000);
         try {
             text = (String) Toolkit.getDefaultToolkit()

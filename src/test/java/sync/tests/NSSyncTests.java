@@ -3,21 +3,23 @@ package sync.tests;
 import functional.tests.core.mobile.basetest.MobileTest;
 import org.openqa.selenium.By;
 import org.sikuli.script.FindFailed;
-import org.sikuli.script.Key;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import sync.pages.SetupClass;
 import sync.pages.CodeEditorClass;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
 public class  NSSyncTests extends MobileTest {
     SetupClass setupClass;
     public String deviceName;
+    CodeEditorClass codeEditor;
 
     @BeforeClass
-    public void beforeClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException {
+    public void beforeClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException, AWTException {
         this.setupClass = new SetupClass(this.client, this.settings, this.device);
         String projectURL = "https://play.nativescript.be/?template=play-" + setupClass.typeOfProject + "&debug=true";
 
@@ -41,6 +43,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.startPreviewAppWithLiveSync();
         this.setupClass.giveFocus();
         this.setupClass.getScreenShot("BeforeStartOfTests_AfterLiveSync");
+        this.codeEditor = new CodeEditorClass(this.setupClass);
     }
 
     @AfterClass
@@ -58,9 +61,10 @@ public class  NSSyncTests extends MobileTest {
     public void afterTest() {
         this.setupClass.getScreenShot(this.context.getTestName() + "_AfterStart");
         if (this.context.lastTestResult == 1) {
-            this.setupClass.s.type(Key.ESC);
+            this.codeEditor.pressButton(KeyEvent.VK_ESCAPE);
             this.setupClass.getScreenShot(this.context.getTestName() + "_AfterStart_AfterEnter");
         }
+        this.setupClass.client.driver.getPageSource();
     }
 
     @Test(description = "Verify devices tab is showing valid data!", groups = {"android", "ios"})
@@ -157,7 +161,7 @@ public class  NSSyncTests extends MobileTest {
     @Test(description = "Verify XML/HTML valid code change is apllied!", groups = {"android", "ios"})
     public void test_02_valid_code_change_to_xml_or_html() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
-        codeEditor.typeXMLOrHTMLCode(true, true);
+        codeEditor.typeXMLOrHTMLCode(true, false);
         codeEditor.save("Test");
         this.assertScreen("nsplaydev-synced-valid-code", this.settings.defaultTimeout);
     }
@@ -201,7 +205,7 @@ public class  NSSyncTests extends MobileTest {
             codeEditor.typeXMLOrHTMLCode(true, false);
         }
         codeEditor.openFile("app.css");
-        codeEditor.typeCSSCode(true, true);
+        codeEditor.typeCSSCode(true, false);
         codeEditor.save();
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
     }
@@ -218,7 +222,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(2000);
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
         this.setupClass.wait(2000);
-        this.setupClass.s.type(Key.ESC);
+        this.codeEditor.pressButton(KeyEvent.VK_ESCAPE);
         this.setupClass.wait(5000);
         codeEditor.typeCSSCode(true, false);
         codeEditor.save();
@@ -229,7 +233,7 @@ public class  NSSyncTests extends MobileTest {
     public void test_06_valid_code_change_to_js_ts() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         if (this.context.lastTestResult != 1) {
-            this.setupClass.s.type(Key.ESC);
+            this.codeEditor.pressButton(KeyEvent.VK_ESCAPE);
             this.setupClass.wait(2000);
             codeEditor.typeCSSCode(true, false);
         }
@@ -243,7 +247,7 @@ public class  NSSyncTests extends MobileTest {
         } else if (this.setupClass.typeOfProject.equals("vue")) {
             codeEditor.openFile("HelloWorld.vue");
         }
-        codeEditor.typeJSTSCode(true, true);
+        codeEditor.typeJSTSCode(true, false);
         this.setupClass.getScreenShot(this.context.getTestName() + "_AfterEnterCode");
         this.setupClass.wait(1000);
         codeEditor.save();
@@ -295,7 +299,7 @@ public class  NSSyncTests extends MobileTest {
             Assert.assertTrue(setupClass.driver.findElements(By.xpath("//div[contains(.,'Please fix the errors and try again.')]")).size() != 0);
             this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
         }
-        this.setupClass.s.type(Key.ESC);
+        this.codeEditor.pressButton(KeyEvent.VK_ESCAPE);
         this.setupClass.wait(3000);
         codeEditor.typeJSTSCode(true, false);
         codeEditor.save();
@@ -459,9 +463,9 @@ public class  NSSyncTests extends MobileTest {
         Assert.assertTrue(deviceLog.contains(expectedText), "Actual log \"" + deviceLog + "\" does not cointains the expected text \"" + expectedText + "\" .");
 
         codeEditor.typeJSTSCode(true, false);
-        this.setupClass.wait(10000);
+        this.setupClass.wait(4000);
         codeEditor.save();
-        this.setupClass.wait(5000);
+        this.setupClass.wait(4000);
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.deviceBootTimeout);
     }
 
