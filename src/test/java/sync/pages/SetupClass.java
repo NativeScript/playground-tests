@@ -130,6 +130,7 @@ public class SetupClass extends BasePage {
         options.addArguments("start-fullscreen");
         options.addArguments("disable-application-cache");
         options.addArguments("incognito");
+        options.addArguments("no-sandbox");
         this.driver = new ChromeDriver(options);
         Thread.sleep(10000);
 
