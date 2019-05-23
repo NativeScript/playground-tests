@@ -354,7 +354,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
+                <version>2.22.2</version>
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>resources/suites/${testsuite}.xml</suiteXmlFile>
@@ -366,7 +366,7 @@
                     <testFailureIgnore>true</testFailureIgnore>
                     <forkCount>3</forkCount>
                     <reuseForks>true</reuseForks>
-                    <argLine>-Xmx1024M ${argLine}</argLine>
+                    <argLine>-Xmx1024M</argLine>
                 </configuration>
             </plugin>
             <plugin>
