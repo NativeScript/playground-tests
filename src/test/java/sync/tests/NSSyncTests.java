@@ -631,23 +631,23 @@ public class  NSSyncTests extends MobileTest {
 
         if (this.setupClass.isLive) {
             if (this.setupClass.typeOfProject.equals("ng")) {
-                this.setupClass.openURL("https://play.nativescript.org/?template=play-ng&id=6F74Ey");
+                this.client.driver.get("https://play.nativescript.org/?template=play-ng&id=6F74Ey");
             } else if (this.setupClass.typeOfProject.equals("js")) {
-                this.setupClass.openURL("https://play.nativescript.org/?template=play-js&id=eRObPw");
+                this.client.driver.get("https://play.nativescript.org/?template=play-js&id=eRObPw");
             } else if (this.setupClass.typeOfProject.equals("tsc")) {
-                this.setupClass.openURL("https://play.nativescript.org/?template=play-tsc&id=peX6hs");
+                this.client.driver.get("https://play.nativescript.org/?template=play-tsc&id=peX6hs");
             } else if (this.setupClass.typeOfProject.equals("vue")) {
-                this.setupClass.openURL("https://play.nativescript.org/?template=play-vue&id=fqRxUm");
+                this.client.driver.get("https://play.nativescript.org/?template=play-vue&id=fqRxUm");
             }
         } else {
             if (this.setupClass.typeOfProject.equals("ng")) {
-                this.setupClass.openURL("https://play.nativescript.be/?template=play-ng&id=uolyao");
+                this.client.driver.get("https://play.nativescript.be/?template=play-ng&id=uolyao");
             } else if (this.setupClass.typeOfProject.equals("js")) {
-                this.setupClass.openURL("https://play.nativescript.be/?template=play-js&id=WFQqZ2");
+                this.client.driver.get("https://play.nativescript.be/?template=play-js&id=WFQqZ2");
             } else if (this.setupClass.typeOfProject.equals("tsc")) {
-                this.setupClass.openURL("https://play.nativescript.be/?template=play-tsc&id=Oh69ux");
+                this.client.driver.get("https://play.nativescript.be/?template=play-tsc&id=Oh69ux");
             } else if (this.setupClass.typeOfProject.equals("vue")) {
-                this.setupClass.openURL("https://play.nativescript.be/?template=play-vue&id=vxaCzV");
+                this.client.driver.get("https://play.nativescript.be/?template=play-vue&id=vxaCzV");
             }
         }
         this.setupClass.wait(12000);

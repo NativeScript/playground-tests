@@ -1,14 +1,11 @@
 package sync.pages;
-
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import org.sikuli.script.*;
 import functional.tests.core.mobile.device.android.Adb;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import functional.tests.core.enums.PlatformType;
 import functional.tests.core.mobile.appium.Capabilities;
 import functional.tests.core.mobile.basepage.BasePage;
 import functional.tests.core.mobile.element.UIElement;
@@ -16,15 +13,10 @@ import functional.tests.core.mobile.device.Device;
 import functional.tests.core.mobile.settings.MobileSettings;
 import functional.tests.core.image.Sikuli;
 import functional.tests.core.image.ImageUtils;
-import functional.tests.core.utils.FileSystem;
-import io.appium.java_client.MobileDriver;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.sikuli.script.Image;
 import org.testng.Assert;
 import functional.tests.core.mobile.appium.Client;
 import java.awt.Robot;
@@ -32,16 +24,13 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.List;
 import java.io.File;
-
 import functional.tests.core.mobile.element.UIRectangle;
 import functional.tests.core.utils.OSUtils;
-
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-import javax.imageio.ImageIO;
 
 public class SetupClass extends BasePage {
     public Robot s = new Robot();
@@ -59,7 +48,6 @@ public class SetupClass extends BasePage {
     public String isHMREnabled = OSUtils.getEnvironmentVariable("isHMREnabled", "false");
     public String folderForScreenshots;
     public String folderForDesktopScreenshots;
-    public Integer imageNumber = 0;
     public Robot robot = null;
     public MobileSettings mobileSettings;
     public WebDriver driver;
@@ -78,7 +66,7 @@ public class SetupClass extends BasePage {
         }
         this.imageUtils = new ImageUtils(settings, client, device);
         this.appName = this.app.getName().replaceAll(".app", "");
-        this.sikuli = new Sikuli(this.appName, client, this.imageUtils);
+        this.sikuli = new Sikuli(this.appName, client, this.context.imageUtils);
         String currentPath = System.getProperty("user.dir");
         ImagePathDirectory = currentPath + "/src/test/java/sync/pages/images.sikuli";
         this.folderForScreenshots = currentPath + "/target/surefire-reports/screenshots/";
@@ -229,9 +217,6 @@ public class SetupClass extends BasePage {
             }
 
         }
-
-        this.waitPreviewAppToLoad(10);
-        this.wait(6000);
     }
 
     public void waitPreviewAppToLoad(int numberOfTries) throws InterruptedException {
@@ -313,7 +298,7 @@ public class SetupClass extends BasePage {
     public void waitPreviewAppToLoad(int numberOfTries, String object) throws InterruptedException {
         this.waitTextToBeShown(numberOfTries, object);
         if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
-            UIRectangle home = this.findImageOnScreen(object, 0.9d);
+            UIRectangle home = this.sikuli.findImageOnScreen(object, 0.9d);
             Assert.assertNotNull(home, "Preview app not synced! Item missing " + object);
             this.log.info("Preview app synced! The item " + object + " is found!");
         } else {
@@ -323,61 +308,6 @@ public class SetupClass extends BasePage {
         }
 
 
-    }
-
-    public UIRectangle findImageOnScreen(String imageName, double similarity) {
-        BufferedImage screenBufferImage = this.device.getScreenshot();
-        Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity, 0, 0, false);
-        Match searchedImageMatch = finder.next();
-        Point point;
-        if (searchedImageMatch != null) {
-            point = searchedImageMatch.getCenter().getPoint();
-        } else {
-            return null;
-        }
-        Rectangle rectangle = this.getRectangle(point, screenBufferImage.getWidth());
-        return new UIRectangle(rectangle);
-    }
-
-    private Finder getFinder(BufferedImage screenBufferImage, String imageName, float similarity, int offsetX, int offsetY, boolean isDesktop) {
-        ImageUtils var10001 = this.imageUtils;
-        BufferedImage searchedBufferImage = null;
-        if (!isDesktop) {
-            searchedBufferImage = this.imageUtils.getImageFromFile(this.getImageFullName(this.getImageFolderPath(this.appName), imageName));
-        } else {
-            searchedBufferImage = this.imageUtils.getImageFromFile(this.getImageFullName(this.ImagePathDirectory, imageName));
-        }
-        Image searchedImage = new Image(searchedBufferImage);
-        Pattern searchedImagePattern = new Pattern(searchedImage);
-        Image mainImage = new Image(screenBufferImage);
-
-        if (similarity != 0.0) {
-            searchedImagePattern.similar(similarity);
-        }
-
-        if (offsetX != 0 && offsetY != 0) {
-            searchedImagePattern.targetOffset(offsetX, offsetY);
-        }
-
-        Finder finder = new Finder(mainImage);
-        finder.findAll(searchedImagePattern);
-        return finder;
-    }
-
-    protected String getImageFolderPath(String appName) {
-        String imageFolderPath = this.settings.screenshotResDir + File.separator + appName + File.separator + this.settings.deviceName;
-        FileSystem.ensureFolderExists(imageFolderPath);
-        return imageFolderPath;
-    }
-
-    public Rectangle getRectangle(Point point, int screenShotWidth) {
-        int densityRatio = this.getDensityRatio(screenShotWidth);
-        Rectangle rectangle = new Rectangle(point.x / densityRatio, point.y / densityRatio, 50, 50);
-        return rectangle;
-    }
-
-    private int getDensityRatio(int screenshotWidth) {
-        return this.client.settings.platform == PlatformType.iOS ? screenshotWidth / this.deviceScreenWidth : 1;
     }
 
     public void wait(int time) {
@@ -506,21 +436,19 @@ public class SetupClass extends BasePage {
                 this.log.info("Element " + button + " not found! Not able to click it!");
             }
         } else if (settings.deviceType == settings.deviceType.Simulator) {
-            UIRectangle link = this.findImageOnScreen("SavedSession", 0.8d);
-            if (link != null) {
-                new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((link.getRectangle().x), (link.getRectangle().y)))).perform();
-                //this.client.driver.tap(1,link.getRectangle().x,link.getRectangle().y,500);
-                this.wait(7000);
-                if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
-                    this.client.driver.switchTo().alert().accept();
-                } else {
-                    UIRectangle openButton = this.findImageOnScreen("Open", 0.8d);
-                    new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((openButton.getRectangle().x), (openButton.getRectangle().y)))).perform();
-                    //this.client.driver.tap(1,openButton.getRectangle().x,openButton.getRectangle().y,500);
-                }
-                this.wait(7000);
+            List<WebElement> buttons = (List<WebElement>)this.client.driver.findElements(By.xpath("//div[contains(.,'Tap to open the saved project in the Preview app')]"));
+            if (buttons.size() != 0) {
+                buttons.get(0).click();
+                this.log.info("Navigate to " + button);
             } else {
                 this.log.info("Element " + button + " not found! Not able to click it!");
+            }
+            buttons.get(buttons.size() - 1).click();
+            this.wait(5000);
+            this.restoreIosDriver();
+            this.find.byText("Return to Safari").click();
+            if (this.find.byText("Open") != null) {
+                this.find.byText("Open").click();
             }
         }
 
