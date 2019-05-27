@@ -2,7 +2,6 @@ package sync.pages;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import org.sikuli.script.*;
 import functional.tests.core.mobile.device.android.Adb;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -54,7 +53,7 @@ public class SetupClass extends BasePage {
 
     public boolean isLive = false;
 
-    public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, FindFailed, AWTException {
+    public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, AWTException {
         super();
         this.mobileSettings = mobileSettings;
         this.client = client;
