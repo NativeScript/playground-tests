@@ -64,7 +64,6 @@ public class  NSSyncTests extends MobileTest {
             this.codeEditor.pressButton(KeyEvent.VK_ESCAPE);
             this.setupClass.getScreenShot(this.context.getTestName() + "_AfterStart_AfterEnter");
         }
-        this.setupClass.client.driver.getPageSource();
     }
 
     @Test(description = "Verify devices tab is showing valid data!", groups = {"android", "ios"})
