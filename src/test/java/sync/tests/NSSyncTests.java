@@ -624,31 +624,58 @@ public class  NSSyncTests extends MobileTest {
             this.setupClass.changeIosDriverToWebView();
             this.setupClass.wait(8000);
         } else {
-            this.setupClass.refreshAndroidDriver();
+            this.setupClass.restoreAndroidDriver();
             this.setupClass.wait(8000);
         }
 
         if (this.setupClass.isLive) {
-            if (this.setupClass.typeOfProject.equals("ng")) {
-                this.client.driver.get("https://play.nativescript.org/?template=play-ng&id=6F74Ey");
-            } else if (this.setupClass.typeOfProject.equals("js")) {
-                this.client.driver.get("https://play.nativescript.org/?template=play-js&id=eRObPw");
-            } else if (this.setupClass.typeOfProject.equals("tsc")) {
-                this.client.driver.get("https://play.nativescript.org/?template=play-tsc&id=peX6hs");
-            } else if (this.setupClass.typeOfProject.equals("vue")) {
-                this.client.driver.get("https://play.nativescript.org/?template=play-vue&id=fqRxUm");
+            if (settings.deviceType == settings.deviceType.Simulator) {
+                if (this.setupClass.typeOfProject.equals("ng")) {
+                    this.client.driver.get("https://play.nativescript.org/?template=play-ng&id=6F74Ey");
+                } else if (this.setupClass.typeOfProject.equals("js")) {
+                    this.client.driver.get("https://play.nativescript.org/?template=play-js&id=eRObPw");
+                } else if (this.setupClass.typeOfProject.equals("tsc")) {
+                    this.client.driver.get("https://play.nativescript.org/?template=play-tsc&id=peX6hs");
+                } else if (this.setupClass.typeOfProject.equals("vue")) {
+                    this.client.driver.get("https://play.nativescript.org/?template=play-vue&id=fqRxUm");
+                }
+            }
+            else {
+                if (this.setupClass.typeOfProject.equals("ng")) {
+                    this.setupClass.openURL("https://play.nativescript.org/?template=play-ng&id=6F74Ey");
+                } else if (this.setupClass.typeOfProject.equals("js")) {
+                    this.setupClass.openURL("https://play.nativescript.org/?template=play-js&id=eRObPw");
+                } else if (this.setupClass.typeOfProject.equals("tsc")) {
+                    this.setupClass.openURL("https://play.nativescript.org/?template=play-tsc&id=peX6hs");
+                } else if (this.setupClass.typeOfProject.equals("vue")) {
+                    this.setupClass.openURL("https://play.nativescript.org/?template=play-vue&id=fqRxUm");
+                }
             }
         } else {
-            if (this.setupClass.typeOfProject.equals("ng")) {
-                this.client.driver.get("https://play.nativescript.be/?template=play-ng&id=uolyao");
-            } else if (this.setupClass.typeOfProject.equals("js")) {
-                this.client.driver.get("https://play.nativescript.be/?template=play-js&id=WFQqZ2");
-            } else if (this.setupClass.typeOfProject.equals("tsc")) {
-                this.client.driver.get("https://play.nativescript.be/?template=play-tsc&id=Oh69ux");
-            } else if (this.setupClass.typeOfProject.equals("vue")) {
-                this.client.driver.get("https://play.nativescript.be/?template=play-vue&id=vxaCzV");
+            if (settings.deviceType == settings.deviceType.Simulator) {
+                if (this.setupClass.typeOfProject.equals("ng")) {
+                    this.client.driver.get("https://play.nativescript.be/?template=play-ng&id=uolyao");
+                } else if (this.setupClass.typeOfProject.equals("js")) {
+                    this.client.driver.get("https://play.nativescript.be/?template=play-js&id=WFQqZ2");
+                } else if (this.setupClass.typeOfProject.equals("tsc")) {
+                    this.client.driver.get("https://play.nativescript.be/?template=play-tsc&id=Oh69ux");
+                } else if (this.setupClass.typeOfProject.equals("vue")) {
+                    this.client.driver.get("https://play.nativescript.be/?template=play-vue&id=vxaCzV");
+                }
+            }
+            else{
+                if (this.setupClass.typeOfProject.equals("ng")) {
+                    this.setupClass.openURL("https://play.nativescript.be/?template=play-ng&id=uolyao");
+                } else if (this.setupClass.typeOfProject.equals("js")) {
+                    this.setupClass.openURL("https://play.nativescript.be/?template=play-js&id=WFQqZ2");
+                } else if (this.setupClass.typeOfProject.equals("tsc")) {
+                    this.setupClass.openURL("https://play.nativescript.be/?template=play-tsc&id=Oh69ux");
+                } else if (this.setupClass.typeOfProject.equals("vue")) {
+                    this.setupClass.openURL("https://play.nativescript.be/?template=play-vue&id=vxaCzV");
+                }
             }
         }
+
         this.setupClass.wait(12000);
         this.setupClass.navigateToSavedSession("Tap to open the saved");
         this.setupClass.wait(10000);

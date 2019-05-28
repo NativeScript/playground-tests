@@ -422,6 +422,13 @@ public class SetupClass extends BasePage {
             } else {
                 this.log.info("Element " + webViewForJust + " not found! Not able to click it!");
             }
+            UIElement cookies = this.find.byTextContains("accept cookies");
+            if (cookies != null) {
+                cookies.click();
+                this.log.info("Navigate to " + cookies);
+            } else {
+                this.log.info("Element " + cookies + " not found! Not able to click it!");
+            }
         }
     }
 
@@ -432,7 +439,14 @@ public class SetupClass extends BasePage {
                 link.get(0).click();
                 this.log.info("Navigate to " + button);
             } else {
-                this.log.info("Element " + button + " not found! Not able to click it!");
+                this.log.info("Element " + button + " not found by xpath! Not able to click it! Will try be text!");
+                List<WebElement> linkBytext = (List<WebElement>) this.client.driver.findElements(By.xpath("//*[@text='Load project in Preview app Tap to open the saved project in the Preview app']"));
+                if (linkBytext.size() != 0) {
+                    linkBytext.get(0).click();
+                    this.log.info("Navigate to " + button);
+                } else {
+                    this.log.info("Element " + button + " not found! Not able to click it! Not found by text too!");
+                }
             }
         } else if (settings.deviceType == settings.deviceType.Simulator) {
             List<WebElement> buttons = (List<WebElement>)this.client.driver.findElements(By.xpath("//div[contains(.,'Tap to open the saved project in the Preview app')]"));
@@ -471,13 +485,12 @@ public class SetupClass extends BasePage {
         context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesireCapabilites);
     }
 
-    public void refreshAndroidDriver() {
+    public void restoreAndroidDriver() {
         Capabilities newAndroidCapabilities = new Capabilities();
         DesiredCapabilities newDesireCapabilites = new DesiredCapabilities();
         newDesireCapabilites = newAndroidCapabilities.loadDesiredCapabilities(context.settings);
         newDesireCapabilites.setCapability("newCommandTimeout", 6000);
         context.client.driver = new AndroidDriver(context.server.service.getUrl(), newDesireCapabilites);
-
     }
 
     public static String getImageFullName(String imageFolderPath, String imageName) {
