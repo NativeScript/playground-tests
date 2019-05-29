@@ -59,10 +59,13 @@ public class  NSSyncTests extends MobileTest {
 
     @AfterMethod
     public void afterTest() {
-        this.setupClass.getScreenShot(this.context.getTestName() + "_AfterStart");
-        if (this.context.lastTestResult == 1) {
+        if (this.context.lastTestResult != 1) {
             this.codeEditor.pressButton(KeyEvent.VK_ESCAPE);
-            this.setupClass.getScreenShot(this.context.getTestName() + "_AfterStart_AfterEnter");
+            this.setupClass.getScreenShot(this.context.getTestName() + "_AfterStart_Fail");
+        }
+        else
+        {
+            this.setupClass.getScreenShot(this.context.getTestName() + "_AfterStart_Success");
         }
     }
 
@@ -405,7 +408,14 @@ public class  NSSyncTests extends MobileTest {
             this.context.client.driver.launchApp();
             this.setupClass.wait(4000);
         } else {
+            // fix issue with dieing appium
+            this.setupClass.wait(2000);
+            this.client.server.initServer();
             this.setupClass.wait(4000);
+            this.setupClass.restoreAndroidDriver();
+            this.setupClass.wait(4000);
+            this.setupClass.liveSyncPreview();
+            this.setupClass.wait(10000);
         }
         if (this.setupClass.typeOfProject.equals("ng")) {
             this.assertScreen("nsplaydev-synced-java-error-ng", this.settings.defaultTimeout, 20);

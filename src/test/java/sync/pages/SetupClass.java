@@ -133,7 +133,8 @@ public class SetupClass extends BasePage {
         this.liveSyncConnectionString = driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]")).get(0).getText();
     }
 
-    public void startPreviewAppWithLiveSync() throws InterruptedException, IOException {
+
+    public void liveSyncPreview(){
         List<String> params;
         this.deviceScreenWidth = client.driver.manage().window().getSize().width;
         if (settings.deviceType == settings.deviceType.Simulator) {
@@ -161,7 +162,11 @@ public class SetupClass extends BasePage {
         } catch (Exception ex) {
             log.info(ex.toString());
         }
+    }
 
+    public void startPreviewAppWithLiveSync() throws InterruptedException, IOException {
+
+        this.liveSyncPreview();
         if (settings.deviceType == settings.deviceType.Simulator) {
             log.info("Searching for Home or Open");
             this.wait(5000);
@@ -492,18 +497,6 @@ public class SetupClass extends BasePage {
         newDesireCapabilites.setCapability("newCommandTimeout", 6000);
         context.client.driver = new AndroidDriver(context.server.service.getUrl(), newDesireCapabilites);
     }
-
-    public static String getImageFullName(String imageFolderPath, String imageName) {
-        String imageFullName = null;
-        if (imageName.contains(".png")) {
-            imageFullName = imageFolderPath + File.separator + imageName;
-        } else {
-            imageFullName = imageFolderPath + File.separator + imageName + ".png";
-        }
-
-        return imageFullName;
-    }
-
 
     public boolean waitUntilWebElementIsPresentByXpath(String xpath, int tries) {
         while (true) {
