@@ -408,14 +408,7 @@ public class  NSSyncTests extends MobileTest {
             this.context.client.driver.launchApp();
             this.setupClass.wait(4000);
         } else {
-            // fix issue with dieing appium
-            this.setupClass.wait(2000);
-            this.client.server.initServer();
             this.setupClass.wait(4000);
-            this.setupClass.restoreAndroidDriver();
-            this.setupClass.wait(4000);
-            this.setupClass.liveSyncPreview();
-            this.setupClass.wait(10000);
         }
         if (this.setupClass.typeOfProject.equals("ng")) {
             this.assertScreen("nsplaydev-synced-java-error-ng", this.settings.defaultTimeout, 20);
