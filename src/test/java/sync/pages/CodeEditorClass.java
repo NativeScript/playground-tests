@@ -1240,6 +1240,7 @@ public class CodeEditorClass extends BasePage {
         }
         List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
         tableRows.get(0).findElements(By.tagName("td")).get(0).click();
+        this.setupClass.wait(2000);
         baseTable = setupClass.driver.findElement(By.className("devices"));
         tableRows = baseTable.findElements(By.tagName("tr"));
         String componentsVersion = tableRows.get(1).findElements(By.tagName("td")).get(0).getText();
@@ -1261,7 +1262,7 @@ public class CodeEditorClass extends BasePage {
 
     public String getTextWithCopy() {
         String text = "";
-        this.setupClass.wait(1000);;
+        this.setupClass.wait(1000);
         pressButton(KeyEvent.VK_C, KeyEvent.VK_META);
         this.setupClass.wait(1000);
         try {
