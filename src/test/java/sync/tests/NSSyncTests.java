@@ -683,9 +683,9 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.navigateToSavedSession("Tap to open the saved");
         this.setupClass.wait(10000);
         if (settings.deviceName.contains("Api19")) {
-            this.assertScreen("nsplaydev-synced-saved-session-api19", this.settings.defaultTimeout, 5);
+            this.assertScreen("nsplaydev-synced-saved-session-api19", this.settings.deviceBootTimeout, 5);
         } else {
-            this.assertScreen("nsplaydev-synced-saved-session", this.settings.defaultTimeout, 5);
+            this.assertScreen("nsplaydev-synced-saved-session", this.settings.deviceBootTimeout, 5);
         }
         //shit appium ios 10 and 9
         if (settings.deviceType == settings.deviceType.Simulator) {
