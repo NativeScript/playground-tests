@@ -21,7 +21,7 @@ public class  NSSyncTests extends MobileTest {
     @BeforeClass
     public void beforeClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException, AWTException {
         this.setupClass = new SetupClass(this.client, this.settings, this.device);
-        String projectURL = "https://play.nativescript.be/?template=play-" + setupClass.typeOfProject + "&debug=true";
+        String projectURL = "https://play.nativescript.org/?template=play-" + setupClass.typeOfProject + "&debug=true";
 
         if(setupClass.isHMREnabled.contains("false"))
         {
