@@ -45,7 +45,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.getScreenShot("BeforeStartOfTests_AfterLiveSync");
         this.codeEditor = new CodeEditorClass(this.setupClass);
         if (projectURL.contains("play.nativescript.org")) {
-            if(this.setupClass.driver.findElements(By.xpath("//*[@class='intercom-note-close intercom-anchor']")) != null){
+            if(this.setupClass.driver.findElements(By.xpath("//*[@class='intercom-note-close intercom-anchor']")).size() != 0){
                 this.setupClass.driver.findElements(By.xpath("//*[@class='intercom-note-close intercom-anchor']")).get(0).click();
             }
         }
