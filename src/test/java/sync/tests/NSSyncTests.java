@@ -50,6 +50,7 @@ public class  NSSyncTests extends MobileTest {
                     this.setupClass.driver.findElements(By.xpath("//*[@class='intercom-note-close intercom-anchor']")).get(0).click();
             }
             this.setupClass.driver.switchTo().defaultContent();
+            this.setupClass.wait(5000);
         }
     }
 
