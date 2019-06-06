@@ -44,6 +44,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.giveFocus();
         this.setupClass.getScreenShot("BeforeStartOfTests_AfterLiveSync");
         this.codeEditor = new CodeEditorClass(this.setupClass);
+        this.setupClass.wait(5000);
         if(this.setupClass.driver.findElements(By.cssSelector("iframe[title='Intercom Live Chat']")).size() != 0) {
             this.setupClass.driver.switchTo().frame(this.setupClass.driver.findElement(By.cssSelector("iframe[title='Intercom Live Chat']")));
             if (this.setupClass.driver.findElements(By.xpath("//*[@class='intercom-note-close intercom-anchor']")).size() != 0) {
