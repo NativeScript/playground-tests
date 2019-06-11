@@ -134,7 +134,7 @@ public class  NSSyncTests extends MobileTest {
                 "  \"@angular/compiler\": \"8.0.0\",\n" +
                 "  \"@angular/core\": \"8.0.0\",\n" +
                 "  \"@angular/forms\": \"8.0.0\",\n" +
-                "  \"@angular/http\": \"8.0.0\",\n" +
+                "  \"@angular/http\": \"8.0.0-beta.10\",\n" +
                 "  \"@angular/platform-browser\": \"8.0.0\",\n" +
                 "  \"@angular/platform-browser-dynamic\": \"8.0.0\",\n" +
                 "  \"@angular/router\": \"8.0.0\",\n" +
