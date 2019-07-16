@@ -115,29 +115,29 @@ public class  NSSyncTests extends MobileTest {
         String previewAppVersionExpected = "";
         if (settings.deviceType == settings.deviceType.Emulator) {
 
-            previewAppVersionExpected = "1.22.0";
+            previewAppVersionExpected = "1.23.0";
         } else {
-            previewAppVersionExpected = "1.22.0";
+            previewAppVersionExpected = "1.23.0";
         }
 
         String runtimeVersionExpected = "";
         if (settings.deviceType == settings.deviceType.Emulator) {
 
-            runtimeVersionExpected = "5.4.0";
+            runtimeVersionExpected = "6.0.0";
         } else {
-            runtimeVersionExpected = "5.4.0";
+            runtimeVersionExpected = "6.0.0";
         }
 
         String componentVersionsExpected = "{\n" +
-                "  \"@angular/animations\": \"8.0.0\",\n" +
-                "  \"@angular/common\": \"8.0.0\",\n" +
-                "  \"@angular/compiler\": \"8.0.0\",\n" +
-                "  \"@angular/core\": \"8.0.0\",\n" +
-                "  \"@angular/forms\": \"8.0.0\",\n" +
+                "  \"@angular/animations\": \"8.0.3\",\n" +
+                "  \"@angular/common\": \"8.0.3\",\n" +
+                "  \"@angular/compiler\": \"8.0.3\",\n" +
+                "  \"@angular/core\": \"8.0.3\",\n" +
+                "  \"@angular/forms\": \"8.0.3\",\n" +
                 "  \"@angular/http\": \"8.0.0-beta.10\",\n" +
-                "  \"@angular/platform-browser\": \"8.0.0\",\n" +
-                "  \"@angular/platform-browser-dynamic\": \"8.0.0\",\n" +
-                "  \"@angular/router\": \"8.0.0\",\n" +
+                "  \"@angular/platform-browser\": \"8.0.3\",\n" +
+                "  \"@angular/platform-browser-dynamic\": \"8.0.3\",\n" +
+                "  \"@angular/router\": \"8.0.3\",\n" +
                 "  \"@progress-nativechat/nativescript-nativechat\": \"2.0.4\",\n" +
                 "  \"kinvey-nativescript-sdk\": \"4.2.0\",\n" +
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
@@ -145,24 +145,24 @@ public class  NSSyncTests extends MobileTest {
                 "  \"nativescript-background-http\": \"3.4.1\",\n" +
                 "  \"nativescript-camera\": \"4.5.0\",\n" +
                 "  \"nativescript-geolocation\": \"5.1.0\",\n" +
-                "  \"nativescript-image\": \"2.1.3\",\n" +
+                "  \"nativescript-image\": \"2.1.4\",\n" +
                 "  \"nativescript-imagepicker\": \"6.2.0\",\n" +
                 "  \"nativescript-intl\": \"3.0.0\",\n" +
                 "  \"nativescript-iqkeyboardmanager\": \"1.5.1\",\n" +
                 "  \"nativescript-social-share\": \"1.5.2\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.6\",\n" +
-                "  \"nativescript-ui-autocomplete\": \"4.1.0\",\n" +
-                "  \"nativescript-ui-calendar\": \"4.0.0\",\n" +
-                "  \"nativescript-ui-chart\": \"4.0.2\",\n" +
-                "  \"nativescript-ui-dataform\": \"4.0.1\",\n" +
-                "  \"nativescript-ui-gauge\": \"4.0.0\",\n" +
-                "  \"nativescript-ui-listview\": \"6.3.2\",\n" +
-                "  \"nativescript-ui-sidedrawer\": \"6.0.0\",\n" +
-                "  \"nativescript-vue\": \"2.2.2\",\n" +
+                "  \"nativescript-ui-autocomplete\": \"5.0.0\",\n" +
+                "  \"nativescript-ui-calendar\": \"5.0.0\",\n" +
+                "  \"nativescript-ui-chart\": \"5.0.0\",\n" +
+                "  \"nativescript-ui-dataform\": \"5.0.0\",\n" +
+                "  \"nativescript-ui-gauge\": \"5.0.0\",\n" +
+                "  \"nativescript-ui-listview\": \"7.0.0\",\n" +
+                "  \"nativescript-ui-sidedrawer\": \"7.0.0\",\n" +
+                "  \"nativescript-vue\": \"2.3.0\",\n" +
                 "  \"reflect-metadata\": \"0.1.13\",\n" +
                 "  \"rxjs\": \"6.5.2\",\n" +
                 "  \"rxjs-compat\": \"6.5.2\",\n" +
-                "  \"tns-core-modules\": \"5.4.2\",\n" +
+                "  \"tns-core-modules\": \"6.0.1\",\n" +
                 "  \"zone.js\": \"0.9.1\"\n" +
                 "}";
 
