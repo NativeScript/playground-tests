@@ -434,6 +434,13 @@ public class SetupClass extends BasePage {
             } else {
                 this.log.info("Element " + cookies + " not found! Not able to click it!");
             }
+            UIElement closeDialog = this.find.byText("Close", true, 3000);
+            if (closeDialog != null) {
+                closeDialog.click();
+                this.log.info("Navigate to " + closeDialog);
+            } else {
+                this.log.info("Element " + closeDialog + " not found! Not able to click it!");
+            }
         }
     }
 
