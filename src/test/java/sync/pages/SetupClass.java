@@ -434,7 +434,7 @@ public class SetupClass extends BasePage {
             } else {
                 this.log.info("Element " + cookies + " not found! Not able to click it!");
             }
-            UIElement closeDialog = this.find.byText("Close", true, 3000);
+            UIElement closeDialog = this.find.byText("Close", true, 3);
             if (closeDialog != null) {
                 closeDialog.click();
                 this.log.info("Navigate to " + closeDialog);
