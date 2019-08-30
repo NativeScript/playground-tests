@@ -126,11 +126,20 @@ public class SetupClass extends BasePage {
     public void NavigateToPage(String URL) throws InterruptedException {
         driver.get(URL);
         Thread.sleep(5000);
-        driver.findElements(By.xpath("//button[contains(.,'Accept Cookies')]")).get(0).click();
+        List<WebElement> acceptCockiesButton = driver.findElements(By.xpath("//button[contains(.,'Accept Cookies')]"));
+        if(acceptCockiesButton.size() != 0){
+            acceptCockiesButton.get(0).click();
+        }
     }
 
     public void GetDeviceLink() throws InterruptedException, IOException, UnsupportedFlavorException {
-        this.liveSyncConnectionString = driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]")).get(0).getText();
+        List<WebElement> previewLinkElements = driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]"));
+        if(previewLinkElements.size() == 0){
+            this.driver.findElements(By.xpath("//button[contains(.,'QR code')]")).get(0).click();
+            Thread.sleep(5000);
+            previewLinkElements = driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]"));
+        }
+        this.liveSyncConnectionString = previewLinkElements.get(0).getText();
     }
 
 
@@ -165,61 +174,69 @@ public class SetupClass extends BasePage {
     }
 
     public void startPreviewAppWithLiveSync() throws InterruptedException, IOException {
+        this.startPreviewAppWithLiveSync(true);
+    }
+
+    public void startPreviewAppWithLiveSync(boolean waitToLoad) throws InterruptedException, IOException {
 
         this.liveSyncPreview();
-        if (settings.deviceType == settings.deviceType.Simulator) {
-            log.info("Searching for Home or Open");
-            this.wait(5000);
-            String foundItem = this.waitText1OrText2ToBeShown(12, "Home", "Open");
-            log.info("Found Item " + foundItem);
-            if (foundItem == "Open") {
-                if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
-                    if (this.settings.platformVersion.toString().contains("10.")) {
-                        this.wait(5000);
-                        if (ExpectedConditions.alertIsPresent() != null) {
-                            this.client.driver.switchTo().alert().accept();
-                        }
-
-                        this.wait(7000);
-                        try {
+        if(waitToLoad) {
+            if (settings.deviceType == settings.deviceType.Simulator) {
+                log.info("Searching for Home or Open");
+                this.wait(5000);
+                String foundItem = this.waitText1OrText2ToBeShown(12, "Home", "Open");
+                log.info("Found Item " + foundItem);
+                if (foundItem == "Open") {
+                    if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
+                        if (this.settings.platformVersion.toString().contains("10.")) {
+                            this.wait(5000);
                             if (ExpectedConditions.alertIsPresent() != null) {
                                 this.client.driver.switchTo().alert().accept();
-                                this.wait(2000);
                             }
-                        } catch (Exception e) {
 
+                            this.wait(7000);
+                            try {
+                                if (ExpectedConditions.alertIsPresent() != null) {
+                                    this.client.driver.switchTo().alert().accept();
+                                    this.wait(2000);
+                                }
+                            } catch (Exception e) {
+
+                            }
+                        } else {
+                            this.wait(5000);
+                            if (ExpectedConditions.alertIsPresent() != null) {
+                                this.client.driver.switchTo().alert().dismiss();
+                            }
+                            this.wait(5000);
+                            functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
+                            this.deviceId = ios.getId();
+                            context.settings.packageId = "org.nativescript.preview";
+                            context.settings.testAppFileName = "nsplaydev.app";
+                            Capabilities newiOSCapabilities = new Capabilities();
+                            context.client.driver = new IOSDriver(context.server.service.getUrl(), newiOSCapabilities.loadDesiredCapabilities(context.settings));
+                            this.wait(6000);
+                            if (ExpectedConditions.alertIsPresent() != null) {
+                                this.client.driver.switchTo().alert().dismiss();
+                            }
+                            this.wait(6000);
+                            if (ExpectedConditions.alertIsPresent() != null) {
+                                this.client.driver.switchTo().alert().dismiss();
+                            }
+                            this.wait(6000);
                         }
                     } else {
-                        this.wait(5000);
-                        if (ExpectedConditions.alertIsPresent() != null) {
-                            this.client.driver.switchTo().alert().dismiss();
-                        }
-                        this.wait(5000);
-                        functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
-                        this.deviceId = ios.getId();
-                        context.settings.packageId = "org.nativescript.preview";
-                        context.settings.testAppFileName = "nsplaydev.app";
-                        Capabilities newiOSCapabilities = new Capabilities();
-                        context.client.driver = new IOSDriver(context.server.service.getUrl(), newiOSCapabilities.loadDesiredCapabilities(context.settings));
-                        this.wait(6000);
-                        if (ExpectedConditions.alertIsPresent() != null) {
-                            this.client.driver.switchTo().alert().dismiss();
-                        }
-                        this.wait(6000);
-                        if (ExpectedConditions.alertIsPresent() != null) {
-                            this.client.driver.switchTo().alert().dismiss();
-                        }
-                        this.wait(6000);
-                    }
-                } else {
-                    this.find.byText("Open").click();
-                    this.wait(7000);
-                    if (this.find.byText("Open") != null) {
                         this.find.byText("Open").click();
+                        this.wait(7000);
+                        if (this.find.byText("Open") != null) {
+                            this.find.byText("Open").click();
+                        }
+
                     }
                 }
+            } else  {
+                this.waitTextToBeShown(10, "Home");
             }
-
         }
     }
 

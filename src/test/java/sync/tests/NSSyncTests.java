@@ -1,6 +1,7 @@
 package sync.tests;
 
 import functional.tests.core.mobile.basetest.MobileTest;
+import functional.tests.core.mobile.element.UIElement;
 import org.openqa.selenium.By;
 import org.sikuli.script.FindFailed;
 import org.testng.Assert;
@@ -48,7 +49,7 @@ public class  NSSyncTests extends MobileTest {
         if(this.setupClass.driver.findElements(By.cssSelector("iframe[title='Intercom Live Chat']")).size() != 0) {
             this.setupClass.driver.switchTo().frame(this.setupClass.driver.findElement(By.cssSelector("iframe[title='Intercom Live Chat']")));
             if (this.setupClass.driver.findElements(By.xpath("//*[@class='intercom-note-close intercom-anchor']")).size() != 0) {
-                    this.setupClass.driver.findElements(By.xpath("//*[@class='intercom-note-close intercom-anchor']")).get(0).click();
+                this.setupClass.driver.findElements(By.xpath("//*[@class='intercom-note-close intercom-anchor']")).get(0).click();
             }
             this.setupClass.driver.switchTo().defaultContent();
             this.setupClass.wait(5000);
@@ -125,7 +126,7 @@ public class  NSSyncTests extends MobileTest {
 
             runtimeVersionExpected = "6.0.0";
         } else {
-            runtimeVersionExpected = "6.0.0";
+            runtimeVersionExpected = "6.0.1";
         }
 
         String componentVersionsExpected = "{\n" +
@@ -622,8 +623,23 @@ public class  NSSyncTests extends MobileTest {
         }
     }
 
+    @Test(description = "Verify empty folders are not crashing preview app!", groups = {"android", "ios"})
+    public void test_12_empty_folders_are_crashing_preview_app() throws Exception {
+        this.setupClass.driver.get("https://www.google.com/");
+        this.setupClass.driver.switchTo().alert().accept();
+        this.setupClass.NavigateToPage("https://play.nativescript.be/?template=play-js&id=2FtnMV&v=4&debug=true");
+        this.setupClass.GetDeviceLink();
+        this.setupClass.startPreviewAppWithLiveSync();
+        this.setupClass.wait(10000);
+        this.setupClass.NavigateToPage("https://play.nativescript.be/?template=play-js&id=2FtnMV&v=3&debug=true");
+        this.setupClass.GetDeviceLink();
+        this.setupClass.startPreviewAppWithLiveSync();
+        UIElement title = this.find.byText("Home");
+        Assert.assertNotNull(title, "Project with empty folder is not working");
+    }
+
     @Test(description = "Verify saved session is loaded correctly!", groups = {"android", "ios"})
-    public void test_12_open_saved_session() throws Exception {
+    public void test_13_open_saved_session() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         this.setupClass.wait(6000);
         if (this.context.lastTestResult != 1) {
