@@ -1249,7 +1249,7 @@ public class CodeEditorClass extends BasePage {
         String osVersionText = tableRows.get(0).findElements(By.tagName("td")).get(2).getText();
         String previewAppVersionText = tableRows.get(0).findElements(By.tagName("td")).get(3).getText();
         String runtimeVersionText = tableRows.get(0).findElements(By.tagName("td")).get(4).getText();
-        if (!componentsVersion.contains("-next-")) {
+        if (!componentsVersion.contains("-next-")||!componentsVersion.contains("-rc-")) {
             Assert.assertEquals(componentsVersion, componentVersionsExpected, "components version is not correct!");
             Assert.assertEquals(previewAppVersionText, previewAppVersionExpected, "preview app version is not correct!");
             Assert.assertEquals(runtimeVersionText, runtimeVersionExpected, "runtime version is not correct!");
