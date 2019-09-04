@@ -116,33 +116,33 @@ public class  NSSyncTests extends MobileTest {
         String previewAppVersionExpected = "";
         if (settings.deviceType == settings.deviceType.Emulator) {
 
-            previewAppVersionExpected = "1.23.0";
+            previewAppVersionExpected = "1.24.0";
         } else {
-            previewAppVersionExpected = "1.23.0";
+            previewAppVersionExpected = "1.24.0";
         }
 
         String runtimeVersionExpected = "";
         if (settings.deviceType == settings.deviceType.Emulator) {
 
-            runtimeVersionExpected = "6.0.0";
+            runtimeVersionExpected = "6.1.0";
         } else {
-            runtimeVersionExpected = "6.0.1";
+            runtimeVersionExpected = "6.1.0";
         }
 
         String componentVersionsExpected = "{\n" +
-                "  \"@angular/animations\": \"8.0.3\",\n" +
-                "  \"@angular/common\": \"8.0.3\",\n" +
-                "  \"@angular/compiler\": \"8.0.3\",\n" +
-                "  \"@angular/core\": \"8.0.3\",\n" +
-                "  \"@angular/forms\": \"8.0.3\",\n" +
+                "  \"@angular/animations\": \"8.2.4\",\n" +
+                "  \"@angular/common\": \"8.2.4\",\n" +
+                "  \"@angular/compiler\": \"8.2.4\",\n" +
+                "  \"@angular/core\": \"8.2.4\",\n" +
+                "  \"@angular/forms\": \"8.2.4\",\n" +
                 "  \"@angular/http\": \"8.0.0-beta.10\",\n" +
-                "  \"@angular/platform-browser\": \"8.0.3\",\n" +
-                "  \"@angular/platform-browser-dynamic\": \"8.0.3\",\n" +
-                "  \"@angular/router\": \"8.0.3\",\n" +
+                "  \"@angular/platform-browser\": \"8.2.4\",\n" +
+                "  \"@angular/platform-browser-dynamic\": \"8.2.4\",\n" +
+                "  \"@angular/router\": \"8.2.4\",\n" +
                 "  \"@progress-nativechat/nativescript-nativechat\": \"2.0.4\",\n" +
                 "  \"kinvey-nativescript-sdk\": \"4.2.3\",\n" +
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
-                "  \"nativescript-angular\": \"8.0.2\",\n" +
+                "  \"nativescript-angular\": \"8.2.1\",\n" +
                 "  \"nativescript-background-http\": \"3.4.1\",\n" +
                 "  \"nativescript-camera\": \"4.5.0\",\n" +
                 "  \"nativescript-geolocation\": \"5.1.0\",\n" +
@@ -164,7 +164,7 @@ public class  NSSyncTests extends MobileTest {
                 "  \"rxjs\": \"6.5.2\",\n" +
                 "  \"rxjs-compat\": \"6.5.2\",\n" +
                 "  \"tns-core-modules\": \"6.1.0\",\n" +
-                "  \"zone.js\": \"0.9.1\"\n" +
+                "  \"zone.js\": \"0.10.2\"\n" +
                 "}";
 
         codeEditor.assertDeviceTab(this.deviceName, modelExpected, osVersionExpected, previewAppVersionExpected, runtimeVersionExpected, componentVersionsExpected);
