@@ -1,41 +1,42 @@
 package sync.pages;
-import java.awt.*;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import functional.tests.core.mobile.device.android.Adb;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import functional.tests.core.mobile.appium.Capabilities;
-import functional.tests.core.mobile.basepage.BasePage;
-import functional.tests.core.mobile.element.UIElement;
-import functional.tests.core.mobile.device.Device;
-import functional.tests.core.mobile.settings.MobileSettings;
-import functional.tests.core.image.Sikuli;
+
+import functional.tests.core.enums.DeviceType;
 import functional.tests.core.image.ImageUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
+import functional.tests.core.mobile.appium.Capabilities;
 import functional.tests.core.mobile.appium.Client;
-import java.awt.Robot;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
-import java.util.List;
-import java.io.File;
+import functional.tests.core.mobile.basepage.BasePage;
+import functional.tests.core.mobile.device.Device;
+import functional.tests.core.mobile.device.android.Adb;
+import functional.tests.core.mobile.element.UIElement;
 import functional.tests.core.mobile.element.UIRectangle;
+import functional.tests.core.mobile.settings.MobileSettings;
 import functional.tests.core.utils.OSUtils;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
+import utils.Sikuli;
+
+import java.awt.*;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
 
 
 public class SetupClass extends BasePage {
     public Robot s = new Robot();
     public String liveSyncConnectionString;
     public String deviceId = "";
-    public Sikuli sikuli;
     public String ImagePathDirectory = "";
     public ImageUtils imageUtils;
     public Device device;
@@ -50,6 +51,7 @@ public class SetupClass extends BasePage {
     public Robot robot = null;
     public MobileSettings mobileSettings;
     public WebDriver driver;
+    public Sikuli sikuli;
 
     public boolean isLive = false;
 
@@ -58,6 +60,7 @@ public class SetupClass extends BasePage {
         this.mobileSettings = mobileSettings;
         this.client = client;
         this.device = device;
+        this.sikuli = new Sikuli(this.device, this.mobileSettings.testAppName + "-map", this.client, this.imageUtils);
         try {
             this.robot = new Robot();
         } catch (AWTException e) {
@@ -65,7 +68,6 @@ public class SetupClass extends BasePage {
         }
         this.imageUtils = new ImageUtils(settings, client, device);
         this.appName = this.app.getName().replaceAll(".app", "");
-        this.sikuli = new Sikuli(this.appName, client, this.context.imageUtils);
         String currentPath = System.getProperty("user.dir");
         ImagePathDirectory = currentPath + "/src/test/java/sync/pages/images.sikuli";
         this.folderForScreenshots = currentPath + "/target/surefire-reports/screenshots/";
@@ -78,7 +80,7 @@ public class SetupClass extends BasePage {
             directory.mkdir();
         }
 
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             this.client.driver.removeApp("org.nativescript.preview");
             functional.tests.core.utils.Archive.extractArchive(new File(currentPath + "/testapp/nsplaydev.tgz"), new File(currentPath + "/testapp/"));
 
@@ -127,14 +129,14 @@ public class SetupClass extends BasePage {
         driver.get(URL);
         Thread.sleep(5000);
         List<WebElement> acceptCockiesButton = driver.findElements(By.xpath("//button[contains(.,'Accept Cookies')]"));
-        if(acceptCockiesButton.size() != 0){
+        if (acceptCockiesButton.size() != 0) {
             acceptCockiesButton.get(0).click();
         }
     }
 
     public void GetDeviceLink() throws InterruptedException, IOException, UnsupportedFlavorException {
         List<WebElement> previewLinkElements = driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]"));
-        if(previewLinkElements.size() == 0){
+        if (previewLinkElements.size() == 0) {
             this.driver.findElements(By.xpath("//button[contains(.,'QR code')]")).get(0).click();
             Thread.sleep(5000);
             previewLinkElements = driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]"));
@@ -143,10 +145,10 @@ public class SetupClass extends BasePage {
     }
 
 
-    public void liveSyncPreview(){
+    public void liveSyncPreview() {
         List<String> params;
         this.deviceScreenWidth = client.driver.manage().window().getSize().width;
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             this.liveSyncConnectionString = this.liveSyncConnectionString.replaceAll("\\\\", "/");
             params = java.util.Arrays.asList("xcrun", "simctl", "openurl", this.deviceId, liveSyncConnectionString);
         } else {
@@ -180,8 +182,8 @@ public class SetupClass extends BasePage {
     public void startPreviewAppWithLiveSync(boolean waitToLoad) throws InterruptedException, IOException {
 
         this.liveSyncPreview();
-        if(waitToLoad) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+        if (waitToLoad) {
+            if (settings.deviceType == DeviceType.Emulator) {
                 log.info("Searching for Home or Open");
                 this.wait(5000);
                 String foundItem = this.waitText1OrText2ToBeShown(12, "Home", "Open");
@@ -234,7 +236,7 @@ public class SetupClass extends BasePage {
 
                     }
                 }
-            } else  {
+            } else {
                 this.waitTextToBeShown(10, "Home");
             }
         }
@@ -402,7 +404,7 @@ public class SetupClass extends BasePage {
 
     public void openURL(String url) {
         List<String> params = null;
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             url = url.replaceAll("\\\\", "/");
             params = java.util.Arrays.asList("xcrun", "simctl", "openurl", this.deviceId, url);
         } else {
@@ -426,7 +428,7 @@ public class SetupClass extends BasePage {
             log.info(ex.toString());
         }
 
-        if (settings.deviceType == settings.deviceType.Emulator) {
+        if (settings.deviceType == DeviceType.Emulator) {
             this.wait(4000);
             UIElement webView = this.find.byTextContains("WebView");
             if (webView != null) {
@@ -462,7 +464,7 @@ public class SetupClass extends BasePage {
     }
 
     public void navigateToSavedSession(String button) throws InterruptedException {
-        if (settings.deviceType == settings.deviceType.Emulator) {
+        if (settings.deviceType == DeviceType.Emulator) {
             List<WebElement> link = (List<WebElement>) this.client.driver.findElements(By.xpath("//*[@content-desc='Load project in Preview app Tap to open the saved project in the Preview app']"));
             if (link.size() != 0) {
                 link.get(0).click();
@@ -477,8 +479,8 @@ public class SetupClass extends BasePage {
                     this.log.info("Element " + button + " not found! Not able to click it! Not found by text too!");
                 }
             }
-        } else if (settings.deviceType == settings.deviceType.Simulator) {
-            List<WebElement> buttons = (List<WebElement>)this.client.driver.findElements(By.xpath("//div[contains(.,'Tap to open the saved project in the Preview app')]"));
+        } else if (settings.deviceType == DeviceType.Simulator) {
+            List<WebElement> buttons = (List<WebElement>) this.client.driver.findElements(By.xpath("//div[contains(.,'Tap to open the saved project in the Preview app')]"));
             if (buttons.size() != 0) {
                 buttons.get(0).click();
                 this.log.info("Navigate to " + button);

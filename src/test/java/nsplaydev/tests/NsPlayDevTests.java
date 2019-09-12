@@ -1,5 +1,6 @@
 package nsplaydev.tests;
 
+import functional.tests.core.enums.DeviceType;
 import functional.tests.core.enums.SwipeElementDirection;
 import functional.tests.core.mobile.basetest.MobileTest;
 import functional.tests.core.mobile.element.UIElement;
@@ -267,7 +268,7 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify Accelerometer is working.", groups = {"android", "ios"})
     public void test_24_accelerometer_is_working() throws Exception {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Accelerometer");
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             this.assertScreen("nsplaydev-accelerometer-view", this.settings.shortTimeout, 10);
         } else {
             componentsVisualizationPage.navigate("Start Accelerometer");
@@ -329,7 +330,7 @@ public class NsPlayDevTests extends MobileTest {
         if (settings.deviceName.contains("Api24")) {
             // Temporary image check for api24 till find workaround for Google Play services
             this.assertScreen("nsplaydev-location-details-view_temp", this.settings.shortTimeout);
-        }else {
+        } else {
             this.assertScreen("nsplaydev-location-details-view", this.settings.shortTimeout);
         }
 
@@ -353,7 +354,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Camera");
         componentsVisualizationPage.navigate("Request permissions");
         componentsVisualizationPage.waitForElement(5000);
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             try {
                 if (ExpectedConditions.alertIsPresent() != null) {
                     this.client.driver.switchTo().alert().accept();
@@ -381,7 +382,7 @@ public class NsPlayDevTests extends MobileTest {
         componentsVisualizationPage.waitForElement(2000);
         componentsVisualizationPage.navigate("Check for camera");
         componentsVisualizationPage.waitForElement(2000);
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             Assert.assertEquals(this.client.driver.switchTo().alert().getText(), "Alert\n" + "Is camera hardware available: false");
 
             try {
@@ -400,14 +401,14 @@ public class NsPlayDevTests extends MobileTest {
         componentsVisualizationPage.waitForElement(4000);
         componentsVisualizationPage.navigate("Take Photo");
         componentsVisualizationPage.waitForElement(6000);
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             componentsVisualizationPage.navigate("Camera Roll");
             componentsVisualizationPage.waitForElement(4000);
             UIElement photos = find.byText("Photos");
-            new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 40), (photos.getCenter().y + 40)))).perform();
+            new TouchAction(this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 40), (photos.getCenter().y + 40)))).perform();
             //this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 40, 500);
             if (this.device.getName().contains("Ipad")) {
-                new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 80), (photos.getCenter().y + 80)))).perform();
+                new TouchAction(this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 80), (photos.getCenter().y + 80)))).perform();
                 //this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 80, 500);
             }
             componentsVisualizationPage.waitForElement(2000);
@@ -441,7 +442,7 @@ public class NsPlayDevTests extends MobileTest {
             }
             componentsVisualizationPage.waitForElement(2000);
         }
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             this.assertScreen("nsplaydev-camera-working-view-ios", this.settings.shortTimeout);
         } else {
             this.assertScreen("nsplaydev-camera-working-view-android", this.settings.shortTimeout, 44);

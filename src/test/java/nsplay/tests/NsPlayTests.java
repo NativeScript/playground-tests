@@ -1,5 +1,6 @@
 package nsplay.tests;
 
+import functional.tests.core.enums.DeviceType;
 import functional.tests.core.enums.PlatformType;
 import functional.tests.core.mobile.basetest.MobileTest;
 import functional.tests.core.mobile.element.UIElement;
@@ -27,13 +28,13 @@ public class NsPlayTests extends MobileTest {
         ScanPage scanPage = new ScanPage();
         scanPage.navigate("Scan QR code");
         scanPage.waitForElement(9000);
-        if(settings.deviceType == settings.deviceType.Simulator)
+        if(settings.deviceType == DeviceType.Simulator)
         {
             this.assertScreen("nsplay-qr-ios-view", this.settings.shortTimeout);
             scanPage.navigate("Close");
 
         }
-        else if(settings.deviceType == settings.deviceType.Emulator)
+        else if(settings.deviceType == DeviceType.Emulator)
         {
 
             if(settings.deviceName.contains("Api24")||settings.deviceName.contains("Api25"))
@@ -67,7 +68,7 @@ public class NsPlayTests extends MobileTest {
     @Test(description = "Verify scan page looks OK.", groups = {"android", "ios"})
     public void test_03_info_page_looks_ok() throws Exception {
 
-        if(settings.deviceType == settings.deviceType.Emulator)
+        if(settings.deviceType == DeviceType.Emulator)
         {
         QRPage detailsPage = new QRPage();
 
@@ -75,7 +76,7 @@ public class NsPlayTests extends MobileTest {
         }
         InfoPage scanPage = new InfoPage();
         this.assertScreen("nsplay-info-view", this.settings.shortTimeout);
-        if(settings.deviceType == settings.deviceType.Emulator)
+        if(settings.deviceType == DeviceType.Emulator)
         {
             scanPage.scrollDown();
             scanPage.scrollDown();

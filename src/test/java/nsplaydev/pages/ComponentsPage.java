@@ -76,7 +76,7 @@ public class ComponentsPage extends BasePage {
 
         UIElement buttonToClick = this.find.byText(button);
         if (buttonToClick != null) {
-            new TouchAction((MobileDriver) this.client.driver).tap((new PointOption().withCoordinates((buttonToClick.getCenter().x), (buttonToClick.getCenter().y)))).perform();
+            new TouchAction(this.client.driver).tap((new PointOption().withCoordinates((buttonToClick.getCenter().x), (buttonToClick.getCenter().y)))).perform();
             //this.client.driver.tap(1, buttonToClick.getCenter().x, buttonToClick.getCenter().y, 500);
             //new TouchAction((MobileDriver) this.client.driver).tap((buttonToClick.getCenter().x), (buttonToClick.getCenter().y)).perform();
             this.log.info("Navigate to " + button);

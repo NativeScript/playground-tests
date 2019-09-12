@@ -1,31 +1,31 @@
 package sync.tests;
 
+import functional.tests.core.enums.DeviceType;
 import functional.tests.core.mobile.basetest.MobileTest;
 import functional.tests.core.mobile.element.UIElement;
 import org.openqa.selenium.By;
-import org.sikuli.script.FindFailed;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import sync.pages.SetupClass;
 import sync.pages.CodeEditorClass;
+import sync.pages.SetupClass;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
-public class  NSSyncTests extends MobileTest {
+public class NSSyncTests extends MobileTest {
     SetupClass setupClass;
     public String deviceName;
     CodeEditorClass codeEditor;
 
     @BeforeClass
-    public void beforeClass() throws IOException, InterruptedException, FindFailed, UnsupportedFlavorException, AWTException {
+    public void beforeClass() throws IOException, InterruptedException, UnsupportedFlavorException, AWTException {
         this.setupClass = new SetupClass(this.client, this.settings, this.device);
         String projectURL = "https://play.nativescript.be/?template=play-" + setupClass.typeOfProject + "&debug=true";
 
-        if(setupClass.isHMREnabled.contains("false"))
-        {
+        if (setupClass.isHMREnabled.contains("false")) {
             projectURL = projectURL + "&enableHMR=false";
         }
 
@@ -46,8 +46,9 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.getScreenShot("BeforeStartOfTests_AfterLiveSync");
         this.codeEditor = new CodeEditorClass(this.setupClass);
         this.setupClass.wait(5000);
-        if(this.setupClass.driver.findElements(By.cssSelector("iframe[title='Intercom Live Chat']")).size() != 0) {
-            this.setupClass.driver.switchTo().frame(this.setupClass.driver.findElement(By.cssSelector("iframe[title='Intercom Live Chat']")));
+        if (this.setupClass.driver.findElements(By.cssSelector("iframe[title='Intercom Live Chat']")).size() != 0) {
+            WebElement frame = this.setupClass.driver.findElement(By.cssSelector("iframe[title='Intercom Live Chat']"));
+            this.setupClass.driver.switchTo().frame(frame);
             if (this.setupClass.driver.findElements(By.xpath("//*[@class='intercom-note-close intercom-anchor']")).size() != 0) {
                 this.setupClass.driver.findElements(By.xpath("//*[@class='intercom-note-close intercom-anchor']")).get(0).click();
             }
@@ -72,9 +73,7 @@ public class  NSSyncTests extends MobileTest {
         if (this.context.lastTestResult != 1) {
             this.codeEditor.pressButton(KeyEvent.VK_ESCAPE);
             this.setupClass.getScreenShot(this.context.getTestName() + "_AfterStart_Fail");
-        }
-        else
-        {
+        } else {
             this.setupClass.getScreenShot(this.context.getTestName() + "_AfterStart_Success");
         }
     }
@@ -83,7 +82,7 @@ public class  NSSyncTests extends MobileTest {
     public void test_01_verify_devices_tab() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
 
-        if (settings.deviceType == settings.deviceType.Emulator) {
+        if (settings.deviceType == DeviceType.Emulator) {
             this.deviceName = "Android SDK built for x86";
 
         } else {
@@ -98,14 +97,14 @@ public class  NSSyncTests extends MobileTest {
             }
         }
         String modelExpected;
-        if (settings.deviceType == settings.deviceType.Emulator) {
+        if (settings.deviceType == DeviceType.Emulator) {
             modelExpected = "Android SDK built for x86";
 
         } else {
             modelExpected = "Simulator";
         }
         String osVersionExpected = "";
-        if (settings.deviceType == settings.deviceType.Emulator) {
+        if (settings.deviceType == DeviceType.Emulator) {
             osVersionExpected = "Android ";
             osVersionExpected = osVersionExpected + String.valueOf(this.context.client.driver.getCapabilities().getCapability("platformVersion"));
         } else {
@@ -114,7 +113,7 @@ public class  NSSyncTests extends MobileTest {
         }
 
         String previewAppVersionExpected = "";
-        if (settings.deviceType == settings.deviceType.Emulator) {
+        if (settings.deviceType == DeviceType.Emulator) {
 
             previewAppVersionExpected = "1.24.0";
         } else {
@@ -122,7 +121,7 @@ public class  NSSyncTests extends MobileTest {
         }
 
         String runtimeVersionExpected = "";
-        if (settings.deviceType == settings.deviceType.Emulator) {
+        if (settings.deviceType == DeviceType.Emulator) {
 
             runtimeVersionExpected = "6.1.0";
         } else {
@@ -195,7 +194,7 @@ public class  NSSyncTests extends MobileTest {
         } else {
             //remove after bug in {N}
             //this.assertScreen("nsplaydev-synced-invalid-code", this.settings.defaultTimeout);
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 this.setupClass.wait(9000);
                 this.context.client.driver.launchApp();
                 this.setupClass.wait(10000);
@@ -343,7 +342,7 @@ public class  NSSyncTests extends MobileTest {
         codeEditor.typeJSTSCodeWithThrowError();
         this.setupClass.getScreenShot(this.context.getTestName() + "_AfterEnterErrorCode");
         codeEditor.save();
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             this.setupClass.wait(7000);
             this.context.client.driver.launchApp();
             this.setupClass.wait(4000);
@@ -362,25 +361,25 @@ public class  NSSyncTests extends MobileTest {
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText = null;
         if (this.setupClass.typeOfProject.equals("ng")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "ERROR: ERROR Error";
             } else {
                 expectedText = "Error: Error";
             }
         } else if (this.setupClass.typeOfProject.equals("js")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "JS ERROR Error: Error";
             } else {
                 expectedText = "Error: Error";
             }
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "nsplaydev";
             } else {
                 expectedText = "Error: Error";
             }
         } else if (this.setupClass.typeOfProject.equals("vue")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "JS ERROR Error: Error";
             } else {
                 expectedText = "Error: Error";
@@ -413,7 +412,7 @@ public class  NSSyncTests extends MobileTest {
         codeEditor.typeJSTSCodeWithThrowJavaError();
         this.setupClass.getScreenShot(this.context.getTestName() + "_AfterEnterErrorCode");
         codeEditor.save();
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             this.setupClass.wait(7000);
             this.context.client.driver.launchApp();
             this.setupClass.wait(4000);
@@ -432,7 +431,7 @@ public class  NSSyncTests extends MobileTest {
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText = null;
         if (this.setupClass.typeOfProject.equals("ng")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "Can't find variable: java";
             } else {
                 expectedText = "Error: java.lang.NumberFormatException: For input string: \"sdklfjsd\"";
@@ -441,7 +440,7 @@ public class  NSSyncTests extends MobileTest {
                 }
             }
         } else if (this.setupClass.typeOfProject.equals("js")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "Can't find variable: java";
             } else {
                 expectedText = "Error: java.lang.NumberFormatException: For input string: \"sdklfjsd\"";
@@ -451,7 +450,7 @@ public class  NSSyncTests extends MobileTest {
 
             }
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "nsplaydev";
             } else {
                 expectedText = "Error: java.lang.NumberFormatException: For input string: \"sdklfjsd\"";
@@ -461,7 +460,7 @@ public class  NSSyncTests extends MobileTest {
 
             }
         } else if (this.setupClass.typeOfProject.equals("vue")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "Can't find variable: java";
             } else {
                 expectedText = "Error: java.lang.NumberFormatException: For input string: \"sdklfjsd\"";
@@ -495,7 +494,7 @@ public class  NSSyncTests extends MobileTest {
         this.setupClass.wait(2000);
         this.setupClass.getScreenShot(this.context.getTestName() + "_AfterEnterErrorCode");
         codeEditor.save();
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             this.setupClass.wait(7000);
             this.context.client.driver.launchApp();
             this.setupClass.wait(6000);
@@ -514,31 +513,31 @@ public class  NSSyncTests extends MobileTest {
         String deviceLog = codeEditor.getLogsTextFromDeviceLogsTab();
         String expectedText = null;
         if (this.setupClass.typeOfProject.equals("ng")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "not-existing-path";
             } else {
                 expectedText = "ReferenceError: NSFileManager is not defined";
             }
         } else if (this.setupClass.typeOfProject.equals("js")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "not-existing-path";
             } else {
                 expectedText = "ReferenceError: NSFileManager is not defined";
             }
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "nsplaydev";
             } else {
                 expectedText = "ReferenceError: NSFileManager is not defined";
             }
         } else if (this.setupClass.typeOfProject.equals("tsc")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "not-existing-path";
             } else {
                 expectedText = "ReferenceError: NSFileManager is not defined";
             }
         } else if (this.setupClass.typeOfProject.equals("vue")) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 expectedText = "not-existing-path";
             } else {
                 expectedText = "ReferenceError: NSFileManager is not defined";
@@ -562,13 +561,13 @@ public class  NSSyncTests extends MobileTest {
             codeEditor.save();
             this.setupClass.wait(3000);
         }
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             codeEditor.clearDeviceLogs();
             this.device.cleanConsoleLog();
             setupClass.driver.findElements(By.xpath("//span[contains(.,'Errors')]")).get(0).click();
             codeEditor.typeJSTSCodeWithThrowiOSCocoaError();
             codeEditor.save();
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 this.setupClass.wait(10000);
                 this.context.client.driver.launchApp();
                 this.setupClass.wait(6000);
@@ -588,25 +587,25 @@ public class  NSSyncTests extends MobileTest {
             this.setupClass.getScreenShot(this.context.getTestName() + "_AfterEnterErrorCode");
             String expectedText = null;
             if (this.setupClass.typeOfProject.equals("ng")) {
-                if (settings.deviceType == settings.deviceType.Simulator) {
+                if (settings.deviceType == DeviceType.Simulator) {
                     expectedText = "PlayLiveSync: Uncaught Exception";
                 } else {
                     expectedText = "ReferenceError";
                 }
             } else if (this.setupClass.typeOfProject.equals("js")) {
-                if (settings.deviceType == settings.deviceType.Simulator) {
+                if (settings.deviceType == DeviceType.Simulator) {
                     expectedText = "Uncaught Exception";
                 } else {
                     expectedText = "ReferenceError";
                 }
             } else if (this.setupClass.typeOfProject.equals("tsc")) {
-                if (settings.deviceType == settings.deviceType.Simulator) {
+                if (settings.deviceType == DeviceType.Simulator) {
                     expectedText = "nsplaydev";
                 } else {
                     expectedText = "ReferenceError";
                 }
             } else if (this.setupClass.typeOfProject.equals("vue")) {
-                if (settings.deviceType == settings.deviceType.Simulator) {
+                if (settings.deviceType == DeviceType.Simulator) {
                     expectedText = "Uncaught Exception";
                 } else {
                     expectedText = "ReferenceError";
@@ -648,7 +647,7 @@ public class  NSSyncTests extends MobileTest {
             this.setupClass.wait(6000);
         }
         //shit appium ios 10 and 9
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             this.setupClass.changeIosDriverToWebView();
             this.setupClass.wait(8000);
         } else {
@@ -657,7 +656,7 @@ public class  NSSyncTests extends MobileTest {
         }
 
         if (this.setupClass.isLive) {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 if (this.setupClass.typeOfProject.equals("ng")) {
                     this.client.driver.get("https://play.nativescript.org/?template=play-ng&id=6F74Ey");
                 } else if (this.setupClass.typeOfProject.equals("js")) {
@@ -667,8 +666,7 @@ public class  NSSyncTests extends MobileTest {
                 } else if (this.setupClass.typeOfProject.equals("vue")) {
                     this.client.driver.get("https://play.nativescript.org/?template=play-vue&id=fqRxUm");
                 }
-            }
-            else {
+            } else {
                 if (this.setupClass.typeOfProject.equals("ng")) {
                     this.setupClass.openURL("https://play.nativescript.org/?template=play-ng&id=6F74Ey");
                 } else if (this.setupClass.typeOfProject.equals("js")) {
@@ -680,7 +678,7 @@ public class  NSSyncTests extends MobileTest {
                 }
             }
         } else {
-            if (settings.deviceType == settings.deviceType.Simulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 if (this.setupClass.typeOfProject.equals("ng")) {
                     this.client.driver.get("https://play.nativescript.be/?template=play-ng&id=uolyao");
                 } else if (this.setupClass.typeOfProject.equals("js")) {
@@ -690,8 +688,7 @@ public class  NSSyncTests extends MobileTest {
                 } else if (this.setupClass.typeOfProject.equals("vue")) {
                     this.client.driver.get("https://play.nativescript.be/?template=play-vue&id=vxaCzV");
                 }
-            }
-            else{
+            } else {
                 if (this.setupClass.typeOfProject.equals("ng")) {
                     this.setupClass.openURL("https://play.nativescript.be/?template=play-ng&id=uolyao");
                 } else if (this.setupClass.typeOfProject.equals("js")) {
@@ -713,7 +710,7 @@ public class  NSSyncTests extends MobileTest {
             this.assertScreen("nsplaydev-synced-saved-session", this.settings.deviceBootTimeout, 5);
         }
         //shit appium ios 10 and 9
-        if (settings.deviceType == settings.deviceType.Simulator) {
+        if (settings.deviceType == DeviceType.Simulator) {
             this.setupClass.restoreIosDriver();
         }
     }
