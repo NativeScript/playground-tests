@@ -183,7 +183,7 @@ public class SetupClass extends BasePage {
 
         this.liveSyncPreview();
         if (waitToLoad) {
-            if (settings.deviceType == DeviceType.Emulator) {
+            if (settings.deviceType == DeviceType.Simulator) {
                 log.info("Searching for Home or Open");
                 this.wait(5000);
                 String foundItem = this.waitText1OrText2ToBeShown(12, "Home", "Open");
