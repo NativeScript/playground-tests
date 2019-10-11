@@ -139,6 +139,7 @@ public class NSSyncTests extends MobileTest {
                 "  \"@angular/platform-browser-dynamic\": \"8.2.8\",\n" +
                 "  \"@angular/router\": \"8.2.8\",\n" +
                 "  \"@progress-nativechat/nativescript-nativechat\": \"2.0.4\",\n" +
+                "  \"@nativescript/theme\": \"2.1.0\",\n" +
                 "  \"kinvey-nativescript-sdk\": \"4.2.3\",\n" +
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
                 "  \"nativescript-angular\": \"8.2.1\",\n" +
