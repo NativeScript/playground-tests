@@ -410,30 +410,16 @@ public class CodeEditorClass extends BasePage {
             String code = "";
             if(isValid)
             {
-                code = "@import 'nativescript-theme-core/css/core.dark.css';\n" +
-                        "\n" +
-                        ".home-panel{\n" +
-                        "    vertical-align: center;\n" +
-                        "    font-size: 20;\n" +
-                        "    margin: 15;\n" +
-                        "}\n" +
-                        ".description-label{\n" +
-                        "    margin-bottom: 15;\n" +
-                        "}";
+                code = ".btn {\n" +
+                        "    font-size: 18;\n" +
+                        "}"+
+                        "@import '~@nativescript/theme/css/blue.css';\n";
             }
             else{
-                code = "description-label{\n" +
-                        "    margin-bottom: 15;\n" +
-                        "}\n" +
-                        "@import 'nativescript-theme-core/css/core.dark.css';\n" +
-                        ".home-panel{\n" +
-                        "    vertical-align: center;\n" +
-                        "    font-size: 20;\n" +
-                        "    margin: 15;\n" +
-                        "}\n" +
-                        ".description-label{\n" +
-                        "    margin-bottom: 15;}\n" +
-                        "}";
+                code = ".btn {\n" +
+                        "    font-size: 18;\n" +
+                        "}}"+
+                        "@import '~@nativescript/theme/css/blue.css';\n";
             }
 
             pasteText(code);
