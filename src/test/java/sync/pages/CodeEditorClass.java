@@ -413,12 +413,14 @@ public class CodeEditorClass extends BasePage {
                 code = ".btn {\n" +
                         "    font-size: 18;\n" +
                         "}"+
+                        "@import '~@nativescript/theme/css/core.css';\n"+
                         "@import '~@nativescript/theme/css/blue.css';\n";
             }
             else{
                 code = ".btn {\n" +
                         "    font-size: 18;\n" +
                         "}}"+
+                        "@import '~@nativescript/theme/css/core.css';\n"+
                         "@import '~@nativescript/theme/css/blue.css';\n";
             }
 
