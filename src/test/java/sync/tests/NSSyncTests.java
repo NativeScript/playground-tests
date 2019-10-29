@@ -230,7 +230,7 @@ public class NSSyncTests extends MobileTest {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         codeEditor.typeCSSCode(false, false);
         String errorText = codeEditor.getErrorsTextFromErrorTab();
-        String expectedText = "app.css (3, 26): [css] at-rule or selector expected";
+        String expectedText = "app.css (3, 2): [css] at-rule or selector expected";
         Assert.assertEquals(errorText, expectedText, "Expected text \"" + expectedText + "\" is not equal to \"" + errorText + "\" .");
         this.setupClass.wait(2000);
         codeEditor.save();
