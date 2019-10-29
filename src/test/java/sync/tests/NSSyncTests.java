@@ -197,7 +197,7 @@ public class NSSyncTests extends MobileTest {
             this.assertScreen("nsplaydev-synced-valid-code", this.settings.defaultTimeout);
         } else {
             //remove after bug in {N}
-            //this.assertScreen("nsplaydev-synced-invalid-code", this.settings.defaultTimeout);
+            this.assertScreen("nsplaydev-synced-invalid-code", this.settings.defaultTimeout);
             if (settings.deviceType == DeviceType.Simulator) {
                 this.setupClass.wait(9000);
                 this.context.client.driver.launchApp();
@@ -205,6 +205,7 @@ public class NSSyncTests extends MobileTest {
             }
         }
         codeEditor.typeXMLOrHTMLCode(true, false);
+        this.setupClass.wait(5000);
         if (this.setupClass.typeOfProject.equals("vue")) {
             codeEditor.save();
         } else {
