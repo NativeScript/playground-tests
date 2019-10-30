@@ -427,7 +427,7 @@ public class CodeEditorClass extends BasePage {
                         "}\n" +
                         "\n" +
                         "@import '~@nativescript/theme/css/core.css';\n" +
-                        "@import '~@nativescript/theme/css/default.css';\n";
+                        "@import '~@nativescript/theme/css/blue.css';\n";
             }
             else{
                 code = ".btn {\n" +
@@ -445,7 +445,7 @@ public class CodeEditorClass extends BasePage {
                         "}}\n" +
                         "\n" +
                         "@import '~@nativescript/theme/css/core.css';\n" +
-                        "@import '~@nativescript/theme/css/default.css';\n";
+                        "@import '~@nativescript/theme/css/blue.css';\n";
             }
 
             pasteText(code);
