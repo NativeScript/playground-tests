@@ -144,27 +144,27 @@ public class CodeEditorClass extends BasePage {
                 String code = "";
                 if(isValid)
                 {
-                    code = "<Page loaded=\"pageLoaded\" class=\"page\" xmlns=\"http://www.nativescript.org/tns.xsd\">\n" +
+                    code = "<Page loaded=\"pageLoaded\" xmlns=\"http://www.nativescript.org/tns.xsd\">\n" +
                             "\n" +
-                            "    <ActionBar title=\"Test\" class=\"action-bar\">\n" +
+                            "    <ActionBar title=\"Test\">\n" +
                             "    </ActionBar>\n" +
                             "    <ScrollView>\n" +
                             "        <StackLayout class=\"home-panel\">\n" +
                             "            <!--Add your page content here-->\n" +
-                            "            <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n" +
+                            "            <Label text=\"Testing Label!\" />\n" +
                             "        </StackLayout>\n" +
                             "    </ScrollView>\n" +
                             "</Page>";
                 }
                 else{
-                    code = "<Page loaded=\"pageLoaded\" class=\"page\" xmlns=\"http://www.nativescript.org/tns.xsd\">\n" +
+                    code = "<Page loaded=\"pageLoaded\" xmlns=\"http://www.nativescript.org/tns.xsd\">\n" +
                             "\n" +
-                            "    <ActionBar title=\"Test\" class=\"action-bar\">\n" +
+                            "    <ActionBar title=\"Test\">\n" +
                             "    </ActionBar>\n" +
                             "    <ScrollView>\n" +
                             "        <StackLayout class=\"home-panel\">\n" +
                             "            <!--Add your page content here-->\n" +
-                            "            <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n" +
+                            "            <Label text=\"Testing Label!\" />\n" +
                             "    </ScrollView>\n" +
                             "</Page>";
                 }
@@ -196,27 +196,27 @@ public class CodeEditorClass extends BasePage {
                 String code = "";
                 if(isValid)
                 {
-                    code = "<ActionBar title=\"Test\" class=\"action-bar\">\n" +
+                    code = "<ActionBar title=\"Test\">\n" +
                             "</ActionBar>\n" +
                             "\n" +
                             "<GridLayout>\n" +
-                            "    <ScrollView class=\"page\">\n" +
+                            "    <ScrollView>\n" +
                             "        <StackLayout class=\"home-panel\">\n" +
                             "            <!--Add your page content here-->\n" +
-                            "            <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\"></Label>\n" +
+                            "            <Label text=\"Testing Label!\"></Label>\n" +
                             "        </StackLayout>\n" +
                             "    </ScrollView>\n" +
                             "</GridLayout>";
                 }
                 else{
-                    code = "<ActionBar title=\"Test\" class=\"action-bar\">\n" +
+                    code = "<ActionBar title=\"Test\">\n" +
                             "</ActionBar>\n" +
                             "\n" +
                             "<GridLayout>\n" +
-                            "    <ScrollView class=\"page\">\n" +
+                            "    <ScrollView>\n" +
                             "        <StackLayout class=\"home-panel\">\n" +
                             "            <!--Add your page content here-->\n" +
-                            "            <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\"></Label>\n" +
+                            "            <Label text=\"Testing Label!\"></Label>\n" +
                             "    </ScrollView>\n" +
                             "</GridLayout>";
                 }
@@ -300,12 +300,13 @@ public class CodeEditorClass extends BasePage {
                 if(isValid)
                 {
                     code = "<template>\n" +
-                            "    <Page class=\"page\">\n" +
-                            "        <ActionBar title=\"Test\" class=\"action-bar\" />\n" +
+                            "    <Page>\n" +
+                            "        <ActionBar title=\"Test\" />\n" +
                             "        <ScrollView>\n" +
                             "            <StackLayout class=\"home-panel\">\n" +
                             "                <!--Add your page content here-->\n" +
-                            "                <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n" +
+                            "                <Label textWrap=\"true\" text=\"Testing Label!\"\n" +
+                            "                    class=\"h2 description-label\" />\n" +
                             "            </StackLayout>\n" +
                             "        </ScrollView>\n" +
                             "    </Page>\n" +
@@ -333,36 +334,37 @@ public class CodeEditorClass extends BasePage {
                 }
                 else{
                     code = "<template>\n" +
-                            "    <Page class=\"page\">\n" +
-                            "        <ActionBar title=\"Test\" class=\"action-bar\" />\n" +
+                            "    <Page>\n" +
+                            "        <ActionBar title=\"Test\" />\n" +
                             "        <ScrollView>\n" +
                             "            <StackLayout class=\"home-panel\">\n" +
                             "                <!--Add your page content here-->\n" +
-                            "                <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n" +
-                            "                </StackLayoutggggggggggg \n" +
-                            "                </ScrollView> \n" +
-                            "                </Page> \n" +
-                            "                </template>\n" +
-                            "                    \n" +
-                            "                    <script>\n" +
-                            "                export default {\n" +
-                            "                data() {\n" +
-                            "                return {};\n" +
-                            "                }\n" +
-                            "                };\n" +
-                            "                </script>\n" +
+                            "                <Label textWrap=\"true\" text=\"Testing Label!\"\n" +
+                            "                    class=\"h2 description-label\" />\n" +
+                            "            </StackLayoutssssssssssssss>\n" +
+                            "        </ScrollView>\n" +
+                            "    </Page>\n" +
+                            "</template>\n" +
                             "\n" +
-                            "                <style scoped>\n" +
-                            "                    .home-panel {\n" +
-                            "                        vertical-align: center;\n" +
-                            "                        font-size: 20;\n" +
-                            "                        margin: 15;\n" +
-                            "                    }\n" +
+                            "<script>\n" +
+                            "    export default {\n" +
+                            "        data() {\n" +
+                            "            return {};\n" +
+                            "        }\n" +
+                            "    };\n" +
+                            "</script>\n" +
                             "\n" +
-                            "                    .description-label {\n" +
-                            "                        margin-bottom: 15;\n" +
-                            "                    }\n" +
-                            "                </style>";
+                            "<style scoped>\n" +
+                            "    .home-panel {\n" +
+                            "        vertical-align: center;\n" +
+                            "        font-size: 20;\n" +
+                            "        margin: 15;\n" +
+                            "    }\n" +
+                            "\n" +
+                            "    .description-label {\n" +
+                            "        margin-bottom: 15;\n" +
+                            "    }\n" +
+                            "</style>";
                 }
 
                 pasteText(code);
@@ -412,16 +414,38 @@ public class CodeEditorClass extends BasePage {
             {
                 code = ".btn {\n" +
                         "    font-size: 18;\n" +
-                        "}"+
-                        "@import '~@nativescript/theme/css/core.css';\n"+
-                        "@import '~@nativescript/theme/css/blue.css';\n";
+                        "}\n" +
+                        "\n" +
+                        ".home-panel{\n" +
+                        "    vertical-align: center;\n" +
+                        "    font-size: 20;\n" +
+                        "    margin: 15;\n" +
+                        "}\n" +
+                        "\n" +
+                        ".description-label{\n" +
+                        "    margin-bottom: 15;\n" +
+                        "}\n" +
+                        "\n" +
+                        "@import '~@nativescript/theme/css/core.css';\n" +
+                        "@import '~@nativescript/theme/css/default.css';\n";
             }
             else{
                 code = ".btn {\n" +
                         "    font-size: 18;\n" +
-                        "}}"+
-                        "@import '~@nativescript/theme/css/core.css';\n"+
-                        "@import '~@nativescript/theme/css/blue.css';\n";
+                        "}\n" +
+                        "\n" +
+                        ".home-panel{\n" +
+                        "    vertical-align: center;\n" +
+                        "    font-size: 20;\n" +
+                        "    margin: 15;\n" +
+                        "}\n" +
+                        "\n" +
+                        ".description-label{\n" +
+                        "    margin-bottom: 15;\n" +
+                        "}}\n" +
+                        "\n" +
+                        "@import '~@nativescript/theme/css/core.css';\n" +
+                        "@import '~@nativescript/theme/css/default.css';\n";
             }
 
             pasteText(code);
