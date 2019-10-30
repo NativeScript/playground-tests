@@ -691,7 +691,7 @@ public class NSSyncTests extends MobileTest {
                 } else if (this.setupClass.typeOfProject.equals("tsc")) {
                     this.client.driver.get("https://play.nativescript.be/?template=play-tsc&id=Oh69ux");
                 } else if (this.setupClass.typeOfProject.equals("vue")) {
-                    this.client.driver.get("https://play.nativescript.be/?template=play-vue&id=vxaCzV");
+                    this.client.driver.get("https://play.nativescript.be/?template=play-vue&id=vxaCzV&v=2");
                 }
             } else {
                 if (this.setupClass.typeOfProject.equals("ng")) {
@@ -701,7 +701,7 @@ public class NSSyncTests extends MobileTest {
                 } else if (this.setupClass.typeOfProject.equals("tsc")) {
                     this.setupClass.openURL("https://play.nativescript.be/?template=play-tsc&id=Oh69ux");
                 } else if (this.setupClass.typeOfProject.equals("vue")) {
-                    this.setupClass.openURL("https://play.nativescript.be/?template=play-vue&id=vxaCzV");
+                    this.setupClass.openURL("https://play.nativescript.be/?template=play-vue&id=vxaCzV&v=2");
                 }
             }
         }
