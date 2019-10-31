@@ -129,20 +129,21 @@ public class NSSyncTests extends MobileTest {
         }
 
         String componentVersionsExpected = "{\n" +
-                "  \"@angular/animations\": \"8.2.8\",\n" +
-                "  \"@angular/common\": \"8.2.8\",\n" +
-                "  \"@angular/compiler\": \"8.2.8\",\n" +
-                "  \"@angular/core\": \"8.2.8\",\n" +
-                "  \"@angular/forms\": \"8.2.8\",\n" +
-                "  \"@angular/http\": \"8.0.0-beta.10\",\n" +
-                "  \"@angular/platform-browser\": \"8.2.8\",\n" +
-                "  \"@angular/platform-browser-dynamic\": \"8.2.8\",\n" +
-                "  \"@angular/router\": \"8.2.8\",\n" +
+                "  \"@angular/animations\": \"8.2.12\",\n" +
+                "  \"@angular/common\": \"8.2.12\",\n" +
+                "  \"@angular/compiler\": \"8.2.12\",\n" +
+                "  \"@angular/core\": \"8.2.12\",\n" +
+                "  \"@angular/forms\": \"8.2.12\",\n" +
+                "  \"@angular/platform-browser\": \"8.2.12\",\n" +
+                "  \"@angular/platform-browser-dynamic\": \"8.2.12\",\n" +
+                "  \"@angular/router\": \"8.2.12\",\n" +
+                "  \"@nativescript/angular\": \"8.20.0\",\n" +
+                "  \"@nativescript/core\": \"6.2.0\",\n" +
+                "  \"@nativescript/theme\": \"2.2.0\",\n" +
                 "  \"@progress-nativechat/nativescript-nativechat\": \"2.0.4\",\n" +
-                "  \"@nativescript/theme\": \"2.1.0\",\n" +
-                "  \"kinvey-nativescript-sdk\": \"4.2.3\",\n" +
+                "  \"kinvey-nativescript-sdk\": \"4.2.5\",\n" +
                 "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
-                "  \"nativescript-angular\": \"8.2.1\",\n" +
+                "  \"nativescript-angular\": \"8.20.0\",\n" +
                 "  \"nativescript-background-http\": \"4.2.0\",\n" +
                 "  \"nativescript-camera\": \"4.5.0\",\n" +
                 "  \"nativescript-geolocation\": \"5.1.0\",\n" +
@@ -152,21 +153,21 @@ public class NSSyncTests extends MobileTest {
                 "  \"nativescript-iqkeyboardmanager\": \"1.5.1\",\n" +
                 "  \"nativescript-social-share\": \"1.5.2\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.6\",\n" +
-                "  \"nativescript-ui-autocomplete\": \"5.1.1\",\n" +
-                "  \"nativescript-ui-calendar\": \"5.0.0\",\n" +
-                "  \"nativescript-ui-chart\": \"6.0.0\",\n" +
-                "  \"nativescript-ui-dataform\": \"5.1.1\",\n" +
-                "  \"nativescript-ui-gauge\": \"5.0.0\",\n" +
-                "  \"nativescript-ui-listview\": \"7.1.0\",\n" +
-                "  \"nativescript-ui-sidedrawer\": \"7.0.2\",\n" +
+                "  \"nativescript-ui-autocomplete\": \"6.0.0\",\n" +
+                "  \"nativescript-ui-calendar\": \"6.0.0\",\n" +
+                "  \"nativescript-ui-chart\": \"7.0.0\",\n" +
+                "  \"nativescript-ui-dataform\": \"6.0.0\",\n" +
+                "  \"nativescript-ui-gauge\": \"6.0.0\",\n" +
+                "  \"nativescript-ui-listview\": \"8.0.0\",\n" +
+                "  \"nativescript-ui-sidedrawer\": \"8.0.0\",\n" +
                 "  \"nativescript-vue\": \"2.4.0\",\n" +
-                "  \"react\": \"16.10.1\",\n" +
-                "  \"react-hot-loader\": \"4.12.14\",\n" +
-                "  \"react-nativescript\": \"0.12.0\",\n" +
+                "  \"react\": \"16.11.0\",\n" +
+                "  \"react-hot-loader\": \"4.12.15\",\n" +
+                "  \"react-nativescript\": \"0.13.0\",\n" +
                 "  \"reflect-metadata\": \"0.1.13\",\n" +
                 "  \"rxjs\": \"6.5.3\",\n" +
                 "  \"rxjs-compat\": \"6.5.3\",\n" +
-                "  \"tns-core-modules\": \"6.1.1\",\n" +
+                "  \"tns-core-modules\": \"6.2.0\",\n" +
                 "  \"zone.js\": \"0.10.2\"\n" +
                 "}";
 
