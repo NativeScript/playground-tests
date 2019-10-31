@@ -456,7 +456,7 @@ public class CodeEditorClass extends BasePage {
     }
 
     public void save(String waitForChanges) {
-        this.setupClass.wait(1000);
+        this.setupClass.wait(1500);
         pressButton(KeyEvent.VK_S, KeyEvent.VK_META);
 
         if(waitForChanges!=null) {
@@ -467,7 +467,7 @@ public class CodeEditorClass extends BasePage {
             }
         }
         else {
-            this.setupClass.wait(4000);
+            this.setupClass.wait(5000);
         }
     }
 
