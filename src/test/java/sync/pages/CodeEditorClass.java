@@ -305,8 +305,7 @@ public class CodeEditorClass extends BasePage {
                             "        <ScrollView>\n" +
                             "            <StackLayout class=\"home-panel\">\n" +
                             "                <!--Add your page content here-->\n" +
-                            "                <Label textWrap=\"true\" text=\"Testing Label!\"\n" +
-                            "                    class=\"h2 description-label\" />\n" +
+                            "                <Label text=\"Testing Label!\" />\n" +
                             "            </StackLayout>\n" +
                             "        </ScrollView>\n" +
                             "    </Page>\n" +
@@ -339,8 +338,7 @@ public class CodeEditorClass extends BasePage {
                             "        <ScrollView>\n" +
                             "            <StackLayout class=\"home-panel\">\n" +
                             "                <!--Add your page content here-->\n" +
-                            "                <Label textWrap=\"true\" text=\"Testing Label!\"\n" +
-                            "                    class=\"h2 description-label\" />\n" +
+                            "                <Label text=\"Testing Label!\" />\n" +
                             "            </StackLayoutssssssssssssss>\n" +
                             "        </ScrollView>\n" +
                             "    </Page>\n" +
