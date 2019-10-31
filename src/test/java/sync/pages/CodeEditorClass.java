@@ -320,6 +320,12 @@ public class CodeEditorClass extends BasePage {
                             "</script>\n" +
                             "\n" +
                             "<style scoped>\n" +
+                            "    .home-panel {\n" +
+                            "        vertical-align: center;\n" +
+                            "        font-size: 20;\n" +
+                            "        margin: 15;\n" +
+                            "    }\n" +
+                            "\n" +
                             "    .description-label {\n" +
                             "        margin-bottom: 15;\n" +
                             "    }\n" +
@@ -347,6 +353,12 @@ public class CodeEditorClass extends BasePage {
                             "</script>\n" +
                             "\n" +
                             "<style scoped>\n" +
+                            "    .home-panel {\n" +
+                            "        vertical-align: center;\n" +
+                            "        font-size: 20;\n" +
+                            "        margin: 15;\n" +
+                            "    }\n" +
+                            "\n" +
                             "    .description-label {\n" +
                             "        margin-bottom: 15;\n" +
                             "    }\n" +
