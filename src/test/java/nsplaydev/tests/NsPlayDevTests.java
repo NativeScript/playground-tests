@@ -300,18 +300,22 @@ public class NsPlayDevTests extends MobileTest {
     public void test_27_location_is_working() throws Exception {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Location");
         componentsVisualizationPage.navigate("Show location");
-        componentsVisualizationPage.waitForElement(6000);
+        componentsVisualizationPage.waitForElement(9000);
         if (componentsVisualizationPage.checkIfElementisShown("Allow")) {
             componentsVisualizationPage.navigate("Allow");
-
         } else {
-            try {
-                if (ExpectedConditions.alertIsPresent() != null) {
-                    this.client.driver.switchTo().alert().accept();
+            if (settings.deviceType == DeviceType.Simulator) {
+                try {
+                    if (ExpectedConditions.alertIsPresent() != null) {
+                        this.client.driver.switchTo().alert().accept();
+                    }
+                } catch (Exception e) {
+                    this.log.error(e.getMessage());
                 }
-            } catch (Exception e) {
-                this.log.error(e.getMessage());
             }
+        }
+        if (find.byText("Allow only while using the app") != null) {
+            componentsVisualizationPage.navigate("Allow only while using the app");
         }
         componentsVisualizationPage.waitForElement(2000);
         if (componentsVisualizationPage.checkIfElementisShown("OK")) {
