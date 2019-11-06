@@ -184,7 +184,7 @@ public class NsPlayDevTests extends MobileTest {
         }
         componentsPage.navigate("DatePicker");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("DatePicker");
-        this.assertScreen("nsplaydev-datepicker-view", this.settings.shortTimeout);
+        this.assertScreen("nsplaydev-datepicker-view", this.settings.shortTimeout, 0.1);
     }
 
     @Test(description = "Verify DatePicker Deitals page looks OK.", groups = {"android", "ios"})
