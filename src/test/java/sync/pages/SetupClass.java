@@ -249,7 +249,7 @@ public class SetupClass extends BasePage {
     public String waitText1OrText2ToBeShown(int numberOfTries, String text1, String text2) throws InterruptedException {
         String textFound = "";
         while (true) {
-            if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
+            if (settings.deviceType == DeviceType.Simulator && (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9."))) {
                 log.info("Search for image!");
                 if (this.sikuli.waitForImage(text1, 0.7d, 2)) {
                     textFound = text1;
@@ -294,7 +294,7 @@ public class SetupClass extends BasePage {
 
     public void waitTextToBeShown(int numberOfTries, String object) throws InterruptedException {
         while (true) {
-            if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
+            if (settings.deviceType == DeviceType.Simulator && (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9."))) {
                 if (this.sikuli.waitForImage(object, 0.7d, 2)) {
                     break;
                 }
@@ -320,7 +320,7 @@ public class SetupClass extends BasePage {
 
     public void waitPreviewAppToLoad(int numberOfTries, String object) throws InterruptedException {
         this.waitTextToBeShown(numberOfTries, object);
-        if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
+        if (settings.deviceType == DeviceType.Simulator && (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9."))) {
             UIRectangle home = this.sikuli.findImageOnScreen(object, 0.9d);
             Assert.assertNotNull(home, "Preview app not synced! Item missing " + object);
             this.log.info("Preview app synced! The item " + object + " is found!");
