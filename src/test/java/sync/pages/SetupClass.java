@@ -439,6 +439,14 @@ public class SetupClass extends BasePage {
                 this.log.info("Element Accept & continue not found! Not able to click it!");
             }
 
+            UIElement noThanks = this.find.byTextContains("No Thanks");
+            if (noThanks != null) {
+                noThanks.click();
+                this.log.info("Navigate to " + noThanks);
+            } else {
+                this.log.info("Element No Thanks not found! Not able to click it!");
+            }
+
             UIElement webView = this.find.byTextContains("WebView");
             if (webView != null) {
                 webView.click();

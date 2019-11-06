@@ -416,6 +416,9 @@ public class NsPlayDevTests extends MobileTest {
             if (find.byText("Allow") != null) {
                 componentsVisualizationPage.navigate("Allow");
             }
+            if (find.byText("Allow all the time") != null) {
+                componentsVisualizationPage.navigate("Allow all the time");
+            }
             componentsVisualizationPage.waitForElement(2000);
             if (find.byText("Next") != null) {
                 componentsVisualizationPage.navigate("Next");
