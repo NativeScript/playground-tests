@@ -78,6 +78,13 @@
             </properties>
         </profile>
         <profile>
+            <id>nsplay.emu.default.api29</id>
+            <properties>
+                <app.config>nsplay/nsplay.emu.default.api29.properties</app.config>
+                <testsuite>nsplay</testsuite>
+            </properties>
+        </profile>
+        <profile>
             <id>nsplay.sim.Ipad5thgeneration.ios10</id>
             <properties>
                 <app.config>nsplay/nsplay.sim.Ipad5thgeneration.ios10.properties</app.config>
@@ -102,6 +109,13 @@
             <id>nsplay.sim.iphone7.ios12</id>
             <properties>
                 <app.config>nsplay/nsplay.sim.iphone7.ios12.properties</app.config>
+                <testsuite>nsplay</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplay.sim.iphoneXR.ios13</id>
+            <properties>
+                <app.config>nsplay/nsplay.sim.iphoneXR.ios13.properties</app.config>
                 <testsuite>nsplay</testsuite>
             </properties>
         </profile>
@@ -183,6 +197,13 @@
             </properties>
         </profile>
         <profile>
+            <id>nsplaydev.emu.default.api29</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.emu.default.api29.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
             <id>nsplaydev.sim.Ipad5thgeneration.ios10</id>
             <properties>
                 <app.config>nsplaydev/nsplaydev.sim.Ipad5thgeneration.ios10.properties</app.config>
@@ -207,6 +228,13 @@
             <id>nsplaydev.sim.iphone7.ios12</id>
             <properties>
                 <app.config>nsplaydev/nsplaydev.sim.iphone7.ios12.properties</app.config>
+                <testsuite>nsplaydev</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>nsplaydev.sim.iphoneXR.ios13</id>
+            <properties>
+                <app.config>nsplaydev/nsplaydev.sim.iphoneXR.ios13.properties</app.config>
                 <testsuite>nsplaydev</testsuite>
             </properties>
         </profile>
@@ -274,6 +302,13 @@
             </properties>
         </profile>
         <profile>
+            <id>live-sync.emu.default.api29</id>
+            <properties>
+                <app.config>nsplay/nsplay.emu.default.api29.properties</app.config>
+                <testsuite>live-sync</testsuite>
+            </properties>
+        </profile>
+        <profile>
             <id>live-sync.emu.default.api19</id>
             <properties>
                 <app.config>nsplay/nsplay.emu.default.api19.properties</app.config>
@@ -291,6 +326,13 @@
             <id>live-sync.sim.iphone7.ios12</id>
             <properties>
                 <app.config>nsplay/nsplay.sim.iphone7.ios12.properties</app.config>
+                <testsuite>live-sync</testsuite>
+            </properties>
+        </profile>
+        <profile>
+            <id>live-sync.sim.iphoneXR.ios13</id>
+            <properties>
+                <app.config>nsplay/nsplay.sim.iphoneXR.ios13.properties</app.config>
                 <testsuite>live-sync</testsuite>
             </properties>
         </profile>
