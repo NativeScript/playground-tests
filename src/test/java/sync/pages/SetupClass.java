@@ -430,12 +430,21 @@ public class SetupClass extends BasePage {
 
         if (settings.deviceType == DeviceType.Emulator) {
             this.wait(4000);
+
+            UIElement acceptContinue = this.find.byTextContains("Accept & continue");
+            if (acceptContinue != null) {
+                acceptContinue.click();
+                this.log.info("Navigate to " + acceptContinue);
+            } else {
+                this.log.info("Element Accept & continue not found! Not able to click it!");
+            }
+
             UIElement webView = this.find.byTextContains("WebView");
             if (webView != null) {
                 webView.click();
                 this.log.info("Navigate to " + webView);
             } else {
-                this.log.info("Element " + webView + " not found! Not able to click it!");
+                this.log.info("Element WebView not found! Not able to click it!");
             }
 
             this.wait(3000);
@@ -444,21 +453,21 @@ public class SetupClass extends BasePage {
                 webViewForJust.click();
                 this.log.info("Navigate to " + webViewForJust);
             } else {
-                this.log.info("Element " + webViewForJust + " not found! Not able to click it!");
+                this.log.info("Element Just Once not found! Not able to click it!");
             }
             UIElement cookies = this.find.byTextContains("accept cookies");
             if (cookies != null) {
                 cookies.click();
                 this.log.info("Navigate to " + cookies);
             } else {
-                this.log.info("Element " + cookies + " not found! Not able to click it!");
+                this.log.info("Element accept cookies not found! Not able to click it!");
             }
             UIElement closeDialog = this.find.byText("Close", true, 3);
             if (closeDialog != null) {
                 closeDialog.click();
                 this.log.info("Navigate to " + closeDialog);
             } else {
-                this.log.info("Element " + closeDialog + " not found! Not able to click it!");
+                this.log.info("Element Close not found! Not able to click it!");
             }
         }
     }
