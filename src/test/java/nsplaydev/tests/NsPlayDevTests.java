@@ -453,7 +453,9 @@ public class NsPlayDevTests extends MobileTest {
         if (settings.deviceType == DeviceType.Simulator) {
             this.assertScreen("nsplaydev-camera-working-view-ios", this.settings.shortTimeout);
         } else {
-            this.assertScreen("nsplaydev-camera-working-view-android", this.settings.shortTimeout, 44);
+            if (!settings.deviceName.contains("Api29")) {
+                this.assertScreen("nsplaydev-camera-working-view-android", this.settings.shortTimeout, 44);
+            }
 
         }
     }
