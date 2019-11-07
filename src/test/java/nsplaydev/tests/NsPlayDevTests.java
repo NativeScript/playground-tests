@@ -305,12 +305,18 @@ public class NsPlayDevTests extends MobileTest {
             componentsVisualizationPage.navigate("Allow");
         } else {
             if (settings.deviceType == DeviceType.Simulator) {
-                try {
-                    if (ExpectedConditions.alertIsPresent() != null) {
-                        this.client.driver.switchTo().alert().accept();
+                if(componentsVisualizationPage.checkIfElementisShown("Allow While Using App"))
+                {
+                    componentsVisualizationPage.navigate("Allow While Using App");
+                }
+                else {
+                    try {
+                        if (ExpectedConditions.alertIsPresent() != null) {
+                            this.client.driver.switchTo().alert().accept();
+                        }
+                    } catch (Exception e) {
+                        this.log.error(e.getMessage());
                     }
-                } catch (Exception e) {
-                    this.log.error(e.getMessage());
                 }
             }
         }
