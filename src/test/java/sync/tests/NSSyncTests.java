@@ -177,7 +177,7 @@ public class NSSyncTests extends MobileTest {
     @Test(description = "Verify XML/HTML valid code change is apllied!", groups = {"android", "ios"})
     public void test_02_valid_code_change_to_xml_or_html() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
-        codeEditor.typeXMLOrHTMLCode(true, false);
+        codeEditor.typeXMLOrHTMLCode(true);
         codeEditor.save("Test");
         this.assertScreen("nsplaydev-synced-valid-code", this.settings.defaultTimeout);
     }
@@ -185,7 +185,7 @@ public class NSSyncTests extends MobileTest {
     @Test(description = "Verify XML/HTML invalid code change is apllied and after fix is corrected!", groups = {"android", "ios"})
     public void test_03_invalid_code_change_to_xml_or_html() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
-        codeEditor.typeXMLOrHTMLCode(false, false);
+        codeEditor.typeXMLOrHTMLCode(false);
         codeEditor.save();
         if (setupClass.waitUntilWebElementIsPresentByXpath("//button[contains(.,'Not now')]")) {
             setupClass.driver.findElements(By.xpath("//button[contains(.,'Not now')]")).get(0).click();
@@ -205,7 +205,7 @@ public class NSSyncTests extends MobileTest {
                 this.setupClass.wait(10000);
             }
         }
-        codeEditor.typeXMLOrHTMLCode(true, false);
+        codeEditor.typeXMLOrHTMLCode(true);
         this.setupClass.wait(5000);
         if (this.setupClass.typeOfProject.equals("vue")) {
             codeEditor.save();
@@ -219,10 +219,10 @@ public class NSSyncTests extends MobileTest {
     public void test_04_valid_code_change_to_css() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         if (this.context.lastTestResult != 1) {
-            codeEditor.typeXMLOrHTMLCode(true, false);
+            codeEditor.typeXMLOrHTMLCode(true);
         }
         codeEditor.openFile("app.css");
-        codeEditor.typeCSSCode(true, false);
+        codeEditor.typeCSSCode(true);
         codeEditor.save();
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
     }
@@ -230,7 +230,7 @@ public class NSSyncTests extends MobileTest {
     @Test(description = "Verify css invalid code change is applied corrected!", groups = {"android", "ios"})
     public void test_05_invalid_code_change_to_css() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
-        codeEditor.typeCSSCode(false, false);
+        codeEditor.typeCSSCode(false);
         String errorText = codeEditor.getErrorsTextFromErrorTab();
         String expectedText = "app.css (13, 2): [css] at-rule or selector expected";
         Assert.assertEquals(errorText, expectedText, "Expected text \"" + expectedText + "\" is not equal to \"" + errorText + "\" .");
@@ -241,7 +241,7 @@ public class NSSyncTests extends MobileTest {
         this.setupClass.wait(2000);
         this.codeEditor.pressButton(KeyEvent.VK_ESCAPE);
         this.setupClass.wait(5000);
-        codeEditor.typeCSSCode(true, false);
+        codeEditor.typeCSSCode(true);
         codeEditor.save();
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.defaultTimeout);
     }
@@ -252,7 +252,7 @@ public class NSSyncTests extends MobileTest {
         if (this.context.lastTestResult != 1) {
             this.codeEditor.pressButton(KeyEvent.VK_ESCAPE);
             this.setupClass.wait(2000);
-            codeEditor.typeCSSCode(true, false);
+            codeEditor.typeCSSCode(true);
         }
         codeEditor.clearDeviceLogs();
         if (this.setupClass.typeOfProject.equals("ng")) {
@@ -264,7 +264,7 @@ public class NSSyncTests extends MobileTest {
         } else if (this.setupClass.typeOfProject.equals("vue")) {
             codeEditor.openFile("HelloWorld.vue");
         }
-        codeEditor.typeJSTSCode(true, false);
+        codeEditor.typeJSTSCode(true);
         this.setupClass.getScreenShot(this.context.getTestName() + "_AfterEnterCode");
         this.setupClass.wait(1000);
         codeEditor.save();
@@ -289,7 +289,7 @@ public class NSSyncTests extends MobileTest {
     @Test(description = "Verify js/ts invalid code change is applied corrected!", groups = {"android", "ios"})
     public void test_07_invalid_code_change_to_js_ts() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
-        codeEditor.typeJSTSCode(false, false);
+        codeEditor.typeJSTSCode(false);
         this.setupClass.getScreenShot(this.context.getTestName() + "_AfterEnterErrorCode");
         String expectedText = "";
         if (this.setupClass.typeOfProject.equals("vue")) {
@@ -318,7 +318,7 @@ public class NSSyncTests extends MobileTest {
         }
         this.codeEditor.pressButton(KeyEvent.VK_ESCAPE);
         this.setupClass.wait(3000);
-        codeEditor.typeJSTSCode(true, false);
+        codeEditor.typeJSTSCode(true);
         codeEditor.save();
         this.setupClass.wait(3000);
         this.assertScreen("nsplaydev-synced-valid-code-css", this.settings.deviceBootTimeout);
@@ -328,7 +328,7 @@ public class NSSyncTests extends MobileTest {
     public void test_08_javascript_error() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         if (this.context.lastTestResult != 1) {
-            codeEditor.typeJSTSCode(true, false);
+            codeEditor.typeJSTSCode(true);
         }
         codeEditor.clearDeviceLogs();
         this.setupClass.wait(1000);
@@ -394,7 +394,7 @@ public class NSSyncTests extends MobileTest {
 
         Assert.assertTrue(deviceLog.contains(expectedText), "Actual log \"" + deviceLog + "\" does not cointains the expected text \"" + expectedText + "\" .");
 
-        codeEditor.typeJSTSCode(true, false);
+        codeEditor.typeJSTSCode(true);
         this.setupClass.wait(10000);
         codeEditor.save();
         this.setupClass.wait(4000);
@@ -407,7 +407,7 @@ public class NSSyncTests extends MobileTest {
     public void test_09_java_error() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         if (this.context.lastTestResult != 1) {
-            codeEditor.typeJSTSCode(true, false);
+            codeEditor.typeJSTSCode(true);
             codeEditor.save();
             this.setupClass.wait(3000);
         }
@@ -479,7 +479,7 @@ public class NSSyncTests extends MobileTest {
 
         Assert.assertTrue(deviceLog.contains(expectedText), "Actual log \"" + deviceLog + "\" does not cointains the expected text \"" + expectedText + "\" .");
 
-        codeEditor.typeJSTSCode(true, false);
+        codeEditor.typeJSTSCode(true);
         this.setupClass.wait(4000);
         codeEditor.save();
         this.setupClass.wait(4000);
@@ -490,7 +490,7 @@ public class NSSyncTests extends MobileTest {
     public void test_10_ios_error() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         if (this.context.lastTestResult != 1) {
-            codeEditor.typeJSTSCode(true, false);
+            codeEditor.typeJSTSCode(true);
             codeEditor.save();
             this.setupClass.wait(3000);
         }
@@ -551,7 +551,7 @@ public class NSSyncTests extends MobileTest {
         }
         Assert.assertTrue(deviceLog.contains(expectedText), "Actual log \"" + deviceLog + "\" does not cointains the expected text \"" + expectedText + "\" .");
 
-        codeEditor.typeJSTSCode(true, false);
+        codeEditor.typeJSTSCode(true);
         this.setupClass.wait(10000);
         codeEditor.save();
         this.setupClass.wait(4000);
@@ -563,7 +563,7 @@ public class NSSyncTests extends MobileTest {
     public void test_11_ios_cocoa_error() throws Exception {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         if (this.context.lastTestResult != 1) {
-            codeEditor.typeJSTSCode(true, false);
+            codeEditor.typeJSTSCode(true);
             codeEditor.save();
             this.setupClass.wait(3000);
         }
@@ -620,7 +620,7 @@ public class NSSyncTests extends MobileTest {
 
             Assert.assertTrue(deviceLog.contains(expectedText), "Actual log \"" + deviceLog + "\" does not cointains the expected text \"" + expectedText + "\" .");
 
-            codeEditor.typeJSTSCode(true, false);
+            codeEditor.typeJSTSCode(true);
             this.setupClass.wait(10000);
             codeEditor.save();
             this.setupClass.wait(3000);
@@ -648,7 +648,7 @@ public class NSSyncTests extends MobileTest {
         CodeEditorClass codeEditor = new CodeEditorClass(this.setupClass);
         this.setupClass.wait(6000);
         if (this.context.lastTestResult != 1) {
-            codeEditor.typeJSTSCode(true, false);
+            codeEditor.typeJSTSCode(true);
             codeEditor.save();
             this.setupClass.wait(6000);
         }

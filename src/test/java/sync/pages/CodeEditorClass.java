@@ -114,340 +114,186 @@ public class CodeEditorClass extends BasePage {
 
     }
 
-    public void typeXMLOrHTMLCode(boolean isValid, boolean shouldType) {
+    public void typeXMLOrHTMLCode(boolean isValid) {
         this.deleteAllCode();
         if (this.setupClass.typeOfProject.equals("js") || this.setupClass.typeOfProject.equals("tsc")) {
-            if(shouldType) {
-                this.typeCode("<Page loaded=\"pageLoaded\" class=\"page\" xmlns=\"http://www.nativescript.org/tns.xsd\">");
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\">");
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("</ActionBar>");
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("<ScrollView>");
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("<StackLayout class=\"home-panel\">");
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
-                pressButton(KeyEvent.VK_ENTER);
-                if (isValid) {
-                    this.typeCode("</StackLayout>");
-                }
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("</ScrollView>");
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("</Page>");
-                pressButton(KeyEvent.VK_ENTER);
+            String code = "";
+            if (isValid) {
+                code = "<Page loaded=\"pageLoaded\" xmlns=\"http://www.nativescript.org/tns.xsd\">\n" +
+                        "\n" +
+                        "    <ActionBar title=\"Test\">\n" +
+                        "    </ActionBar>\n" +
+                        "    <ScrollView>\n" +
+                        "        <StackLayout class=\"home-panel\">\n" +
+                        "            <!--Add your page content here-->\n" +
+                        "            <Label text=\"Testing Label!\" />\n" +
+                        "        </StackLayout>\n" +
+                        "    </ScrollView>\n" +
+                        "</Page>";
+            } else {
+                code = "<Page loaded=\"pageLoaded\" xmlns=\"http://www.nativescript.org/tns.xsd\">\n" +
+                        "\n" +
+                        "    <ActionBar title=\"Test\">\n" +
+                        "    </ActionBar>\n" +
+                        "    <ScrollView>\n" +
+                        "        <StackLayout class=\"home-panel\">\n" +
+                        "            <!--Add your page content here-->\n" +
+                        "            <Label text=\"Testing Label!\" />\n" +
+                        "    </ScrollView>\n" +
+                        "</Page>";
             }
-            else
-            {
-                String code = "";
-                if(isValid)
-                {
-                    code = "<Page loaded=\"pageLoaded\" xmlns=\"http://www.nativescript.org/tns.xsd\">\n" +
-                            "\n" +
-                            "    <ActionBar title=\"Test\">\n" +
-                            "    </ActionBar>\n" +
-                            "    <ScrollView>\n" +
-                            "        <StackLayout class=\"home-panel\">\n" +
-                            "            <!--Add your page content here-->\n" +
-                            "            <Label text=\"Testing Label!\" />\n" +
-                            "        </StackLayout>\n" +
-                            "    </ScrollView>\n" +
-                            "</Page>";
-                }
-                else{
-                    code = "<Page loaded=\"pageLoaded\" xmlns=\"http://www.nativescript.org/tns.xsd\">\n" +
-                            "\n" +
-                            "    <ActionBar title=\"Test\">\n" +
-                            "    </ActionBar>\n" +
-                            "    <ScrollView>\n" +
-                            "        <StackLayout class=\"home-panel\">\n" +
-                            "            <!--Add your page content here-->\n" +
-                            "            <Label text=\"Testing Label!\" />\n" +
-                            "    </ScrollView>\n" +
-                            "</Page>";
-                }
 
-                pasteText(code);
-                pressButton(KeyEvent.VK_ENTER, true);
-            }
+            pasteText(code);
+            pressButton(KeyEvent.VK_ENTER, true);
         }
         if (this.setupClass.typeOfProject.equals("ng")) {
-            if(shouldType) {
-                this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\">");
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("</ActionBar>");
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("<ScrollView class=\"page\">");
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("<StackLayout class=\"home-panel\">");
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" ></Label>");
-                pressButton(KeyEvent.VK_ENTER);
-                if (isValid) {
-                    this.typeCode("</StackLayout>");
-                }
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("</ScrollView>");
-                pressButton(KeyEvent.VK_ENTER);
-            }
-            else {
-                String code = "";
-                if(isValid)
-                {
-                    code = "<ActionBar title=\"Test\">\n" +
-                            "</ActionBar>\n" +
-                            "\n" +
-                            "<GridLayout>\n" +
-                            "    <ScrollView>\n" +
-                            "        <StackLayout class=\"home-panel\">\n" +
-                            "            <!--Add your page content here-->\n" +
-                            "            <Label text=\"Testing Label!\"></Label>\n" +
-                            "        </StackLayout>\n" +
-                            "    </ScrollView>\n" +
-                            "</GridLayout>";
-                }
-                else{
-                    code = "<ActionBar title=\"Test\">\n" +
-                            "</ActionBar>\n" +
-                            "\n" +
-                            "<GridLayout>\n" +
-                            "    <ScrollView>\n" +
-                            "        <StackLayout class=\"home-panel\">\n" +
-                            "            <!--Add your page content here-->\n" +
-                            "            <Label text=\"Testing Label!\"></Label>\n" +
-                            "    </ScrollView>\n" +
-                            "</GridLayout>";
-                }
 
-                pasteText(code);
-            }
-        }
 
-        if (this.setupClass.typeOfProject.equals("vue")) {
-            if(shouldType) {
-                this.typeCode("<template>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("<Page class=\"page\">");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("<ScrollView>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("<StackLayout class=\"home-panel\">");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-
-                if (isValid) {
-                    this.typeCode("</StackLayout>");
-                    this.pressButton(KeyEvent.VK_ENTER, true);
-                } else {
-                    this.typeCode("</StackLayoutggggggggggg");
-                    this.pressButton(KeyEvent.VK_ENTER, true);
-                }
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("</ScrollView>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("</Page>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("</template>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-
-                this.typeCode("<script>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-
-                this.typeCode("export default {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("data () {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("return {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.typeCode(";");
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.typeCode(",");
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("</script>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("<style scoped>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode(".home-panel {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("vertical-align: center;");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("font-size: 20;");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("margin: 15;");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode(".description-label {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("margin-bottom: 15;");
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("</style>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-            }
-            else{
-                String code = "";
-                if(isValid)
-                {
-                    code = "<template>\n" +
-                            "    <Page>\n" +
-                            "        <ActionBar title=\"Test\" />\n" +
-                            "        <ScrollView>\n" +
-                            "            <StackLayout class=\"home-panel\">\n" +
-                            "                <!--Add your page content here-->\n" +
-                            "                <Label text=\"Testing Label!\" />\n" +
-                            "            </StackLayout>\n" +
-                            "        </ScrollView>\n" +
-                            "    </Page>\n" +
-                            "</template>\n" +
-                            "\n" +
-                            "<script>\n" +
-                            "    export default {\n" +
-                            "        data() {\n" +
-                            "            return {};\n" +
-                            "        }\n" +
-                            "    };\n" +
-                            "</script>\n" +
-                            "\n" +
-                            "<style scoped>\n" +
-                            "    .home-panel {\n" +
-                            "        vertical-align: center;\n" +
-                            "        font-size: 20;\n" +
-                            "        margin: 15;\n" +
-                            "    }\n" +
-                            "\n" +
-                            "    .description-label {\n" +
-                            "        margin-bottom: 15;\n" +
-                            "    }\n" +
-                            "</style>";
-                }
-                else{
-                    code = "<template>\n" +
-                            "    <Page>\n" +
-                            "        <ActionBar title=\"Test\" />\n" +
-                            "        <ScrollView>\n" +
-                            "            <StackLayout class=\"home-panel\">\n" +
-                            "                <!--Add your page content here-->\n" +
-                            "                <Label text=\"Testing Label!\" />\n" +
-                            "            </StackLayoutssssssssssssss>\n" +
-                            "        </ScrollView>\n" +
-                            "    </Page>\n" +
-                            "</template>\n" +
-                            "\n" +
-                            "<script>\n" +
-                            "    export default {\n" +
-                            "        data() {\n" +
-                            "            return {};\n" +
-                            "        }\n" +
-                            "    };\n" +
-                            "</script>\n" +
-                            "\n" +
-                            "<style scoped>\n" +
-                            "    .home-panel {\n" +
-                            "        vertical-align: center;\n" +
-                            "        font-size: 20;\n" +
-                            "        margin: 15;\n" +
-                            "    }\n" +
-                            "\n" +
-                            "    .description-label {\n" +
-                            "        margin-bottom: 15;\n" +
-                            "    }\n" +
-                            "</style>";
-                }
-
-                pasteText(code);
-            }
-        }
-        this.setupClass.wait(2000);
-    }
-
-    public void typeCSSCode(boolean isValid, boolean shouldType) {
-
-        this.deleteAllCode();
-        if(shouldType) {
-            if (isValid == false) {
-                this.typeCode(".description-label");
-                this.typeCode("{");
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("margin-bottom: 15;");
-                pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("}");
-                pressButton(KeyEvent.VK_ENTER);
-            }
-            pressButton(KeyEvent.VK_ENTER);
-            this.typeCode("@import 'nativescript-theme-core/css/core.dark.css';");
-            pressButton(KeyEvent.VK_ENTER);
-            this.typeCode(".home-panel");
-            this.typeCode("{");
-            pressButton(KeyEvent.VK_ENTER);
-            this.typeCode("vertical-align: center;");
-            pressButton(KeyEvent.VK_ENTER);
-            this.typeCode("font-size: 20;");
-            pressButton(KeyEvent.VK_ENTER);
-            this.typeCode("margin: 15;");
-            pressButton(KeyEvent.VK_ENTER);
-            this.pressButton(KeyEvent.VK_DOWN);
-            this.pressButton(KeyEvent.VK_DOWN);
-            this.pressButton(KeyEvent.VK_DOWN);
-            pressButton(KeyEvent.VK_ENTER);
-            this.typeCode(".description-label");
-            this.typeCode("{");
-            pressButton(KeyEvent.VK_ENTER);
-            this.typeCode("margin-bottom: 15;");
-            pressButton(KeyEvent.VK_ENTER);
-        }
-        else{
             String code = "";
-            if(isValid)
-            {
-                code = ".btn {\n" +
-                        "    font-size: 18;\n" +
-                        "}\n" +
+            if (isValid) {
+                code = "<ActionBar title=\"Test\">\n" +
+                        "</ActionBar>\n" +
                         "\n" +
-                        ".home-panel{\n" +
-                        "    vertical-align: center;\n" +
-                        "    font-size: 20;\n" +
-                        "    margin: 15;\n" +
-                        "}\n" +
+                        "<GridLayout>\n" +
+                        "    <ScrollView>\n" +
+                        "        <StackLayout class=\"home-panel\">\n" +
+                        "            <!--Add your page content here-->\n" +
+                        "            <Label text=\"Testing Label!\"></Label>\n" +
+                        "        </StackLayout>\n" +
+                        "    </ScrollView>\n" +
+                        "</GridLayout>";
+            } else {
+                code = "<ActionBar title=\"Test\">\n" +
+                        "</ActionBar>\n" +
                         "\n" +
-                        ".description-label{\n" +
-                        "    margin-bottom: 15;\n" +
-                        "}\n" +
-                        "\n" +
-                        "@import '~@nativescript/theme/css/core.css';\n" +
-                        "@import '~@nativescript/theme/css/blue.css';\n";
-            }
-            else{
-                code = ".btn {\n" +
-                        "    font-size: 18;\n" +
-                        "}\n" +
-                        "\n" +
-                        ".home-panel{\n" +
-                        "    vertical-align: center;\n" +
-                        "    font-size: 20;\n" +
-                        "    margin: 15;\n" +
-                        "}\n" +
-                        "\n" +
-                        ".description-label{\n" +
-                        "    margin-bottom: 15;\n" +
-                        "}}\n" +
-                        "\n" +
-                        "@import '~@nativescript/theme/css/core.css';\n" +
-                        "@import '~@nativescript/theme/css/blue.css';\n";
+                        "<GridLayout>\n" +
+                        "    <ScrollView>\n" +
+                        "        <StackLayout class=\"home-panel\">\n" +
+                        "            <!--Add your page content here-->\n" +
+                        "            <Label text=\"Testing Label!\"></Label>\n" +
+                        "    </ScrollView>\n" +
+                        "</GridLayout>";
             }
 
             pasteText(code);
         }
+
+        if (this.setupClass.typeOfProject.equals("vue")) {
+            String code = "";
+            if (isValid) {
+                code = "<template>\n" +
+                        "    <Page>\n" +
+                        "        <ActionBar title=\"Test\" />\n" +
+                        "        <ScrollView>\n" +
+                        "            <StackLayout class=\"home-panel\">\n" +
+                        "                <!--Add your page content here-->\n" +
+                        "                <Label text=\"Testing Label!\" />\n" +
+                        "            </StackLayout>\n" +
+                        "        </ScrollView>\n" +
+                        "    </Page>\n" +
+                        "</template>\n" +
+                        "\n" +
+                        "<script>\n" +
+                        "    export default {\n" +
+                        "        data() {\n" +
+                        "            return {};\n" +
+                        "        }\n" +
+                        "    };\n" +
+                        "</script>\n" +
+                        "\n" +
+                        "<style scoped>\n" +
+                        "    .home-panel {\n" +
+                        "        vertical-align: center;\n" +
+                        "        font-size: 20;\n" +
+                        "        margin: 15;\n" +
+                        "    }\n" +
+                        "\n" +
+                        "    .description-label {\n" +
+                        "        margin-bottom: 15;\n" +
+                        "    }\n" +
+                        "</style>";
+            } else {
+                code = "<template>\n" +
+                        "    <Page>\n" +
+                        "        <ActionBar title=\"Test\" />\n" +
+                        "        <ScrollView>\n" +
+                        "            <StackLayout class=\"home-panel\">\n" +
+                        "                <!--Add your page content here-->\n" +
+                        "                <Label text=\"Testing Label!\" />\n" +
+                        "            </StackLayoutssssssssssssss>\n" +
+                        "        </ScrollView>\n" +
+                        "    </Page>\n" +
+                        "</template>\n" +
+                        "\n" +
+                        "<script>\n" +
+                        "    export default {\n" +
+                        "        data() {\n" +
+                        "            return {};\n" +
+                        "        }\n" +
+                        "    };\n" +
+                        "</script>\n" +
+                        "\n" +
+                        "<style scoped>\n" +
+                        "    .home-panel {\n" +
+                        "        vertical-align: center;\n" +
+                        "        font-size: 20;\n" +
+                        "        margin: 15;\n" +
+                        "    }\n" +
+                        "\n" +
+                        "    .description-label {\n" +
+                        "        margin-bottom: 15;\n" +
+                        "    }\n" +
+                        "</style>";
+            }
+
+            pasteText(code);
+
+        }
+        this.setupClass.wait(2000);
+    }
+
+    public void typeCSSCode(boolean isValid) {
+
+        this.deleteAllCode();
+        String code = "";
+        if (isValid) {
+            code = ".btn {\n" +
+                    "    font-size: 18;\n" +
+                    "}\n" +
+                    "\n" +
+                    ".home-panel{\n" +
+                    "    vertical-align: center;\n" +
+                    "    font-size: 20;\n" +
+                    "    margin: 15;\n" +
+                    "}\n" +
+                    "\n" +
+                    ".description-label{\n" +
+                    "    margin-bottom: 15;\n" +
+                    "}\n" +
+                    "\n" +
+                    "@import '~@nativescript/theme/css/core.css';\n" +
+                    "@import '~@nativescript/theme/css/blue.css';\n";
+        } else {
+            code = ".btn {\n" +
+                    "    font-size: 18;\n" +
+                    "}\n" +
+                    "\n" +
+                    ".home-panel{\n" +
+                    "    vertical-align: center;\n" +
+                    "    font-size: 20;\n" +
+                    "    margin: 15;\n" +
+                    "}\n" +
+                    "\n" +
+                    ".description-label{\n" +
+                    "    margin-bottom: 15;\n" +
+                    "}}\n" +
+                    "\n" +
+                    "@import '~@nativescript/theme/css/core.css';\n" +
+                    "@import '~@nativescript/theme/css/blue.css';\n";
+        }
+
+        pasteText(code);
+
         this.setupClass.wait(2000);
     }
 
@@ -471,293 +317,134 @@ public class CodeEditorClass extends BasePage {
         }
     }
 
-    public void typeJSTSCode(boolean isValid, boolean shouldType) {
+    public void typeJSTSCode(boolean isValid) {
         this.deleteAllCode();
         if(this.setupClass.typeOfProject.equals("ng")) {
-            if(shouldType) {
-                this.typeCode("import {");
-                this.typeCode("Component, OnInit");
-                pressButton(KeyEvent.VK_RIGHT);
-                this.typeCode(" from \"@angular/core\";");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("@Component({");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("selector: \"Home\",");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("moduleId: module.id");
-                this.typeCode(",");
-                this.typeCode("");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("templateUrl: \"./home.component.html\",");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("styleUrls: ['./home.component.css']");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.pressButton(KeyEvent.VK_DOWN);
-                this.pressButton(KeyEvent.VK_DOWN);
-                this.pressButton(KeyEvent.VK_DOWN);
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("export class HomeComponent implements OnInit {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("constructor() {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("console.log(\"log\");");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.pressButton(KeyEvent.VK_DOWN);
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("ngOnInit(): void {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.pressButton(KeyEvent.VK_DOWN);
-                this.pressButton(KeyEvent.VK_DOWN);
-                this.pressButton(KeyEvent.VK_ENTER, true);
-            }
-            else
-            {
-                String code = "import { Component, OnInit } from \"@angular/core\";\n" +
+            String code = "import { Component, OnInit } from \"@angular/core\";\n" +
+                    "\n" +
+                    "@Component({\n" +
+                    "    selector: \"Home\",\n" +
+                    "    moduleId: module.id,\n" +
+                    "    templateUrl: \"./home.component.html\",\n" +
+                    "    styleUrls: ['./home.component.css']\n" +
+                    "})\n" +
+                    "export class HomeComponent implements OnInit {\n" +
+                    "\n" +
+                    "    constructor() {\n" +
+                    "        console.log(\"log\");\n" +
+                    "    }\n" +
+                    "\n" +
+                    "    ngOnInit(): void {\n" +
+                    "    }\n" +
+                    "}\n";
+
+            pasteText(code);
+
+        }
+        else if(this.setupClass.typeOfProject.equals("js")) {
+
+            String code = "var frameModule = require(\"tns-core-modules/ui/frame\");\n" +
+                    "var HomeViewModel = require(\"./home-view-model\");\n" +
+                    "\n" +
+                    "var homeViewModel = new HomeViewModel();\n" +
+                    "\n" +
+                    "function pageLoaded(args) {\n" +
+                    "  var page = args.object;\n" +
+                    "  page.bindingContext = homeViewModel;\n" +
+                    "  console.log(\"log\");\n" +
+                    "}\n" +
+                    "exports.pageLoaded = pageLoaded;\n";
+
+            pasteText(code);
+
+        }
+        else if(this.setupClass.typeOfProject.equals("tsc")) {
+            String code = "import { Observable } from 'tns-core-modules/data/observable';\n" +
+                    "\n" +
+                    "export class HomeViewModel extends Observable {\n" +
+                    "    constructor() {\n" +
+                    "        super();\n" +
+                    "        console.log(\"log\");\n" +
+                    "    }\n" +
+                    "}";
+
+            pasteText(code);
+        }
+        else if(this.setupClass.typeOfProject.equals("vue")) {
+            String code = null;
+            if (isValid) {
+                code = "<template>\n" +
+                        "    <Page class=\"page\">\n" +
+                        "        <ActionBar title=\"Test\" class=\"action-bar\" />\n" +
+                        "        <ScrollView>\n" +
+                        "            <StackLayout class=\"home-panel\">\n" +
+                        "                <!--Add your page content here-->\n" +
+                        "                <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n" +
+                        "            </StackLayout>\n" +
+                        "        </ScrollView>\n" +
+                        "    </Page>\n" +
+                        "</template>\n" +
                         "\n" +
-                        "@Component({\n" +
-                        "    selector: \"Home\",\n" +
-                        "    moduleId: module.id,\n" +
-                        "    templateUrl: \"./home.component.html\",\n" +
-                        "    styleUrls: ['./home.component.css']\n" +
-                        "})\n" +
-                        "export class HomeComponent implements OnInit {\n" +
+                        "<script>\n" +
+                        "    export default {\n" +
+                        "        mounted: function() {\n" +
+                        "            console.log(\"log\");\n" +
+                        "        },\n" +
+                        "        data() {\n" +
+                        "            return {};\n" +
+                        "        },\n" +
+                        "    }\n" +
+                        "</script>\n" +
                         "\n" +
-                        "    constructor() {\n" +
-                        "        console.log(\"log\");\n" +
+                        "<style scoped>\n" +
+                        "    .home-panel {\n" +
+                        "        vertical-align: center;\n" +
+                        "        font-size: 20;\n" +
+                        "        margin: 15;\n" +
                         "    }\n" +
                         "\n" +
-                        "    ngOnInit(): void {\n" +
+                        "    .description-label {\n" +
+                        "        margin-bottom: 15;\n" +
                         "    }\n" +
-                        "}\n";
-
-                pasteText(code);
-            }
-        }
-        else if(this.setupClass.typeOfProject.equals("js"))
-        {
-            if(shouldType) {
-                this.typeCode("var frameModule = require(\"ui/frame\");");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("var HomeViewModel = require(\"./home-view-model\");");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("var homeViewModel = new HomeViewModel();");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("function pageLoaded(args) {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("var page = args.object;");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("page.bindingContext = homeViewModel;");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("console.log(\"log\");");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.pressButton(KeyEvent.VK_DOWN);
-                this.pressButton(KeyEvent.VK_DOWN);
-                this.pressButton(KeyEvent.VK_DOWN);
-                this.pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("exports.pageLoaded = pageLoaded;");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-            }
-            else
-            {
-                String code = "var frameModule = require(\"tns-core-modules/ui/frame\");\n" +
-                        "var HomeViewModel = require(\"./home-view-model\");\n" +
+                        "</style>";
+            } else {
+                code = "<template>\n" +
+                        "    <Page class=\"page\">\n" +
+                        "        <ActionBar title=\"Test\" class=\"action-bar\" />\n" +
+                        "        <ScrollView>\n" +
+                        "            <StackLayout class=\"home-panel\">\n" +
+                        "                <!--Add your page content here-->\n" +
+                        "                <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n" +
+                        "            </StackLayout>\n" +
+                        "        </ScrollView>\n" +
+                        "    </Page>\n" +
+                        "</template>\n" +
                         "\n" +
-                        "var homeViewModel = new HomeViewModel();\n" +
-                        "\n" +
-                        "function pageLoaded(args) {\n" +
-                        "  var page = args.object;\n" +
-                        "  page.bindingContext = homeViewModel;\n" +
-                        "  console.log(\"log\");\n" +
-                        "}\n" +
-                        "exports.pageLoaded = pageLoaded;\n";
-
-                pasteText(code);
-            }
-        }
-        else if(this.setupClass.typeOfProject.equals("tsc"))
-        {
-            if(shouldType) {
-                this.typeCode("import {");
-                this.typeCode(" Observable ");
-                pressButton(KeyEvent.VK_RIGHT);
-                this.typeCode(" from 'tns-core-modules/data/observable';");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("export class HomeViewModel extends Observable {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("constructor() {");
-                this.pressButton(KeyEvent.VK_ENTER);
-                this.typeCode("super();");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("console.log(\"log\");");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-            }
-            else
-            {
-                String code = "import { Observable } from 'tns-core-modules/data/observable';\n" +
-                        "\n" +
-                        "export class HomeViewModel extends Observable {\n" +
-                        "    constructor() {\n" +
-                        "        super();\n" +
-                        "        console.log(\"log\");\n" +
+                        "<script>\n" +
+                        "    export default {\n" +
+                        "        mounted: function() {\n" +
+                        "            console.log(\"log\");\n" +
+                        "        },}\n" +
+                        "        data() {\n" +
+                        "            return {};\n" +
+                        "        },\n" +
                         "    }\n" +
-                        "}";
-
-                pasteText(code);
+                        "</script>\n" +
+                        "\n" +
+                        "<style scoped>\n" +
+                        "    .home-panel {\n" +
+                        "        vertical-align: center;\n" +
+                        "        font-size: 20;\n" +
+                        "        margin: 15;\n" +
+                        "    }\n" +
+                        "\n" +
+                        "    .description-label {\n" +
+                        "        margin-bottom: 15;\n" +
+                        "    }\n" +
+                        "</style>";
             }
-        }
-        else if(this.setupClass.typeOfProject.equals("vue"))
-        {
-            if(shouldType) {
-                this.typeCode("<template>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("<Page class=\"page\">");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("<ActionBar title=\"Test\" class=\"action-bar\" />");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("<ScrollView>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("<StackLayout class=\"home-panel\">");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("<Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("</StackLayout>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("</ScrollView>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("</Page>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("</template>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
+            pasteText(code);
 
-                this.typeCode("<script>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-
-                this.typeCode("export default {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("mounted: function () {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("console.log(\"log\");");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.typeCode(",");
-
-                if (isValid == false && this.setupClass.typeOfProject.equals("vue")) {
-                    this.typeCode("}");
-                }
-
-                this.typeCode("data () {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("return {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.typeCode(";");
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.typeCode(",");
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("</script>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-
-                this.typeCode("<style scoped>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode(".home-panel {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("vertical-align: center;");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("font-size: 20;");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("margin: 15;");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode(".description-label {");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("margin-bottom: 15;");
-                this.pressButton(KeyEvent.VK_DOWN, true);
-                this.pressButton(KeyEvent.VK_ENTER, true);
-                this.typeCode("</style>");
-                this.pressButton(KeyEvent.VK_ENTER, true);
-            }
-            else{
-                String code = null;
-                if(isValid) {
-                    code = "<template>\n" +
-                            "    <Page class=\"page\">\n" +
-                            "        <ActionBar title=\"Test\" class=\"action-bar\" />\n" +
-                            "        <ScrollView>\n" +
-                            "            <StackLayout class=\"home-panel\">\n" +
-                            "                <!--Add your page content here-->\n" +
-                            "                <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n" +
-                            "            </StackLayout>\n" +
-                            "        </ScrollView>\n" +
-                            "    </Page>\n" +
-                            "</template>\n" +
-                            "\n" +
-                            "<script>\n" +
-                            "    export default {\n" +
-                            "        mounted: function() {\n" +
-                            "            console.log(\"log\");\n" +
-                            "        },\n" +
-                            "        data() {\n" +
-                            "            return {};\n" +
-                            "        },\n" +
-                            "    }\n" +
-                            "</script>\n" +
-                            "\n" +
-                            "<style scoped>\n" +
-                            "    .home-panel {\n" +
-                            "        vertical-align: center;\n" +
-                            "        font-size: 20;\n" +
-                            "        margin: 15;\n" +
-                            "    }\n" +
-                            "\n" +
-                            "    .description-label {\n" +
-                            "        margin-bottom: 15;\n" +
-                            "    }\n" +
-                            "</style>";
-                }
-                else{
-                    code = "<template>\n" +
-                            "    <Page class=\"page\">\n" +
-                            "        <ActionBar title=\"Test\" class=\"action-bar\" />\n" +
-                            "        <ScrollView>\n" +
-                            "            <StackLayout class=\"home-panel\">\n" +
-                            "                <!--Add your page content here-->\n" +
-                            "                <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n" +
-                            "            </StackLayout>\n" +
-                            "        </ScrollView>\n" +
-                            "    </Page>\n" +
-                            "</template>\n" +
-                            "\n" +
-                            "<script>\n" +
-                            "    export default {\n" +
-                            "        mounted: function() {\n" +
-                            "            console.log(\"log\");\n" +
-                            "        },}\n" +
-                            "        data() {\n" +
-                            "            return {};\n" +
-                            "        },\n" +
-                            "    }\n" +
-                            "</script>\n" +
-                            "\n" +
-                            "<style scoped>\n" +
-                            "    .home-panel {\n" +
-                            "        vertical-align: center;\n" +
-                            "        font-size: 20;\n" +
-                            "        margin: 15;\n" +
-                            "    }\n" +
-                            "\n" +
-                            "    .description-label {\n" +
-                            "        margin-bottom: 15;\n" +
-                            "    }\n" +
-                            "</style>";
-                }
-                pasteText(code);
-            }
         }
         if(isValid==false && !this.setupClass.typeOfProject.equals("vue"))
         {
