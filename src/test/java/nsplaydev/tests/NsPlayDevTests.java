@@ -401,53 +401,54 @@ public class NsPlayDevTests extends MobileTest {
             Assert.assertEquals(alert.getText(), "Is camera hardware available: true");
             componentsVisualizationPage.navigate("Ok");
         }
-
-        componentsVisualizationPage.waitForElement(4000);
-        componentsVisualizationPage.navigate("Take Photo");
-        componentsVisualizationPage.waitForElement(6000);
-        if (settings.deviceType == DeviceType.Simulator) {
-            componentsVisualizationPage.navigate("Camera Roll");
+        if (!settings.deviceName.contains("Api29")) {
             componentsVisualizationPage.waitForElement(4000);
-            UIElement photos = find.byText("Photos");
-            new TouchAction(this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 40), (photos.getCenter().y + 40)))).perform();
-            //this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 40, 500);
-            if (this.device.getName().contains("Ipad")) {
-                new TouchAction(this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 80), (photos.getCenter().y + 80)))).perform();
-                //this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 80, 500);
-            }
-            componentsVisualizationPage.waitForElement(2000);
-        } else {
-            if (find.byText("Allow") != null) {
-                componentsVisualizationPage.navigate("Allow");
-            }
-            if (find.byText("Allow all the time") != null) {
-                componentsVisualizationPage.navigate("Allow all the time");
-            }
-            componentsVisualizationPage.waitForElement(2000);
-            if (find.byText("Next") != null) {
-                componentsVisualizationPage.navigate("Next");
-            }
-            componentsVisualizationPage.waitForElement(2000);
-            componentsVisualizationPage.navigateBackPage();
-            componentsVisualizationPage.waitForElement(3000);
-            componentsVisualizationPage.navigate("Ok");
-            componentsVisualizationPage.waitForElement(2000);
             componentsVisualizationPage.navigate("Take Photo");
-            componentsVisualizationPage.waitForElement(3000);
-            if (this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).size() > 0) {
-                this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).get(0).click();
+            componentsVisualizationPage.waitForElement(6000);
+            if (settings.deviceType == DeviceType.Simulator) {
+                componentsVisualizationPage.navigate("Camera Roll");
+                componentsVisualizationPage.waitForElement(4000);
+                UIElement photos = find.byText("Photos");
+                new TouchAction(this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 40), (photos.getCenter().y + 40)))).perform();
+                //this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 40, 500);
+                if (this.device.getName().contains("Ipad")) {
+                    new TouchAction(this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 80), (photos.getCenter().y + 80)))).perform();
+                    //this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 80, 500);
+                }
+                componentsVisualizationPage.waitForElement(2000);
+            } else {
+                if (find.byText("Allow") != null) {
+                    componentsVisualizationPage.navigate("Allow");
+                }
+                if (find.byText("Allow all the time") != null) {
+                    componentsVisualizationPage.navigate("Allow all the time");
+                }
+                componentsVisualizationPage.waitForElement(2000);
+                if (find.byText("Next") != null) {
+                    componentsVisualizationPage.navigate("Next");
+                }
+                componentsVisualizationPage.waitForElement(2000);
+                componentsVisualizationPage.navigateBackPage();
+                componentsVisualizationPage.waitForElement(3000);
+                componentsVisualizationPage.navigate("Ok");
+                componentsVisualizationPage.waitForElement(2000);
+                componentsVisualizationPage.navigate("Take Photo");
+                componentsVisualizationPage.waitForElement(3000);
+                if (this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).size() > 0) {
+                    this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).get(0).click();
+                }
+                if (this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).size() > 0) {
+                    this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).get(0).click();
+                }
+                componentsVisualizationPage.waitForElement(3000);
+                if (this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).size() > 0) {
+                    this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).get(0).click();
+                }
+                if (this.client.driver.findElements(By.xpath("//*[@resource-id=\"com.android.camera:id/btn_done\"]")).size() > 0) {
+                    this.client.driver.findElements(By.xpath("//*[@resource-id=\"com.android.camera:id/btn_done\"]")).get(0).click();
+                }
+                componentsVisualizationPage.waitForElement(2000);
             }
-            if (this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).size() > 0) {
-                this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).get(0).click();
-            }
-            componentsVisualizationPage.waitForElement(3000);
-            if (this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).size() > 0) {
-                this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).get(0).click();
-            }
-            if (this.client.driver.findElements(By.xpath("//*[@resource-id=\"com.android.camera:id/btn_done\"]")).size() > 0) {
-                this.client.driver.findElements(By.xpath("//*[@resource-id=\"com.android.camera:id/btn_done\"]")).get(0).click();
-            }
-            componentsVisualizationPage.waitForElement(2000);
         }
         if (settings.deviceType == DeviceType.Simulator) {
             this.assertScreen("nsplaydev-camera-working-view-ios", this.settings.shortTimeout);
