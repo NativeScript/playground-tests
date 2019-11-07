@@ -257,7 +257,10 @@ public class CodeEditorClass extends BasePage {
         this.deleteAllCode();
         String code = "";
         if (isValid) {
-            code = ".btn {\n" +
+            code = "@import '~@nativescript/theme/css/core.css';\n" +
+                    "@import '~@nativescript/theme/css/blue.css';\n" +
+                    "\n" +
+                    ".btn {\n" +
                     "    font-size: 18;\n" +
                     "}\n" +
                     "\n" +
@@ -269,10 +272,7 @@ public class CodeEditorClass extends BasePage {
                     "\n" +
                     ".description-label{\n" +
                     "    margin-bottom: 15;\n" +
-                    "}\n" +
-                    "\n" +
-                    "@import '~@nativescript/theme/css/core.css';\n" +
-                    "@import '~@nativescript/theme/css/blue.css';\n";
+                    "}\n";
         } else {
             code = ".btn {\n" +
                     "    font-size: 18;\n" +
