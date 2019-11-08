@@ -507,7 +507,12 @@ public class SetupClass extends BasePage {
             buttons.get(buttons.size() - 1).click();
             this.wait(5000);
             this.restoreIosDriver();
-            this.find.byText("Return to Safari").click();
+            if(!this.settings.platformVersion.toString().contains("13.")) {
+                this.find.byText("Return to Safari").click();
+            }
+            else{
+                this.find.byText("Safari").click();
+            }
             if (this.find.byText("Open") != null) {
                 this.find.byText("Open").click();
             }
