@@ -95,6 +95,11 @@ public class NSSyncTests extends MobileTest {
                 this.deviceName = "iPhone 7 12";
 
             }
+            if (this.settings.platformVersion.toString().contains("13.")) {
+                this.deviceName = "iPhone XR 13";
+
+            }
+
         }
         String modelExpected;
         if (settings.deviceType == DeviceType.Emulator) {
