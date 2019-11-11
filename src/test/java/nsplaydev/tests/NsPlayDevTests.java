@@ -412,16 +412,17 @@ public class NsPlayDevTests extends MobileTest {
             componentsVisualizationPage.navigate("Take Photo");
             componentsVisualizationPage.waitForElement(6000);
             if (settings.deviceType == DeviceType.Simulator) {
-                componentsVisualizationPage.navigate("Camera Roll");
+                if(!this.settings.platformVersion.toString().contains("13.")) {
+                    componentsVisualizationPage.navigate("Camera Roll");
+                }
+                else{
+                    this.find.byText("All Photos").click();
+                }
                 componentsVisualizationPage.waitForElement(4000);
                 UIElement photos = find.byText("Photos");
                 new TouchAction(this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 40), (photos.getCenter().y + 40)))).perform();
-                //this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 40, 500);
-                if (this.device.getName().contains("Ipad")) {
-                    new TouchAction(this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 80), (photos.getCenter().y + 80)))).perform();
-                    //this.client.driver.tap(1, photos.getCenter().x, photos.getCenter().y + 80, 500);
-                }
                 componentsVisualizationPage.waitForElement(2000);
+
             } else {
                 if (find.byText("Allow") != null) {
                     componentsVisualizationPage.navigate("Allow");
