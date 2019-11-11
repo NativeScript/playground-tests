@@ -216,6 +216,7 @@ public class NSSyncTests extends MobileTest {
         this.setupClass.wait(5000);
         if (this.setupClass.typeOfProject.equals("vue")) {
             codeEditor.save();
+            this.setupClass.wait(2000);
         } else {
             codeEditor.save("Test");
         }
