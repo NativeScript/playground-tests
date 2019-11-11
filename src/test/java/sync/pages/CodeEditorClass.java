@@ -374,12 +374,12 @@ public class CodeEditorClass extends BasePage {
             String code = null;
             if (isValid) {
                 code = "<template>\n" +
-                        "    <Page class=\"page\">\n" +
-                        "        <ActionBar title=\"Test\" class=\"action-bar\" />\n" +
+                        "    <Page>\n" +
+                        "        <ActionBar title=\"Test\" />\n" +
                         "        <ScrollView>\n" +
                         "            <StackLayout class=\"home-panel\">\n" +
                         "                <!--Add your page content here-->\n" +
-                        "                <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n" +
+                        "                <Label text=\"Testing Label!\" />\n" +
                         "            </StackLayout>\n" +
                         "        </ScrollView>\n" +
                         "    </Page>\n" +
@@ -409,12 +409,12 @@ public class CodeEditorClass extends BasePage {
                         "</style>";
             } else {
                 code = "<template>\n" +
-                        "    <Page class=\"page\">\n" +
-                        "        <ActionBar title=\"Test\" class=\"action-bar\" />\n" +
+                        "    <Page>\n" +
+                        "        <ActionBar title=\"Test\" />\n" +
                         "        <ScrollView>\n" +
                         "            <StackLayout class=\"home-panel\">\n" +
                         "                <!--Add your page content here-->\n" +
-                        "                <Label textWrap=\"true\" text=\"Testing Label!\" class=\"h2 description-label\" />\n" +
+                        "                <Label text=\"Testing Label!\" />\n" +
                         "            </StackLayout>\n" +
                         "        </ScrollView>\n" +
                         "    </Page>\n" +
