@@ -172,6 +172,8 @@ public class NSSyncTests extends MobileTest {
                 "  \"reflect-metadata\": \"0.1.13\",\n" +
                 "  \"rxjs\": \"6.5.3\",\n" +
                 "  \"rxjs-compat\": \"6.5.3\",\n" +
+                "  \"svelte\": \"3.12.1\",\n" +
+                "  \"svelte-native\": \"0.6.1\",\n" +
                 "  \"tns-core-modules\": \"6.2.0\",\n" +
                 "  \"zone.js\": \"0.10.2\"\n" +
                 "}";
