@@ -142,14 +142,14 @@ public class NSSyncTests extends MobileTest {
                 "  \"@angular/platform-browser\": \"8.2.12\",\n" +
                 "  \"@angular/platform-browser-dynamic\": \"8.2.12\",\n" +
                 "  \"@angular/router\": \"8.2.12\",\n" +
-                "  \"@nativescript/angular\": \"8.20.0\",\n" +
-                "  \"@nativescript/core\": \"6.2.0\",\n" +
+                "  \"@nativescript/angular\": \"8.20.1\",\n" +
+                "  \"@nativescript/core\": \"6.2.1\",\n" +
                 "  \"@nativescript/theme\": \"2.2.0\",\n" +
                 "  \"@progress-nativechat/nativescript-nativechat\": \"2.0.4\",\n" +
                 "  \"kinvey-nativescript-sdk\": \"4.2.5\",\n" +
-                "  \"nativescript-accelerometer\": \"2.0.1\",\n" +
-                "  \"nativescript-angular\": \"8.20.0\",\n" +
-                "  \"nativescript-background-http\": \"4.2.0\",\n" +
+                "  \"nativescript-accelerometer\": \"3.0.0\",\n" +
+                "  \"nativescript-angular\": \"8.20.1\",\n" +
+                "  \"nativescript-background-http\": \"4.2.1\",\n" +
                 "  \"nativescript-camera\": \"4.5.0\",\n" +
                 "  \"nativescript-geolocation\": \"5.1.0\",\n" +
                 "  \"nativescript-image\": \"2.2.5\",\n" +
@@ -163,7 +163,7 @@ public class NSSyncTests extends MobileTest {
                 "  \"nativescript-ui-chart\": \"7.0.0\",\n" +
                 "  \"nativescript-ui-dataform\": \"6.0.0\",\n" +
                 "  \"nativescript-ui-gauge\": \"6.0.0\",\n" +
-                "  \"nativescript-ui-listview\": \"8.0.0\",\n" +
+                "  \"nativescript-ui-listview\": \"8.0.1\",\n" +
                 "  \"nativescript-ui-sidedrawer\": \"8.0.0\",\n" +
                 "  \"nativescript-vue\": \"2.4.0\",\n" +
                 "  \"react\": \"16.11.0\",\n" +
@@ -174,7 +174,7 @@ public class NSSyncTests extends MobileTest {
                 "  \"rxjs-compat\": \"6.5.3\",\n" +
                 "  \"svelte\": \"3.12.1\",\n" +
                 "  \"svelte-native\": \"0.6.1\",\n" +
-                "  \"tns-core-modules\": \"6.2.0\",\n" +
+                "  \"tns-core-modules\": \"6.2.1\",\n" +
                 "  \"zone.js\": \"0.10.2\"\n" +
                 "}";
 
