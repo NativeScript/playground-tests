@@ -20,7 +20,7 @@ public class CodeEditorClass extends BasePage {
 
     public CodeEditorClass(SetupClass setupClass) throws AWTException {
         super();
-        setupClass = setupClass;
+        this.setupClass = setupClass;
     }
 
     /**
@@ -306,11 +306,7 @@ public class CodeEditorClass extends BasePage {
         pressButton(KeyEvent.VK_S, KeyEvent.VK_META);
 
         if(waitForChanges!=null) {
-            try {
                 setupClass.waitPreviewAppToLoad(30, waitForChanges);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
         else {
             setupClass.wait(5000);

@@ -34,15 +34,11 @@ public class NSSyncTests extends MobileTest {
         }
 
         setupClass.getScreenShot("BeforeStartOfTests_BeforeNavigateToProject");
-        setupClass.giveFocus();
         setupClass.NavigateToPage(projectURL);
         setupClass.getScreenShot("BeforeStartOfTests_AfterNavigateToProject");
-        setupClass.giveFocus();
         setupClass.GetDeviceLink();
         setupClass.getScreenShot("BeforeStartOfTests_AfterGetDeviceLink");
-        setupClass.giveFocus();
         setupClass.startPreviewAppWithLiveSync();
-        setupClass.giveFocus();
         setupClass.getScreenShot("BeforeStartOfTests_AfterLiveSync");
         codeEditor = new CodeEditorClass(setupClass);
         setupClass.wait(5000);

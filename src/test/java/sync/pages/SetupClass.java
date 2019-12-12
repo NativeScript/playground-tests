@@ -57,9 +57,9 @@ public class SetupClass extends BasePage {
 
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, AWTException {
         super();
-        mobileSettings = mobileSettings;
-        client = client;
-        device = device;
+        this.mobileSettings = mobileSettings;
+        this.client = client;
+        this.device = device;
         sikuli = new Sikuli(device, mobileSettings.testAppName + "-map", client, imageUtils);
         try {
             robot = new Robot();
@@ -292,7 +292,7 @@ public class SetupClass extends BasePage {
         return textFound;
     }
 
-    public void waitTextToBeShown(int numberOfTries, String object) throws InterruptedException {
+    public void waitTextToBeShown(int numberOfTries, String object)  {
         while (true) {
             if (settings.deviceType == DeviceType.Simulator && (settings.platformVersion.toString().contains("10.") || settings.platformVersion.toString().contains("9."))) {
                 if (sikuli.waitForImage(object, 0.7d, 2)) {
@@ -318,7 +318,7 @@ public class SetupClass extends BasePage {
         }
     }
 
-    public void waitPreviewAppToLoad(int numberOfTries, String object) throws InterruptedException {
+    public void waitPreviewAppToLoad(int numberOfTries, String object) {
         waitTextToBeShown(numberOfTries, object);
         if (settings.deviceType == DeviceType.Simulator && (settings.platformVersion.toString().contains("10.") || settings.platformVersion.toString().contains("9."))) {
             UIRectangle home = sikuli.findImageOnScreen(object, 0.9d);
@@ -329,8 +329,6 @@ public class SetupClass extends BasePage {
             Assert.assertNotNull(home, "Preview app not synced! Item missing " + object);
             log.info("Preview app synced! The item " + object + " is found!");
         }
-
-
     }
 
     public void wait(int time) {
@@ -339,11 +337,6 @@ public class SetupClass extends BasePage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public void giveFocus() throws InterruptedException {
-        //browserAPP.focus();
-        //wait(2000);
     }
 
     public String getComputerName() {
