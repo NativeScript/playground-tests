@@ -20,12 +20,12 @@ public class NsPlayDevTests extends MobileTest {
 
     @Test(description = "Verify home page looks OK.", groups = {"android", "ios"})
     public void test_01_components_page_looks_ok() throws Exception {
-        synchronized (this.wait) {
-            this.wait.wait(15000);
+        synchronized (wait) {
+            wait.wait(15000);
         }
 
         ComponentsPage componentsPage = new ComponentsPage(false);
-        this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-home-view", settings.shortTimeout);
     }
 
     @Test(description = "Verify Button Visualization page looks OK.", groups = {"android", "ios"})
@@ -33,7 +33,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsPage componentsPage = new ComponentsPage(false);
         componentsPage.navigate("Button");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Button");
-        this.assertScreen("nsplaydev-button-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-button-view", settings.shortTimeout);
     }
 
     @Test(description = "Verify Button Deitals page looks OK.", groups = {"android", "ios"})
@@ -41,7 +41,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Button");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        this.assertScreen("nsplaydev-button-details-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-button-details-view", settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("Button");
         componentsVisualizationPage2.navigateBackPage();
@@ -50,14 +50,14 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify Image Visualization page looks OK.", groups = {"android", "ios"})
     public void test_04_image_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
-        this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-home-view", settings.shortTimeout);
         componentsPage.navigate("Image");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Image");
         if (settings.deviceName.contains("Api19")) {
-            this.assertScreen("nsplaydev-image-view_api19", this.settings.shortTimeout);
+            assertScreen("nsplaydev-image-view_api19", settings.shortTimeout);
 
         } else {
-            this.assertScreen("nsplaydev-image-view", this.settings.shortTimeout);
+            assertScreen("nsplaydev-image-view", settings.shortTimeout);
         }
     }
 
@@ -66,7 +66,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Image");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        this.assertScreen("nsplaydev-image-details-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-image-details-view", settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("Image");
         componentsVisualizationPage2.navigateBackPage();
@@ -75,10 +75,10 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify Label Visualization page looks OK.", groups = {"android", "ios"})
     public void test_06_label_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
-        this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-home-view", settings.shortTimeout);
         componentsPage.navigate("Label");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Label");
-        this.assertScreen("nsplaydev-label-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-label-view", settings.shortTimeout);
     }
 
     @Test(description = "Verify Label Deitals page looks OK.", groups = {"android", "ios"})
@@ -86,7 +86,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Label");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        this.assertScreen("nsplaydev-label-details-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-label-details-view", settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("Label");
         componentsVisualizationPage2.navigateBackPage();
@@ -95,10 +95,10 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify Switch Visualization page looks OK.", groups = {"android", "ios"})
     public void test_08_switch_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
-        this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-home-view", settings.shortTimeout);
         componentsPage.navigate("Switch");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Switch");
-        this.assertScreen("nsplaydev-switch-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-switch-view", settings.shortTimeout);
     }
 
     @Test(description = "Verify Switch Deitals page looks OK.", groups = {"android", "ios"})
@@ -106,7 +106,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Switch");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        this.assertScreen("nsplaydev-switch-details-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-switch-details-view", settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("Switch");
         componentsVisualizationPage2.navigateBackPage();
@@ -115,10 +115,10 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify Slider Visualization page looks OK.", groups = {"android", "ios"})
     public void test_10_slider_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
-        this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-home-view", settings.shortTimeout);
         componentsPage.navigate("Slider");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Slider");
-        this.assertScreen("nsplaydev-slider-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-slider-view", settings.shortTimeout);
     }
 
     @Test(description = "Verify Slider Deitals page looks OK.", groups = {"android", "ios"})
@@ -126,7 +126,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Slider");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        this.assertScreen("nsplaydev-slider-details-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-slider-details-view", settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("Slider");
         componentsVisualizationPage2.navigateBackPage();
@@ -135,10 +135,10 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify TextField Visualization page looks OK.", groups = {"android", "ios"})
     public void test_12_textfield_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
-        this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-home-view", settings.shortTimeout);
         componentsPage.navigate("TextField");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("TextField");
-        this.assertScreen("nsplaydev-textfield-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-textfield-view", settings.shortTimeout);
     }
 
     @Test(description = "Verify TextField Deitals page looks OK.", groups = {"android", "ios"})
@@ -146,7 +146,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("TextField");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        this.assertScreen("nsplaydev-textfield-details-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-textfield-details-view", settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("TextField");
         componentsVisualizationPage2.navigateBackPage();
@@ -155,10 +155,10 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify TextView Visualization page looks OK.", groups = {"android", "ios"})
     public void test_14_textview_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(false);
-        this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-home-view", settings.shortTimeout);
         componentsPage.navigate("TextView");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("TextView");
-        this.assertScreen("nsplaydev-textview-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-textview-view", settings.shortTimeout);
     }
 
     @Test(description = "Verify TextView Deitals page looks OK.", groups = {"android", "ios"})
@@ -166,7 +166,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("TextView");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        this.assertScreen("nsplaydev-textview-details-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-textview-details-view", settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("TextView");
         componentsVisualizationPage2.navigateBackPage();
@@ -177,14 +177,14 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsPage componentsPage;
         if (settings.deviceName.contains("Api26")) {
             componentsPage = new ComponentsPage(true);
-            this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout, 20);
+            assertScreen("nsplaydev-scrolled-home-view", settings.shortTimeout, 20);
         } else {
             componentsPage = new ComponentsPage(false);
-            this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+            assertScreen("nsplaydev-home-view", settings.shortTimeout);
         }
         componentsPage.navigate("DatePicker");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("DatePicker");
-        this.assertScreen("nsplaydev-datepicker-view", this.settings.shortTimeout, 0.1);
+        assertScreen("nsplaydev-datepicker-view", settings.shortTimeout, 0.1);
     }
 
     @Test(description = "Verify DatePicker Deitals page looks OK.", groups = {"android", "ios"})
@@ -192,7 +192,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("DatePicker");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        this.assertScreen("nsplaydev-datepicker-details-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-datepicker-details-view", settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("DatePicker");
         componentsVisualizationPage2.navigateBackPage();
@@ -202,21 +202,21 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify Scrolled Home page looks OK.", groups = {"android", "ios"})
     public void test_18_scrolled_home_page_looks_ok() throws Exception {
         if (settings.deviceName.contains("Api26")) {
-            this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout, 20);
+            assertScreen("nsplaydev-scrolled-home-view", settings.shortTimeout, 20);
         } else {
-            this.assertScreen("nsplaydev-home-view", this.settings.shortTimeout);
+            assertScreen("nsplaydev-home-view", settings.shortTimeout);
         }
         ComponentsPage componentsPage = new ComponentsPage(true);
-        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout, 20);
+        assertScreen("nsplaydev-scrolled-home-view", settings.shortTimeout, 20);
     }
 
     @Test(description = "Verify Chart Visualization page looks OK.", groups = {"android", "ios"})
     public void test_19_chart_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(true);
-        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout, 20);
+        assertScreen("nsplaydev-scrolled-home-view", settings.shortTimeout, 20);
         componentsPage.navigate("Chart");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Chart");
-        this.assertScreen("nsplaydev-chart-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-chart-view", settings.shortTimeout);
     }
 
     @Test(description = "Verify Chart Deitals page looks OK.", groups = {"android", "ios"})
@@ -224,7 +224,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Chart");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        this.assertScreen("nsplaydev-chart-details-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-chart-details-view", settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("Chart");
         componentsVisualizationPage2.navigateBackPage();
@@ -233,15 +233,15 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify ListView Visualization page looks OK.", groups = {"android", "ios"})
     public void test_21_listview_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(true);
-        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout, 20);
+        assertScreen("nsplaydev-scrolled-home-view", settings.shortTimeout, 20);
         componentsPage.navigate("ListView");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("ListView");
         componentsPage.waitForElement(8000);
         if (settings.deviceName.contains("Api19")) {
-            this.assertScreen("nsplaydev-listview-view_api19", this.settings.shortTimeout);
+            assertScreen("nsplaydev-listview-view_api19", settings.shortTimeout);
 
         } else {
-            this.assertScreen("nsplaydev-listview-view", this.settings.shortTimeout);
+            assertScreen("nsplaydev-listview-view", settings.shortTimeout);
         }
     }
 
@@ -250,7 +250,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("ListView");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        this.assertScreen("nsplaydev-listview-details-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-listview-details-view", settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("ListView");
         componentsVisualizationPage2.navigateBackPage();
@@ -259,20 +259,20 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify Accelerometer Visualization page looks OK.", groups = {"android", "ios"})
     public void test_23_accelerometer_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(true);
-        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout, 20);
+        assertScreen("nsplaydev-scrolled-home-view", settings.shortTimeout, 20);
         componentsPage.navigate("Accelerometer");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Accelerometer");
-        this.assertScreen("nsplaydev-accelerometer-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-accelerometer-view", settings.shortTimeout);
     }
 
     @Test(description = "Verify Accelerometer is working.", groups = {"android", "ios"})
     public void test_24_accelerometer_is_working() throws Exception {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Accelerometer");
         if (settings.deviceType == DeviceType.Simulator) {
-            this.assertScreen("nsplaydev-accelerometer-view", this.settings.shortTimeout, 10);
+            assertScreen("nsplaydev-accelerometer-view", settings.shortTimeout, 10);
         } else {
             componentsVisualizationPage.navigate("Start Accelerometer");
-            this.assertScreen("nsplaydev-accelerometer-working-view", this.settings.shortTimeout, 10);
+            assertScreen("nsplaydev-accelerometer-working-view", settings.shortTimeout, 10);
         }
     }
 
@@ -281,7 +281,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Accelerometer");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        this.assertScreen("nsplaydev-accelerometer-details-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-accelerometer-details-view", settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("Accelerometer");
         componentsVisualizationPage2.navigateBackPage();
@@ -290,10 +290,10 @@ public class NsPlayDevTests extends MobileTest {
     @Test(description = "Verify Location Visualization page looks OK.", groups = {"android", "ios"})
     public void test_26_location_page_looks_ok() throws Exception {
         ComponentsPage componentsPage = new ComponentsPage(true);
-        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout, 20);
+        assertScreen("nsplaydev-scrolled-home-view", settings.shortTimeout, 20);
         componentsPage.navigate("Location");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Location");
-        this.assertScreen("nsplaydev-location-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-location-view", settings.shortTimeout);
     }
 
     @Test(description = "Verify Location is working.", groups = {"android", "ios"})
@@ -312,10 +312,10 @@ public class NsPlayDevTests extends MobileTest {
                 else {
                     try {
                         if (ExpectedConditions.alertIsPresent() != null) {
-                            this.client.driver.switchTo().alert().accept();
+                            client.driver.switchTo().alert().accept();
                         }
                     } catch (Exception e) {
-                        this.log.error(e.getMessage());
+                        log.error(e.getMessage());
                     }
                 }
             }
@@ -329,7 +329,7 @@ public class NsPlayDevTests extends MobileTest {
 
         }
         componentsVisualizationPage.waitForElement(4000);
-        this.assertScreen("nsplaydev-location-working-view", this.settings.shortTimeout, 20);
+        assertScreen("nsplaydev-location-working-view", settings.shortTimeout, 20);
     }
 
     @Test(description = "Verify Location Deitals page looks OK.", groups = {"android", "ios"})
@@ -339,9 +339,9 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
         if (settings.deviceName.contains("Api24")) {
             // Temporary image check for api24 till find workaround for Google Play services
-            this.assertScreen("nsplaydev-location-details-view_temp", this.settings.shortTimeout);
+            assertScreen("nsplaydev-location-details-view_temp", settings.shortTimeout);
         } else {
-            this.assertScreen("nsplaydev-location-details-view", this.settings.shortTimeout);
+            assertScreen("nsplaydev-location-details-view", settings.shortTimeout);
         }
 
         componentsDetailsPage.navigateBackPage();
@@ -351,12 +351,12 @@ public class NsPlayDevTests extends MobileTest {
 
     @Test(description = "Verify Camera Visualization page looks OK.", groups = {"android", "ios"})
     public void test_29_camera_page_looks_ok() throws Exception {
-        this.gestures.scrollToElement(SwipeElementDirection.DOWN, "Camera", 1);
+        gestures.scrollToElement(SwipeElementDirection.DOWN, "Camera", 1);
         ComponentsPage componentsPage = new ComponentsPage(true);
-        this.assertScreen("nsplaydev-scrolled-home-view", this.settings.shortTimeout, 20);
+        assertScreen("nsplaydev-scrolled-home-view", settings.shortTimeout, 20);
         componentsPage.navigate("Camera");
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Camera");
-        this.assertScreen("nsplaydev-camera-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-camera-view", settings.shortTimeout);
     }
 
     @Test(description = "Verify Camera is working.", groups = {"android", "ios"})
@@ -367,18 +367,18 @@ public class NsPlayDevTests extends MobileTest {
         if (settings.deviceType == DeviceType.Simulator) {
             try {
                 if (ExpectedConditions.alertIsPresent() != null) {
-                    this.client.driver.switchTo().alert().accept();
+                    client.driver.switchTo().alert().accept();
                 }
             } catch (Exception e) {
-                this.log.error(e.getMessage());
+                log.error(e.getMessage());
             }
             componentsVisualizationPage.waitForElement(10000);
             try {
                 if (ExpectedConditions.alertIsPresent() != null) {
-                    this.client.driver.switchTo().alert().accept();
+                    client.driver.switchTo().alert().accept();
                 }
             } catch (Exception e) {
-                this.log.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
             if (find.byText("Allow") != null) {
@@ -393,14 +393,14 @@ public class NsPlayDevTests extends MobileTest {
         componentsVisualizationPage.navigate("Check for camera");
         componentsVisualizationPage.waitForElement(2000);
         if (settings.deviceType == DeviceType.Simulator) {
-            Assert.assertEquals(this.client.driver.switchTo().alert().getText(), "Alert\n" + "Is camera hardware available: false");
+            Assert.assertEquals(client.driver.switchTo().alert().getText(), "Alert\n" + "Is camera hardware available: false");
 
             try {
                 if (ExpectedConditions.alertIsPresent() != null) {
-                    this.client.driver.switchTo().alert().accept();
+                    client.driver.switchTo().alert().accept();
                 }
             } catch (Exception e) {
-                this.log.error(e.getMessage());
+                log.error(e.getMessage());
             }
         } else {
             UIElement alert = find.byTextContains("camera hardware available");
@@ -412,15 +412,15 @@ public class NsPlayDevTests extends MobileTest {
             componentsVisualizationPage.navigate("Take Photo");
             componentsVisualizationPage.waitForElement(6000);
             if (settings.deviceType == DeviceType.Simulator) {
-                if(!this.settings.platformVersion.toString().contains("13.")) {
+                if(!settings.platformVersion.toString().contains("13.")) {
                     componentsVisualizationPage.navigate("Camera Roll");
                 }
                 else{
-                    this.find.byText("All Photos").click();
+                    find.byText("All Photos").click();
                 }
                 componentsVisualizationPage.waitForElement(4000);
                 UIElement photos = find.byText("Photos");
-                new TouchAction(this.client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 40), (photos.getCenter().y + 40)))).perform();
+                new TouchAction(client.driver).tap((new PointOption().withCoordinates((photos.getCenter().x + 40), (photos.getCenter().y + 40)))).perform();
                 componentsVisualizationPage.waitForElement(2000);
 
             } else {
@@ -441,27 +441,27 @@ public class NsPlayDevTests extends MobileTest {
                 componentsVisualizationPage.waitForElement(2000);
                 componentsVisualizationPage.navigate("Take Photo");
                 componentsVisualizationPage.waitForElement(3000);
-                if (this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).size() > 0) {
-                    this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).get(0).click();
+                if (client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).size() > 0) {
+                    client.driver.findElements(By.xpath("//*[@content-desc='Shutter']")).get(0).click();
                 }
-                if (this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).size() > 0) {
-                    this.client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).get(0).click();
+                if (client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).size() > 0) {
+                    client.driver.findElements(By.xpath("//*[@content-desc='Shutter button']")).get(0).click();
                 }
                 componentsVisualizationPage.waitForElement(3000);
-                if (this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).size() > 0) {
-                    this.client.driver.findElements(By.xpath("//*[@content-desc='Done']")).get(0).click();
+                if (client.driver.findElements(By.xpath("//*[@content-desc='Done']")).size() > 0) {
+                    client.driver.findElements(By.xpath("//*[@content-desc='Done']")).get(0).click();
                 }
-                if (this.client.driver.findElements(By.xpath("//*[@resource-id=\"com.android.camera:id/btn_done\"]")).size() > 0) {
-                    this.client.driver.findElements(By.xpath("//*[@resource-id=\"com.android.camera:id/btn_done\"]")).get(0).click();
+                if (client.driver.findElements(By.xpath("//*[@resource-id=\"com.android.camera:id/btn_done\"]")).size() > 0) {
+                    client.driver.findElements(By.xpath("//*[@resource-id=\"com.android.camera:id/btn_done\"]")).get(0).click();
                 }
                 componentsVisualizationPage.waitForElement(2000);
             }
         }
         if (settings.deviceType == DeviceType.Simulator) {
-            this.assertScreen("nsplaydev-camera-working-view-ios", this.settings.shortTimeout);
+            assertScreen("nsplaydev-camera-working-view-ios", settings.shortTimeout);
         } else {
             if (!settings.deviceName.contains("Api29")) {
-                this.assertScreen("nsplaydev-camera-working-view-android", this.settings.shortTimeout, 44);
+                assertScreen("nsplaydev-camera-working-view-android", settings.shortTimeout, 44);
             }
 
         }
@@ -472,7 +472,7 @@ public class NsPlayDevTests extends MobileTest {
         ComponentsVisualizationPage componentsVisualizationPage = new ComponentsVisualizationPage("Camera");
         componentsVisualizationPage.navigate("Details");
         ComponentsDetailsPage componentsDetailsPage = new ComponentsDetailsPage();
-        this.assertScreen("nsplaydev-camera-details-view", this.settings.shortTimeout);
+        assertScreen("nsplaydev-camera-details-view", settings.shortTimeout);
         componentsDetailsPage.navigateBackPage();
         ComponentsVisualizationPage componentsVisualizationPage2 = new ComponentsVisualizationPage("Camera");
         componentsVisualizationPage2.navigateBackPage();

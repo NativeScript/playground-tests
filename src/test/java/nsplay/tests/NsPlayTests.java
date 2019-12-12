@@ -16,11 +16,11 @@ public class NsPlayTests extends MobileTest {
 
     @Test(description = "Verify scan page looks OK.", groups = {"android", "ios"})
     public void test_01_scan_page_looks_ok() throws Exception {
-        synchronized(this.wait) {
-            this.wait.wait(10000);
+        synchronized(wait) {
+            wait.wait(10000);
         }
         ScanPage scanPage = new ScanPage();
-        this.assertScreen("nsplay-home-view", this.settings.shortTimeout);
+        assertScreen("nsplay-home-view", settings.shortTimeout);
     }
 
     @Test(description = "Verify details page looks OK.", groups = {"android", "ios"})
@@ -30,7 +30,7 @@ public class NsPlayTests extends MobileTest {
         scanPage.waitForElement(9000);
         if(settings.deviceType == DeviceType.Simulator)
         {
-            this.assertScreen("nsplay-qr-ios-view", this.settings.shortTimeout);
+            assertScreen("nsplay-qr-ios-view", settings.shortTimeout);
             scanPage.navigate("Close");
 
         }
@@ -51,17 +51,17 @@ public class NsPlayTests extends MobileTest {
                 scanPage.navigate("Allow");
             }
             QRPage detailsPage = new QRPage();
-            this.assertScreen("nsplay-qr-android-emulator-view", this.settings.defaultTimeout,50.0);
+            assertScreen("nsplay-qr-android-emulator-view", settings.defaultTimeout,50.0);
             detailsPage.navigateBack();
             scanPage.navigate("Scan QR code");
             scanPage.waitForElement(9000);
-            this.assertScreen("nsplay-qr-android-emulator-view", this.settings.defaultTimeout,50.0);
+            assertScreen("nsplay-qr-android-emulator-view", settings.defaultTimeout,50.0);
 
         }
         else
         {
             QRPage detailsPage = new QRPage();
-            this.assertScreen("nsplay-qr-view", this.settings.shortTimeout);
+            assertScreen("nsplay-qr-view", settings.shortTimeout);
         }
     }
 
@@ -75,14 +75,14 @@ public class NsPlayTests extends MobileTest {
             detailsPage.navigateBack();
         }
         InfoPage scanPage = new InfoPage();
-        this.assertScreen("nsplay-info-view", this.settings.shortTimeout);
+        assertScreen("nsplay-info-view", settings.shortTimeout);
         if(settings.deviceType == DeviceType.Emulator)
         {
             scanPage.scrollDown();
             scanPage.scrollDown();
             scanPage.scrollDown();
             scanPage.scrollDown();
-            this.assertScreen("nsplay-info-view-scrolled-emulator", this.settings.shortTimeout, 1.00);
+            assertScreen("nsplay-info-view-scrolled-emulator", settings.shortTimeout, 1.00);
         }
 
     }
@@ -90,7 +90,7 @@ public class NsPlayTests extends MobileTest {
     @Test(description = "Verify web nativescript page looks OK.", groups = { "iOS"})
     public void test_04_WebNativescript_page_looks_ok() throws Exception {
         ScanPage scanPage = new ScanPage();
-        UIElement scan = this.find.byText("Scan");
+        UIElement scan = find.byText("Scan");
         if(scan!=null)
         {
             scan.click();
@@ -130,11 +130,11 @@ public class NsPlayTests extends MobileTest {
 
         }
         if(settings.deviceName.contains("ios11")) {
-            synchronized(this.wait) {
-                this.wait.wait(20000);
+            synchronized(wait) {
+                wait.wait(20000);
             }
         }
         WebPage webPage = new WebPage();
-        this.assertScreen("nsplay-opened-history-element", this.settings.shortTimeout,25.0);
+        assertScreen("nsplay-opened-history-element", settings.shortTimeout,25.0);
     }
 }

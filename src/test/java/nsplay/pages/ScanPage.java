@@ -8,37 +8,37 @@ public class ScanPage extends BasePage {
 
     public ScanPage() {
         super();
-        UIElement browse = this.wait.waitForVisible(this.locators.findByTextLocator("Scan", true));
+        UIElement browse = wait.waitForVisible(locators.findByTextLocator("Scan", true));
         Assert.assertNotNull(browse, "Scan page not loaded!");
-        this.log.info("Scan page loaded.");
+        log.info("Scan page loaded.");
     }
 
     /**
      * Verify home page loaded.
      */
     public void navigate(String button) {
-        this.find.byText(button).click();
-        this.log.info("Navigate to " + button);
+        find.byText(button).click();
+        log.info("Navigate to " + button);
     }
 
     public boolean checkIfElementisShown(String elementText) {
         boolean isElementFound = false;
-        UIElement element = this.find.byText(elementText);
+        UIElement element = find.byText(elementText);
         if(element != null)
         {
             isElementFound = true;
-            this.log.info("Item " + elementText + " found!");
+            log.info("Item " + elementText + " found!");
         }
         else
         {
-            this.log.info("Item " + elementText + " not found!");
+            log.info("Item " + elementText + " not found!");
         }
         return isElementFound;
     }
 
     public void waitForElement(int time) throws InterruptedException {
-        synchronized(this.wait) {
-            this.wait.wait(time);
+        synchronized(wait) {
+            wait.wait(time);
         }
     }
 }

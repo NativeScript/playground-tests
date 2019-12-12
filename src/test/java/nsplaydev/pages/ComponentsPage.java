@@ -14,47 +14,47 @@ public class ComponentsPage extends BasePage {
     public ComponentsPage(boolean isScrolled) throws InterruptedException {
         super();
         UIElement browse = null;
-        UIElement detailsElement = this.find.byText("Details");
+        UIElement detailsElement = find.byText("Details");
         if (detailsElement != null) {
             detailsElement = null;
-            this.navigateBack();
-            this.waitForElement(1000);
-            detailsElement = this.find.byText("Details");
+            navigateBack();
+            waitForElement(1000);
+            detailsElement = find.byText("Details");
             if (detailsElement != null) {
                 detailsElement = null;
-                this.navigateBack();
-                this.waitForElement(1000);
-                browse = this.find.byText("Components");
+                navigateBack();
+                waitForElement(1000);
+                browse = find.byText("Components");
             } else {
-                browse = this.find.byText("Components");
+                browse = find.byText("Components");
             }
         } else {
-            browse = this.wait.waitForVisible(this.locators.findByTextLocator("Components", true));
+            browse = wait.waitForVisible(locators.findByTextLocator("Components", true));
         }
 
         if (isScrolled) {
-            UIElement location = this.find.byText("Camera");
+            UIElement location = find.byText("Camera");
             if (location == null) {
-                this.scrollDown();
-                location = this.find.byText("Camera");
+                scrollDown();
+                location = find.byText("Camera");
                 if (location == null) {
-                    this.scrollDown();
-                    location = this.find.byText("Camera");
+                    scrollDown();
+                    location = find.byText("Camera");
                     if (location == null) {
-                        this.scrollDown();
-                        location = this.find.byText("Camera");
+                        scrollDown();
+                        location = find.byText("Camera");
                         if (location == null) {
-                            this.scrollDown();
-                            location = this.find.byText("Camera");
+                            scrollDown();
+                            location = find.byText("Camera");
                             if (location == null) {
-                                this.scrollDown();
-                                location = this.find.byText("Camera");
+                                scrollDown();
+                                location = find.byText("Camera");
                                 if (location == null) {
-                                    this.scrollDown();
-                                    location = this.find.byText("Camera");
+                                    scrollDown();
+                                    location = find.byText("Camera");
                                     if (location == null) {
-                                        this.scrollDown();
-                                        location = this.find.byText("Camera");
+                                        scrollDown();
+                                        location = find.byText("Camera");
                                     }
                                 }
                             }
@@ -62,11 +62,11 @@ public class ComponentsPage extends BasePage {
                     }
                 }
             }
-            location = this.find.byText("Camera");
+            location = find.byText("Camera");
             Assert.assertNotNull(location, "Page Not Scrolled correctly!");
         }
         Assert.assertNotNull(browse, "Components page not loaded!");
-        this.log.info("Components page loaded.");
+        log.info("Components page loaded.");
     }
 
     /**
@@ -74,38 +74,38 @@ public class ComponentsPage extends BasePage {
      */
     public void navigate(String button) throws InterruptedException {
 
-        UIElement buttonToClick = this.find.byText(button);
+        UIElement buttonToClick = find.byText(button);
         if (buttonToClick != null) {
-            new TouchAction(this.client.driver).tap((new PointOption().withCoordinates((buttonToClick.getCenter().x), (buttonToClick.getCenter().y)))).perform();
-            //this.client.driver.tap(1, buttonToClick.getCenter().x, buttonToClick.getCenter().y, 500);
-            //new TouchAction((MobileDriver) this.client.driver).tap((buttonToClick.getCenter().x), (buttonToClick.getCenter().y)).perform();
-            this.log.info("Navigate to " + button);
+            new TouchAction(client.driver).tap((new PointOption().withCoordinates((buttonToClick.getCenter().x), (buttonToClick.getCenter().y)))).perform();
+            //client.driver.tap(1, buttonToClick.getCenter().x, buttonToClick.getCenter().y, 500);
+            //new TouchAction((MobileDriver) client.driver).tap((buttonToClick.getCenter().x), (buttonToClick.getCenter().y)).perform();
+            log.info("Navigate to " + button);
         } else {
-            this.log.info("Element " + button + " not found! Not able to click it!");
+            log.info("Element " + button + " not found! Not able to click it!");
         }
 
     }
 
     public boolean checkIfElementisShown(String elementText) {
         boolean isElementFound = false;
-        UIElement element = this.find.byText(elementText);
+        UIElement element = find.byText(elementText);
         if (element != null) {
             isElementFound = true;
-            this.log.info("Item " + elementText + " found!");
+            log.info("Item " + elementText + " found!");
         } else {
-            this.log.info("Item " + elementText + " not found!");
+            log.info("Item " + elementText + " not found!");
         }
         return isElementFound;
     }
 
     public void waitForElement(int time) throws InterruptedException {
-        synchronized (this.wait) {
-            this.wait.wait(time);
+        synchronized (wait) {
+            wait.wait(time);
         }
     }
 
     public void scrollDown() {
-        this.gestures.scrollToElement(SwipeElementDirection.DOWN, "Camera", 1);
-        this.log.info("Scroll Down");
+        gestures.scrollToElement(SwipeElementDirection.DOWN, "Camera", 1);
+        log.info("Scroll Down");
     }
 }

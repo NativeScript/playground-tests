@@ -8,11 +8,11 @@ public class WebPage extends BasePage {
 
     public WebPage() throws InterruptedException {
         super();
-        synchronized(this.wait) {
-            this.wait.wait(30000);
+        synchronized(wait) {
+            wait.wait(30000);
         }
 
-        this.log.info("Web page loaded.");
+        log.info("Web page loaded.");
     }
 
     /**

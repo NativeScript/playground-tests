@@ -11,19 +11,19 @@ public class QRPage extends BasePage {
         super();
         UIElement browse = null;
         if (settings.deviceType == DeviceType.iOS) {
-            browse = this.wait.waitForVisible(this.locators.findByTextLocator("Close", true));
+            browse = wait.waitForVisible(locators.findByTextLocator("Close", true));
         } else if (settings.deviceType == DeviceType.Android) {
-            browse = this.wait.waitForVisible(this.locators.findByTextLocator("Close", true));
+            browse = wait.waitForVisible(locators.findByTextLocator("Close", true));
         } else if (settings.deviceType == DeviceType.Emulator) {
-            browse = this.wait.waitForVisible(this.locators.findByTextLocator("Place a barcode inside the viewfinder rectangle to scan it.", true));
+            browse = wait.waitForVisible(locators.findByTextLocator("Place a barcode inside the viewfinder rectangle to scan it.", true));
         }
 
         Assert.assertNotNull(browse, "QRPage page not loaded!");
-        this.log.info("QRPage page loaded.");
+        log.info("QRPage page loaded.");
     }
 
     public void navigateBack(String button) {
-        this.navigateBack();
-        this.log.info("Navigate Back");
+        navigateBack();
+        log.info("Navigate Back");
     }
 }

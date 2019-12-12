@@ -20,15 +20,15 @@ public class CodeEditorClass extends BasePage {
 
     public CodeEditorClass(SetupClass setupClass) throws AWTException {
         super();
-        this.setupClass = setupClass;
+        setupClass = setupClass;
     }
 
     /**
      * Verify home page loaded.
      */
     public void navigate(String button) {
-        this.find.byText(button).click();
-        this.log.info("Navigate to " + button);
+        find.byText(button).click();
+        log.info("Navigate to " + button);
     }
 
 
@@ -99,24 +99,24 @@ public class CodeEditorClass extends BasePage {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
         pressButton(KeyEvent.VK_V, KeyEvent.VK_META, true);
-        this.setupClass.wait(1000);
+        setupClass.wait(1000);
     }
 
     public void deleteAllCode()
     {
-        this.setupClass.wait(1000);
-        this.setupClass.driver.findElements(By.tagName("monaco-editor")).get(0).click();
-        this.setupClass.wait(1000);
+        setupClass.wait(1000);
+        setupClass.driver.findElements(By.tagName("monaco-editor")).get(0).click();
+        setupClass.wait(1000);
         pressButton(KeyEvent.VK_A, KeyEvent.VK_META);
-        this.setupClass.wait(1000);
+        setupClass.wait(1000);
         pressButton(KeyEvent.VK_DELETE);
-        this.setupClass.wait(1000);
+        setupClass.wait(1000);
 
     }
 
     public void typeXMLOrHTMLCode(boolean isValid) {
-        this.deleteAllCode();
-        if (this.setupClass.typeOfProject.equals("js") || this.setupClass.typeOfProject.equals("tsc")) {
+        deleteAllCode();
+        if (setupClass.typeOfProject.equals("js") || setupClass.typeOfProject.equals("tsc")) {
             String code = "";
             if (isValid) {
                 code = "<Page loaded=\"pageLoaded\" xmlns=\"http://www.nativescript.org/tns.xsd\">\n" +
@@ -146,7 +146,7 @@ public class CodeEditorClass extends BasePage {
             pasteText(code);
             pressButton(KeyEvent.VK_ENTER, true);
         }
-        if (this.setupClass.typeOfProject.equals("ng")) {
+        if (setupClass.typeOfProject.equals("ng")) {
 
 
             String code = "";
@@ -178,7 +178,7 @@ public class CodeEditorClass extends BasePage {
             pasteText(code);
         }
 
-        if (this.setupClass.typeOfProject.equals("vue")) {
+        if (setupClass.typeOfProject.equals("vue")) {
             String code = "";
             if (isValid) {
                 code = "<template>\n" +
@@ -249,12 +249,12 @@ public class CodeEditorClass extends BasePage {
             pasteText(code);
 
         }
-        this.setupClass.wait(2000);
+        setupClass.wait(2000);
     }
 
     public void typeCSSCode(boolean isValid) {
 
-        this.deleteAllCode();
+        deleteAllCode();
         String code = "";
         if (isValid) {
             code = "@import '~@nativescript/theme/css/core.css';\n" +
@@ -294,32 +294,32 @@ public class CodeEditorClass extends BasePage {
 
         pasteText(code);
 
-        this.setupClass.wait(2000);
+        setupClass.wait(2000);
     }
 
     public void save() {
-        this.save(null);
+        save(null);
     }
 
     public void save(String waitForChanges) {
-        this.setupClass.wait(1500);
+        setupClass.wait(1500);
         pressButton(KeyEvent.VK_S, KeyEvent.VK_META);
 
         if(waitForChanges!=null) {
             try {
-                this.setupClass.waitPreviewAppToLoad(30, waitForChanges);
+                setupClass.waitPreviewAppToLoad(30, waitForChanges);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         else {
-            this.setupClass.wait(5000);
+            setupClass.wait(5000);
         }
     }
 
     public void typeJSTSCode(boolean isValid) {
-        this.deleteAllCode();
-        if(this.setupClass.typeOfProject.equals("ng")) {
+        deleteAllCode();
+        if(setupClass.typeOfProject.equals("ng")) {
             String code = "import { Component, OnInit } from \"@angular/core\";\n" +
                     "\n" +
                     "@Component({\n" +
@@ -341,7 +341,7 @@ public class CodeEditorClass extends BasePage {
             pasteText(code);
 
         }
-        else if(this.setupClass.typeOfProject.equals("js")) {
+        else if(setupClass.typeOfProject.equals("js")) {
 
             String code = "var frameModule = require(\"tns-core-modules/ui/frame\");\n" +
                     "var HomeViewModel = require(\"./home-view-model\");\n" +
@@ -358,7 +358,7 @@ public class CodeEditorClass extends BasePage {
             pasteText(code);
 
         }
-        else if(this.setupClass.typeOfProject.equals("tsc")) {
+        else if(setupClass.typeOfProject.equals("tsc")) {
             String code = "import { Observable } from 'tns-core-modules/data/observable';\n" +
                     "\n" +
                     "export class HomeViewModel extends Observable {\n" +
@@ -370,7 +370,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("vue")) {
+        else if(setupClass.typeOfProject.equals("vue")) {
             String code = null;
             if (isValid) {
                 code = "<template>\n" +
@@ -446,16 +446,16 @@ public class CodeEditorClass extends BasePage {
             pasteText(code);
 
         }
-        if(isValid==false && !this.setupClass.typeOfProject.equals("vue"))
+        if(isValid==false && !setupClass.typeOfProject.equals("vue"))
         {
-            this.typeCode("}");
+            typeCode("}");
         }
-        this.setupClass.wait(2000);
+        setupClass.wait(2000);
     }
 
     public void typeJSTSCodeWithThrowError() {
-        this.deleteAllCode();
-        if(this.setupClass.typeOfProject.equals("ng")) {
+        deleteAllCode();
+        if(setupClass.typeOfProject.equals("ng")) {
             String code = "import { Component, OnInit } from \"@angular/core\";\n" +
                     "\n" +
                     "@Component({\n" +
@@ -476,7 +476,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("js"))
+        else if(setupClass.typeOfProject.equals("js"))
         {
             String code = "var frameModule = require(\"tns-core-modules/ui/frame\");\n" +
                     "var HomeViewModel = require(\"./home-view-model\");\n" +
@@ -492,7 +492,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("tsc"))
+        else if(setupClass.typeOfProject.equals("tsc"))
         {
             String code = "import { Observable } from 'tns-core-modules/data/observable';\n" +
                     "\n" +
@@ -505,7 +505,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("vue"))
+        else if(setupClass.typeOfProject.equals("vue"))
         {
             String code = "<template>\n" +
                     "    <Page class=\"page\">\n" +
@@ -549,12 +549,12 @@ public class CodeEditorClass extends BasePage {
             pasteText(code);
 
         }
-        this.setupClass.wait(2000);
+        setupClass.wait(2000);
     }
 
     public void typeJSTSCodeWithThrowJavaError() {
-        this.deleteAllCode();
-        if(this.setupClass.typeOfProject.equals("ng")) {
+        deleteAllCode();
+        if(setupClass.typeOfProject.equals("ng")) {
             String code = "import { Component, OnInit } from \"@angular/core\";\n" +
                     "declare var java : any;\n" +
                     "\n" +
@@ -576,7 +576,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("js"))
+        else if(setupClass.typeOfProject.equals("js"))
         {
             String code = "var frameModule = require(\"tns-core-modules/ui/frame\");\n" +
                     "var HomeViewModel = require(\"./home-view-model\");\n" +
@@ -592,7 +592,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("tsc"))
+        else if(setupClass.typeOfProject.equals("tsc"))
         {
             String code = "declare var java : any;\n" +
                     "import { Observable } from 'tns-core-modules/data/observable';\n" +
@@ -606,7 +606,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("vue"))
+        else if(setupClass.typeOfProject.equals("vue"))
         {
             String code = "<template>\n" +
                     "    <Page class=\"page\">\n" +
@@ -646,12 +646,12 @@ public class CodeEditorClass extends BasePage {
             pasteText(code);
 
         }
-        this.setupClass.wait(2000);
+        setupClass.wait(2000);
     }
 
     public void typeJSTSCodeWithThrowiOSError() {
-        this.deleteAllCode();
-        if(this.setupClass.typeOfProject.equals("ng")) {
+        deleteAllCode();
+        if(setupClass.typeOfProject.equals("ng")) {
             String code = "import { Component, OnInit } from \"@angular/core\";\n" +
                     "declare var NSFileManager : any;\n" +
                     "\n" +
@@ -674,7 +674,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("js"))
+        else if(setupClass.typeOfProject.equals("js"))
         {
             String code = "var frameModule = require(\"tns-core-modules/ui/frame\");\n" +
                     "var HomeViewModel = require(\"./home-view-model\");\n" +
@@ -691,7 +691,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("tsc"))
+        else if(setupClass.typeOfProject.equals("tsc"))
         {
             String code = "declare var NSFileManager : any;\n" +
                     "import { Observable } from 'tns-core-modules/data/observable';\n" +
@@ -706,7 +706,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("vue"))
+        else if(setupClass.typeOfProject.equals("vue"))
         {
             String code = "<template>\n" +
                     "    <Page class=\"page\">\n" +
@@ -748,12 +748,12 @@ public class CodeEditorClass extends BasePage {
 
         }
 
-        this.setupClass.wait(2000);
+        setupClass.wait(2000);
     }
 
     public void typeJSTSCodeWithThrowiOSCocoaError() {
-        this.deleteAllCode();
-        if(this.setupClass.typeOfProject.equals("ng")) {
+        deleteAllCode();
+        if(setupClass.typeOfProject.equals("ng")) {
             String code = "import { Component, OnInit } from \"@angular/core\";\n" +
                     "declare var NSArray : any;\n" +
                     "\n" +
@@ -776,7 +776,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("js"))
+        else if(setupClass.typeOfProject.equals("js"))
         {
             String code = "var frameModule = require(\"tns-core-modules/ui/frame\");\n" +
                     "var HomeViewModel = require(\"./home-view-model\");\n" +
@@ -793,7 +793,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("tsc"))
+        else if(setupClass.typeOfProject.equals("tsc"))
         {
             String code = "declare var NSArray : any;\n" +
                     "import { Observable } from 'tns-core-modules/data/observable';\n" +
@@ -808,7 +808,7 @@ public class CodeEditorClass extends BasePage {
 
             pasteText(code);
         }
-        else if(this.setupClass.typeOfProject.equals("vue"))
+        else if(setupClass.typeOfProject.equals("vue"))
         {
             String code = "<template>\n" +
                     "    <Page class=\"page\">\n" +
@@ -850,19 +850,19 @@ public class CodeEditorClass extends BasePage {
 
         }
 
-        this.setupClass.wait(2000);
+        setupClass.wait(2000);
     }
 
     public void waitForElement(int time) throws InterruptedException {
-        synchronized(this.wait) {
-            this.wait.wait(time);
+        synchronized(wait) {
+            wait.wait(time);
         }
     }
 
     public void scrollDown() {
-        UIElement scroll = this.wait.waitForVisible(this.locators.findByTextLocator("DatePicker", true));
+        UIElement scroll = wait.waitForVisible(locators.findByTextLocator("DatePicker", true));
         scroll.scrollInElement(SwipeElementDirection.DOWN, 1);
-        this.log.info("Scroll Down");
+        log.info("Scroll Down");
     }
 
     public void openFile(String fileToOpen){
@@ -937,7 +937,7 @@ public class CodeEditorClass extends BasePage {
         }
         List<WebElement> tableRows = baseTable.findElements(By.tagName("tr"));
         tableRows.get(0).findElements(By.tagName("td")).get(0).click();
-        this.setupClass.wait(2000);
+        setupClass.wait(2000);
         baseTable = setupClass.driver.findElement(By.className("devices"));
         tableRows = baseTable.findElements(By.tagName("tr"));
         String componentsVersion = tableRows.get(1).findElements(By.tagName("td")).get(0).getText();
@@ -959,9 +959,9 @@ public class CodeEditorClass extends BasePage {
 
     public String getTextWithCopy() {
         String text = "";
-        this.setupClass.wait(1000);
+        setupClass.wait(1000);
         pressButton(KeyEvent.VK_C, KeyEvent.VK_META);
-        this.setupClass.wait(1000);
+        setupClass.wait(1000);
         try {
             text = (String) Toolkit.getDefaultToolkit()
                     .getSystemClipboard().getData(DataFlavor.stringFlavor);
@@ -970,7 +970,7 @@ public class CodeEditorClass extends BasePage {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.setupClass.wait(1000);
+        setupClass.wait(1000);
         return text.trim();
     }
 

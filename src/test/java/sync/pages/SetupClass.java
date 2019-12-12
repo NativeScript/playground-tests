@@ -57,21 +57,21 @@ public class SetupClass extends BasePage {
 
     public SetupClass(Client client, MobileSettings mobileSettings, Device device) throws InterruptedException, IOException, AWTException {
         super();
-        this.mobileSettings = mobileSettings;
-        this.client = client;
-        this.device = device;
-        this.sikuli = new Sikuli(this.device, this.mobileSettings.testAppName + "-map", this.client, this.imageUtils);
+        mobileSettings = mobileSettings;
+        client = client;
+        device = device;
+        sikuli = new Sikuli(device, mobileSettings.testAppName + "-map", client, imageUtils);
         try {
-            this.robot = new Robot();
+            robot = new Robot();
         } catch (AWTException e) {
             e.printStackTrace();
         }
-        this.imageUtils = new ImageUtils(settings, client, device);
-        this.appName = this.app.getName().replaceAll(".app", "");
+        imageUtils = new ImageUtils(settings, client, device);
+        appName = app.getName().replaceAll(".app", "");
         String currentPath = System.getProperty("user.dir");
         ImagePathDirectory = currentPath + "/src/test/java/sync/pages/images.sikuli";
-        this.folderForScreenshots = currentPath + "/target/surefire-reports/screenshots/";
-        this.folderForDesktopScreenshots = currentPath + "/temp/";
+        folderForScreenshots = currentPath + "/target/surefire-reports/screenshots/";
+        folderForDesktopScreenshots = currentPath + "/temp/";
         File directory = new File(folderForDesktopScreenshots);
         if (!directory.exists()) {
             directory.mkdir();
@@ -81,12 +81,12 @@ public class SetupClass extends BasePage {
         }
 
         if (settings.deviceType == DeviceType.Simulator) {
-            this.client.driver.removeApp("org.nativescript.preview");
+            client.driver.removeApp("org.nativescript.preview");
             functional.tests.core.utils.Archive.extractArchive(new File(currentPath + "/testapp/nsplaydev.tgz"), new File(currentPath + "/testapp/"));
 
             functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
             ios.installApp("nsplaydev.app", "org.nativescript.preview");
-            this.deviceId = ios.getId();
+            deviceId = ios.getId();
             context.settings.packageId = "org.nativescript.preview";
             context.settings.testAppFileName = "nsplaydev.app";
             Capabilities newiOSCapabilities = new Capabilities();
@@ -96,9 +96,9 @@ public class SetupClass extends BasePage {
             context.client.driver = new IOSDriver(context.server.service.getUrl(), newDesireCapabilites);
         } else {
             functional.tests.core.mobile.device.android.AndroidDevice android = new functional.tests.core.mobile.device.android.AndroidDevice(client, mobileSettings);
-            new Adb(this.mobileSettings).uninstallApp("org.nativescript.preview");
+            new Adb(mobileSettings).uninstallApp("org.nativescript.preview");
             android.installApp("app-universal-release.apk", "org.nativescript.preview");
-            this.deviceId = android.getId();
+            deviceId = android.getId();
             context.settings.packageId = "org.nativescript.preview";
             context.settings.testAppFileName = "app-universal-release.apk";
             Capabilities newAndroidCapabilities = new Capabilities();
@@ -108,8 +108,8 @@ public class SetupClass extends BasePage {
             context.client.driver = new AndroidDriver(context.server.service.getUrl(), newDesireCapabilites);
         }
 
-        //this.CloseBrowser();
-        this.OpenBrowser();
+        //CloseBrowser();
+        OpenBrowser();
     }
 
     public void OpenBrowser() throws InterruptedException {
@@ -120,7 +120,7 @@ public class SetupClass extends BasePage {
         options.addArguments("disable-application-cache");
         options.addArguments("incognito");
         options.addArguments("no-sandbox");
-        this.driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
         Thread.sleep(10000);
 
     }
@@ -137,23 +137,23 @@ public class SetupClass extends BasePage {
     public void GetDeviceLink() throws InterruptedException, IOException, UnsupportedFlavorException {
         List<WebElement> previewLinkElements = driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]"));
         if (previewLinkElements.size() == 0) {
-            this.driver.findElements(By.xpath("//button[contains(.,'QR code')]")).get(0).click();
+            driver.findElements(By.xpath("//button[contains(.,'QR code')]")).get(0).click();
             Thread.sleep(5000);
             previewLinkElements = driver.findElements(By.xpath("//span[contains(.,'nsplay://boot')]"));
         }
-        this.liveSyncConnectionString = previewLinkElements.get(0).getText();
+        liveSyncConnectionString = previewLinkElements.get(0).getText();
     }
 
 
     public void liveSyncPreview() {
         List<String> params;
-        this.deviceScreenWidth = client.driver.manage().window().getSize().width;
+        deviceScreenWidth = client.driver.manage().window().getSize().width;
         if (settings.deviceType == DeviceType.Simulator) {
-            this.liveSyncConnectionString = this.liveSyncConnectionString.replaceAll("\\\\", "/");
-            params = java.util.Arrays.asList("xcrun", "simctl", "openurl", this.deviceId, liveSyncConnectionString);
+            liveSyncConnectionString = liveSyncConnectionString.replaceAll("\\\\", "/");
+            params = java.util.Arrays.asList("xcrun", "simctl", "openurl", deviceId, liveSyncConnectionString);
         } else {
             log.info(liveSyncConnectionString);
-            params = java.util.Arrays.asList(System.getenv("ANDROID_HOME") + "/platform-tools/adb", "-s", this.deviceId, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", "\"" + liveSyncConnectionString + "\"", "org.nativescript.preview");
+            params = java.util.Arrays.asList(System.getenv("ANDROID_HOME") + "/platform-tools/adb", "-s", deviceId, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", "\"" + liveSyncConnectionString + "\"", "org.nativescript.preview");
         }
 
         try {
@@ -176,86 +176,86 @@ public class SetupClass extends BasePage {
     }
 
     public void startPreviewAppWithLiveSync() throws InterruptedException, IOException {
-        this.startPreviewAppWithLiveSync(true);
+        startPreviewAppWithLiveSync(true);
     }
 
     public void startPreviewAppWithLiveSync(boolean waitToLoad) throws InterruptedException, IOException {
 
-        this.liveSyncPreview();
+        liveSyncPreview();
         if (waitToLoad) {
             if (settings.deviceType == DeviceType.Simulator) {
                 log.info("Searching for Home or Open");
-                this.wait(5000);
-                String foundItem = this.waitText1OrText2ToBeShown(12, "Home", "Open");
+                wait(5000);
+                String foundItem = waitText1OrText2ToBeShown(12, "Home", "Open");
                 log.info("Found Item " + foundItem);
                 if (foundItem == "Open") {
-                    if (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9.")) {
-                        if (this.settings.platformVersion.toString().contains("10.")) {
-                            this.wait(5000);
+                    if (settings.platformVersion.toString().contains("10.") || settings.platformVersion.toString().contains("9.")) {
+                        if (settings.platformVersion.toString().contains("10.")) {
+                            wait(5000);
                             if (ExpectedConditions.alertIsPresent() != null) {
-                                this.client.driver.switchTo().alert().accept();
+                                client.driver.switchTo().alert().accept();
                             }
 
-                            this.wait(7000);
+                            wait(7000);
                             try {
                                 if (ExpectedConditions.alertIsPresent() != null) {
-                                    this.client.driver.switchTo().alert().accept();
-                                    this.wait(2000);
+                                    client.driver.switchTo().alert().accept();
+                                    wait(2000);
                                 }
                             } catch (Exception e) {
 
                             }
                         } else {
-                            this.wait(5000);
+                            wait(5000);
                             if (ExpectedConditions.alertIsPresent() != null) {
-                                this.client.driver.switchTo().alert().dismiss();
+                                client.driver.switchTo().alert().dismiss();
                             }
-                            this.wait(5000);
+                            wait(5000);
                             functional.tests.core.mobile.device.ios.IOSDevice ios = new functional.tests.core.mobile.device.ios.IOSDevice(client, mobileSettings);
-                            this.deviceId = ios.getId();
+                            deviceId = ios.getId();
                             context.settings.packageId = "org.nativescript.preview";
                             context.settings.testAppFileName = "nsplaydev.app";
                             Capabilities newiOSCapabilities = new Capabilities();
                             context.client.driver = new IOSDriver(context.server.service.getUrl(), newiOSCapabilities.loadDesiredCapabilities(context.settings));
-                            this.wait(6000);
+                            wait(6000);
                             if (ExpectedConditions.alertIsPresent() != null) {
-                                this.client.driver.switchTo().alert().dismiss();
+                                client.driver.switchTo().alert().dismiss();
                             }
-                            this.wait(6000);
+                            wait(6000);
                             if (ExpectedConditions.alertIsPresent() != null) {
-                                this.client.driver.switchTo().alert().dismiss();
+                                client.driver.switchTo().alert().dismiss();
                             }
-                            this.wait(6000);
+                            wait(6000);
                         }
                     } else {
-                        this.find.byText("Open").click();
-                        this.wait(7000);
-                        if (this.find.byText("Open") != null) {
-                            this.find.byText("Open").click();
+                        find.byText("Open").click();
+                        wait(7000);
+                        if (find.byText("Open") != null) {
+                            find.byText("Open").click();
                         }
 
                     }
                 }
             } else {
-                this.waitTextToBeShown(10, "Home");
+                waitTextToBeShown(10, "Home");
             }
         }
     }
 
     public void waitPreviewAppToLoad(int numberOfTries) throws InterruptedException {
-        this.waitPreviewAppToLoad(numberOfTries, "Home");
+        waitPreviewAppToLoad(numberOfTries, "Home");
     }
 
     public String waitText1OrText2ToBeShown(int numberOfTries, String text1, String text2) throws InterruptedException {
         String textFound = "";
         while (true) {
-            if (settings.deviceType == DeviceType.Simulator && (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9."))) {
+            if (settings.deviceType == DeviceType.Simulator && (settings.platformVersion.toString().contains("10.") || settings.platformVersion.toString().contains("9."))) {
                 log.info("Search for image!");
-                if (this.sikuli.waitForImage(text1, 0.7d, 2)) {
+                if (sikuli.waitForImage(text1, 0.7d, 2)) {
                     textFound = text1;
                     break;
                 }
-                if (this.sikuli.waitForImage(text2, 0.7d, 2)) {
+                if (sikuli.waitForImage(text2, 0.7d, 2)) {
                     textFound = text2;
                     break;
                 }
@@ -267,8 +267,8 @@ public class SetupClass extends BasePage {
 
             } else {
                 log.info("Search for text!");
-                UIElement text1element = this.find.byText(text1, false, this.settings.shortTimeout);
-                UIElement text2element = this.find.byText(text2, false, this.settings.shortTimeout);
+                UIElement text1element = find.byText(text1, false, settings.shortTimeout);
+                UIElement text2element = find.byText(text2, false, settings.shortTimeout);
                 log.info("start checking!");
                 if (text1element != null) {
                     textFound = text1;
@@ -294,8 +294,8 @@ public class SetupClass extends BasePage {
 
     public void waitTextToBeShown(int numberOfTries, String object) throws InterruptedException {
         while (true) {
-            if (settings.deviceType == DeviceType.Simulator && (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9."))) {
-                if (this.sikuli.waitForImage(object, 0.7d, 2)) {
+            if (settings.deviceType == DeviceType.Simulator && (settings.platformVersion.toString().contains("10.") || settings.platformVersion.toString().contains("9."))) {
+                if (sikuli.waitForImage(object, 0.7d, 2)) {
                     break;
                 }
                 numberOfTries = numberOfTries - 1;
@@ -305,7 +305,7 @@ public class SetupClass extends BasePage {
                 }
 
             } else {
-                UIElement home = this.find.byText(object);
+                UIElement home = find.byText(object);
                 if (home != null || numberOfTries <= 0) {
                     if (numberOfTries <= 0) {
                         log.info("Text " + object + " is not found!");
@@ -319,15 +319,15 @@ public class SetupClass extends BasePage {
     }
 
     public void waitPreviewAppToLoad(int numberOfTries, String object) throws InterruptedException {
-        this.waitTextToBeShown(numberOfTries, object);
-        if (settings.deviceType == DeviceType.Simulator && (this.settings.platformVersion.toString().contains("10.") || this.settings.platformVersion.toString().contains("9."))) {
-            UIRectangle home = this.sikuli.findImageOnScreen(object, 0.9d);
+        waitTextToBeShown(numberOfTries, object);
+        if (settings.deviceType == DeviceType.Simulator && (settings.platformVersion.toString().contains("10.") || settings.platformVersion.toString().contains("9."))) {
+            UIRectangle home = sikuli.findImageOnScreen(object, 0.9d);
             Assert.assertNotNull(home, "Preview app not synced! Item missing " + object);
-            this.log.info("Preview app synced! The item " + object + " is found!");
+            log.info("Preview app synced! The item " + object + " is found!");
         } else {
-            UIElement home = this.find.byText(object);
+            UIElement home = find.byText(object);
             Assert.assertNotNull(home, "Preview app not synced! Item missing " + object);
-            this.log.info("Preview app synced! The item " + object + " is found!");
+            log.info("Preview app synced! The item " + object + " is found!");
         }
 
 
@@ -342,8 +342,8 @@ public class SetupClass extends BasePage {
     }
 
     public void giveFocus() throws InterruptedException {
-        //this.browserAPP.focus();
-        //this.wait(2000);
+        //browserAPP.focus();
+        //wait(2000);
     }
 
     public String getComputerName() {
@@ -371,7 +371,7 @@ public class SetupClass extends BasePage {
 
     public String getIOSVersion() {
         String version = "";
-        List<String> params = java.util.Arrays.asList("xcrun", "simctl", "getenv", this.deviceId, "SIMULATOR_RUNTIME_VERSION");
+        List<String> params = java.util.Arrays.asList("xcrun", "simctl", "getenv", deviceId, "SIMULATOR_RUNTIME_VERSION");
 
         try {
             ProcessBuilder pb = new
@@ -396,7 +396,7 @@ public class SetupClass extends BasePage {
 
     public void getScreenShot(String screenshotName) {
         try {
-            Process p = Runtime.getRuntime().exec("screencapture -C -x " + this.folderForScreenshots + screenshotName + ".png");
+            Process p = Runtime.getRuntime().exec("screencapture -C -x " + folderForScreenshots + screenshotName + ".png");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -406,9 +406,9 @@ public class SetupClass extends BasePage {
         List<String> params = null;
         if (settings.deviceType == DeviceType.Simulator) {
             url = url.replaceAll("\\\\", "/");
-            params = java.util.Arrays.asList("xcrun", "simctl", "openurl", this.deviceId, url);
+            params = java.util.Arrays.asList("xcrun", "simctl", "openurl", deviceId, url);
         } else {
-            params = java.util.Arrays.asList(System.getenv("ANDROID_HOME") + "/platform-tools/adb", "-s", this.deviceId, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", "\"" + url + "\"");
+            params = java.util.Arrays.asList(System.getenv("ANDROID_HOME") + "/platform-tools/adb", "-s", deviceId, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", "\"" + url + "\"");
         }
         try {
             ProcessBuilder pb = new
@@ -429,86 +429,86 @@ public class SetupClass extends BasePage {
         }
 
         if (settings.deviceType == DeviceType.Emulator) {
-            this.wait(4000);
+            wait(4000);
 
-            UIElement acceptContinue = this.find.byTextContains("Accept & continue");
+            UIElement acceptContinue = find.byTextContains("Accept & continue");
             if (acceptContinue != null) {
                 acceptContinue.click();
-                this.log.info("Navigate to " + acceptContinue);
+                log.info("Navigate to " + acceptContinue);
             } else {
-                this.log.info("Element Accept & continue not found! Not able to click it!");
+                log.info("Element Accept & continue not found! Not able to click it!");
             }
 
-            UIElement noThanks = this.find.byTextContains("No Thanks");
+            UIElement noThanks = find.byTextContains("No Thanks");
             if (noThanks != null) {
                 noThanks.click();
-                this.log.info("Navigate to " + noThanks);
+                log.info("Navigate to " + noThanks);
             } else {
-                this.log.info("Element No Thanks not found! Not able to click it!");
+                log.info("Element No Thanks not found! Not able to click it!");
             }
 
-            UIElement webView = this.find.byTextContains("WebView");
+            UIElement webView = find.byTextContains("WebView");
             if (webView != null) {
                 webView.click();
-                this.log.info("Navigate to " + webView);
+                log.info("Navigate to " + webView);
             } else {
-                this.log.info("Element WebView not found! Not able to click it!");
+                log.info("Element WebView not found! Not able to click it!");
             }
 
-            this.wait(3000);
-            UIElement webViewForJust = this.find.byTextContains("Just Once");
+            wait(3000);
+            UIElement webViewForJust = find.byTextContains("Just Once");
             if (webViewForJust != null) {
                 webViewForJust.click();
-                this.log.info("Navigate to " + webViewForJust);
+                log.info("Navigate to " + webViewForJust);
             } else {
-                this.log.info("Element Just Once not found! Not able to click it!");
+                log.info("Element Just Once not found! Not able to click it!");
             }
-            UIElement cookies = this.find.byTextContains("accept cookies");
+            UIElement cookies = find.byTextContains("accept cookies");
             if (cookies != null) {
                 cookies.click();
-                this.log.info("Navigate to " + cookies);
+                log.info("Navigate to " + cookies);
             } else {
-                this.log.info("Element accept cookies not found! Not able to click it!");
+                log.info("Element accept cookies not found! Not able to click it!");
             }
-            UIElement closeDialog = this.find.byText("Close", true, 3);
+            UIElement closeDialog = find.byText("Close", true, 3);
             if (closeDialog != null) {
                 closeDialog.click();
-                this.log.info("Navigate to " + closeDialog);
+                log.info("Navigate to " + closeDialog);
             } else {
-                this.log.info("Element Close not found! Not able to click it!");
+                log.info("Element Close not found! Not able to click it!");
             }
         }
     }
 
     public void navigateToSavedSession(String button) throws InterruptedException {
         if (settings.deviceType == DeviceType.Emulator) {
-            List<WebElement> link = (List<WebElement>) this.client.driver.findElements(By.xpath("//*[@content-desc='Load project in Preview app Tap to open the saved project in the Preview app']"));
+            List<WebElement> link = (List<WebElement>) client.driver.findElements(By.xpath("//*[@content-desc='Load project in Preview app Tap to open the saved project in the Preview app']"));
             if (link.size() != 0) {
                 link.get(0).click();
-                this.log.info("Navigate to " + button);
+                log.info("Navigate to " + button);
             } else {
-                this.log.info("Element " + button + " not found by xpath! Not able to click it! Will try be text!");
-                List<WebElement> linkBytext = (List<WebElement>) this.client.driver.findElements(By.xpath("//*[@text='Load project in Preview app Tap to open the saved project in the Preview app']"));
+                log.info("Element " + button + " not found by xpath! Not able to click it! Will try be text!");
+                List<WebElement> linkBytext = (List<WebElement>) client.driver.findElements(By.xpath("//*[@text='Load project in Preview app Tap to open the saved project in the Preview app']"));
                 if (linkBytext.size() != 0) {
                     linkBytext.get(0).click();
-                    this.log.info("Navigate to " + button);
+                    log.info("Navigate to " + button);
                 } else {
-                    this.log.info("Element " + button + " not found! Not able to click it! Not found by text too!");
+                    log.info("Element " + button + " not found! Not able to click it! Not found by text too!");
                 }
             }
         } else if (settings.deviceType == DeviceType.Simulator) {
-            List<WebElement> buttons = (List<WebElement>) this.client.driver.findElements(By.xpath("//div[contains(.,'Tap to open the saved project in the Preview app')]"));
+            List<WebElement> buttons = (List<WebElement>) client.driver.findElements(By.xpath("//div[contains(.,'Tap to open the saved project in the Preview app')]"));
             if (buttons.size() != 0) {
                 buttons.get(0).click();
-                this.log.info("Navigate to " + button);
+                log.info("Navigate to " + button);
             } else {
-                this.log.info("Element " + button + " not found! Not able to click it!");
+                log.info("Element " + button + " not found! Not able to click it!");
             }
             buttons.get(buttons.size() - 1).click();
-            this.wait(5000);
-            this.client.driver.context("NATIVE_APP").findElements(By.name("Open")).get(0).click();
-            if (this.find.byText("Open") != null) {
-                this.find.byText("Open").click();
+            wait(5000);
+            client.driver.context("NATIVE_APP").findElements(By.name("Open")).get(0).click();
+            if (find.byText("Open") != null) {
+                find.byText("Open").click();
             }
         }
 

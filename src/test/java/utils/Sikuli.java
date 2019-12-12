@@ -24,29 +24,29 @@ public class Sikuli {
     private ImageUtils imageUtils;
 
     public Sikuli(Device device, String appName, Client client, ImageUtils imageUtils) {
-        this.device = device;
-        this.appName = appName;
-        this.client = client;
-        this.imageUtils = imageUtils;
+        device = device;
+        appName = appName;
+        client = client;
+        imageUtils = imageUtils;
     }
 
     public UIRectangle findImageOnScreen(String imageName, double similarity) {
-        BufferedImage screenBufferImage = this.getScreen();
+        BufferedImage screenBufferImage = getScreen();
 
-        Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity);
+        Finder finder = getFinder(screenBufferImage, imageName, (float) similarity);
 
         Match searchedImageMatch = finder.next();
         Point point = searchedImageMatch.getCenter().getPoint();
 
-        Rectangle rectangle = this.getRectangle(point, screenBufferImage.getWidth());
+        Rectangle rectangle = getRectangle(point, screenBufferImage.getWidth());
 
         return new UIRectangle(rectangle);
     }
 
     public UIRectangle[] findImagesOnScreen(String imageName, double similarity) {
-        BufferedImage screenBufferImage = this.getScreen();
+        BufferedImage screenBufferImage = getScreen();
 
-        Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity);
+        Finder finder = getFinder(screenBufferImage, imageName, (float) similarity);
 
         ArrayList<UIRectangle> rectangles = new ArrayList<>();
 
@@ -54,7 +54,7 @@ public class Sikuli {
             Match searchedImageMatch = finder.next();
             Point point = searchedImageMatch.getCenter().getPoint();
 
-            Rectangle rectangle = this.getRectangle(point, screenBufferImage.getWidth());
+            Rectangle rectangle = getRectangle(point, screenBufferImage.getWidth());
 
             rectangles.add(new UIRectangle(rectangle));
         }
@@ -65,10 +65,10 @@ public class Sikuli {
     }
 
     public boolean waitForImage(String imageName, double similarity, int timeoutInSeconds) {
-        BufferedImage screenBufferImage = this.getScreen();
+        BufferedImage screenBufferImage = getScreen();
         timeoutInSeconds *= 1000;
 
-        Finder finder = this.getFinder(screenBufferImage, imageName, (float) similarity);
+        Finder finder = getFinder(screenBufferImage, imageName, (float) similarity);
 
         Match searchedImageMatch = finder.next();
 
@@ -77,10 +77,10 @@ public class Sikuli {
         }
 
         while (searchedImageMatch == null && timeoutInSeconds > 0) {
-            this.client.setWait(1000);
+            client.setWait(1000);
             timeoutInSeconds -= 1000;
-            screenBufferImage = this.getScreen();
-            finder = this.getFinder(screenBufferImage, imageName, (float) similarity);
+            screenBufferImage = getScreen();
+            finder = getFinder(screenBufferImage, imageName, (float) similarity);
 
             searchedImageMatch = finder.next();
         }
@@ -93,19 +93,19 @@ public class Sikuli {
         Settings.OcrTextSearch = true;
         Settings.OcrTextRead = true;
 
-        Image mainImage = new Image(this.getScreen());
+        Image mainImage = new Image(getScreen());
         Finder finder = new Finder(mainImage);
         finder.findAllText(text);
         Match searchedImageMatch = finder.next();
 
         Point point = searchedImageMatch.getCenter().getPoint();
-        Rectangle rectangle = this.getRectangle(point, mainImage.getSize().width);
+        Rectangle rectangle = getRectangle(point, mainImage.getSize().width);
 
         return new UIRectangle(rectangle);
     }
 
     private Finder getFinder(BufferedImage screenBufferImage, String imageName, float similarity) {
-        BufferedImage searchedBufferImage = this.imageUtils.getImageFromFile(this.imageUtils.getImageFullName(this.getImageFolderPath(this.appName), imageName));
+        BufferedImage searchedBufferImage = imageUtils.getImageFromFile(imageUtils.getImageFullName(getImageFolderPath(appName), imageName));
         Image searchedImage = new Image(searchedBufferImage);
         Pattern searchedImagePattern = new Pattern(searchedImage);
 
@@ -120,7 +120,7 @@ public class Sikuli {
     }
 
     private Rectangle getRectangle(Point point, int screenShotWidth) {
-        int densityRatio = this.getDensityRatio(screenShotWidth);
+        int densityRatio = getDensityRatio(screenShotWidth);
 
         Rectangle rectangle = new Rectangle(point.x / densityRatio, point.y / densityRatio, 50, 50);
 
@@ -128,19 +128,19 @@ public class Sikuli {
     }
 
     private int getDensityRatio(int screenshotWidth) {
-        if (this.client.settings.platform == PlatformType.iOS) {
-            return screenshotWidth / this.client.driver.manage().window().getSize().width;
+        if (client.settings.platform == PlatformType.iOS) {
+            return screenshotWidth / client.driver.manage().window().getSize().width;
         } else {
             return 1;
         }
     }
 
     private BufferedImage getScreen() {
-        return this.device.getScreenshot();
+        return device.getScreenshot();
     }
 
     private String getImageFolderPath(String appName) {
-        String imageFolderPath = this.client.settings.screenshotResDir + File.separator + appName + File.separator + this.client.settings.deviceName;
+        String imageFolderPath = client.settings.screenshotResDir + File.separator + appName + File.separator + client.settings.deviceName;
         FileSystem.ensureFolderExists(imageFolderPath);
         return imageFolderPath;
     }
