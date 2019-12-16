@@ -139,7 +139,7 @@ public class NSSyncTests extends MobileTest {
                 "  \"@angular/platform-browser-dynamic\": \"8.2.14\",\n" +
                 "  \"@angular/router\": \"8.2.14\",\n" +
                 "  \"@nativescript/angular\": \"8.20.3\",\n" +
-                "  \"@nativescript/core\": \"6.3.0\",\n" +
+                "  \"@nativescript/core\": \"6.3.1\",\n" +
                 "  \"@nativescript/theme\": \"2.2.1\",\n" +
                 "  \"@progress-nativechat/nativescript-nativechat\": \"3.0.0\",\n" +
                 "  \"kinvey-nativescript-sdk\": \"4.2.5\",\n" +
@@ -164,13 +164,13 @@ public class NSSyncTests extends MobileTest {
                 "  \"nativescript-vue\": \"2.4.0\",\n" +
                 "  \"react\": \"16.12.0\",\n" +
                 "  \"react-hot-loader\": \"4.12.18\",\n" +
-                "  \"react-nativescript\": \"0.15.0\",\n" +
+                "  \"react-nativescript\": \"0.17.0\",\n" +
                 "  \"reflect-metadata\": \"0.1.13\",\n" +
                 "  \"rxjs\": \"6.5.3\",\n" +
                 "  \"rxjs-compat\": \"6.5.3\",\n" +
-                "  \"svelte\": \"3.16.3\",\n" +
-                "  \"svelte-native\": \"0.7.1\",\n" +
-                "  \"tns-core-modules\": \"6.3.0\",\n" +
+                "  \"svelte\": \"3.16.4\",\n" +
+                "  \"svelte-native\": \"0.7.2\",\n" +
+                "  \"tns-core-modules\": \"6.3.1\",\n" +
                 "  \"zone.js\": \"0.10.2\"\n" +
                 "}";
 
