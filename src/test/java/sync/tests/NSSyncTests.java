@@ -5,6 +5,7 @@ import functional.tests.core.mobile.basetest.MobileTest;
 import functional.tests.core.mobile.element.UIElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import sync.pages.CodeEditorClass;
@@ -14,6 +15,7 @@ import java.awt.*;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.List;
 
 public class NSSyncTests extends MobileTest {
     SetupClass setupClass;
@@ -634,13 +636,27 @@ public class NSSyncTests extends MobileTest {
 
     @Test(description = "Verify empty folders are not crashing preview app!", groups = {"android", "ios"})
     public void test_12_empty_folders_are_crashing_preview_app() throws Exception {
-        setupClass.driver.get("https://www.google.com/");
-        setupClass.driver.switchTo().alert().accept();
+        setupClass.context.client.driver.get("https://www.google.com/");
+        try {
+            if (ExpectedConditions.alertIsPresent() != null) {
+                setupClass.context.client.driver.switchTo().alert().accept();
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
         setupClass.NavigateToPage("https://play.nativescript.be/?template=play-js&id=2FtnMV&v=4&debug=true");
+        List<WebElement> modalDialogElements = setupClass.driver.findElements(By.className("modal-content"));
+        if (modalDialogElements.size() > 0) {
+            modalDialogElements.get(0).findElements(By.className("close-button")).get(0).click();
+        }
         setupClass.GetDeviceLink();
         setupClass.startPreviewAppWithLiveSync();
         setupClass.wait(10000);
         setupClass.NavigateToPage("https://play.nativescript.be/?template=play-js&id=2FtnMV&v=3&debug=true");
+        modalDialogElements = setupClass.driver.findElements(By.className("modal-content"));
+        if (modalDialogElements.size() > 0) {
+            modalDialogElements.get(0).findElements(By.className("close-button")).get(0).click();
+        }
         setupClass.GetDeviceLink();
         setupClass.startPreviewAppWithLiveSync();
         UIElement title = find.byText("Home");
