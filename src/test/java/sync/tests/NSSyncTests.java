@@ -116,17 +116,17 @@ public class NSSyncTests extends MobileTest {
         String previewAppVersionExpected = "";
         if (settings.deviceType == DeviceType.Emulator) {
 
-            previewAppVersionExpected = "1.28.0";
+            previewAppVersionExpected = "1.29.0";
         } else {
-            previewAppVersionExpected = "1.28.0";
+            previewAppVersionExpected = "1.29.0";
         }
 
         String runtimeVersionExpected = "";
         if (settings.deviceType == DeviceType.Emulator) {
 
-            runtimeVersionExpected = "6.3.0";
+            runtimeVersionExpected = "6.4.0";
         } else {
-            runtimeVersionExpected = "6.3.0";
+            runtimeVersionExpected = "6.4.0";
         }
 
         String componentVersionsExpected = "{\n" +
@@ -138,39 +138,39 @@ public class NSSyncTests extends MobileTest {
                 "  \"@angular/platform-browser\": \"8.2.14\",\n" +
                 "  \"@angular/platform-browser-dynamic\": \"8.2.14\",\n" +
                 "  \"@angular/router\": \"8.2.14\",\n" +
-                "  \"@nativescript/angular\": \"8.20.3\",\n" +
-                "  \"@nativescript/core\": \"6.3.1\",\n" +
-                "  \"@nativescript/theme\": \"2.2.1\",\n" +
+                "  \"@nativescript/angular\": \"8.20.4\",\n" +
+                "  \"@nativescript/core\": \"6.4.0\",\n" +
+                "  \"@nativescript/theme\": \"2.0.24\",\n" +
                 "  \"@progress-nativechat/nativescript-nativechat\": \"3.0.0\",\n" +
                 "  \"kinvey-nativescript-sdk\": \"4.2.5\",\n" +
                 "  \"nativescript-accelerometer\": \"3.0.0\",\n" +
-                "  \"nativescript-angular\": \"8.20.3\",\n" +
+                "  \"nativescript-angular\": \"8.20.4\",\n" +
                 "  \"nativescript-background-http\": \"4.2.1\",\n" +
                 "  \"nativescript-camera\": \"4.5.0\",\n" +
                 "  \"nativescript-geolocation\": \"5.1.0\",\n" +
-                "  \"nativescript-image\": \"2.2.5\",\n" +
+                "  \"nativescript-image\": \"3.0.1\",\n" +
                 "  \"nativescript-imagepicker\": \"7.1.0\",\n" +
                 "  \"nativescript-intl\": \"3.0.0\",\n" +
                 "  \"nativescript-iqkeyboardmanager\": \"1.5.1\",\n" +
-                "  \"nativescript-social-share\": \"1.5.2\",\n" +
+                "  \"nativescript-social-share\": \"1.6.0\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.6\",\n" +
                 "  \"nativescript-ui-autocomplete\": \"6.0.0\",\n" +
                 "  \"nativescript-ui-calendar\": \"6.0.0\",\n" +
-                "  \"nativescript-ui-chart\": \"7.1.0\",\n" +
+                "  \"nativescript-ui-chart\": \"7.1.1\",\n" +
                 "  \"nativescript-ui-dataform\": \"6.0.0\",\n" +
                 "  \"nativescript-ui-gauge\": \"6.0.0\",\n" +
                 "  \"nativescript-ui-listview\": \"8.0.1\",\n" +
                 "  \"nativescript-ui-sidedrawer\": \"8.0.0\",\n" +
                 "  \"nativescript-vue\": \"2.4.0\",\n" +
                 "  \"react\": \"16.12.0\",\n" +
-                "  \"react-hot-loader\": \"4.12.18\",\n" +
+                "  \"react-hot-loader\": \"4.12.19\",\n" +
                 "  \"react-nativescript\": \"0.17.0\",\n" +
                 "  \"reflect-metadata\": \"0.1.13\",\n" +
-                "  \"rxjs\": \"6.5.3\",\n" +
-                "  \"rxjs-compat\": \"6.5.3\",\n" +
-                "  \"svelte\": \"3.16.4\",\n" +
-                "  \"svelte-native\": \"0.7.2\",\n" +
-                "  \"tns-core-modules\": \"6.3.1\",\n" +
+                "  \"rxjs\": \"6.5.4\",\n" +
+                "  \"rxjs-compat\": \"6.5.4\",\n" +
+                "  \"svelte\": \"3.18.1\",\n" +
+                "  \"svelte-native\": \"0.7.3\",\n" +
+                "  \"tns-core-modules\": \"6.4.0\",\n" +
                 "  \"zone.js\": \"0.10.2\"\n" +
                 "}";
 
