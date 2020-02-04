@@ -140,7 +140,7 @@ public class NSSyncTests extends MobileTest {
                 "  \"@angular/router\": \"8.2.14\",\n" +
                 "  \"@nativescript/angular\": \"8.20.4\",\n" +
                 "  \"@nativescript/core\": \"6.4.0\",\n" +
-                "  \"@nativescript/theme\": \"2.0.24\",\n" +
+                "  \"@nativescript/theme\": \"2.2.1\",\n" +
                 "  \"@progress-nativechat/nativescript-nativechat\": \"3.0.0\",\n" +
                 "  \"kinvey-nativescript-sdk\": \"4.2.5\",\n" +
                 "  \"nativescript-accelerometer\": \"3.0.0\",\n" +
