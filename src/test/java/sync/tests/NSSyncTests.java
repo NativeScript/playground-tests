@@ -636,11 +636,9 @@ public class NSSyncTests extends MobileTest {
 
     @Test(description = "Verify empty folders are not crashing preview app!", groups = {"android", "ios"})
     public void test_12_empty_folders_are_crashing_preview_app() throws Exception {
-        setupClass.context.client.driver.get("https://www.google.com/");
+        setupClass.driver.get("https://www.google.com/");
         try {
-            if (ExpectedConditions.alertIsPresent() != null) {
-                setupClass.context.client.driver.switchTo().alert().accept();
-            }
+                setupClass.driver.switchTo().alert().accept();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
