@@ -643,17 +643,21 @@ public class NSSyncTests extends MobileTest {
             log.error(e.getMessage());
         }
         setupClass.NavigateToPage("https://play.nativescript.be/?template=play-js&id=2FtnMV&v=4&debug=true");
+        setupClass.wait(2000);
         List<WebElement> modalDialogElements = setupClass.driver.findElements(By.className("modal-content"));
         if (modalDialogElements.size() > 0) {
             modalDialogElements.get(0).findElements(By.className("close-button")).get(0).click();
+            setupClass.wait(2000);
         }
         setupClass.GetDeviceLink();
         setupClass.startPreviewAppWithLiveSync();
         setupClass.wait(10000);
         setupClass.NavigateToPage("https://play.nativescript.be/?template=play-js&id=2FtnMV&v=3&debug=true");
+        setupClass.wait(2000);
         modalDialogElements = setupClass.driver.findElements(By.className("modal-content"));
         if (modalDialogElements.size() > 0) {
             modalDialogElements.get(0).findElements(By.className("close-button")).get(0).click();
+            setupClass.wait(2000);
         }
         setupClass.GetDeviceLink();
         setupClass.startPreviewAppWithLiveSync();
