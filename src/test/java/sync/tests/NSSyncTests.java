@@ -126,7 +126,7 @@ public class NSSyncTests extends MobileTest {
         String runtimeVersionExpected = "";
         if (settings.deviceType == DeviceType.Emulator) {
 
-            runtimeVersionExpected = "6.4.0";
+            runtimeVersionExpected = "6.4.1";
         } else {
             runtimeVersionExpected = "6.4.0";
         }
