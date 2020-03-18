@@ -142,7 +142,7 @@ public class NSSyncTests extends MobileTest {
                 "  \"@angular/router\": \"8.2.14\",\n" +
                 "  \"@nativescript/angular\": \"8.21.0\",\n" +
                 "  \"@nativescript/core\": \"6.5.0\",\n" +
-                "  \"@nativescript/theme\": \"2.3.2\",\n" +
+                "  \"@nativescript/theme\": \"2.3.3\",\n" +
                 "  \"@progress-nativechat/nativescript-nativechat\": \"3.0.0\",\n" +
                 "  \"kinvey-nativescript-sdk\": \"4.2.5\",\n" +
                 "  \"nativescript-accelerometer\": \"3.0.0\",\n" +
@@ -157,7 +157,7 @@ public class NSSyncTests extends MobileTest {
                 "  \"nativescript-social-share\": \"1.6.0\",\n" +
                 "  \"nativescript-theme-core\": \"1.0.6\",\n" +
                 "  \"nativescript-ui-autocomplete\": \"6.0.1\",\n" +
-                "  \"nativescript-ui-calendar\": \"6.0.1\",\n" +
+                "  \"nativescript-ui-calendar\": \"6.1.0\",\n" +
                 "  \"nativescript-ui-chart\": \"7.1.1\",\n" +
                 "  \"nativescript-ui-dataform\": \"6.0.0\",\n" +
                 "  \"nativescript-ui-gauge\": \"6.0.0\",\n" +
